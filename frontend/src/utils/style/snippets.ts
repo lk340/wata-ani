@@ -1,0 +1,254 @@
+import { WEBGL } from "./webgl-check";
+import { css } from "styled-components";
+import { animated } from "react-spring";
+
+import * as Context from "@/context";
+
+// ============== //
+// ↓↓↓ Checks ↓↓↓ //
+// ============== //
+
+export function checkWebGLAvailable() {
+	if (WEBGL.isWebGLAvailable()) {
+		console.log("WebGL Available!");
+		// Do your animations here.
+	} else {
+		const warning = WEBGL.getWebGLErrorMessage();
+		console.log(`There was an error with WebGL: ${warning}`);
+		// document.getElementById("container").appendChild(warning);
+	}
+}
+
+// ============== //
+// ↓↓↓ Styles ↓↓↓ //
+// ============== //
+
+export function fillView() {
+	return css`
+		width: 100vw;
+		height: 100vh;
+	`;
+}
+
+export function fillContainer() {
+	return css`
+		width: 100%;
+		height: 100%;
+	`;
+}
+
+export function minMaxWidth(minWidth: string, maxWidth: string) {
+	return css`
+		min-width: ${minWidth};
+		max-width: ${maxWidth};
+	`;
+}
+
+export function minMaxHeight(minHeight: string, maxHeight: string) {
+	return css`
+		min-height: ${minHeight};
+		max-height: ${maxHeight};
+	`;
+}
+
+export function size(width: string, height: string) {
+	return css`
+		width: ${width};
+		height: ${height};
+	`;
+}
+
+export function square(size: string) {
+	return css`
+		width: ${size};
+		height: ${size};
+	`;
+}
+
+export function circle() {
+	return css`
+		border-radius: 50%;
+	`;
+}
+
+export function flex(
+	direction: string = "row",
+	justifyContent: string = "auto",
+	alignItems: string = "auto",
+) {
+	return css`
+		display: flex;
+		flex-direction: ${direction};
+		justify-content: ${justifyContent};
+		align-items: ${alignItems};
+	`;
+}
+
+export function grid(
+	columnRepeat: number = 1,
+	columnSize: string = "auto",
+	gap: number = 0,
+	justifyItems: string = "auto",
+	alignItems: string = "auto",
+) {
+	return css`
+		display: grid;
+		grid-template-columns: repeat(${columnRepeat}, ${columnSize});
+		grid-gap: ${gap}px;
+		justify-items: ${justifyItems};
+		align-items: ${alignItems};
+	`;
+}
+
+export function position(
+	position: string = "static",
+	top: string = "auto",
+	right: string = "auto",
+	bottom: string = "auto",
+	left: string = "auto",
+	zIndex: number = 1,
+) {
+	return css`
+		position: ${position};
+		top: ${top};
+		right: ${right};
+		bottom: ${bottom};
+		left: ${left};
+		z-index: ${zIndex};
+	`;
+}
+
+export function absolute(
+	top: string = "auto",
+	right: string = "auto",
+	bottom: string = "auto",
+	left: string = "auto",
+	zIndex: number = 1,
+) {
+	return css`
+		position: absolute;
+		top: ${top};
+		right: ${right};
+		bottom: ${bottom};
+		left: ${left};
+		z-index: ${zIndex};
+	`;
+}
+
+export function fixed(
+	top: string = "auto",
+	right: string = "auto",
+	bottom: string = "auto",
+	left: string = "auto",
+	zIndex: number = 1,
+) {
+	return css`
+		position: fixed;
+		top: ${top};
+		right: ${right};
+		bottom: ${bottom};
+		left: ${left};
+		z-index: ${zIndex};
+	`;
+}
+
+export function hideScrollbar() {
+	return css`
+		-ms-overflow-style: none;
+
+		::-webkit-scrollbar {
+			display: none;
+		}
+	`;
+}
+
+export function noTextHighlight() {
+	return css`
+		.noselect {
+			-webkit-touch-callout: none; /* iOS Safari */
+			-webkit-user-select: none; /* Safari */
+			-khtml-user-select: none; /* Konqueror HTML */
+			-moz-user-select: none; /* Old versions of Firefox */
+			-ms-user-select: none; /* Internet Explorer/Edge */
+			user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+		}
+	`;
+}
+
+export function clear() {
+	return css`
+		margin: 0;
+		padding: 0;
+	`;
+}
+
+export function clearAnchor() {
+	return css`
+		color: #000000;
+		text-decoration: none;
+	`;
+}
+
+export function debug(color: string, type: string, size: number) {
+	return css`
+		border: ${color} ${type} ${size}px;
+	`;
+}
+
+export function fixSafariMinHeight() {
+	return css`
+		/* min-height: 100vh; */
+		min-height: 100%;
+		min-height: -webkit-fill-available;
+		min-height: -mox-available;
+		min-height: fill-available;
+	`;
+}
+
+// ========================= //
+// ↓↓↓ Responsive Styles ↓↓↓ //
+// ========================= //
+
+export function gridResponsive(minSize: string = "200px", maxSize: string = "1fr") {
+	return css`
+		display: grid;
+		align-items: center;
+		grid-template-columns: repeat(auto-fit, minmax(${minSize}, ${maxSize}));
+	`;
+}
+
+export function responsive(
+	device: Context.Theme.Device,
+	ultrawide: string,
+	desktop: string,
+	iPadPro: string,
+	iPad: string,
+	iPhone678Plus: string,
+	pixel2: string,
+	iPhoneX: string,
+	galaxyS5: string,
+	iPhone5SE: string,
+) {
+	switch (device) {
+		case "ultrawide":
+			return ultrawide;
+		case "desktop":
+			return desktop;
+		case "iPadPro":
+			return iPadPro;
+		case "iPad":
+			return iPad;
+		case "iPhone678Plus":
+			return iPhone678Plus;
+		case "pixel2":
+			return pixel2;
+		case "iPhoneX":
+			return iPhoneX;
+		case "galaxyS5":
+			return galaxyS5;
+		case "iPhone5SE":
+			return iPhone5SE;
+		default:
+			break;
+	}
+}

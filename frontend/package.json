@@ -1,0 +1,81 @@
+{
+  "name": "three-js-practice",
+  "private": true,
+  "description": "A simple starter to get up and developing quickly with TypeScript Gatsby.",
+  "version": "0.1.0",
+  "author": "Loyd Kim <loyd.hkim@gmail.com>",
+  "dependencies": {
+    "@babel/preset-react": "^7.8.3",
+    "@reach/router": "^1.3.1",
+    "@types/reach__router": "^1.3.0",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "@types/styled-components": "^4.4.3",
+    "axios": "^0.19.2",
+    "gatsby": "^2.19.7",
+    "gatsby-image": "^2.2.39",
+    "gatsby-link": "^2.2.29",
+    "gatsby-plugin-manifest": "^2.2.39",
+    "gatsby-plugin-offline": "^3.0.32",
+    "gatsby-plugin-page-creator": "^2.2.3",
+    "gatsby-plugin-react-helmet": "^3.1.21",
+    "gatsby-plugin-sharp": "^2.4.3",
+    "gatsby-plugin-typescript": "^2.1.27",
+    "gatsby-react-router-scroll": "^2.1.21",
+    "gatsby-source-filesystem": "^2.1.46",
+    "gatsby-transformer-sharp": "^2.3.13",
+    "polished": "^3.4.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "react-lazy-load-image-component": "^1.4.1",
+    "react-spring": "^8.0.27",
+    "react-three-fiber": "^4.0.17",
+    "react-use": "^13.26.1",
+    "styled-components": "^5.0.1",
+    "styled-icons": "^9.3.0",
+    "three": "^0.113.2",
+    "ts-loader": "^6.2.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "@storybook/addon-actions": "^5.3.14",
+    "@storybook/addon-links": "^5.3.14",
+    "@storybook/addons": "^5.3.14",
+    "@storybook/react": "^5.3.14",
+    "@testing-library/cypress": "^5.3.0",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.4.0",
+    "@types/jest": "^25.1.2",
+    "babel-loader": "^8.0.6",
+    "jest": "^25.1.0",
+    "miragejs": "^0.1.34",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.2.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "yarn develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
+}
