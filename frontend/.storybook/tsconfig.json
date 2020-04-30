@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"allowJs": false,
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./",
+		"declaration": true,
+		"jsx": "react",
+		"lib": ["es6", "dom"],
+		"module": "esnext",
+		"moduleResolution": "node",
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noImplicitAny": true,
+		"outDir": "dist",
+		"rootDir": "../",
+		"sourceMap": true,
+		"strictNullChecks": true,
+		"target": "esnext"
+	},
+	"include": ["src/**/*"],
+	"exclude": [
+		"node_modules",
+		"build",
+		"dist",
+		"scripts",
+		"acceptance-tests",
+		"webpack",
+		"jest",
+		"src/setupTests.ts",
+		"**/*/*.test.ts",
+		"examples"
+	]
+}

@@ -1,5 +1,4 @@
 import * as React from "react";
-import axios from "axios";
 
 import * as Helpers from "@/context/helpers";
 
@@ -13,7 +12,6 @@ const initialState = Object.freeze<State>({
 
 export const useWelcomeContext = Helpers.createUseContext(() => {
 	const [welcome, _setWelcome] = React.useState<State>({ ...initialState });
-	const { message } = welcome;
 
 	// --- Getters --- //
 
