@@ -1,5 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+import * as Snippets from "@/utils/style/snippets";
+
 export const Layout = styled("div")``;
 
 export const LayoutGlobalStyles = createGlobalStyle`
@@ -17,4 +19,6 @@ export const LayoutGlobalStyles = createGlobalStyle`
   }
 `;
 
-export const LayoutChildren = styled("div")``;
+export const LayoutChildren = styled("div")`
+	${Snippets.fillView()};
+`;

@@ -1,2 +1,2 @@
-import * as Pages from "@/views/lib";
-export default Pages.Home;
+import * as Lib from "@/views/lib";
+export default Lib.Home;
