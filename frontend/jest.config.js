@@ -17,7 +17,7 @@ module.exports = {
 	// setupFilesAfterEnv: [path.resolve(__dirname, "./jest-configs/setup-test-env.js")],
 	setupFilesAfterEnv: ["<rootDir>/jest-configs/setup-test-env.js"],
 	testPathIgnorePatterns: [`node_modules`, `.cache`, `public`],
-	testRegex: "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
+	// testRegex: "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
 	transform: {
 		"^.+\\.(tsx?|jsx?)$": "ts-jest",
 		// "^.+\\.tsx?$": "ts-jest",
