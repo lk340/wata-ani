@@ -7,7 +7,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("id", "username", "email", "todos")
+        fields = ("id", "username", "email")
 
 
 class UserSignUpSerializer(serializers.ModelSerializer):
@@ -71,12 +71,3 @@ class UserPasswordChangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ("password",)
-
-# class UserPasswordChangeSerializer(serializers.Serializer):
-    # password = serializers.CharField()
-    # new_password = serializers.CharField()
-
-    # def update(self, instance, validated_data):
-    #     instance.password = validated_data.get("new_password", instance.password)
-    #     instance.save()
-    #     return instance

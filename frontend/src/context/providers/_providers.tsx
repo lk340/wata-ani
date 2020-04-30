@@ -10,7 +10,7 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({ children })
 					<Context.Scroll.Provider>
 						<Context.Mouse.Provider>
 							<Context.Auth.Provider>
-								<Context.Todos.Provider>{children}</Context.Todos.Provider>
+								<Context.Welcome.Provider>{children}</Context.Welcome.Provider>
 							</Context.Auth.Provider>
 						</Context.Mouse.Provider>
 					</Context.Scroll.Provider>

@@ -7,7 +7,7 @@
 
 import * as React from "react";
 import PropTypes from "prop-types";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
 type Meta = {
@@ -19,7 +19,8 @@ type Meta = {
 type Props = {
 	description: string;
 	lang: string;
-	meta: Meta;
+	// meta: Meta;
+	meta: any;
 	title: string;
 };
 

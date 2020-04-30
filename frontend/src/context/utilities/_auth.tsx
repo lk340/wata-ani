@@ -16,7 +16,6 @@ export type CurrentUser = {
 	id: number;
 	username: string;
 	email: string;
-	todos: Context.Todos.Todo[];
 };
 
 type State = { currentUser: CurrentUser | null };
