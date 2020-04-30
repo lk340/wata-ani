@@ -1,3 +1,1 @@
-import { createUseContext } from "./create-use-context";
-
-export { createUseContext };
+export { createUseContext } from "./create-use-context";
