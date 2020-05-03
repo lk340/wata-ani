@@ -1,7 +1,6 @@
 import * as React from "react";
 import axios from "axios";
 
-import * as Context from "@/context";
 import * as Helpers from "@/context/helpers";
 import * as JWT from "@/utils/api/jwt";
 
@@ -18,9 +17,32 @@ export type CurrentUser = {
 	email: string;
 };
 
-type State = { currentUser: CurrentUser | null };
+type InputTypes = {
+	username: string;
+	email: string;
+	password: string;
+	passwordConfirmation: string;
+};
 
-const initialState = Object.freeze<State>({ currentUser: null });
+type State = {
+	currentUser: CurrentUser | null;
+	username: string;
+	email: string;
+	password: string;
+	passwordConfirmation: string;
+	showPassword: boolean;
+	disabled: boolean;
+};
+
+const initialState = Object.freeze<State>({
+	currentUser: null,
+	username: "",
+	email: "",
+	password: "",
+	passwordConfirmation: "",
+	showPassword: false,
+	disabled: true,
+});
 
 export const useAuthContext = Helpers.createUseContext(() => {
 	const [auth, _setAuth] = React.useState<State>({ ...initialState });
@@ -48,13 +70,31 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		GET();
 	}
 
-	function signOut(): void {
-		if (localStorage.access && localStorage.refresh) {
-			localStorage.removeItem("access");
-			localStorage.removeItem("refresh");
-		}
-		setAuth({ currentUser: null });
+	function setInput(type: keyof InputTypes): Function {
+		return function inputType(event: React.ChangeEvent<HTMLInputElement>): void {
+			const userInput = event.currentTarget.value;
+			switch (type) {
+				case "username":
+					setAuth({ username: userInput });
+					break;
+				case "email":
+					setAuth({ email: userInput });
+					break;
+				case "password":
+					setAuth({ password: userInput });
+					break;
+				case "passwordConfirmation":
+					setAuth({ passwordConfirmation: userInput });
+					break;
+				default:
+					break;
+			}
+		};
 	}
+
+	const setShowPassword = (showPassword: boolean) => setAuth({ showPassword });
+
+	const setDisabled = (disabled: boolean) => setAuth({ disabled });
 
 	// --- API --- //
 
@@ -92,7 +132,15 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		POST(data, endpoint);
 	}
 
-	function deleteCurrentUser(): void {
+	function signOut(): void {
+		if (localStorage.access && localStorage.refresh) {
+			localStorage.removeItem("access");
+			localStorage.removeItem("refresh");
+		}
+		setAuth({ currentUser: null });
+	}
+
+	function deleteAccount(): void {
 		async function DELETE(): Promise<void> {
 			try {
 				const endpoint = `http://localhost:7000/api/users/${auth.currentUser.id}/`;
@@ -106,7 +154,7 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		DELETE();
 	}
 
-	function passwordChange(
+	function changePassword(
 		old_password: string,
 		new_password1: string,
 		new_password2: string,
@@ -135,15 +183,18 @@ export const useAuthContext = Helpers.createUseContext(() => {
 
 	const setters = {
 		setAuth,
+		setCurrentUser,
+		setInput,
+		setShowPassword,
+		setDisabled,
 	};
 
 	const api = {
 		signIn,
-		signOut,
 		signUp,
-		setCurrentUser,
-		deleteCurrentUser,
-		passwordChange,
+		signOut,
+		deleteAccount,
+		changePassword,
 	};
 
 	return {
