@@ -28,12 +28,6 @@ describe("SignUp", () => {
 		expect(getByTestId("password-confirmation-field")).not.toBeNull();
 	});
 
-	it("requires all form fields to be filled out", () => {
-		const { getByTestId } = renderWithContext(<SignUp />);
-		// simulate filling 3/4 fields
-		expect(getByTestId("submit-button")).toHaveProperty("disabled");
-	});
-
 	it("displays a submit button", () => {
 		const { getByTestId } = renderWithContext(<SignUp />);
 		expect(getByTestId("submit-button")).not.toBeNull();
@@ -41,19 +35,54 @@ describe("SignUp", () => {
 
 	it("disables the submit button when all form fields are not filled", () => {
 		const { getByTestId } = renderWithContext(<SignUp />);
-		expect(getByTestId("submit-button")).toHaveProperty("disabled");
+		const usernameField = getByTestId("username-field");
+		const emailField = getByTestId("email-field");
+		const passwordField = getByTestId("password-field");
+		Testing.fireEvent.change(usernameField, { target: { value: "foobar" } });
+		Testing.fireEvent.change(emailField, { target: { value: "foo@bar.com" } });
+		Testing.fireEvent.change(passwordField, { target: { value: "password123" } });
+		expect(getByTestId("username-field").value).toBe("foobar");
+		expect(getByTestId("email-field").value).toBe("foo@bar.com");
+		expect(getByTestId("password-field").value).toBe("password123");
+		expect(getByTestId("password-confirmation-field").value).toBe("");
+		expect(getByTestId("submit-button")).toBeDisabled();
 	});
 
 	it("enables the submit button when all form fields are filled", () => {
 		const { getByTestId } = renderWithContext(<SignUp />);
-		// simulate all 4 fields filled
-		// expect(getByTestId("submit-button")).not.toHaveProperty("disabled");
+		const usernameField = getByTestId("username-field");
+		const emailField = getByTestId("email-field");
+		const passwordField = getByTestId("password-field");
+		const passwordConfirmationField = getByTestId("password-confirmation-field");
+		Testing.fireEvent.change(usernameField, { target: { value: "foobar" } });
+		Testing.fireEvent.change(emailField, { target: { value: "foo@bar.com" } });
+		Testing.fireEvent.change(passwordField, { target: { value: "password123" } });
+		Testing.fireEvent.change(passwordConfirmationField, {
+			target: { value: "password123" },
+		});
+		expect(getByTestId("username-field").value).toBe("foobar");
+		expect(getByTestId("email-field").value).toBe("foo@bar.com");
+		expect(getByTestId("password-field").value).toBe("password123");
+		expect(getByTestId("password-confirmation-field").value).toBe("password123");
+		expect(getByTestId("submit-button")).not.toBeDisabled();
 	});
 
 	it("displays an error message when the passwords don't match", () => {
 		const { getByTestId } = renderWithContext(<SignUp />);
-		// simulate both password fields filled in but with differing strings
-		// expect(getByTestId("error-message")).toHaveTextContent("Your passwords don't match.");
+		const usernameField = getByTestId("username-field");
+		const emailField = getByTestId("email-field");
+		const passwordField = getByTestId("password-field");
+		const passwordConfirmationField = getByTestId("password-confirmation-field");
+		Testing.fireEvent.change(usernameField, { target: { value: "foobar" } });
+		Testing.fireEvent.change(emailField, { target: { value: "foo@bar.com" } });
+		Testing.fireEvent.change(passwordField, { target: { value: "foo" } });
+		Testing.fireEvent.change(passwordConfirmationField, { target: { value: "bar" } });
+		Testing.fireEvent.click(getByTestId("submit-button"));
+		expect(getByTestId("username-field").value).toBe("foobar");
+		expect(getByTestId("email-field").value).toBe("foo@bar.com");
+		expect(getByTestId("password-field").value).toBe("foo");
+		expect(getByTestId("password-confirmation-field").value).toBe("bar");
+		expect(getByTestId("error-message")).toHaveTextContent("Your passwords don't match.");
 	});
 
 	it("signs the user up", async () => {});
