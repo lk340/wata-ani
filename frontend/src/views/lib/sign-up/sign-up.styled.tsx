@@ -15,18 +15,23 @@ export const SignUpForm = styled("form")`
 	border: red solid 1px;
 `;
 
-export const SignUpFormTitle = styled("h1")`
+export const SignUpFormTitle = styled("h1").attrs(() => ({
+	"data-testid": "title",
+}))`
 	${Snippets.clear()};
 	text-align: center;
 `;
 
-export const SignUpFormError = styled("div")`
+export const SignUpFormError = styled("div").attrs(() => ({
+	"data-testid": "error-message"
+}))`
 	color: red;
 `;
 
 export const SignUpFormUsernameInput = styled("input").attrs(() => ({
 	placeholder: "Username",
 	required: true,
+	"data-testid": "username-field",
 }))`
 	outline: none;
 `;
@@ -35,12 +40,14 @@ export const SignUpFormEmailInput = styled(SignUpFormUsernameInput).attrs(() => 
 	placeholder: "Email",
 	type: "email",
 	required: true,
+	"data-testid": "email-field",
 }))``;
 
 export const SignUpFormPasswordInput = styled(SignUpFormUsernameInput).attrs(() => ({
 	placeholder: "Password",
 	type: "password",
 	required: true,
+	"data-testid": "password-field",
 }))``;
 
 export const SignUpFormPasswordConfirmationInput = styled(SignUpFormUsernameInput).attrs(
@@ -48,9 +55,11 @@ export const SignUpFormPasswordConfirmationInput = styled(SignUpFormUsernameInpu
 		placeholder: "Confirm Password",
 		type: "password",
 		required: true,
+		"data-testid": "password-confirmation-field",
 	}),
 )``;
 
 export const SignUpFormSubmit = styled("button").attrs(() => ({
 	type: "submit",
+	"data-testid": "submit-button",
 }))``;
