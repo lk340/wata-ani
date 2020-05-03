@@ -38,12 +38,9 @@ describe("SignUp", () => {
 
 	it("disables the submit button when all form fields are not filled", () => {
 		const { getByTestId } = renderWithContext(<SignUp />);
-		const usernameField = getByTestId("username-field");
-		const emailField = getByTestId("email-field");
-		const passwordField = getByTestId("password-field");
-		Testing.fireEvent.change(usernameField, { target: { value: "foobar" } });
-		Testing.fireEvent.change(emailField, { target: { value: "foo@bar.com" } });
-		Testing.fireEvent.change(passwordField, { target: { value: "password123" } });
+		Testing.fireEvent.change(getByTestId("username-field"), { target: { value: "foobar" } });
+		Testing.fireEvent.change(getByTestId("email-field"), { target: { value: "foo@bar.com" } });
+		Testing.fireEvent.change(getByTestId("password-field"), { target: { value: "password123" } });
 		expect(getByTestId("username-field").value).toBe("foobar");
 		expect(getByTestId("email-field").value).toBe("foo@bar.com");
 		expect(getByTestId("password-field").value).toBe("password123");
@@ -53,16 +50,10 @@ describe("SignUp", () => {
 
 	it("enables the submit button when all form fields are filled", () => {
 		const { getByTestId } = renderWithContext(<SignUp />);
-		const usernameField = getByTestId("username-field");
-		const emailField = getByTestId("email-field");
-		const passwordField = getByTestId("password-field");
-		const passwordConfirmationField = getByTestId("password-confirmation-field");
-		Testing.fireEvent.change(usernameField, { target: { value: "foobar" } });
-		Testing.fireEvent.change(emailField, { target: { value: "foo@bar.com" } });
-		Testing.fireEvent.change(passwordField, { target: { value: "password123" } });
-		Testing.fireEvent.change(passwordConfirmationField, {
-			target: { value: "password123" },
-		});
+		Testing.fireEvent.change(getByTestId("username-field"), { target: { value: "foobar" } });
+		Testing.fireEvent.change(getByTestId("email-field"), { target: { value: "foo@bar.com" } });
+		Testing.fireEvent.change(getByTestId("password-field"), { target: { value: "password123" } });
+		Testing.fireEvent.change(getByTestId("password-confirmation-field"), { target: { value: "password123" } });
 		expect(getByTestId("username-field").value).toBe("foobar");
 		expect(getByTestId("email-field").value).toBe("foo@bar.com");
 		expect(getByTestId("password-field").value).toBe("password123");
@@ -72,46 +63,38 @@ describe("SignUp", () => {
 
 	it("displays an error message when the passwords don't match", () => {
 		const { getByTestId } = renderWithContext(<SignUp />);
-		const usernameField = getByTestId("username-field");
-		const emailField = getByTestId("email-field");
-		const passwordField = getByTestId("password-field");
-		const passwordConfirmationField = getByTestId("password-confirmation-field");
-		Testing.fireEvent.change(usernameField, { target: { value: "foobar" } });
-		Testing.fireEvent.change(emailField, { target: { value: "foo@bar.com" } });
-		Testing.fireEvent.change(passwordField, { target: { value: "foo" } });
-		Testing.fireEvent.change(passwordConfirmationField, { target: { value: "bar" } });
+		Testing.fireEvent.change(getByTestId("username-field"), { target: { value: "foobar" } });
+		Testing.fireEvent.change(getByTestId("email-field"), { target: { value: "foo@bar.com" } });
+		Testing.fireEvent.change(getByTestId("password-field"), { target: { value: "password123" } });
+		Testing.fireEvent.change(getByTestId("password-confirmation-field"), { target: { value: "password456" } });
 		Testing.fireEvent.click(getByTestId("submit-button"));
 		expect(getByTestId("username-field").value).toBe("foobar");
 		expect(getByTestId("email-field").value).toBe("foo@bar.com");
-		expect(getByTestId("password-field").value).toBe("foo");
-		expect(getByTestId("password-confirmation-field").value).toBe("bar");
+		expect(getByTestId("password-field").value).toBe("password123");
+		expect(getByTestId("password-confirmation-field").value).toBe("password456");
 		expect(getByTestId("error-message")).toHaveTextContent("Your passwords don't match.");
 	});
 
 	it("signs the user up", async () => {
 		const { getByTestId } = renderWithContext(<SignUp />);
-		const username = "foobar";
-		const email = "foo@bar.com";
-		const password = "password123";
-		const passwordConfirmation = "password123";
+
 		axiosMock.post.mockResolvedValueOnce({
-			data: { id: 1, username, email },
+			data: { 
+				id: 1, 
+				username: "foobar", 
+				email: "foo@bar.com"
+			},
 		});
-		const usernameField = getByTestId("username-field");
-		const emailField = getByTestId("email-field");
-		const passwordField = getByTestId("password-field");
-		const passwordConfirmationField = getByTestId("password-confirmation-field");
-		Testing.fireEvent.change(usernameField, { target: { value: username } });
-		Testing.fireEvent.change(emailField, { target: { value: email } });
-		Testing.fireEvent.change(passwordField, { target: { value: password } });
-		Testing.fireEvent.change(passwordConfirmationField, {
-			target: { value: passwordConfirmation },
-		});
+
+		Testing.fireEvent.change(getByTestId("username-field"), { target: { value: "foobar" } });
+		Testing.fireEvent.change(getByTestId("email-field"), { target: { value: "foo@bar.com" } });
+		Testing.fireEvent.change(getByTestId("password-field"), { target: { value: "password123" } });	
+		Testing.fireEvent.change(getByTestId("password-confirmation-field"), { target: { value: "password123" } });
 		Testing.fireEvent.click(getByTestId("submit-button"));
-		expect(getByTestId("username-field").value).toBe(username);
-		expect(getByTestId("email-field").value).toBe(email);
-		expect(getByTestId("password-field").value).toBe(password);
-		expect(getByTestId("password-confirmation-field").value).toBe(passwordConfirmation);
+		expect(getByTestId("username-field").value).toBe("foobar");
+		expect(getByTestId("email-field").value).toBe("foo@bar.com");
+		expect(getByTestId("password-field").value).toBe("password123");
+		expect(getByTestId("password-confirmation-field").value).toBe("password123");
 		expect(getByTestId("submit-button")).not.toBeDisabled();
 		expect(axiosMock.post).toHaveBeenCalledTimes(1);
 	});
