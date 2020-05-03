@@ -32,6 +32,7 @@ type State = {
 	passwordConfirmation: string;
 	showPassword: boolean;
 	disabled: boolean;
+	error: string;
 };
 
 const initialState = Object.freeze<State>({
@@ -42,6 +43,7 @@ const initialState = Object.freeze<State>({
 	passwordConfirmation: "",
 	showPassword: false,
 	disabled: true,
+	error: "",
 });
 
 export const useAuthContext = Helpers.createUseContext(() => {
@@ -71,36 +73,46 @@ export const useAuthContext = Helpers.createUseContext(() => {
 	}
 
 	const setShowPassword = (showPassword: boolean) => setAuth({ showPassword });
-
 	const setDisabled = (disabled: boolean) => setAuth({ disabled });
+	const setError = (error: string) => setAuth({ error });
 
 	// --- Handlers --- //
 
-	function handleChange(type: keyof InputTypes): Function {
-		return function inputType(event: React.ChangeEvent<HTMLInputElement>): void {
-			const userInput = event.currentTarget.value;
-			switch (type) {
-				case "username":
-					setAuth({ username: userInput });
-					break;
-				case "email":
-					setAuth({ email: userInput });
-					break;
-				case "password":
-					setAuth({ password: userInput });
-					break;
-				case "passwordConfirmation":
-					setAuth({ passwordConfirmation: userInput });
-					break;
-				default:
-					break;
-			}
-		};
+	function handleUsernameChange(event: React.ChangeEvent<HTMLInputElement>): void {
+		const userInput = event.currentTarget.value;
+		setAuth({ username: userInput });
+	}
+
+	function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>): void {
+		const userInput = event.currentTarget.value;
+		setAuth({ email: userInput });
+	}
+
+	function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>): void {
+		const userInput = event.currentTarget.value;
+		setAuth({ password: userInput });
+	}
+
+	function handlePasswordConfirmationChange(
+		event: React.ChangeEvent<HTMLInputElement>,
+	): void {
+		const userInput = event.currentTarget.value;
+		setAuth({ passwordConfirmation: userInput });
 	}
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
 		event.preventDefault();
-		signUp(auth.username, auth.email, auth.password, auth.passwordConfirmation);
+		console.log(auth.username);
+		console.log(auth.email);
+		console.log(auth.password);
+		console.log(auth.passwordConfirmation);
+
+		if (auth.password !== auth.passwordConfirmation) {
+			setAuth({ error: "Your passwords don't match." });
+		} else {
+			setAuth({ error: "" });
+			signUp(auth.username, auth.email, auth.password, auth.passwordConfirmation);
+		}
 	}
 
 	// --- API --- //
@@ -193,10 +205,14 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		setCurrentUser,
 		setShowPassword,
 		setDisabled,
+		setError,
 	};
 
 	const handlers = {
-		handleChange,
+		handleUsernameChange,
+		handleEmailChange,
+		handlePasswordChange,
+		handlePasswordConfirmationChange,
 		handleSubmit,
 	};
 
