@@ -1,9 +1,12 @@
 import * as React from "react";
 import * as Testing from "@testing-library/react";
+import axiosMock from "axios";
 
 import { Providers } from "@/context/providers";
 
 import { SignUp } from "./sign-up";
+
+jest.mock("axios");
 
 function renderWithContext(component: React.ReactNode) {
 	return Testing.render(<Providers>{component}</Providers>);
@@ -85,5 +88,31 @@ describe("SignUp", () => {
 		expect(getByTestId("error-message")).toHaveTextContent("Your passwords don't match.");
 	});
 
-	it("signs the user up", async () => {});
+	it("signs the user up", async () => {
+		const { getByTestId } = renderWithContext(<SignUp />);
+		const username = "foobar";
+		const email = "foo@bar.com";
+		const password = "password123";
+		const passwordConfirmation = "password123";
+		axiosMock.post.mockResolvedValueOnce({
+			data: { id: 1, username, email },
+		});
+		const usernameField = getByTestId("username-field");
+		const emailField = getByTestId("email-field");
+		const passwordField = getByTestId("password-field");
+		const passwordConfirmationField = getByTestId("password-confirmation-field");
+		Testing.fireEvent.change(usernameField, { target: { value: username } });
+		Testing.fireEvent.change(emailField, { target: { value: email } });
+		Testing.fireEvent.change(passwordField, { target: { value: password } });
+		Testing.fireEvent.change(passwordConfirmationField, {
+			target: { value: passwordConfirmation },
+		});
+		Testing.fireEvent.click(getByTestId("submit-button"));
+		expect(getByTestId("username-field").value).toBe(username);
+		expect(getByTestId("email-field").value).toBe(email);
+		expect(getByTestId("password-field").value).toBe(password);
+		expect(getByTestId("password-confirmation-field").value).toBe(passwordConfirmation);
+		expect(getByTestId("submit-button")).not.toBeDisabled();
+		expect(axiosMock.post).toHaveBeenCalledTimes(1);
+	});
 });
