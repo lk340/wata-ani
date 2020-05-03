@@ -70,7 +70,13 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		GET();
 	}
 
-	function setInput(type: keyof InputTypes): Function {
+	const setShowPassword = (showPassword: boolean) => setAuth({ showPassword });
+
+	const setDisabled = (disabled: boolean) => setAuth({ disabled });
+
+	// --- Handlers --- //
+
+	function handleChange(type: keyof InputTypes): Function {
 		return function inputType(event: React.ChangeEvent<HTMLInputElement>): void {
 			const userInput = event.currentTarget.value;
 			switch (type) {
@@ -92,9 +98,10 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		};
 	}
 
-	const setShowPassword = (showPassword: boolean) => setAuth({ showPassword });
-
-	const setDisabled = (disabled: boolean) => setAuth({ disabled });
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+		event.preventDefault();
+		signUp(auth.username, auth.email, auth.password, auth.passwordConfirmation);
+	}
 
 	// --- API --- //
 
@@ -184,9 +191,13 @@ export const useAuthContext = Helpers.createUseContext(() => {
 	const setters = {
 		setAuth,
 		setCurrentUser,
-		setInput,
 		setShowPassword,
 		setDisabled,
+	};
+
+	const handlers = {
+		handleChange,
+		handleSubmit,
 	};
 
 	const api = {
@@ -198,7 +209,7 @@ export const useAuthContext = Helpers.createUseContext(() => {
 	};
 
 	return {
-		auth: { state, getters, setters, api },
+		auth: { state, getters, setters, handlers, api },
 	};
 });
 

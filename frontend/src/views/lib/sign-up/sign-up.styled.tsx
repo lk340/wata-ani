@@ -1,35 +1,36 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { animated } from "react-spring";
 
-export const SignUp = styled("div")``;
+import * as Snippets from "@/utils/style/snippets";
 
-export const SignUpForm = styled("form")`
+export const SignUp = styled("form")`
+	${Snippets.flex("column")};
 	margin: auto;
 
 	border: red solid 1px;
 `;
 
-export const SignUpFormUsernameInput = styled("input").attrs(() => ({
+export const SignUpUsernameInput = styled("input").attrs(() => ({
 	placeholder: "Username",
 	required: true,
 }))``;
 
-export const SignUpFormEmailInput = styled("input").attrs(() => ({
+export const SignUpEmailInput = styled("input").attrs(() => ({
 	placeholder: "Email",
 	type: "email",
 	required: true,
 }))``;
 
-export const SignUpFormPasswordInput = styled("input").attrs(() => ({
+export const SignUpPasswordInput = styled("input").attrs(() => ({
 	placeholder: "Password",
 	type: "password",
 	required: true,
 }))``;
 
-export const SignUpFormPasswordConfirmationInput = styled("input").attrs(() => ({
+export const SignUpPasswordConfirmationInput = styled("input").attrs(() => ({
 	placeholder: "Confirm Password",
 	type: "password",
 	required: true,
 }))``;
 
-export const SignUpFormSubmit = styled("button")``;
+export const SignUpSubmit = styled("button")``;
