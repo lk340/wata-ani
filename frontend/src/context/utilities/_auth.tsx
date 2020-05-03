@@ -17,15 +17,7 @@ export type CurrentUser = {
 	email: string;
 };
 
-type InputTypes = {
-	username: string;
-	email: string;
-	password: string;
-	passwordConfirmation: string;
-};
-
 type State = {
-	currentUser: CurrentUser | null;
 	username: string;
 	email: string;
 	password: string;
@@ -33,10 +25,10 @@ type State = {
 	showPassword: boolean;
 	disabled: boolean;
 	error: string;
+	currentUser: CurrentUser | null;
 };
 
 const initialState = Object.freeze<State>({
-	currentUser: null,
 	username: "",
 	email: "",
 	password: "",
@@ -44,18 +36,27 @@ const initialState = Object.freeze<State>({
 	showPassword: false,
 	disabled: true,
 	error: "",
+	currentUser: null,
 });
 
 export const useAuthContext = Helpers.createUseContext(() => {
 	const [auth, _setAuth] = React.useState<State>({ ...initialState });
 
-	// --- Getters --- //
+	// =============== //
+	// ↓↓↓ Getters ↓↓↓ //
+	// =============== //
 
 	const getCurrentUser = (): CurrentUser | null => auth.currentUser;
 
-	// --- Setters --- //
+	// =============== //
+	// ↓↓↓ Setters ↓↓↓ //
+	// =============== //
 
 	const setAuth = (state: Partial<State>) => _setAuth({ ...auth, ...state });
+
+	const setShowPassword = (showPassword: boolean) => setAuth({ showPassword });
+	const setDisabled = (disabled: boolean) => setAuth({ disabled });
+	const setError = (error: string) => setAuth({ error });
 
 	function setCurrentUser(id: number): void {
 		async function GET(): Promise<void> {
@@ -72,11 +73,9 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		GET();
 	}
 
-	const setShowPassword = (showPassword: boolean) => setAuth({ showPassword });
-	const setDisabled = (disabled: boolean) => setAuth({ disabled });
-	const setError = (error: string) => setAuth({ error });
-
-	// --- Handlers --- //
+	// ================ //
+	// ↓↓↓ Handlers ↓↓↓ //
+	// ================ //
 
 	function handleUsernameChange(event: React.ChangeEvent<HTMLInputElement>): void {
 		const userInput = event.currentTarget.value;
@@ -102,11 +101,6 @@ export const useAuthContext = Helpers.createUseContext(() => {
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
 		event.preventDefault();
-		console.log(auth.username);
-		console.log(auth.email);
-		console.log(auth.password);
-		console.log(auth.passwordConfirmation);
-
 		if (auth.password !== auth.passwordConfirmation) {
 			setAuth({ error: "Your passwords don't match." });
 		} else {
@@ -115,24 +109,27 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		}
 	}
 
-	// --- API --- //
+	// =========== //
+	// ↓↓↓ API ↓↓↓ //
+	// =========== //
 
-	function POST(data: Data, endpoint: string): void {
-		async function AUTH(): Promise<void> {
-			try {
-				const response = await axios.post(endpoint, data);
-				const accessToken = response.data.access_token;
-				const refreshToken = response.data.refresh_token;
-				localStorage.access = accessToken;
-				localStorage.refresh = refreshToken;
-				const currentUserID = response.data.user.id;
-				setCurrentUser(currentUserID);
-			} catch (error) {
-				console.log("Error:", error);
-			}
+	// function POST(data: Data, endpoint: string): void {
+	// async function AUTH(): Promise<void> {
+	async function POST(data: Data, endpoint: string): Promise<void> {
+		try {
+			const response = await axios.post(endpoint, data);
+			const accessToken = response.data.access_token;
+			const refreshToken = response.data.refresh_token;
+			localStorage.access = accessToken;
+			localStorage.refresh = refreshToken;
+			const currentUserID = response.data.user.id;
+			setCurrentUser(currentUserID);
+		} catch (error) {
+			console.log("Error:", error);
 		}
-		AUTH();
 	}
+	// 	AUTH();
+	// }
 
 	function signIn(username: string, password: string): void {
 		const data = { username, password };
@@ -162,10 +159,12 @@ export const useAuthContext = Helpers.createUseContext(() => {
 	function deleteAccount(): void {
 		async function DELETE(): Promise<void> {
 			try {
-				const endpoint = `http://localhost:7000/api/users/${auth.currentUser.id}/`;
-				const headers = { headers: { Authorization: `Bearer ${localStorage.access}` } };
-				await axios.delete(endpoint, headers);
-				signOut();
+				if (auth.currentUser) {
+					const endpoint = `http://localhost:7000/api/users/${auth.currentUser.id}/`;
+					const headers = { headers: { Authorization: `Bearer ${localStorage.access}` } };
+					await axios.delete(endpoint, headers);
+					signOut();
+				}
 			} catch (error) {
 				console.log("Error:", error);
 			}
@@ -192,7 +191,9 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		POST();
 	}
 
-	// --- Exports --- //
+	// =============== //
+	// ↓↓↓ Exports ↓↓↓ //
+	// =============== //
 
 	const state = auth;
 

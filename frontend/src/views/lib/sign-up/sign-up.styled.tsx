@@ -51,4 +51,6 @@ export const SignUpFormPasswordConfirmationInput = styled(SignUpFormUsernameInpu
 	}),
 )``;
 
-export const SignUpFormSubmit = styled("button")``;
+export const SignUpFormSubmit = styled("button").attrs(() => ({
+	type: "submit",
+}))``;
