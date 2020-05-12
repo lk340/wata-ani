@@ -15,15 +15,24 @@ const initialState = Object.freeze<State>({
 export const useMouseContext = Helpers.createUseContext(() => {
 	const [mouse, _setMouse] = React.useState<State>({ ...initialState });
 
-	// --- Getters --- //
+	// =============== //
+	// ↓↓↓ Getters ↓↓↓ //
+	// =============== //
+
 	const getMouseXYPosition = (): State => ({ ...mouse });
 	const getMouseXPosition = (): number => mouse.x;
 	const getMouseYPosition = (): number => mouse.y;
 
-	// --- Setters --- //
+	// =============== //
+	// ↓↓↓ Setters ↓↓↓ //
+	// =============== //
+
 	const setMouse = (state: Partial<State>) => _setMouse({ ...mouse, ...state });
 
-	// --- Exports --- //
+	// =============== //
+	// ↓↓↓ Exports ↓↓↓ //
+	// =============== //
+
 	const state = mouse;
 
 	const getters = {

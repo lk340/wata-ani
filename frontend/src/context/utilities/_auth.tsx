@@ -55,7 +55,9 @@ export const useAuthContext = Helpers.createUseContext(() => {
 	const setAuth = (state: Partial<State>) => _setAuth({ ...auth, ...state });
 
 	const setShowPassword = (showPassword: boolean) => setAuth({ showPassword });
+	
 	const setDisabled = (disabled: boolean) => setAuth({ disabled });
+	
 	const setError = (error: string) => setAuth({ error });
 
 	function setCurrentUser(id: number): void {

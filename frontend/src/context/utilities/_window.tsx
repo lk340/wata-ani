@@ -15,15 +15,24 @@ const initialState = Object.freeze<State>({
 export const useWindowContext = Helpers.createUseContext(() => {
 	const [window, _setWindow] = React.useState<State>({ ...initialState });
 
-	// --- Getters --- //
+	// =============== //
+	// ↓↓↓ Getters ↓↓↓ //
+	// =============== //
+
 	const getWindowSize = (): State => ({ ...window });
 	const getWindowWidth = (): number => window.width;
 	const getWindowHeight = (): number => window.height;
 
-	// --- Setters --- //
+	// =============== //
+	// ↓↓↓ Setters ↓↓↓ //
+	// =============== //
+
 	const setWindow = (state: Partial<State>) => _setWindow({ ...window, ...state });
 
-	// --- Exports --- //
+	// =============== //
+	// ↓↓↓ Exports ↓↓↓ //
+	// =============== //
+
 	const state = window;
 
 	const getters = {
