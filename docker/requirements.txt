@@ -1,5 +1,5 @@
 Django
-psychopg2
+psycopg2>=2.7,<3.0
 djangorestframework
 django-rest-auth
 django-allauth

@@ -175,10 +175,11 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "simple_todo_database",
-        "USER": "simple_todo_user",
-        "PASSWORD": "todo123",
-        "HOST": "localhost",
+        "NAME": "postgresDatabase",
+        "USER": "postgresUser",
+        "PASSWORD": "postgresPassword",
+        # "HOST": "localhost",
+        "HOST": "database",
         "PORT": "5432",
     }
 }
