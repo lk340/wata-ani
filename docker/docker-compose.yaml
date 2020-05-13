@@ -1,10 +1,11 @@
 version: "3.8"
 
 services:
-  # proxy:
-  #   image: nginx:latest
-  #   ports:
-  #     - "6000:80"
+  reverse_proxy:
+    image: nginx:latest
+    container_name: nginx_reverse_proxy
+    ports:
+      - "6000:80"
 
   frontend:
     build:
@@ -12,8 +13,7 @@ services:
       dockerfile: Dockerfile.gatsby.dev
     ports:
       - 8000:80
-    environment:
-      - 
+      - 7000:80
 
   # frontend:
   #   image: node:12.16.3
@@ -44,8 +44,8 @@ services:
   database:
     image: postgres:latest
     environment:
-      - POSTGRES_DB: postgresDatabase
-      - POSTGRES_USER: postgresUser
-      - POSTGRES_PASSWORD: postgresPassword
-    volumes:
-      - ./docker/data/db:/var/lib/postgresql/data
+      - POSTGRES_DB="postgresDatabase"
+      - POSTGRES_USER="postgresUser"
+      - POSTGRES_PASSWORD="postgresPassword"
+    # volumes:
+    #   - ./docker/data/db:/var/lib/postgresql/data
