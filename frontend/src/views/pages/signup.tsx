@@ -6,7 +6,7 @@ import * as Lib from "@/views/lib";
 
 export default () => (
 	<Wrappers.Layout>
-		<Components.SEO title="404: Not found" />
-		<Lib.NotFound />
+		<Components.SEO title="Sign Up" />
+		<Lib.SignUp />
 	</Wrappers.Layout>
 );

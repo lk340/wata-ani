@@ -14,6 +14,8 @@ export function decryptJWTAccessTokenPayload(accessToken: string): JWTAccessToke
 // You only ever need to call checkRefreshJWT() whenever you're
 // making an API call that requires an authorization header.
 
+export const headers = { headers: { Authorization: `Bearer ${localStorage.access}` } };
+
 export function checkRefreshJWT(): void {
 	async function REFRESH(): Promise<void> {
 		try {
@@ -23,7 +25,6 @@ export function checkRefreshJWT(): void {
 				const now = new Date();
 				const endpoint = "http://localhost:7000/api/token/refresh/";
 				const data = { refresh: localStorage.refresh };
-				const headers = { headers: { Authorization: `Bearer ${localStorage.access}` } };
 				if (now > tokenExpirationDate) {
 					const response = await axios.post(endpoint, data, headers);
 					localStorage.access = response.data.access;

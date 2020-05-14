@@ -68,8 +68,8 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	React.useEffect(() => {
 		if (localStorage.access) {
 			if (auth.state.currentUser === null) {
-				const currentUser = JWT.decryptJWTAccessTokenPayload(localStorage.access);
-				auth.api.setCurrentUser(currentUser.user_id);
+				const accessToken = JWT.decryptJWTAccessTokenPayload(localStorage.access);
+				auth.setters.setCurrentUser(accessToken.user_id);
 			}
 		}
 	}, []);

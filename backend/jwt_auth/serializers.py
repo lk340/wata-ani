@@ -65,9 +65,3 @@ class UserSignInSerializer(serializers.Serializer):
             return user
         raise serializers.ValidationError(
             "The username or password you entered was incorrect. Please try again.")
-
-
-class UserPasswordChangeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ("password",)
