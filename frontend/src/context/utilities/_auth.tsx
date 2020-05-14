@@ -1,7 +1,6 @@
 import * as React from "react";
 import axios from "axios";
 
-import * as Context from "@/context";
 import * as Helpers from "@/context/helpers";
 import * as JWT from "@/utils/api/jwt";
 
@@ -18,28 +17,55 @@ export type CurrentUser = {
 	email: string;
 };
 
-type State = { currentUser: CurrentUser | null };
+type State = {
+	username: string;
+	email: string;
+	password: string;
+	passwordConfirmation: string;
+	showPassword: boolean;
+	disabled: boolean;
+	error: string;
+	currentUser: CurrentUser | null;
+};
 
-const initialState = Object.freeze<State>({ currentUser: null });
+const initialState = Object.freeze<State>({
+	username: "",
+	email: "",
+	password: "",
+	passwordConfirmation: "",
+	showPassword: false,
+	disabled: true,
+	error: "",
+	currentUser: null,
+});
 
 export const useAuthContext = Helpers.createUseContext(() => {
 	const [auth, _setAuth] = React.useState<State>({ ...initialState });
 
-	// --- Getters --- //
+	// =============== //
+	// ↓↓↓ Getters ↓↓↓ //
+	// =============== //
 
 	const getCurrentUser = (): CurrentUser | null => auth.currentUser;
 
-	// --- Setters --- //
+	// =============== //
+	// ↓↓↓ Setters ↓↓↓ //
+	// =============== //
 
 	const setAuth = (state: Partial<State>) => _setAuth({ ...auth, ...state });
+
+	const setShowPassword = (showPassword: boolean) => setAuth({ showPassword });
+
+	const setDisabled = (disabled: boolean) => setAuth({ disabled });
+
+	const setError = (error: string) => setAuth({ error });
 
 	function setCurrentUser(id: number): void {
 		async function GET(): Promise<void> {
 			try {
 				JWT.checkRefreshJWT();
 				const endpoint = `http://localhost:7000/api/users/${id}/`;
-				const headers = { headers: { Authorization: `Bearer ${localStorage.access}` } };
-				const response = await axios.get(endpoint, headers);
+				const response = await axios.get(endpoint, JWT.headers);
 				setAuth({ currentUser: response.data });
 			} catch (error) {
 				console.log("Error:", error);
@@ -48,37 +74,66 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		GET();
 	}
 
-	function signOut(): void {
-		if (localStorage.access && localStorage.refresh) {
-			localStorage.removeItem("access");
-			localStorage.removeItem("refresh");
-		}
-		setAuth({ currentUser: null });
+	// ================ //
+	// ↓↓↓ Handlers ↓↓↓ //
+	// ================ //
+
+	function handleUsernameChange(event: React.ChangeEvent<HTMLInputElement>): void {
+		const userInput = event.currentTarget.value;
+		setAuth({ username: userInput });
 	}
 
-	// --- API --- //
-
-	function POST(data: Data, endpoint: string): void {
-		async function AUTH(): Promise<void> {
-			try {
-				const response = await axios.post(endpoint, data);
-				const accessToken = response.data.access_token;
-				const refreshToken = response.data.refresh_token;
-				localStorage.access = accessToken;
-				localStorage.refresh = refreshToken;
-				const currentUserID = response.data.user.id;
-				setCurrentUser(currentUserID);
-			} catch (error) {
-				console.log("Error:", error);
-			}
-		}
-		AUTH();
+	function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>): void {
+		const userInput = event.currentTarget.value;
+		setAuth({ email: userInput });
 	}
+
+	function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>): void {
+		const userInput = event.currentTarget.value;
+		setAuth({ password: userInput });
+	}
+
+	function handlePasswordConfirmationChange(
+		event: React.ChangeEvent<HTMLInputElement>,
+	): void {
+		const userInput = event.currentTarget.value;
+		setAuth({ passwordConfirmation: userInput });
+	}
+
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+		event.preventDefault();
+		if (auth.password !== auth.passwordConfirmation) {
+			setAuth({ error: "Your passwords don't match." });
+		} else {
+			setAuth({ error: "" });
+			signUp(auth.username, auth.email, auth.password, auth.passwordConfirmation);
+		}
+	}
+
+	// =========== //
+	// ↓↓↓ API ↓↓↓ //
+	// =========== //
+
+	// function POST(data: Data, endpoint: string): void {
+	// async function AUTH(): Promise<void> {
+	async function POST(endpoint: string, data: Data): Promise<void> {
+		try {
+			const response = await axios.post(endpoint, data);
+			localStorage.access = response.data.access_token;
+			localStorage.refresh = response.data.refresh_token;
+			const currentUserID = response.data.user.id;
+			setCurrentUser(currentUserID);
+		} catch (error) {
+			console.log("Error:", error);
+		}
+	}
+	// 	AUTH();
+	// }
 
 	function signIn(username: string, password: string): void {
-		const data = { username, password };
 		const endpoint = "http://localhost:7000/api/auth/signin/";
-		POST(data, endpoint);
+		const data = { username, password };
+		POST(endpoint, data);
 	}
 
 	function signUp(
@@ -89,16 +144,25 @@ export const useAuthContext = Helpers.createUseContext(() => {
 	): void {
 		const data = { username, email, password, password_confirmation };
 		const endpoint = "http://localhost:7000/api/auth/signup/";
-		POST(data, endpoint);
+		POST(endpoint, data);
 	}
 
-	function deleteCurrentUser(): void {
+	function signOut(): void {
+		if (localStorage.access && localStorage.refresh) {
+			localStorage.removeItem("access");
+			localStorage.removeItem("refresh");
+		}
+		setAuth({ currentUser: null });
+	}
+
+	function deleteAccount(): void {
 		async function DELETE(): Promise<void> {
 			try {
-				const endpoint = `http://localhost:7000/api/users/${auth.currentUser.id}/`;
-				const headers = { headers: { Authorization: `Bearer ${localStorage.access}` } };
-				await axios.delete(endpoint, headers);
-				signOut();
+				if (auth.currentUser) {
+					const endpoint = `http://localhost:7000/api/users/${auth.currentUser.id}/`;
+					await axios.delete(endpoint, JWT.headers);
+					signOut();
+				}
 			} catch (error) {
 				console.log("Error:", error);
 			}
@@ -106,7 +170,7 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		DELETE();
 	}
 
-	function passwordChange(
+	function changePassword(
 		old_password: string,
 		new_password1: string,
 		new_password2: string,
@@ -115,8 +179,7 @@ export const useAuthContext = Helpers.createUseContext(() => {
 			try {
 				const endpoint = "http://localhost:7000/rest-auth/password/change/";
 				const data = { old_password, new_password1, new_password2 };
-				const headers = { headers: { Authorization: `Bearer ${localStorage.access}` } };
-				const response = await axios.post(endpoint, data, headers);
+				const response = await axios.post(endpoint, data, JWT.headers);
 				console.log(response.data.detail);
 			} catch (error) {
 				console.log("Errors:", error);
@@ -125,7 +188,9 @@ export const useAuthContext = Helpers.createUseContext(() => {
 		POST();
 	}
 
-	// --- Exports --- //
+	// =============== //
+	// ↓↓↓ Exports ↓↓↓ //
+	// =============== //
 
 	const state = auth;
 
@@ -135,19 +200,30 @@ export const useAuthContext = Helpers.createUseContext(() => {
 
 	const setters = {
 		setAuth,
+		setCurrentUser,
+		setShowPassword,
+		setDisabled,
+		setError,
+	};
+
+	const handlers = {
+		handleUsernameChange,
+		handleEmailChange,
+		handlePasswordChange,
+		handlePasswordConfirmationChange,
+		handleSubmit,
 	};
 
 	const api = {
 		signIn,
-		signOut,
 		signUp,
-		setCurrentUser,
-		deleteCurrentUser,
-		passwordChange,
+		signOut,
+		deleteAccount,
+		changePassword,
 	};
 
 	return {
-		auth: { state, getters, setters, api },
+		auth: { state, getters, setters, handlers, api },
 	};
 });
 

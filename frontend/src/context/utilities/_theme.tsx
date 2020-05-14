@@ -19,16 +19,25 @@ const initialState = Object.freeze<State>({
 export const useThemeContext = Helpers.createUseContext(() => {
 	const [theme, _setTheme] = React.useState<State>({ ...initialState });
 
-	// --- Getters --- //
+	// =============== //
+	// ↓↓↓ Getters ↓↓↓ //
+	// =============== //
+
 	const getDevice = (): Device => theme.device;
 	const getMode = (): Mode => theme.mode;
 
-	// --- Setters --- //
+	// =============== //
+	// ↓↓↓ Setters ↓↓↓ //
+	// =============== //
+
 	const setTheme = (state: Partial<State>) => _setTheme({ ...theme, ...state });
 	const setDevice = (device: Device): void => setTheme({ device });
 	const setMode = (mode: Mode): void => setTheme({ mode });
 
-	// --- Exports --- //
+	// =============== //
+	// ↓↓↓ Exports ↓↓↓ //
+	// =============== //
+
 	const state = theme;
 
 	const getters = {

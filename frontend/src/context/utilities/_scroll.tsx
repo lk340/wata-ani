@@ -15,16 +15,25 @@ const initialState = Object.freeze<State>({
 export const useWindowScrollContext = Helpers.createUseContext(() => {
 	const [windowScroll, _setWindowScroll] = React.useState<State>({ ...initialState });
 
-	// --- Getters --- //
+	// =============== //
+	// ↓↓↓ Getters ↓↓↓ //
+	// =============== //
+
 	const getWindowScrollXYPositions = (): State => ({ ...windowScroll });
 	const getWindowScrollXPosition = (): number => windowScroll.x;
 	const getWindowScrollYPosition = (): number => windowScroll.y;
 
-	// --- Setters --- //
+	// =============== //
+	// ↓↓↓ Setters ↓↓↓ //
+	// =============== //
+
 	const setWindowScroll = (state: Partial<State>) =>
 		_setWindowScroll({ ...windowScroll, ...state });
 
-	// --- Exports --- //
+	// =============== //
+	// ↓↓↓ Exports ↓↓↓ //
+	// =============== //
+
 	const state = windowScroll;
 
 	const getters = {

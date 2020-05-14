@@ -4,6 +4,8 @@ import * as Context from "@/context";
 
 import * as Styled from "./welcome.styled";
 
+import axios from "axios";
+
 export const Welcome = () => {
 	const { welcome } = Context.Welcome.useWelcomeContext();
 
