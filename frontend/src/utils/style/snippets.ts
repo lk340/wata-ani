@@ -3,6 +3,7 @@ import { css } from "styled-components";
 import { animated } from "react-spring";
 
 import * as Context from "@/context";
+import * as Constants from "@/utils/style/constants";
 
 // ============== //
 // ↓↓↓ Checks ↓↓↓ //
@@ -17,6 +18,10 @@ export function checkWebGLAvailable() {
 		console.log(`There was an error with WebGL: ${warning}`);
 		// document.getElementById("container").appendChild(warning);
 	}
+}
+
+export function renderCheck(componentName: string) {
+	return console.log(`Hi, I'm in the ${componentName} component!`);
 }
 
 // ============== //
@@ -81,6 +86,24 @@ export function flex(
 		flex-direction: ${direction};
 		justify-content: ${justifyContent};
 		align-items: ${alignItems};
+	`;
+}
+
+export function flexRowCenter() {
+	return css`
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	`;
+}
+
+export function flexColumnCenter() {
+	return css`
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	`;
 }
 
@@ -251,4 +274,22 @@ export function responsive(
 		default:
 			break;
 	}
+}
+
+export function responsivePaddingHome() {
+	function paddingTop(padding: string) {
+		return `calc(${Constants.navbar.height} + ${padding})`;
+	}
+
+	return css`
+		padding: ${paddingTop("50px")} ${Constants.sidePaddings.desktop} 0px;
+
+		@media (max-width: ${Constants.breakpoints.paddingTablet}) {
+			padding: ${paddingTop("50px")} ${Constants.sidePaddings.tablet} 0px;
+		}
+
+		@media (max-width: ${Constants.breakpoints.paddingMobile}) {
+			padding: ${paddingTop("30px")} ${Constants.sidePaddings.mobile} 0px;
+		}
+	`;
 }

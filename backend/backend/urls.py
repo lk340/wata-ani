@@ -20,5 +20,14 @@ urlpatterns = [
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
     # Users
-    path("api/", include("users.urls"))
+    path("api/users/", include("users.urls")),
+
+    # Tasks
+    path("api/tasks/", include("tasks.urls")),
+
+    # Projects
+    path("api/projects/", include("projects.urls")),
+
+    # Project Milesstones
+    path("api/milestones/", include("project_milestones.urls"))
 ]

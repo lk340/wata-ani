@@ -5,20 +5,20 @@
 <!-- new_password2 -->
 rest-auth/password/change/
 
-### JWT Auth
+### JWT Auth (register / sign in)
 <!-- POST -->
 <!-- username -->
 <!-- email -->
 <!-- password -->
 <!-- password_confirmation -->
-api/auth/signup/
+api/auth/register/
 
 <!-- POST -->
 <!-- username -->
 <!-- password -->
 api/auth/signin/
 
-### User
-<!-- GET -->
+### Users
+<!-- GET, PATCH, DELETE -->
 api/users/
 api/users/<int:pk>/

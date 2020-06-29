@@ -4,70 +4,65 @@ export const threeJS = {
 	far: 1000,
 };
 
-export type Breakpoint = {
-	min: number;
-	max: number;
+type Constants = { [key: string]: string };
+
+// ============== //
+// ↓↓↓ Globals ↓↓↓ //
+// ============== //
+
+export const globals: Constants = {
+	maxWidth: "1440px",
 };
 
-export type Breakpoints = {
-	ultrawide: Breakpoint;
-	desktop: Breakpoint;
-	iPadPro: Breakpoint;
-	iPad: Breakpoint;
-	iPhone678Plus: Breakpoint;
-	pixel2: Breakpoint;
-	iPhoneX: Breakpoint;
-	galaxyS5: Breakpoint;
-	iPhone5SE: Breakpoint;
+// ==================== //
+// ↓↓↓ Side Paddings ↓↓↓ //
+// ==================== //
+
+export const sidePaddings: Constants = {
+	desktop: "120px",
+	tablet: "60px",
+	mobile: "30px",
 };
 
-export const breakpoints: Breakpoints = {
-	ultrawide: {
-		min: 1201,
-		max: Infinity,
-	},
-	desktop: {
-		min: 1025,
-		max: 1200,
-	},
-	iPadPro: {
-		min: 769,
-		max: 1024,
-	},
-	iPad: {
-		min: 415,
-		max: 768,
-	},
-	iPhone678Plus: {
-		min: 412,
-		max: 414,
-	},
-	pixel2: {
-		min: 376,
-		max: 411,
-	},
-	iPhoneX: {
-		min: 361,
-		max: 375,
-	},
-	galaxyS5: {
-		min: 321,
-		max: 360,
-	},
-	iPhone5SE: {
-		min: 0,
-		max: 320,
+// ================== //
+// ↓↓↓ Font Sizes ↓↓↓ //
+// ================== //
+
+export const fontSizes = {
+	layout: {
+		fallBack: "1rem",
 	},
 };
 
-export const layout = {};
+// =================== //
+// ↓↓↓ Breakpoints ↓↓↓ //
+// =================== //
 
-export const fonts = {};
+export const breakpoints: Constants = {
+	tablet: "1102px",
+	mobile: "450px",
+	paddingTablet: "865px",
+	paddingMobile: "450px",
+};
+
+// ==================== //
+// ↓↓↓ Line Heights ↓↓↓ //
+// ==================== //
+
+export const lineHeights: Constants = {
+	body: "200%",
+};
+
+// ===================== //
+// ↓↓↓ Border Radius ↓↓↓ //
+// ===================== //
+
+export const borderRadius = {};
 
 // ================== //
 // ↓↓↓ Components ↓↓↓ //
 // ================== //
 
-export const navbar = {};
-
-export const footer = {};
+export const navbar: Constants = {
+	height: "100px",
+};

@@ -7,7 +7,9 @@ import * as Styled from "./home.styled";
 export const Home = () => {
 	return (
 		<Styled.Home>
-			<Components.Welcome />
+			<Styled.HomeComponents>
+				<Components.Welcome />
+			</Styled.HomeComponents>
 		</Styled.Home>
 	);
 };

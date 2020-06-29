@@ -1,4 +1,18 @@
-import styled, { css, createGlobalStyle } from "styled-components";
-import { animated } from "react-spring";
+import styled from "styled-components";
 
-export const Home = styled("div")``;
+import * as Snippets from "@/utils/style/snippets";
+import * as Constants from "@/utils/style/constants";
+
+// ============ //
+// ↓↓↓ Home ↓↓↓ //
+// ============ //
+
+export const Home = styled("div")`
+	${Snippets.flex("column", "auto", "auto")};
+	position: relative;
+`;
+
+export const HomeComponents = styled("div")`
+	margin: 0px auto;
+	max-width: ${Constants.globals.maxWidth};
+`;

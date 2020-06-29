@@ -12,45 +12,45 @@ const initialState = Object.freeze<State>({
 	y: 0,
 });
 
-export const useWindowScrollContext = Helpers.createUseContext(() => {
-	const [windowScroll, _setWindowScroll] = React.useState<State>({ ...initialState });
+export const useScrollContext = Helpers.createUseContext(() => {
+	const [scroll, _setScroll] = React.useState<State>({ ...initialState });
 
 	// =============== //
 	// ↓↓↓ Getters ↓↓↓ //
 	// =============== //
 
-	const getWindowScrollXYPositions = (): State => ({ ...windowScroll });
-	const getWindowScrollXPosition = (): number => windowScroll.x;
-	const getWindowScrollYPosition = (): number => windowScroll.y;
+	const getScrollXYPositions = (): State => ({ ...scroll });
+	const getScrollXPosition = (): number => scroll.x;
+	const getScrollYPosition = (): number => scroll.y;
 
 	// =============== //
 	// ↓↓↓ Setters ↓↓↓ //
 	// =============== //
 
-	const setWindowScroll = (state: Partial<State>) =>
-		_setWindowScroll({ ...windowScroll, ...state });
+	const setScroll = (state: Partial<State>) =>
+		_setScroll({ ...scroll, ...state });
 
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //
 	// =============== //
 
-	const state = windowScroll;
+	const state = scroll;
 
 	const getters = {
-		getWindowScrollXYPositions,
-		getWindowScrollXPosition,
-		getWindowScrollYPosition,
+		getScrollXYPositions,
+		getScrollXPosition,
+		getScrollYPosition,
 	};
 
 	const setters = {
-		setWindowScroll,
+		setScroll,
 	};
 
 	return {
-		windowScroll: { state, getters, setters },
+		scroll: { state, getters, setters },
 	};
 });
 
 export const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-	return <useWindowScrollContext.Provider>{children}</useWindowScrollContext.Provider>;
+	return <useScrollContext.Provider>{children}</useScrollContext.Provider>;
 };
