@@ -12,44 +12,44 @@ const initialState = Object.freeze<State>({
 	height: 0,
 });
 
-export const useWindowContext = Helpers.createUseContext(() => {
-	const [window, _setWindow] = React.useState<State>({ ...initialState });
+export const useWindowsContext = Helpers.createUseContext(() => {
+	const [windows, _setWindows] = React.useState<State>({ ...initialState });
 
 	// =============== //
 	// ↓↓↓ Getters ↓↓↓ //
 	// =============== //
 
-	const getWindowSize = (): State => ({ ...window });
-	const getWindowWidth = (): number => window.width;
-	const getWindowHeight = (): number => window.height;
+	const getWindowsSize = (): State => ({ ...windows });
+	const getWindowsWidth = (): number => windows.width;
+	const getWindowsHeight = (): number => windows.height;
 
 	// =============== //
 	// ↓↓↓ Setters ↓↓↓ //
 	// =============== //
 
-	const setWindow = (state: Partial<State>) => _setWindow({ ...window, ...state });
+	const setWindows = (state: Partial<State>) => _setWindows({ ...windows, ...state });
 
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //
 	// =============== //
 
-	const state = window;
+	const state = windows;
 
 	const getters = {
-		getWindowSize,
-		getWindowWidth,
-		getWindowHeight,
+		getWindowsSize,
+		getWindowsWidth,
+		getWindowsHeight,
 	};
 
 	const setters = {
-		setWindow,
+		setWindows,
 	};
 
 	return {
-		window: { state, getters, setters },
+		windows: { state, getters, setters },
 	};
 });
 
 export const Provider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-	return <useWindowContext.Provider>{children}</useWindowContext.Provider>;
+	return <useWindowsContext.Provider>{children}</useWindowsContext.Provider>;
 };

@@ -177,10 +177,11 @@ export function fixed(
 
 export function hideScrollbar() {
 	return css`
-		-ms-overflow-style: none;
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
 
 		::-webkit-scrollbar {
-			display: none;
+			display: none; /* Chrome, Safari and Opera */
 		}
 	`;
 }
@@ -198,7 +199,14 @@ export function noTextHighlight() {
 	`;
 }
 
-export function clear() {
+export function preventUserInteraction() {
+	return css`
+		pointer-events: none;
+		user-select: none;
+	`;
+}
+
+export function clearSpacing() {
 	return css`
 		margin: 0;
 		padding: 0;
@@ -207,7 +215,8 @@ export function clear() {
 
 export function clearAnchor() {
 	return css`
-		color: #000000;
+		display: block;
+		color: ${Constants.theme.text};
 		text-decoration: none;
 	`;
 }
@@ -225,6 +234,12 @@ export function fixSafariMinHeight() {
 		min-height: -webkit-fill-available;
 		min-height: -mox-available;
 		min-height: fill-available;
+	`;
+}
+
+export function theme(light: string, dark: string) {
+	return css`
+		${(props) => (props.theme.mode === "light" ? light : dark)}
 	`;
 }
 

@@ -16,7 +16,7 @@ export const useLocationContext = Helpers.createUseContext(() => {
 	// =============== //
 	// ↓↓↓ Getters ↓↓↓ //
 	// =============== //
-	
+
 	// =============== //
 	// ↓↓↓ Setters ↓↓↓ //
 	// =============== //

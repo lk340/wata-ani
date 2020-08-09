@@ -1,3 +1,4 @@
 export { NotFound } from "./404/404";
-export { SignUp } from "./sign-up/sign-up";
+export { Register } from "./register/register";
+export { SignIn } from "./sign-in/sign-in";
 export { Home } from "./home/home";

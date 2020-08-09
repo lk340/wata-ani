@@ -1,8 +1,10 @@
 import * as React from "react";
+import * as Gatsby from "gatsby";
 import axios from "axios";
 
 import * as Helpers from "@/context/helpers";
 import * as JWT from "@/utils/api/jwt";
+import * as AuthTypes from "@/components/auth/auth.types";
 
 type Data = {
 	username: string;
@@ -15,27 +17,29 @@ export type CurrentUser = {
 	id: number;
 	username: string;
 	email: string;
-};
+} | null;
 
 type State = {
+	formType: AuthTypes.AuthFormType;
 	username: string;
 	email: string;
 	password: string;
 	passwordConfirmation: string;
-	showPassword: boolean;
-	disabled: boolean;
-	error: string;
-	currentUser: CurrentUser | null;
+	revealPassword: boolean;
+	registrationError: string;
+	signInError: string;
+	currentUser: CurrentUser;
 };
 
 const initialState = Object.freeze<State>({
+	formType: "register",
 	username: "",
 	email: "",
 	password: "",
 	passwordConfirmation: "",
-	showPassword: false,
-	disabled: true,
-	error: "",
+	revealPassword: false,
+	registrationError: "",
+	signInError: "",
 	currentUser: null,
 });
 
@@ -46,7 +50,7 @@ export const useAuthContext = Helpers.createUseContext(() => {
 	// ↓↓↓ Getters ↓↓↓ //
 	// =============== //
 
-	const getCurrentUser = (): CurrentUser | null => auth.currentUser;
+	const getCurrentUser = (): CurrentUser => auth.currentUser;
 
 	// =============== //
 	// ↓↓↓ Setters ↓↓↓ //
@@ -54,11 +58,20 @@ export const useAuthContext = Helpers.createUseContext(() => {
 
 	const setAuth = (state: Partial<State>) => _setAuth({ ...auth, ...state });
 
-	const setShowPassword = (showPassword: boolean) => setAuth({ showPassword });
+	function setFormType(formType: AuthTypes.AuthFormType): void {
+		setAuth({ formType });
+	}
 
-	const setDisabled = (disabled: boolean) => setAuth({ disabled });
+	function toggleRevealPassword(): void {
+		setAuth({ revealPassword: !auth.revealPassword });
+	}
 
-	const setError = (error: string) => setAuth({ error });
+	function clearErrors(): void {
+		setAuth({
+			registrationError: "",
+			signInError: "",
+		});
+	}
 
 	function setCurrentUser(id: number): void {
 		async function GET(): Promise<void> {
@@ -67,8 +80,9 @@ export const useAuthContext = Helpers.createUseContext(() => {
 				const endpoint = `http://localhost:7000/api/users/${id}/`;
 				const response = await axios.get(endpoint, JWT.headers);
 				setAuth({ currentUser: response.data });
+				Gatsby.navigate("/dashboard");
 			} catch (error) {
-				console.log("Error:", error);
+				console.log(error);
 			}
 		}
 		GET();
@@ -102,11 +116,10 @@ export const useAuthContext = Helpers.createUseContext(() => {
 
 	function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
 		event.preventDefault();
-		if (auth.password !== auth.passwordConfirmation) {
-			setAuth({ error: "Your passwords don't match." });
+		if (auth.formType === "register") {
+			register(auth.username, auth.email, auth.password, auth.passwordConfirmation);
 		} else {
-			setAuth({ error: "" });
-			signUp(auth.username, auth.email, auth.password, auth.passwordConfirmation);
+			signIn(auth.username, auth.password);
 		}
 	}
 
@@ -114,37 +127,50 @@ export const useAuthContext = Helpers.createUseContext(() => {
 	// ↓↓↓ API ↓↓↓ //
 	// =========== //
 
-	// function POST(data: Data, endpoint: string): void {
-	// async function AUTH(): Promise<void> {
-	async function POST(endpoint: string, data: Data): Promise<void> {
+	async function POST(
+		endpoint: string,
+		data: Data,
+		formType: AuthTypes.AuthFormType,
+	): Promise<void> {
 		try {
-			const response = await axios.post(endpoint, data);
-			localStorage.access = response.data.access_token;
-			localStorage.refresh = response.data.refresh_token;
-			const currentUserID = response.data.user.id;
-			setCurrentUser(currentUserID);
+			function validateStatus(status: number) {
+				return status >= 200 && status < 500;
+			}
+
+			const response = await axios.post(endpoint, data, { validateStatus });
+
+			clearErrors();
+
+			const status = response.status;
+			if (status >= 400 && status < 500) {
+				if (formType === "register") setAuth({ registrationError: response.data.error });
+				else setAuth({ signInError: response.data.non_field_errors });
+			} else {
+				localStorage.access = response.data.access_token;
+				localStorage.refresh = response.data.refresh_token;
+				const currentUserID = response.data.user.id;
+				setCurrentUser(currentUserID);
+			}
 		} catch (error) {
-			console.log("Error:", error);
+			console.log(error);
 		}
 	}
-	// 	AUTH();
-	// }
 
-	function signIn(username: string, password: string): void {
-		const endpoint = "http://localhost:7000/api/auth/signin/";
-		const data = { username, password };
-		POST(endpoint, data);
-	}
-
-	function signUp(
+	function register(
 		username: string,
 		email: string,
 		password: string,
 		password_confirmation: string,
 	): void {
 		const data = { username, email, password, password_confirmation };
-		const endpoint = "http://localhost:7000/api/auth/signup/";
-		POST(endpoint, data);
+		const endpoint = "http://localhost:7000/api/auth/register/";
+		POST(endpoint, data, "register");
+	}
+
+	function signIn(username: string, password: string): void {
+		const endpoint = "http://localhost:7000/api/auth/signin/";
+		const data = { username, password };
+		POST(endpoint, data, "sign in");
 	}
 
 	function signOut(): void {
@@ -153,6 +179,7 @@ export const useAuthContext = Helpers.createUseContext(() => {
 			localStorage.removeItem("refresh");
 		}
 		setAuth({ currentUser: null });
+		Gatsby.navigate("/");
 	}
 
 	function deleteAccount(): void {
@@ -164,7 +191,7 @@ export const useAuthContext = Helpers.createUseContext(() => {
 					signOut();
 				}
 			} catch (error) {
-				console.log("Error:", error);
+				console.log(error);
 			}
 		}
 		DELETE();
@@ -182,7 +209,7 @@ export const useAuthContext = Helpers.createUseContext(() => {
 				const response = await axios.post(endpoint, data, JWT.headers);
 				console.log(response.data.detail);
 			} catch (error) {
-				console.log("Errors:", error);
+				console.log(error);
 			}
 		}
 		POST();
@@ -200,10 +227,9 @@ export const useAuthContext = Helpers.createUseContext(() => {
 
 	const setters = {
 		setAuth,
+		setFormType,
 		setCurrentUser,
-		setShowPassword,
-		setDisabled,
-		setError,
+		toggleRevealPassword,
 	};
 
 	const handlers = {
@@ -215,8 +241,8 @@ export const useAuthContext = Helpers.createUseContext(() => {
 	};
 
 	const api = {
+		register,
 		signIn,
-		signUp,
 		signOut,
 		deleteAccount,
 		changePassword,

@@ -40,7 +40,7 @@ export function checkRefreshJWT(): void {
 			// ↓↓↓ //
 			localStorage.removeItem("access");
 			localStorage.removeItem("refresh");
-			console.log("Error:", error);
+			console.log(error);
 		}
 	}
 	REFRESH();

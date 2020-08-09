@@ -1,23 +1,26 @@
-// ================= //
-// ↓↓↓ Utilities ↓↓↓ //
-// ================= //
+import * as Theme from "@/context/utilities/theme";
+import * as Windows from "@/context/utilities/windows";
+import * as Scroll from "@/context/utilities/scroll";
+import * as Mouse from "@/context/utilities/mouse";
+import * as Location from "@/context/utilities/location";
+import * as Auth from "@/context/utilities/auth";
+import * as UserAgent from "@/context/utilities/user-agent";
 
-import * as Theme from "@/context/utilities/_theme";
-import * as Window from "@/context/utilities/_window";
-import * as Scroll from "@/context/utilities/_scroll";
-import * as Mouse from "@/context/utilities/_mouse";
-import * as Location from "@/context/utilities/_location";
-import * as Auth from "@/context/utilities/_auth";
-import * as UserAgent from "@/context/utilities/_user-agent";
+import * as Filter from "@/context/data/filter";
+import * as Sort from "@/context/data/sort";
+import * as Demo from "@/context/data/demo";
+import * as Home from "@/context/data/home";
 
-// ============ //
-// ↓↓↓ Data ↓↓↓ //
-// ============ //
-
-import * as Welcome from "@/context/data/welcome";
-
-// ============== //
-// ↓↓↓ Export ↓↓↓ //
-// ============== //
-
-export { Theme, Window, Scroll, Mouse, Location, Auth, UserAgent, Welcome };
+export {
+	Theme,
+	Windows,
+	Scroll,
+	Mouse,
+	Location,
+	Auth,
+	UserAgent,
+	Filter,
+	Sort,
+	Demo,
+	Home,
+};
