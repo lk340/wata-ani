@@ -175,9 +175,9 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "kawa_test",
-        "USER": "kawa_test_user",
-        "PASSWORD": "kawatestpassword",
+        "NAME": "wata_ani_test",
+        "USER": "wata_ani_test_user",
+        "PASSWORD": "wata_anitestpassword",
         "HOST": "localhost",
         "PORT": "5432",
     }
