@@ -3,19 +3,19 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):
-    # Manager for our custom user. Makes sure that email and username fields are required.
+    # Manager = interface that allows models to perform database queries.
+    #   Every model has an underlying manager.
+    # This is the manager for our custom user. It makes sure that the email and username fields are required.
 
     def create_user(self, email, username, password):
-        # Normalizing the email lowercases the domain part of it, which prevents multiple registrations with same email.
-        # This functionality is only available in the BaseUserManager class.
+        # Normalizing the email lowercases its characters, which prevents multiple registrations with the same email.
+        #   This functionality is only available in the BaseUserManager class.
 
         if not email:
             raise ValueError(_("The user must have an email address."))
         if not username:
             raise ValueError(_("The user must have a username."))
 
-        email = self.normalize_email(email)
-        username = self.username
         user = self.model(
             email=self.normalize_email(email),
             username=username,

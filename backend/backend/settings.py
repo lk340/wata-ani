@@ -177,7 +177,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "wata_ani_test",
         "USER": "wata_ani_test_user",
-        "PASSWORD": "wata_anitestpassword",
+        "PASSWORD": "wata_ani_testpassword",
         "HOST": "localhost",
         "PORT": "5432",
     }
