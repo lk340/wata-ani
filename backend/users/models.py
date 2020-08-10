@@ -21,7 +21,7 @@ class CustomUser(AbstractBaseUser):
     first_name = models.CharField(max_length=20, blank=True)
     last_name = models.CharField(max_length=20, blank=True)
     profile_picture = models.ImageField(
-        default="default_profile_picture.jpeg",
+        default="default_profile_picture.png",
         upload_to="profile_pictures",
         blank=True
     )
@@ -35,10 +35,10 @@ class CustomUser(AbstractBaseUser):
     def __str__(self):
         return f"Email: {self.email}"
 
-    def has_admin_permissions(self, permission, obj=None):
+    def has_perm(self, permission, obj=None):
         return self.is_admin
 
-    def has_module_permissions(self, app_label):
+    def has_module_perms(self, app_label):
         # Always has module permissions (i.e. view the app_label).
         return True
 
@@ -49,4 +49,4 @@ class CustomUser(AbstractBaseUser):
     def set_profile_picture(self):
         profile_picture = self.profile_picture
         if not profile_picture:
-            self.profile_picture = "media/profile_pictures/default_profile_picture.jpeg"
+            self.profile_picture = "media/profile_pictures/default_profile_picture.png"
