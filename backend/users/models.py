@@ -9,6 +9,7 @@ from . import managers
 # class CustomUser(AbstractUser):
 #     pass
 
+
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(_("email address"), unique=True)
     username = models.CharField(_("username"), max_length=20, unique=True)
@@ -26,11 +27,11 @@ class CustomUser(AbstractBaseUser):
         blank=True
     )
 
-    # Simply tells this class where the user manager is / how to use the manager.
-    objects = managers.CustomUserManager()
-
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
+
+    # Simply tells this class where the user manager is / how to use the manager.
+    objects = managers.CustomUserManager()
 
     def __str__(self):
         return f"Email: {self.email}"
@@ -49,4 +50,4 @@ class CustomUser(AbstractBaseUser):
     def set_profile_picture(self):
         profile_picture = self.profile_picture
         if not profile_picture:
-            self.profile_picture = "media/profile_pictures/default_profile_picture.png"
+            self.profile_picture = "media/default_profile_picture.png"
