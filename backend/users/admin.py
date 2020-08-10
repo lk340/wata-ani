@@ -10,7 +10,7 @@ class CustomUserAdmin(UserAdmin):
     )
 
     # Affects searchable fields in the search bar in the admin panel.
-    search_fields = ("email", "username", "first_name", "last-name")
+    search_fields = ("email", "username", "first_name", "last_name")
 
     readonly_fields = ("date_joined", "last_login")
 

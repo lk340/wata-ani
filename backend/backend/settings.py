@@ -44,11 +44,56 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = "users.CustomUser"
 
+# ================= #
+# ↓↓↓ REST Auth ↓↓↓ #
+# ================= #
+
+SITE_ID = 1
+OLD_PASSWORD_FIELD_ENABLED = True
+
+# ================ #
+# ↓↓↓ All Auth ↓↓↓ #
+# ================ #
+
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_UNIQUE_EMAIL = True
+
+# change "optional" to "mandatory" to mandate email verification.
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+
+# Change these to set custom page to redirect user after email verification.
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/"
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/"
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 600
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+
+ACCOUNT_USERNAME_BLACKLIST = (
+    "shit", "fuck", "bitch", "ass", "cunt", "bastard", "damn", "penis", "dick", "vagina", "pussy", "labia", "testicles", "tits", "boobs", "breasts", "hentai", "yaoi", "yuri"
+)
+
+ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
+ACCOUNT_USERNAME_REQUIRED = True
+
 # ===================== #
 # ↓↓↓ Email Service ↓↓↓ #
 # ===================== #
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+AUTHENTICATION_BACKENDS = (
+    # default
+    "django.contrib.auth.backends.ModelBackend",
+    # email login
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 # ====================== #
 # ↓↓↓ REST Framework ↓↓↓ #
@@ -62,13 +107,6 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
-
-# ================= #
-# ↓↓↓ REST Auth ↓↓↓ #
-# ================= #
-
-SITE_ID = 1
-OLD_PASSWORD_FIELD_ENABLED = True
 
 # =========== #
 # ↓↓↓ JWT ↓↓↓ #
@@ -221,3 +259,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
+
+# Full path to the directory, where we'd like Django to store our uploaded files.
+# For performance reasons, these files are stored in the filesystem and NOT in the database.
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# Public URL of the directory in which our media files are stored (remember, in the filesystem).
+# In other words, it tells Django to search ONLY through the "media" directory to find media files.
+MEDIA_URL = "/media/"
