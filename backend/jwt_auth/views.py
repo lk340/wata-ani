@@ -8,8 +8,8 @@ from . import serializers
 User = get_user_model()
 
 
-class UserSignUp(generics.GenericAPIView):
-    serializer_class = serializers.UserSignUpSerializer
+class UserRegister(generics.GenericAPIView):
+    serializer_class = serializers.UserRegisterSerializer
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):

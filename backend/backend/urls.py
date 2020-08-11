@@ -3,6 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from allauth.account.views import confirm_email
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -13,6 +14,9 @@ urlpatterns = [
     # Non-JWT token-based auth
     path("rest-auth/", include("rest_auth.urls")),
     # path("rest-auth/registration/", include("rest_auth.registration.urls")),
+
+    # All Auth
+    path("accounts/", include("allauth.urls")),
 
     # JWT token-based auth
     path("api/auth/", include("jwt_auth.urls"), name="jwt_auth"),

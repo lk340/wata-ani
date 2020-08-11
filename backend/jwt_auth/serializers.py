@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("id", "username", "email")
 
 
-class UserSignUpSerializer(serializers.ModelSerializer):
+class UserRegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField()
     email = serializers.EmailField()
     password = serializers.CharField(

@@ -27,14 +27,22 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+
     "rest_framework",
     "rest_framework.authtoken",
     "rest_auth",
     "rest_auth.registration",
+
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
+    # "allauth.socialaccount.providers.facebook",
+    # "allauth.socialaccount.providers.google",
+    # "allauth.socialaccount.providers.twitter",
+
     "corsheaders",
     "jwt_auth.apps.JwtAuthConfig",
+
     "users.apps.UsersConfig",
 ]
 
@@ -57,27 +65,21 @@ OLD_PASSWORD_FIELD_ENABLED = True
 
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_UNIQUE_EMAIL = True
-
-# change "optional" to "mandatory" to mandate email verification.
 ACCOUNT_EMAIL_REQUIRED = True
+# change "optional" to "mandatory" to mandate email verification.
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-
 # Change these to set custom page to redirect user after email verification.
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "/"
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
-
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 600
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
-
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
-
 ACCOUNT_USERNAME_BLACKLIST = (
     "shit", "fuck", "bitch", "ass", "cunt", "bastard", "damn", "penis", "dick", "vagina", "pussy", "labia", "testicles", "tits", "boobs", "breasts", "hentai", "yaoi", "yuri"
 )
-
 ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_USERNAME_REQUIRED = True
@@ -89,11 +91,18 @@ ACCOUNT_USERNAME_REQUIRED = True
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 AUTHENTICATION_BACKENDS = (
-    # default
+    # required for logging into Django admin, regardless of "allauth"
     "django.contrib.auth.backends.ModelBackend",
-    # email login
+    # adds allauth authentication methods, such as login by email
     "allauth.account.auth_backends.AuthenticationBackend",
 )
+
+# For Gmail or Google Apps
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "youremail@gmail.com"
+EMAIL_HOST_PASSWORD = "yourpassword"
+EMAIL_PORT = 587
 
 # ====================== #
 # ↓↓↓ REST Framework ↓↓↓ #
@@ -105,7 +114,9 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         # "rest_framework.authentication.TokenAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20,
 }
 
 # =========== #

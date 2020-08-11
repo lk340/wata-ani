@@ -11,7 +11,7 @@ User = get_user_model()
 
 class UserList(APIView):
     permission_classes = (permissions.IsAuthenticated,)
-    
+
     def get(self, request, format=None):
         users = User.objects.all()
         serializer = serializers.UserSerializer(users, many=True)
@@ -20,7 +20,7 @@ class UserList(APIView):
 
 class UserDetail(APIView):
     permission_classes = (permissions.IsAuthenticated,)
-    
+
     def get_user(self, pk):
         try:
             return User.objects.get(pk=pk)
@@ -42,5 +42,6 @@ class UserDetail(APIView):
     def delete(self, request, pk, format=None):
         user = self.get_user(pk)
         user.delete()
-        response_detail = {"detail": "Your account has been successfully deleted."}
+        response_detail = {
+            "detail": "Your account has been successfully deleted."}
         return Response(response_detail, status=status.HTTP_204_NO_CONTENT)
