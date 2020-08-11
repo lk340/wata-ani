@@ -11,19 +11,21 @@ urlpatterns = [
     # Only for localhost:7000 (dev environment)
     path("signin/", include("rest_framework.urls")),
 
-    # Non-JWT token-based auth
-    path("rest-auth/", include("rest_auth.urls")),
-    # path("rest-auth/registration/", include("rest_auth.registration.urls")),
-
-    # All Auth
+    # AllAuth (user authentication)
     path("accounts/", include("allauth.urls")),
+    path(r'^accounts-rest/registration/account-confirm-email/(?P<key>.+)/$',
+         confirm_email, name='account_confirm_email'),
 
-    # JWT token-based auth
-    path("api/auth/", include("jwt_auth.urls"), name="jwt_auth"),
+    # Rest Auth (Non-JWT token-based auth)
+    path("rest-auth/", include("rest_auth.urls")),
+    path("rest-auth/registration/", include("rest_auth.registration.urls")),
 
-    # [POST]
+    # [POST] - JWT
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+
+    # JWT-based auth
+    path("api/auth/", include("jwt_auth.urls"), name="jwt_auth"),
 
     # Users
     path("api/users/", include("users.urls"))

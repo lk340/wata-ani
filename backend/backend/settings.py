@@ -30,6 +30,7 @@ INSTALLED_APPS = [
 
     "rest_framework",
     "rest_framework.authtoken",
+    
     "rest_auth",
     "rest_auth.registration",
 
@@ -58,6 +59,10 @@ AUTH_USER_MODEL = "users.CustomUser"
 
 SITE_ID = 1
 OLD_PASSWORD_FIELD_ENABLED = True
+
+REST_AUTH_SERIALIZERS = {
+    "USER_DETAILS_SERIALIZER": "users.serializers.UserSerializer"
+}
 
 # ================ #
 # ↓↓↓ All Auth ↓↓↓ #
@@ -97,13 +102,6 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-# For Gmail or Google Apps
-EMAIL_USE_TLS = True
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "youremail@gmail.com"
-EMAIL_HOST_PASSWORD = "yourpassword"
-EMAIL_PORT = 587
-
 # ====================== #
 # ↓↓↓ REST Framework ↓↓↓ #
 # ====================== #
@@ -113,7 +111,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         # "rest_framework.authentication.TokenAuthentication",
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        # "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 20,
