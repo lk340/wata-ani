@@ -7,5 +7,6 @@ import * as Auth from "@/context/utilities/auth";
 import * as UserAgent from "@/context/utilities/user-agent";
 
 import * as Welcome from "@/context/data/welcome";
+import * as AuthForm from "@/context/data/auth-form";
 
-export { Theme, Windows, Scroll, Mouse, Location, Auth, UserAgent, Welcome };
+export { Theme, Windows, Scroll, Mouse, Location, Auth, UserAgent, Welcome, AuthForm };

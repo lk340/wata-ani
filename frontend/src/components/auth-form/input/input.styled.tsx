@@ -44,6 +44,7 @@ export const InputFieldPasswordIcons = styled("div")<InputFieldPasswordIconsProp
 			: props.input_type === "Email"
 			? "none"
 			: "block"};
+	cursor: pointer;
 `;
 
 // ========================= //
@@ -75,14 +76,14 @@ export const InputIconPassword = styled("img").attrs(() => ({
 	${inputIconStyles};
 `;
 
-type InputIconPasswordHideProps = { password_hidden: boolean };
+type InputIconPasswordHideProps = { reveal_password: boolean };
 
 export const InputIconPasswordHide = styled("img").attrs(() => ({
 	src: passwordHideIcon,
 	alt: "auth form component password hide icon",
 }))<InputIconPasswordHideProps>`
 	${inputIconStyles};
-	display: ${(props) => (props.password_hidden ? "block" : "none")};
+	display: ${(props) => (props.reveal_password ? "block" : "none")};
 `;
 
 export const InputIconPasswordShow = styled("img").attrs(() => ({
@@ -90,7 +91,7 @@ export const InputIconPasswordShow = styled("img").attrs(() => ({
 	alt: "auth form component password show icon",
 }))<InputIconPasswordHideProps>`
 	${inputIconStyles};
-	display: ${(props) => (props.password_hidden ? "none" : "block")};
+	display: ${(props) => (props.reveal_password ? "none" : "block")};
 `;
 
 // ========================= //
@@ -109,12 +110,13 @@ const inputTypeStyles = css`
 	::placeholder {
 		color: ${Colors.LIGHT.five};
 		font-size: ${Constants.fontSizes.components.authForm.inputPlaceholder};
+		font-style: italic;
 	}
 `;
 
 export const InputUsername = styled("input").attrs(() => ({
 	type: "text",
-	placeholder: "Enter your username",
+	placeholder: "WataAni",
 	required: true,
 }))`
 	${inputTypeStyles};
@@ -122,7 +124,7 @@ export const InputUsername = styled("input").attrs(() => ({
 
 export const InputEmail = styled("input").attrs(() => ({
 	type: "email",
-	placeholder: "Enter your email",
+	placeholder: "wata@ani.com",
 	required: true,
 }))`
 	${inputTypeStyles};
@@ -130,8 +132,8 @@ export const InputEmail = styled("input").attrs(() => ({
 
 export const InputPassword = styled("input").attrs(
 	(props: InputIconPasswordHideProps) => ({
-		type: props.password_hidden ? "password" : "text",
-		placeholder: "Enter your password",
+		type: props.reveal_password ? "text" : "password",
+		placeholder: "aBcD!@#$123",
 		required: true,
 	}),
 )<InputIconPasswordHideProps>`
@@ -140,8 +142,8 @@ export const InputPassword = styled("input").attrs(
 
 export const InputPasswordConfirmation = styled("input").attrs(
 	(props: InputIconPasswordHideProps) => ({
-		type: props.password_hidden ? "password" : "text",
-		placeholder: "Confirm your password",
+		type: props.reveal_password ? "text" : "password",
+		placeholder: "aBcD!@#$123",
 		required: true,
 	}),
 )<InputIconPasswordHideProps>`

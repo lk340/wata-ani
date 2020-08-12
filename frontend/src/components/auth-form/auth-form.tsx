@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as Context from "@/context";
+
 import * as Styled from "./auth-form.styled";
 import { Input } from "./input";
 
@@ -11,8 +13,15 @@ export type Props = {
 export const AuthForm = (props: Props) => {
 	const { formType, submitText } = props;
 
+	const { authForm } = Context.AuthForm.useAuthFormContext();
+
+	console.log(authForm.state.username);
+	console.log(authForm.state.email);
+	console.log(authForm.state.password);
+	console.log(authForm.state.passwordConfirmation);
+
 	return (
-		<Styled.AuthForm>
+		<Styled.AuthForm onSubmit={authForm.handlers.handleSubmit}>
 			{/* Logo // Title // Inputs */}
 			<Styled.AuthFormLogoTitleInputs>
 				{/* Logo */}
@@ -21,10 +30,13 @@ export const AuthForm = (props: Props) => {
 				<Styled.AuthFormTitle>{formType}</Styled.AuthFormTitle>
 				{/* Inputs */}
 				<Styled.AuthFormInputs>
-					<Input inputType="Username" />
-					<Input inputType="Email" />
-					<Input inputType="Password" />
-					<Input inputType="Confirm Password" />
+					<Input onChange={authForm.handlers.handleUsernameChange} inputType="Username" />
+					<Input onChange={authForm.handlers.handleEmailChange} inputType="Email" />
+					<Input onChange={authForm.handlers.handlePasswordChange} inputType="Password" />
+					<Input
+						onChange={authForm.handlers.handlePasswordConfirmationChange}
+						inputType="Confirm Password"
+					/>
 				</Styled.AuthFormInputs>
 			</Styled.AuthFormLogoTitleInputs>
 

@@ -19,7 +19,7 @@ import logoJapanese from "@/images/logo/japanese.svg";
 // ↓↓↓ Auth Form ↓↓↓ //
 // ================= //
 
-export const AuthForm = styled("div")`
+export const AuthForm = styled("form")`
 	${Snippets.grid(1, "auto", 40)};
 `;
 

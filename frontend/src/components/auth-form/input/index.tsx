@@ -1,18 +1,18 @@
 import * as React from "react";
 
+import * as Context from "@/context";
+
 import * as Styled from "./input.styled";
 
 type InputProps = {
 	inputType: "Username" | "Email" | "Password" | "Confirm Password";
+	onChange: React.ChangeEventHandler;
 };
 
 export const Input = (props: InputProps) => {
-	const { inputType } = props;
+	const { inputType, onChange } = props;
 
-	const [passwordHidden, setPasswordHidden] = React.useState(true);
-	function togglePasswordHidden(): void {
-		setPasswordHidden(!passwordHidden);
-	}
+	const { authForm } = Context.AuthForm.useAuthFormContext();
 
 	const inputIcon =
 		inputType === "Username" ? (
@@ -25,13 +25,19 @@ export const Input = (props: InputProps) => {
 
 	const inputField =
 		inputType === "Username" ? (
-			<Styled.InputUsername />
+			<Styled.InputUsername onChange={onChange} />
 		) : inputType === "Email" ? (
-			<Styled.InputEmail />
+			<Styled.InputEmail onChange={onChange} />
 		) : inputType === "Password" ? (
-			<Styled.InputPassword password_hidden={passwordHidden} />
+			<Styled.InputPassword
+				onChange={onChange}
+				reveal_password={authForm.state.revealPassword}
+			/>
 		) : (
-			<Styled.InputPasswordConfirmation password_hidden={passwordHidden} />
+			<Styled.InputPasswordConfirmation
+				onChange={onChange}
+				reveal_password={authForm.state.revealPassword}
+			/>
 		);
 
 	return (
@@ -41,11 +47,11 @@ export const Input = (props: InputProps) => {
 				{inputIcon}
 				{inputField}
 				<Styled.InputFieldPasswordIcons
-					onClick={togglePasswordHidden}
+					onClick={authForm.setters.toggleRevealPassword}
 					input_type={inputType}
 				>
-					<Styled.InputIconPasswordHide password_hidden={passwordHidden} />
-					<Styled.InputIconPasswordShow password_hidden={passwordHidden} />
+					<Styled.InputIconPasswordHide reveal_password={authForm.state.revealPassword} />
+					<Styled.InputIconPasswordShow reveal_password={authForm.state.revealPassword} />
 				</Styled.InputFieldPasswordIcons>
 			</Styled.InputFieldGroup>
 		</Styled.Input>
