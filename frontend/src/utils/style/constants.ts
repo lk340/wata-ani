@@ -29,6 +29,12 @@ export const theme = {
 	shadowOneLight: Snippets.theme(Shadows.light.one, Shadows.dark.one),
 	shadowTwo: Snippets.theme(Shadows.light.two, Shadows.dark.two),
 	shadowThree: Snippets.theme(Shadows.light.three, Shadows.dark.three),
+	components: {
+		authForm: {
+			inputBackground: Snippets.theme(Colors.LIGHT.one, Colors.DARK.three),
+			inputBorder: Snippets.theme(Colors.LIGHT.three, Colors.DARK.five),
+		},
+	},
 };
 
 // ==================== //
@@ -51,6 +57,9 @@ export const fontSizes = {
 		authForm: {
 			title: "1.5rem",
 			inputTitle: "0.875rem",
+			inputPlaceholder: "0.75rem",
+			submit: "1rem",
+			redirect: "0.875rem",
 		},
 	},
 };
@@ -90,6 +99,7 @@ export const borderRadius = {
 	components: {
 		authForm: {
 			logo: "0.375rem",
+			input: "0.3125rem",
 		},
 	},
 };

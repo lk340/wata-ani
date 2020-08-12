@@ -7,7 +7,7 @@ import * as Styled from "./register.styled";
 export const Register = () => {
 	return (
 		<Styled.Register>
-			<Components.AuthForm formType="Registration" />
+			<Components.AuthForm formType="Registration" submitText="Register" />
 		</Styled.Register>
 	);
 };

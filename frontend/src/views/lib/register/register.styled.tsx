@@ -8,6 +8,4 @@ export const Register = styled("div")`
 	${Snippets.flexRowCenter()};
 	${Snippets.fillView()};
 	background-color: ${Constants.theme.background};
-
-	border: red solid 1px;
 `;

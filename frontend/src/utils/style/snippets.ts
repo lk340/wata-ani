@@ -291,20 +291,20 @@ export function responsive(
 	}
 }
 
-export function responsivePaddingHome() {
-	function paddingTop(padding: string) {
-		return `calc(${Constants.navbar.height} + ${padding})`;
-	}
+// export function responsivePaddingHome() {
+// 	function paddingTop(padding: string) {
+// 		return `calc(${Constants.navbar.height} + ${padding})`;
+// 	}
 
-	return css`
-		padding: ${paddingTop("50px")} ${Constants.sidePaddings.desktop} 0px;
+// 	return css`
+// 		padding: ${paddingTop("50px")} ${Constants.sidePaddings.desktop} 0px;
 
-		@media (max-width: ${Constants.breakpoints.paddingTablet}) {
-			padding: ${paddingTop("50px")} ${Constants.sidePaddings.tablet} 0px;
-		}
+// 		@media (max-width: ${Constants.breakpoints.paddingTablet}) {
+// 			padding: ${paddingTop("50px")} ${Constants.sidePaddings.tablet} 0px;
+// 		}
 
-		@media (max-width: ${Constants.breakpoints.paddingMobile}) {
-			padding: ${paddingTop("30px")} ${Constants.sidePaddings.mobile} 0px;
-		}
-	`;
-}
+// 		@media (max-width: ${Constants.breakpoints.paddingMobile}) {
+// 			padding: ${paddingTop("30px")} ${Constants.sidePaddings.mobile} 0px;
+// 		}
+// 	`;
+// }
