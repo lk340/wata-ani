@@ -52,11 +52,9 @@ export const Input = (props: InputProps) => {
 					input_type={inputType}
 				>
 					<Styled.InputIconPasswordHide
-						reveal_password={authForm.state.revealPassword}
 						style={Springs.togglePasswordHideIcon(authForm.state.revealPassword)}
 					/>
 					<Styled.InputIconPasswordShow
-						reveal_password={authForm.state.revealPassword}
 						style={Springs.togglePasswordShowIcon(authForm.state.revealPassword)}
 					/>
 				</Styled.InputFieldPasswordIcons>

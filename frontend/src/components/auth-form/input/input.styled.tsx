@@ -76,19 +76,17 @@ export const InputIconPassword = styled("img").attrs(() => ({
 	${inputIconStyles};
 `;
 
-type InputIconPasswordHideProps = { reveal_password: boolean };
-
 export const InputIconPasswordHide = styled(animated.img).attrs(() => ({
 	src: passwordHideIcon,
 	alt: "auth form component password hide icon",
-}))<InputIconPasswordHideProps>`
+}))`
 	${inputIconStyles};
 `;
 
 export const InputIconPasswordShow = styled(animated.img).attrs(() => ({
 	src: passwordShowIcon,
 	alt: "auth form component password show icon",
-}))<InputIconPasswordHideProps>`
+}))`
 	${inputIconStyles};
 `;
 
@@ -128,22 +126,22 @@ export const InputEmail = styled("input").attrs(() => ({
 	${inputTypeStyles};
 `;
 
-export const InputPassword = styled("input").attrs(
-	(props: InputIconPasswordHideProps) => ({
-		type: props.reveal_password ? "text" : "password",
-		placeholder: "aBcD!@#$123",
-		required: true,
-	}),
-)<InputIconPasswordHideProps>`
+type InputPasswordProps = { reveal_password: boolean };
+
+export const InputPassword = styled("input").attrs((props: InputPasswordProps) => ({
+	type: props.reveal_password ? "text" : "password",
+	placeholder: "aBcD!@#$123",
+	required: true,
+}))<InputPasswordProps>`
 	${inputTypeStyles};
 `;
 
 export const InputPasswordConfirmation = styled("input").attrs(
-	(props: InputIconPasswordHideProps) => ({
+	(props: InputPasswordProps) => ({
 		type: props.reveal_password ? "text" : "password",
 		placeholder: "aBcD!@#$123",
 		required: true,
 	}),
-)<InputIconPasswordHideProps>`
+)<InputPasswordProps>`
 	${inputTypeStyles};
 `;
