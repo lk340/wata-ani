@@ -28,12 +28,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
 
+    # Django REST Framework
     "rest_framework",
     "rest_framework.authtoken",
-    
-    "rest_auth",
-    "rest_auth.registration",
 
+    # User Authentication
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+
+    # Used in tandem with dj_rest_auth for email verification & authentication
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -41,11 +44,29 @@ INSTALLED_APPS = [
     # "allauth.socialaccount.providers.google",
     # "allauth.socialaccount.providers.twitter",
 
-    "corsheaders",
     "jwt_auth.apps.JwtAuthConfig",
+
+    # Cross-Origin Resource Sharing for allowing frontend to communicate with backend
+    "corsheaders",
 
     "users.apps.UsersConfig",
 ]
+
+# ====================== #
+# ↓↓↓ REST Framework ↓↓↓ #
+# ====================== #
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.TokenAuthentication",
+        # "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
+    ),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 20,
+}
 
 # ========================= #
 # ↓↓↓ Custom User Model ↓↓↓ #
@@ -89,39 +110,12 @@ ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_USERNAME_REQUIRED = True
 
-# ===================== #
-# ↓↓↓ Email Service ↓↓↓ #
-# ===================== #
-
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-AUTHENTICATION_BACKENDS = (
-    # required for logging into Django admin, regardless of "allauth"
-    "django.contrib.auth.backends.ModelBackend",
-    # adds allauth authentication methods, such as login by email
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
-
-# ====================== #
-# ↓↓↓ REST Framework ↓↓↓ #
-# ====================== #
-
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        # "rest_framework.authentication.TokenAuthentication",
-        # "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 20,
-}
-
 # =========== #
 # ↓↓↓ JWT ↓↓↓ #
 # =========== #
 
-# REST_USE_JWT = True
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = "jacLs1NGQZN07D92L8PVwOi"
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
@@ -154,13 +148,26 @@ SIMPLE_JWT = {
 # ↓↓↓ Cookie Settings ↓↓↓ #
 # ======================= #
 
-CSRF_COOKIE_NAME = "CSRFToken"
-# CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_NAME = "6kpjZ4jUn61vnF15QRXuC"
+CSRF_COOKIE_HTTPONLY = True
 
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_PATH = "/;HttpOnly"
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+
+# ===================== #
+# ↓↓↓ Email Service ↓↓↓ #
+# ===================== #
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+AUTHENTICATION_BACKENDS = (
+    # required for logging into Django admin, regardless of "allauth"
+    "django.contrib.auth.backends.ModelBackend",
+    # adds allauth authentication methods, such as login by email
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 # ============ #
 # ↓↓↓ CORS ↓↓↓ #

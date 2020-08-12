@@ -1,6 +1,6 @@
-from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from allauth.account.views import confirm_email
@@ -13,19 +13,19 @@ urlpatterns = [
 
     # AllAuth (user authentication)
     path("accounts/", include("allauth.urls")),
-    path(r'^accounts-rest/registration/account-confirm-email/(?P<key>.+)/$',
-         confirm_email, name='account_confirm_email'),
+    # path(r"^accounts-rest/registration/account-confirm-email/(?P<key>.+)/$",
+    #      confirm_email, name="account_confirm_email"),
 
-    # Rest Auth (Non-JWT token-based auth)
-    path("rest-auth/", include("rest_auth.urls")),
-    path("rest-auth/registration/", include("rest_auth.registration.urls")),
+    # dj-rest-auth
+    path("auth/", include("dj_rest_auth.urls")),
+    path("auth/registration/", include("dj_rest_auth.registration.urls")),
 
     # [POST] - JWT
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
     # JWT-based auth
-    path("api/auth/", include("jwt_auth.urls"), name="jwt_auth"),
+    # path("api/auth/", include("jwt_auth.urls"), name="jwt_auth"),
 
     # Users
     path("api/users/", include("users.urls"))

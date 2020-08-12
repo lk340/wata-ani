@@ -80,12 +80,22 @@ export const lineHeights = {
 // ↓↓↓ Border Radius ↓↓↓ //
 // ===================== //
 
-export const borderRadius = {};
+export const borderRadius = {
+	components: {
+		authForm: {
+			logo: "0.375rem",
+		},
+	},
+};
 
-// ================== //
-// ↓↓↓ Components ↓↓↓ //
-// ================== //
+// ============ //
+// ↓↓↓ Size ↓↓↓ //
+// ============ //
 
-export const navbar = {};
-
-export const auth = {};
+export const size = {
+	components: {
+		authForm: {
+			logo: { width: "70px" },
+		},
+	},
+};

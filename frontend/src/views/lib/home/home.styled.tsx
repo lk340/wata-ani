@@ -8,11 +8,11 @@ import * as Constants from "@/utils/style/constants";
 // ============ //
 
 export const Home = styled("div")`
-	${Snippets.flex("column", "auto", "auto")};
+	${Snippets.flex("column")};
 	position: relative;
 `;
 
 export const HomeComponents = styled("div")`
-	margin: 0px auto;
+	/* margin: 0px auto; */
 	max-width: ${Constants.globals.maxWidth};
 `;

@@ -6,21 +6,6 @@ import * as Location from "@/context/utilities/location";
 import * as Auth from "@/context/utilities/auth";
 import * as UserAgent from "@/context/utilities/user-agent";
 
-import * as Filter from "@/context/data/filter";
-import * as Sort from "@/context/data/sort";
-import * as Demo from "@/context/data/demo";
-import * as Home from "@/context/data/home";
+import * as Welcome from "@/context/data/welcome";
 
-export {
-	Theme,
-	Windows,
-	Scroll,
-	Mouse,
-	Location,
-	Auth,
-	UserAgent,
-	Filter,
-	Sort,
-	Demo,
-	Home,
-};
+export { Theme, Windows, Scroll, Mouse, Location, Auth, UserAgent, Welcome };

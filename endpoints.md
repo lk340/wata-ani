@@ -1,22 +1,11 @@
-### Rest Auth
+### Dj Rest Auth
 <!-- POST -->
-<!-- old_password -->
-<!-- new_password1 -->
-<!-- new_password2 -->
-rest-auth/password/change/
-
-### JWT Auth (register / sign in)
-<!-- POST -->
-<!-- username -->
-<!-- email -->
-<!-- password -->
-<!-- password_confirmation -->
-api/auth/register/
-
-<!-- POST -->
-<!-- username -->
-<!-- password -->
-api/auth/signin/
+auth/registration/
+auth/login/
+auth/logout/
+auth/password/change/
+<!-- GET, PUT/PATCH -->
+auth/user/
 
 ### Users
 <!-- GET, PATCH, DELETE -->

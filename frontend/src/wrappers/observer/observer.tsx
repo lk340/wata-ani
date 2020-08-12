@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as Use from "react-use";
 import { ThemeProvider } from "styled-components";
-import { useLocation } from "@reach/router";
+import * as Reach from "@reach/router";
+import * as Gatsby from "gatsby";
 
 import * as Context from "@/context";
 import * as Constants from "@/utils/style/constants";
@@ -14,7 +15,7 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ↓↓↓ Window Size ↓↓↓ //
 	// =================== //
 
-	const { window } = Context.Window.useWindowContext();
+	const { windows } = Context.Windows.useWindowsContext();
 	const { width, height } = Use.useWindowSize();
 
 	// =============================== //
@@ -45,8 +46,8 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ================ //
 
 	const { location } = Context.Location.useLocationContext();
-	// const loc = useLocation();
-	// const pathname = loc.pathname;
+	const reachLocation = Reach.useLocation();
+	const pathname = reachLocation.pathname;
 
 	// ================== //
 	// ↓↓↓ User Agent ↓↓↓ //
@@ -59,9 +60,18 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ==================================== //
 
 	React.useEffect(() => {
-		window.setters.setWindow({ width, height });
+		windows.setters.setWindows({ width, height });
 		scroll.setters.setScroll({ x, y });
 		mouse.setters.setMouse({ x: elX, y: elY });
+
+		if (!localStorage.mode) {
+			// theme.setters.setMode("light");
+			// localStorage.mode = theme.state.mode;
+
+			theme.setters.toggleMode();
+		} else {
+			theme.setters.setMode(localStorage.mode);
+		}
 
 		// for (let index = 0; index < numberBreakpoints - 1; index++) {
 		// 	const breakpoint = breakpoints[index][0] as Context.Theme.Device;
@@ -74,7 +84,7 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 		// 	}
 		// }
 
-		// location.setters.setLocation({ pathname });
+		location.setters.setLocation({ pathname });
 
 		if (
 			navigator.userAgent.includes("iPhone") ||
@@ -85,7 +95,7 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 		} else {
 			userAgent.setters.setUserAgent({ isMobile: false });
 		}
-	}, [width, height, x, y, elX, elY, navigator.userAgent]);
+	}, [width, height, x, y, elX, elY, localStorage.mode, navigator.userAgent]);
 
 	// ========================================================= //
 	// ↓↓↓ Setting Current User On Page Refresh / URL Change ↓↓↓ //
@@ -100,20 +110,21 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 				auth.setters.setCurrentUser(accessToken.user_id);
 			}
 		}
-	}, []);
+	}, [auth.state.currentUser]);
 
 	// =============================== //
 	// ↓↓↓ Debugging Context State ↓↓↓ //
 	// =============================== //
 
 	// console.log("=====");
-	// console.log("window width:", window.state.width);
-	// console.log("window height:", window.state.height);
+	// console.log("window width:", windows.state.width);
+	// console.log("window height:", windows.state.height);
 	// console.log("window scroll x:", windowScroll.state.x);
 	// console.log("window scroll y:", windowScroll.state.y);
 	// console.log("mouse position x:", mouse.state.x);
 	// console.log("mouse position y:", mouse.state.y);
 	// console.log("theme device:", theme.state.device);
+	// console.log("theme mode:", theme.state.mode);
 	// console.log("pathname", location.state.pathname);
 	// console.log("user agent is mobile:", userAgent.state.isMobile);
 	console.log("Current User:", auth.state.currentUser);
@@ -123,8 +134,8 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ====================== //
 
 	const providerTheme = {
-		device: theme.state.device,
-		mode: theme.state.mode,
+		// device: theme.state.device,
+		mode: localStorage.mode,
 	};
 
 	return (

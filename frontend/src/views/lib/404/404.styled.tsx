@@ -8,7 +8,7 @@ export const NotFound = styled("div")`
 `;
 
 export const NotFoundHeader = styled("h1")`
-	${Snippets.clear()};
+	${Snippets.clearSpacing()};
 `;
 
 export const NotFoundBody = styled("div")``;
