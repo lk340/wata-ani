@@ -47,6 +47,12 @@ export const sidePaddings = {
 
 export const fontSizes = {
 	fallback: "1rem",
+	components: {
+		authForm: {
+			title: "1.5rem",
+			inputTitle: "0.875rem",
+		},
+	},
 };
 
 // =================== //

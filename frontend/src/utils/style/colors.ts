@@ -25,7 +25,7 @@ export const NEUTRALS = {
 // ↓↓↓ Primary ↓↓↓ //
 // =============== //
 
-export const PRIMARY_100 = "#5A57F4";
+export const PRIMARY_100 = "#6BA6FF";
 export const PRIMARY_80 = Polished.transparentize(0.2, PRIMARY_100);
 export const PRIMARY_60 = Polished.transparentize(0.4, PRIMARY_100);
 export const PRIMARY_40 = Polished.transparentize(0.6, PRIMARY_100);
