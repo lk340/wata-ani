@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import * as Styled from "./auth-form.styled";
+import { Input } from "./input";
 
 export type Props = {
 	formType: "Registration" | "Sign In";
@@ -14,8 +15,11 @@ export const AuthForm = (props: Props) => {
 		<Styled.AuthForm>
 			{/* Logo // Title // Inputs */}
 			<Styled.AuthFormLogoTitleInputs>
+				{/* Logo */}
 				<Styled.AuthFormLogo />
+				{/* Title */}
 				<Styled.AuthFormTitle>{formType}</Styled.AuthFormTitle>
+				{/* Inputs */}
 				<Styled.AuthFormInputs>
 					<Input inputType="Username" />
 					<Input inputType="Email" />
@@ -26,7 +30,9 @@ export const AuthForm = (props: Props) => {
 
 			{/* Submit Button // Redirect */}
 			<Styled.AuthFormSubmitRedirect>
+				{/* Submit Button */}
 				<Styled.AuthFormSubmitButton>{submitText}</Styled.AuthFormSubmitButton>
+				{/* Redirect */}
 				<Styled.AuthFormRedirect>
 					<Styled.AuthFormRedirectText>
 						{formType === "Registration" ? "Already a member?" : "Need an account?"}
@@ -38,57 +44,5 @@ export const AuthForm = (props: Props) => {
 				</Styled.AuthFormRedirect>
 			</Styled.AuthFormSubmitRedirect>
 		</Styled.AuthForm>
-	);
-};
-
-// ============= //
-// ↓↓↓ Input ↓↓↓ //
-// ============= //
-
-type InputProps = {
-	inputType: "Username" | "Email" | "Password" | "Confirm Password";
-};
-
-const Input = (props: InputProps) => {
-	const { inputType } = props;
-
-	let inputIcon;
-	switch (inputType) {
-		case "Username":
-			inputIcon = <Styled.AuthFormFieldInputIconUsername />;
-			break;
-		case "Email":
-			inputIcon = <Styled.AuthFormFieldInputIconEmail />;
-			break;
-		default:
-			inputIcon = <Styled.AuthFormFieldInputIconPassword />;
-			break;
-	}
-
-	let inputField;
-	switch (inputType) {
-		case "Username":
-			inputField = <Styled.AuthFormFieldInputUsername />;
-			break;
-		case "Email":
-			inputField = <Styled.AuthFormFieldInputEmail />;
-			break;
-		case "Password":
-			inputField = <Styled.AuthFormFieldInputPassword />;
-			break;
-		default:
-			inputField = <Styled.AuthFormFieldInputPasswordConfirmation />;
-			break;
-	}
-
-	return (
-		<Styled.AuthFormFieldGroup>
-			<Styled.AuthFormFieldTitle>{inputType}</Styled.AuthFormFieldTitle>
-			<Styled.AuthFormFieldInput>
-				{inputIcon}
-				{inputField}
-				<Styled.AuthFormFieldInputIconPasswordHide />
-			</Styled.AuthFormFieldInput>
-		</Styled.AuthFormFieldGroup>
 	);
 };
