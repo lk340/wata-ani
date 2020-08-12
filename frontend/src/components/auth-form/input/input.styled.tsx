@@ -78,20 +78,18 @@ export const InputIconPassword = styled("img").attrs(() => ({
 
 type InputIconPasswordHideProps = { reveal_password: boolean };
 
-export const InputIconPasswordHide = styled("img").attrs(() => ({
+export const InputIconPasswordHide = styled(animated.img).attrs(() => ({
 	src: passwordHideIcon,
 	alt: "auth form component password hide icon",
 }))<InputIconPasswordHideProps>`
 	${inputIconStyles};
-	display: ${(props) => (props.reveal_password ? "block" : "none")};
 `;
 
-export const InputIconPasswordShow = styled("img").attrs(() => ({
+export const InputIconPasswordShow = styled(animated.img).attrs(() => ({
 	src: passwordShowIcon,
 	alt: "auth form component password show icon",
 }))<InputIconPasswordHideProps>`
 	${inputIconStyles};
-	display: ${(props) => (props.reveal_password ? "none" : "block")};
 `;
 
 // ========================= //

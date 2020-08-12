@@ -15,11 +15,6 @@ export const AuthForm = (props: Props) => {
 
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 
-	console.log(authForm.state.username);
-	console.log(authForm.state.email);
-	console.log(authForm.state.password);
-	console.log(authForm.state.passwordConfirmation);
-
 	return (
 		<Styled.AuthForm onSubmit={authForm.handlers.handleSubmit}>
 			{/* Logo // Title // Inputs */}

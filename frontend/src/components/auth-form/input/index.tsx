@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Context from "@/context";
 
 import * as Styled from "./input.styled";
+import * as Springs from "./input.springs";
 
 type InputProps = {
 	inputType: "Username" | "Email" | "Password" | "Confirm Password";
@@ -42,7 +43,7 @@ export const Input = (props: InputProps) => {
 
 	return (
 		<Styled.Input>
-			<Styled.InputTitle>{inputType}</Styled.InputTitle>
+			<Styled.InputTitle>*{inputType}</Styled.InputTitle>
 			<Styled.InputFieldGroup>
 				{inputIcon}
 				{inputField}
@@ -50,8 +51,14 @@ export const Input = (props: InputProps) => {
 					onClick={authForm.setters.toggleRevealPassword}
 					input_type={inputType}
 				>
-					<Styled.InputIconPasswordHide reveal_password={authForm.state.revealPassword} />
-					<Styled.InputIconPasswordShow reveal_password={authForm.state.revealPassword} />
+					<Styled.InputIconPasswordHide
+						reveal_password={authForm.state.revealPassword}
+						style={Springs.togglePasswordHideIcon(authForm.state.revealPassword)}
+					/>
+					<Styled.InputIconPasswordShow
+						reveal_password={authForm.state.revealPassword}
+						style={Springs.togglePasswordShowIcon(authForm.state.revealPassword)}
+					/>
 				</Styled.InputFieldPasswordIcons>
 			</Styled.InputFieldGroup>
 		</Styled.Input>
