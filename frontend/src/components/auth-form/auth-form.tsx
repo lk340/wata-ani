@@ -12,16 +12,19 @@ export const AuthForm = (props: Props) => {
 
 	return (
 		<Styled.AuthForm>
+			{/* Logo // Title // Inputs */}
 			<Styled.AuthFormLogoTitleInputs>
 				<Styled.AuthFormLogo />
 				<Styled.AuthFormTitle>{formType}</Styled.AuthFormTitle>
 				<Styled.AuthFormInputs>
-					<UsernameInput />
-					<EmailInput />
-					<PasswordInput />
-					<PasswordConfirmationInput />
+					<Input inputType="Username" />
+					<Input inputType="Email" />
+					<Input inputType="Password" />
+					<Input inputType="Confirm Password" />
 				</Styled.AuthFormInputs>
 			</Styled.AuthFormLogoTitleInputs>
+
+			{/* Submit Button // Redirect */}
 			<Styled.AuthFormSubmitRedirect>
 				<Styled.AuthFormSubmitButton>{submitText}</Styled.AuthFormSubmitButton>
 				<Styled.AuthFormRedirect>
@@ -38,50 +41,52 @@ export const AuthForm = (props: Props) => {
 	);
 };
 
-const UsernameInput = () => {
-	return (
-		<Styled.AuthFormFieldGroup>
-			<Styled.AuthFormFieldTitle>Username</Styled.AuthFormFieldTitle>
-			<Styled.AuthFormFieldInput>
-				<Styled.AuthFormFieldInputIconUsername />
-				<Styled.AuthFormFieldInputUsername />
-			</Styled.AuthFormFieldInput>
-		</Styled.AuthFormFieldGroup>
-	);
+// ============= //
+// ↓↓↓ Input ↓↓↓ //
+// ============= //
+
+type InputProps = {
+	inputType: "Username" | "Email" | "Password" | "Confirm Password";
 };
 
-const EmailInput = () => {
-	return (
-		<Styled.AuthFormFieldGroup>
-			<Styled.AuthFormFieldTitle>Email</Styled.AuthFormFieldTitle>
-			<Styled.AuthFormFieldInput>
-				<Styled.AuthFormFieldInputIconEmail />
-				<Styled.AuthFormFieldInputUsername />
-			</Styled.AuthFormFieldInput>
-		</Styled.AuthFormFieldGroup>
-	);
-};
+const Input = (props: InputProps) => {
+	const { inputType } = props;
 
-const PasswordInput = () => {
-	return (
-		<Styled.AuthFormFieldGroup>
-			<Styled.AuthFormFieldTitle>Password</Styled.AuthFormFieldTitle>
-			<Styled.AuthFormFieldInput>
-				<Styled.AuthFormFieldInputIconPassword />
-				<Styled.AuthFormFieldInputUsername />
-				<Styled.AuthFormFieldInputIconPasswordHide />
-			</Styled.AuthFormFieldInput>
-		</Styled.AuthFormFieldGroup>
-	);
-};
+	let inputIcon;
+	switch (inputType) {
+		case "Username":
+			inputIcon = <Styled.AuthFormFieldInputIconUsername />;
+			break;
+		case "Email":
+			inputIcon = <Styled.AuthFormFieldInputIconEmail />;
+			break;
+		default:
+			inputIcon = <Styled.AuthFormFieldInputIconPassword />;
+			break;
+	}
 
-const PasswordConfirmationInput = () => {
+	let inputField;
+	switch (inputType) {
+		case "Username":
+			inputField = <Styled.AuthFormFieldInputUsername />;
+			break;
+		case "Email":
+			inputField = <Styled.AuthFormFieldInputEmail />;
+			break;
+		case "Password":
+			inputField = <Styled.AuthFormFieldInputPassword />;
+			break;
+		default:
+			inputField = <Styled.AuthFormFieldInputPasswordConfirmation />;
+			break;
+	}
+
 	return (
 		<Styled.AuthFormFieldGroup>
-			<Styled.AuthFormFieldTitle>Confirm Password</Styled.AuthFormFieldTitle>
+			<Styled.AuthFormFieldTitle>{inputType}</Styled.AuthFormFieldTitle>
 			<Styled.AuthFormFieldInput>
-				<Styled.AuthFormFieldInputIconPassword />
-				<Styled.AuthFormFieldInputUsername />
+				{inputIcon}
+				{inputField}
 				<Styled.AuthFormFieldInputIconPasswordHide />
 			</Styled.AuthFormFieldInput>
 		</Styled.AuthFormFieldGroup>

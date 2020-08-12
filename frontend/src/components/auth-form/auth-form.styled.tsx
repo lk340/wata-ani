@@ -145,6 +145,7 @@ const inputTypeStyles = css`
 export const AuthFormFieldInputUsername = styled("input").attrs(() => ({
 	type: "text",
 	placeholder: "Enter your username",
+	required: true,
 }))`
 	${inputTypeStyles};
 `;
@@ -152,6 +153,7 @@ export const AuthFormFieldInputUsername = styled("input").attrs(() => ({
 export const AuthFormFieldInputEmail = styled("input").attrs(() => ({
 	type: "email",
 	placeholder: "Enter your email",
+	required: true,
 }))`
 	${inputTypeStyles};
 `;
@@ -159,6 +161,7 @@ export const AuthFormFieldInputEmail = styled("input").attrs(() => ({
 export const AuthFormFieldInputPassword = styled("input").attrs(() => ({
 	type: "password",
 	placeholder: "Enter your password",
+	required: true,
 }))`
 	${inputTypeStyles};
 `;
@@ -166,6 +169,7 @@ export const AuthFormFieldInputPassword = styled("input").attrs(() => ({
 export const AuthFormFieldInputPasswordConfirmation = styled("input").attrs(() => ({
 	type: "password",
 	placeholder: "Confirm your password",
+	required: true,
 }))`
 	${inputTypeStyles};
 `;
