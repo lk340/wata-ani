@@ -2,11 +2,12 @@ import * as React from "react";
 
 import * as Context from "@/context";
 
+import * as Types from "./auth-form.types";
 import * as Styled from "./auth-form.styled";
 import { Input } from "./input";
 
 export type Props = {
-	formType: "Registration" | "Sign In";
+	formType: Types.FormType;
 	submitText: "Register" | "Sign In";
 };
 
@@ -25,11 +26,30 @@ export const AuthForm = (props: Props) => {
 				<Styled.AuthFormTitle>{formType}</Styled.AuthFormTitle>
 				{/* Inputs */}
 				<Styled.AuthFormInputs>
-					<Input onChange={authForm.handlers.handleUsernameChange} inputType="Username" />
-					<Input onChange={authForm.handlers.handleEmailChange} inputType="Email" />
-					<Input onChange={authForm.handlers.handlePasswordChange} inputType="Password" />
+					<Input
+						onChange={authForm.handlers.handleUsernameOrEmailChange}
+						formType={formType}
+						inputType="Username Or Email"
+					/>
+
+					<Input
+						onChange={authForm.handlers.handleUsernameChange}
+						formType={formType}
+						inputType="Username"
+					/>
+					<Input
+						onChange={authForm.handlers.handleEmailChange}
+						formType={formType}
+						inputType="Email"
+					/>
+					<Input
+						onChange={authForm.handlers.handlePasswordChange}
+						formType={formType}
+						inputType="Password"
+					/>
 					<Input
 						onChange={authForm.handlers.handlePasswordConfirmationChange}
+						formType={formType}
 						inputType="Confirm Password"
 					/>
 				</Styled.AuthFormInputs>

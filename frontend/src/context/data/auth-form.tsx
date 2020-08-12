@@ -44,6 +44,11 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	// ↓↓↓ Handlers ↓↓↓ //
 	// =============== //
 
+	function handleUsernameOrEmailChange(event: React.ChangeEvent<HTMLInputElement>): void {
+		const usernameOrEmail = event.currentTarget.value;
+		setAuthForm({ username: usernameOrEmail });
+	}
+
 	function handleUsernameChange(event: React.ChangeEvent<HTMLInputElement>): void {
 		const username = event.currentTarget.value;
 		setAuthForm({ username });
@@ -90,6 +95,7 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	};
 
 	const handlers = {
+		handleUsernameOrEmailChange,
 		handleUsernameChange,
 		handleEmailChange,
 		handlePasswordChange,

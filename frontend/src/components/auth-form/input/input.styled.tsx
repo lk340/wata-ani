@@ -11,12 +11,20 @@ import passwordIcon from "@/icons/password.svg";
 import passwordHideIcon from "@/icons/password-hide.svg";
 import passwordShowIcon from "@/icons/password-show.svg";
 
+import * as AuthTypes from "../auth-form.types";
+import * as InputTypes from "./input.types";
+
 // ============= //
 // ↓↓↓ Input ↓↓↓ //
 // ============= //
 
-export const Input = styled("div")`
+type InputProps = {
+	display: string;
+};
+
+export const Input = styled("div")<InputProps>`
 	${Snippets.grid(1, "auto", 10)};
+	display: ${(props) => props.display};
 `;
 
 export const InputTitle = styled("h1")`
@@ -110,6 +118,18 @@ const inputTypeStyles = css`
 	}
 `;
 
+type InputTypesProps = {
+	reveal_password: boolean;
+};
+
+export const InputUsernameOrEmail = styled("input").attrs(() => ({
+	type: "text",
+	placeholder: "Enter your username or email",
+	required: true,
+}))`
+	${inputTypeStyles};
+`;
+
 export const InputUsername = styled("input").attrs(() => ({
 	type: "text",
 	placeholder: "WataAni",
@@ -126,22 +146,20 @@ export const InputEmail = styled("input").attrs(() => ({
 	${inputTypeStyles};
 `;
 
-type InputPasswordProps = { reveal_password: boolean };
-
-export const InputPassword = styled("input").attrs((props: InputPasswordProps) => ({
+export const InputPassword = styled("input").attrs((props: InputTypesProps) => ({
 	type: props.reveal_password ? "text" : "password",
 	placeholder: "aBcD!@#$123",
 	required: true,
-}))<InputPasswordProps>`
+}))<InputTypesProps>`
 	${inputTypeStyles};
 `;
 
 export const InputPasswordConfirmation = styled("input").attrs(
-	(props: InputPasswordProps) => ({
+	(props: InputTypesProps) => ({
 		type: props.reveal_password ? "text" : "password",
 		placeholder: "aBcD!@#$123",
 		required: true,
 	}),
-)<InputPasswordProps>`
+)<InputTypesProps>`
 	${inputTypeStyles};
 `;
