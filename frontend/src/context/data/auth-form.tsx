@@ -78,19 +78,16 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	): void {
 		event.preventDefault();
 
-		// if (formType === "Registration") {
-		// 	register(
-		// 		authForm.username,
-		// 		authForm.email,
-		// 		authForm.password,
-		// 		authForm.passwordConfirmation,
-		// 	);
-		// } else {
-		// 	signIn(authForm.username, authForm.password);
-		// }
-
-		console.log(formType);
-		console.log("Submitted!");
+		if (formType === "Registration") {
+			register(
+				authForm.username,
+				authForm.email,
+				authForm.password,
+				authForm.passwordConfirmation,
+			);
+		} else {
+			signIn(authForm.username, authForm.password);
+		}
 	}
 
 	// =============== //
@@ -138,6 +135,19 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		return POST(endpoint, data);
 	}
 
+	function signOut(): Promise<void> {
+		const endpoint = "http://localhost:7000/auth/logout/";
+		async function POST() {
+			try {
+				const response = await axios.post(endpoint);
+				console.log(response);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		return POST();
+	}
+
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //
 	// =============== //
@@ -163,6 +173,7 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	const api = {
 		register,
 		signIn,
+		signOut,
 	};
 
 	return {

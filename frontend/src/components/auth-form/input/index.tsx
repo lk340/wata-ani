@@ -16,6 +16,7 @@ export const Input = (props: InputProps) => {
 	const { formType, inputType, onChange } = props;
 
 	const { authForm } = Context.AuthForm.useAuthFormContext();
+	const { windows } = Context.Windows.useWindowsContext();
 
 	// Hides or shows certain input fields depending on whether we're dealing
 	// with a registration form or a sign in form.
@@ -53,13 +54,31 @@ export const Input = (props: InputProps) => {
 	let field;
 	switch (inputType) {
 		case "Username Or Email":
-			field = <Styled.InputUsernameOrEmail onChange={onChange} form_type={formType} />;
+			field = (
+				<Styled.InputUsernameOrEmail
+					onChange={onChange}
+					form_type={formType}
+					window_height={windows.state.height}
+				/>
+			);
 			break;
 		case "Username":
-			field = <Styled.InputUsername onChange={onChange} form_type={formType} />;
+			field = (
+				<Styled.InputUsername
+					onChange={onChange}
+					form_type={formType}
+					window_height={windows.state.height}
+				/>
+			);
 			break;
 		case "Email":
-			field = <Styled.InputEmail onChange={onChange} form_type={formType} />;
+			field = (
+				<Styled.InputEmail
+					onChange={onChange}
+					form_type={formType}
+					window_height={windows.state.height}
+				/>
+			);
 			break;
 		case "Password":
 			// "Password" & "Confirm Password" case
@@ -67,6 +86,7 @@ export const Input = (props: InputProps) => {
 				<Styled.InputPassword
 					onChange={onChange}
 					reveal_password={authForm.state.revealPassword}
+					window_height={windows.state.height}
 				/>
 			);
 			break;
@@ -75,6 +95,7 @@ export const Input = (props: InputProps) => {
 				<Styled.InputPasswordConfirmation
 					onChange={onChange}
 					reveal_password={authForm.state.revealPassword}
+					window_height={windows.state.height}
 					form_type={formType}
 				/>
 			);

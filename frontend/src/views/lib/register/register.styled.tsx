@@ -11,4 +11,8 @@ export const Register = styled("div")`
 	${Snippets.flexRowCenter()};
 	${Snippets.fillView()};
 	background-color: ${Constants.theme.background};
+
+	@media (max-width: ${Constants.breakpoints.mobile}) {
+		/* padding: 0px ${Constants.sidePaddings.mobile}; */
+	}
 `;

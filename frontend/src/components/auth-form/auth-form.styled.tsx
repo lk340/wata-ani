@@ -21,6 +21,16 @@ import logoJapanese from "@/images/logo/japanese.svg";
 
 export const AuthForm = styled("form")`
 	${Snippets.grid(1, "auto", 40)};
+	width: 400px;
+
+	@media (max-width: ${Constants.breakpoints.mobile}) {
+		padding: 0px ${Constants.sidePaddings.mobile};
+		width: 100%;
+	}
+
+	@media (max-height: 620px) {
+		grid-gap: 20px;
+	}
 `;
 
 // ============================= //
@@ -38,6 +48,10 @@ export const AuthFormLogo = styled("img").attrs(() => ({
 	${Snippets.square("70px")};
 	margin: 0px auto;
 	border-radius: ${Constants.borderRadius.components.authForm.logo};
+
+	@media (max-height: 740px) {
+		display: none;
+	}
 `;
 
 export const AuthFormTitle = styled("h1")`
@@ -67,7 +81,7 @@ export const AuthFormSubmitButton = styled("button").attrs(() => ({
 	type: "submit",
 }))`
 	${Snippets.flexRowCenter()};
-	${Snippets.size("400px", "50px")};
+	height: 50px;
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
 	border: none;

@@ -33,13 +33,17 @@ export const Input = styled("div")<InputProps>`
 export const InputTitle = styled("h2")`
 	${Snippets.clearSpacing()};
 	color: ${Colors.PRIMARY_100};
-	font-weight: bold;
 	font-size: ${Constants.fontSizes.components.authForm.inputTitle};
+	font-weight: bold;
+
+	@media (max-height: 620px) {
+		display: none;
+	}
 `;
 
 export const InputField = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
-	${Snippets.size("400px", "50px")};
+	height: 50px;
 	padding: 0px 20px;
 	background-color: ${Constants.theme.components.authForm.inputBackground};
 	border: ${Constants.theme.components.authForm.inputBorder} solid 2px;
@@ -114,6 +118,8 @@ const fieldTypeStyles = css`
 	border: none;
 	outline: none;
 
+	flex-shrink: 0;
+
 	::placeholder {
 		color: ${Colors.LIGHT.five};
 		font-size: ${Constants.fontSizes.components.authForm.inputPlaceholder};
@@ -124,6 +130,7 @@ const fieldTypeStyles = css`
 type FieldTypeProps = {
 	reveal_password?: boolean;
 	form_type?: AuthTypes.FormType;
+	window_height: number;
 };
 
 export const InputUsernameOrEmail = styled("input").attrs((props: FieldTypeProps) => ({
@@ -136,7 +143,7 @@ export const InputUsernameOrEmail = styled("input").attrs((props: FieldTypeProps
 
 export const InputUsername = styled("input").attrs((props: FieldTypeProps) => ({
 	type: "text",
-	placeholder: "WataAni",
+	placeholder: props.window_height > 620 ? "WataAni" : "*Username",
 	required: props.form_type === "Registration" ? true : false,
 }))<FieldTypeProps>`
 	${fieldTypeStyles};
@@ -144,7 +151,7 @@ export const InputUsername = styled("input").attrs((props: FieldTypeProps) => ({
 
 export const InputEmail = styled("input").attrs((props: FieldTypeProps) => ({
 	type: "email",
-	placeholder: "wata@ani.com",
+	placeholder: props.window_height > 620 ? "wata@ani.com" : "*Email",
 	required: props.form_type === "Registration" ? true : false,
 }))<FieldTypeProps>`
 	${fieldTypeStyles};
@@ -152,7 +159,7 @@ export const InputEmail = styled("input").attrs((props: FieldTypeProps) => ({
 
 export const InputPassword = styled("input").attrs((props: FieldTypeProps) => ({
 	type: props.reveal_password ? "text" : "password",
-	placeholder: "aBcD!@#$123",
+	placeholder: props.window_height > 620 ? "aBcD!@#$123" : "*Password",
 	required: true,
 }))<FieldTypeProps>`
 	${fieldTypeStyles};
@@ -161,7 +168,7 @@ export const InputPassword = styled("input").attrs((props: FieldTypeProps) => ({
 export const InputPasswordConfirmation = styled("input").attrs(
 	(props: FieldTypeProps) => ({
 		type: props.reveal_password ? "text" : "password",
-		placeholder: "aBcD!@#$123",
+		placeholder: props.window_height > 620 ? "aBcD!@#$123" : "*Confirm Password",
 		required: props.form_type === "Registration" ? true : false,
 	}),
 )<FieldTypeProps>`
