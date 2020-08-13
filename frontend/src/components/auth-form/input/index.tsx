@@ -18,6 +18,10 @@ export const Input = (props: InputProps) => {
 
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 
+	// Shows "Username Or Email" field in sign in form.
+	// Hides "Username Or Email" field in registration form.
+	// Hides "Username", "Email", and "Confirm Password" fields in sign in form.
+	// Shows "Username", "Email", and "Confirm Password" fields in registration form.
 	const display =
 		formType === "Registration" && inputType === "Username Or Email"
 			? "none"
@@ -63,6 +67,8 @@ export const Input = (props: InputProps) => {
 			<Styled.InputFieldGroup>
 				{inputIcon}
 				{inputField}
+
+				{/* Eye icons for showing or hiding typed-in password. */}
 				<Styled.InputFieldPasswordIcons
 					onClick={authForm.setters.toggleRevealPassword}
 					input_type={inputType}

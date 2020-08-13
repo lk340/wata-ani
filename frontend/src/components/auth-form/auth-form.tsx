@@ -5,12 +5,9 @@ import * as Context from "@/context";
 import * as Styled from "./auth-form.styled";
 import { Input } from "./input";
 
-type FormType = "Registration" | "Sign In";
-type SubmitText = "Register" | "Sign In";
-
 type Props = {
-	formType: FormType;
-	submitText: SubmitText;
+	formType: "Registration" | "Sign In";
+	submitText: "Register" | "Sign In";
 };
 
 export const AuthForm = (props: Props) => {
@@ -20,7 +17,7 @@ export const AuthForm = (props: Props) => {
 
 	return (
 		<Styled.AuthForm onSubmit={authForm.handlers.handleSubmit}>
-			{/* Logo // Title // Inputs */}
+			{/* Logo, Title, & Inputs */}
 			<Styled.AuthFormLogoTitleInputs>
 				{/* Logo */}
 				<Styled.AuthFormLogo />
@@ -30,8 +27,8 @@ export const AuthForm = (props: Props) => {
 				<InputFields formType={formType} submitText={submitText} />
 			</Styled.AuthFormLogoTitleInputs>
 
-			{/* Submit Button & Redirect Link */}
-			<SubmitButtonAndRedirectLink formType={formType} submitText={submitText} />
+			{/* Submit Button & Redirect */}
+			<SubmitButtonAndRedirect formType={formType} submitText={submitText} />
 		</Styled.AuthForm>
 	);
 };
@@ -81,13 +78,14 @@ const InputFields = (props: Props) => {
 // ↓↓↓ Submit Button & Redirect Link ↓↓↓ //
 // ===================================== //
 
-const SubmitButtonAndRedirectLink = (props: Props) => {
+const SubmitButtonAndRedirect = (props: Props) => {
 	const { formType, submitText } = props;
 
 	return (
 		<Styled.AuthFormSubmitRedirect>
 			{/* Submit Button */}
 			<Styled.AuthFormSubmitButton>{submitText}</Styled.AuthFormSubmitButton>
+
 			{/* Redirect */}
 			<Styled.AuthFormRedirect>
 				<Styled.AuthFormRedirectText>

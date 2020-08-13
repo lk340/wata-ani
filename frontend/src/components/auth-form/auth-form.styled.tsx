@@ -1,5 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
-import { animated } from "react-spring";
+import styled from "styled-components";
 import * as Gatsby from "gatsby";
 
 import * as Constants from "@/utils/style/constants";
@@ -10,7 +9,8 @@ import logoJapanese from "@/images/logo/japanese.svg";
 
 /**
  * Auth Form
- * Field Group
+ * Logo, Title, & Inputs
+ * Submit Button & Redirect
  * Submit Button
  * Redirect
  */
@@ -22,6 +22,10 @@ import logoJapanese from "@/images/logo/japanese.svg";
 export const AuthForm = styled("form")`
 	${Snippets.grid(1, "auto", 40)};
 `;
+
+// ============================= //
+// ↓↓↓ Logo, Title, & Inputs ↓↓↓ //
+// ============================= //
 
 export const AuthFormLogoTitleInputs = styled("div")`
 	${Snippets.grid(1, "auto", 30, "auto", "auto")};
@@ -47,13 +51,17 @@ export const AuthFormInputs = styled("div")`
 	${Snippets.grid(1, "auto", 20)};
 `;
 
-// ===================== //
-// ↓↓↓ Submit Button ↓↓↓ //
-// ===================== //
+// ================================ //
+// ↓↓↓ Submit Button & Redirect ↓↓↓ //
+// ================================ //
 
 export const AuthFormSubmitRedirect = styled("div")`
 	${Snippets.grid(1, "auto", 20)};
 `;
+
+// ===================== //
+// ↓↓↓ Submit Button ↓↓↓ //
+// ===================== //
 
 export const AuthFormSubmitButton = styled("button").attrs(() => ({
 	type: "submit",
