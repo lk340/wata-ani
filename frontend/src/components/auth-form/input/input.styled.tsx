@@ -135,7 +135,7 @@ type FieldTypeProps = {
 
 export const InputUsernameOrEmail = styled("input").attrs((props: FieldTypeProps) => ({
 	type: "text",
-	placeholder: "Enter your username or email",
+	placeholder: props.window_height > 620 ? "WataAni" : "*Enter your username or email",
 	required: props.form_type === "Registration" ? false : true,
 }))<FieldTypeProps>`
 	${fieldTypeStyles};
