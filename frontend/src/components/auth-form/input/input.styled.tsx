@@ -118,7 +118,7 @@ const fieldTypeStyles = css`
 	border: none;
 	outline: none;
 
-	flex-shrink: 0;
+	border: red solid 1px;
 
 	::placeholder {
 		color: ${Colors.LIGHT.five};
