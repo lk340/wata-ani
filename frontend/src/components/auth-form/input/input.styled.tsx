@@ -67,9 +67,12 @@ type PasswordRevealIconsProps = { input_type: string };
 
 export const InputFieldPasswordRevealIcons = styled("div")<PasswordRevealIconsProps>`
 	display: ${(props) => {
-		return props.input_type === "Username"
+		const { input_type } = props;
+		return input_type === "Username Or Email"
 			? "none"
-			: props.input_type === "Email"
+			: input_type === "Username"
+			? "none"
+			: input_type === "Email"
 			? "none"
 			: "block";
 	}};
