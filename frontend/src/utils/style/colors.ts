@@ -31,6 +31,15 @@ export const PRIMARY_60 = Polished.transparentize(0.4, PRIMARY_100);
 export const PRIMARY_40 = Polished.transparentize(0.6, PRIMARY_100);
 export const PRIMARY_20 = Polished.transparentize(0.8, PRIMARY_100);
 
+// ================= //
+// ↓↓↓ Secondary ↓↓↓ //
+// ================= //
+
+export const SECONDARY = {
+	light: "#7B5AF2",
+	dark: "#9C81FD",
+};
+
 // ================== //
 // ↓↓↓ Light Mode ↓↓↓ //
 // ================== //
@@ -42,7 +51,7 @@ export const LIGHT = {
 	four: "#DBD9E0",
 	five: "#C4C4C4",
 	six: "#A9A9A9",
-	seven: "#74798E",
+	seven: "#71758A",
 };
 
 // ================= //
@@ -50,12 +59,11 @@ export const LIGHT = {
 // ================= //
 
 export const DARK = {
-	one: "#1D1B22",
-	two: "#232227",
-	three: "#2A2D32",
-	four: "#2E343B",
-	five: "#383C40",
-	six: "#575A5D",
+	one: "#22272C",
+	two: "#2A2D32",
+	three: "#2E343B",
+	four: "#383C40",
+	five: "#575A5D",
 };
 
 // ============ //
@@ -96,7 +104,10 @@ export const PASSWORDSTRENGTH = {
 // ============= //
 
 export const MODAL = {
-	overlay: "rgba(0, 0, 0, 0.7)",
+	overlay: {
+		light: "rgba(39,39,39, 0.7)",
+		dark: "rgba(rgb(10,23,58, 0.7))",
+	},
 };
 
 // ============== //
@@ -104,6 +115,8 @@ export const MODAL = {
 // ============== //
 
 export const ALERTS = {
-	errorLight: "#C32263",
-	errorDark: "#f79b9b",
+	error: {
+		light: "#C32263",
+		dark: "#f79b9b",
+	},
 };

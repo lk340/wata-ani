@@ -3,13 +3,12 @@ import * as React from "react";
 import * as Context from "@/context";
 
 import * as AuthTypes from "../auth-form.types";
-import * as InputTypes from "./input.types";
 import * as Styled from "./input.styled";
 import * as Springs from "./input.springs";
 
 type InputProps = {
 	formType: AuthTypes.FormType;
-	inputType: InputTypes.InputType;
+	inputType: "Username Or Email" | "Username" | "Email" | "Password" | "Confirm Password";
 	onChange: React.ChangeEventHandler;
 };
 
@@ -18,10 +17,8 @@ export const Input = (props: InputProps) => {
 
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 
-	// Shows "Username Or Email" field in sign in form.
-	// Hides "Username Or Email" field in registration form.
-	// Hides "Username", "Email", and "Confirm Password" fields in sign in form.
-	// Shows "Username", "Email", and "Confirm Password" fields in registration form.
+	// Hides or shows certain input fields depending on whether we're dealing
+	// with a registration form or a sign in form.
 	const display =
 		formType === "Registration" && inputType === "Username Or Email"
 			? "none"
@@ -33,43 +30,65 @@ export const Input = (props: InputProps) => {
 			? "none"
 			: "grid";
 
-	const inputIcon =
-		inputType === "Username" ? (
-			<Styled.InputIconUsername />
-		) : inputType === "Email" ? (
-			<Styled.InputIconEmail />
-		) : (
-			<Styled.InputIconPassword />
-		);
+	// Shows the icon that corresponds with the specific input field type.
+	// 	e.g. Username or Email field, Username input field, Email input field,
+	//	Password input field, Confirm Password input field.
+	let icon;
+	switch (inputType) {
+		case "Username Or Email":
+			icon = <Styled.InputIconUsername />;
+			break;
+		case "Username":
+			icon = <Styled.InputIconUsername />;
+			break;
+		case "Email":
+			icon = <Styled.InputIconEmail />;
+			break;
+		default:
+			icon = <Styled.InputIconPassword />;
+			break;
+	}
 
-	const inputField =
-		inputType === "Username" ? (
-			<Styled.InputUsername onChange={onChange} />
-		) : inputType === "Email" ? (
-			<Styled.InputEmail onChange={onChange} />
-		) : inputType === "Password" ? (
-			<Styled.InputPassword
-				onChange={onChange}
-				reveal_password={authForm.state.revealPassword}
-			/>
-		) : inputType === "Confirm Password" ? (
-			<Styled.InputPasswordConfirmation
-				onChange={onChange}
-				reveal_password={authForm.state.revealPassword}
-			/>
-		) : (
-			<Styled.InputUsernameOrEmail onChange={onChange} />
-		);
+	// Renders specific input field depending on input field type.
+	let field;
+	switch (inputType) {
+		case "Username Or Email":
+			field = <Styled.InputUsernameOrEmail onChange={onChange} />;
+			break;
+		case "Username":
+			field = <Styled.InputUsername onChange={onChange} />;
+			break;
+		case "Email":
+			field = <Styled.InputEmail onChange={onChange} />;
+			break;
+		case "Confirm Password":
+			field = (
+				<Styled.InputPassword
+					onChange={onChange}
+					reveal_password={authForm.state.revealPassword}
+				/>
+			);
+			break;
+		default:
+			// "Confirm Password" case
+			field = (
+				<Styled.InputPasswordConfirmation
+					onChange={onChange}
+					reveal_password={authForm.state.revealPassword}
+				/>
+			);
+			break;
+	}
 
 	return (
 		<Styled.Input display={display}>
 			<Styled.InputTitle>*{inputType}</Styled.InputTitle>
-			<Styled.InputFieldGroup>
-				{inputIcon}
-				{inputField}
+			<Styled.InputField>
+				{icon}
+				{field}
 
 				{/* Eye icons for showing or hiding typed-in password. */}
-				<Styled.InputFieldPasswordIcons
+				<Styled.InputFieldPasswordRevealIcons
 					onClick={authForm.setters.toggleRevealPassword}
 					input_type={inputType}
 				>
@@ -79,8 +98,8 @@ export const Input = (props: InputProps) => {
 					<Styled.InputIconPasswordShow
 						style={Springs.togglePasswordShowIcon(authForm.state.revealPassword)}
 					/>
-				</Styled.InputFieldPasswordIcons>
-			</Styled.InputFieldGroup>
+				</Styled.InputFieldPasswordRevealIcons>
+			</Styled.InputField>
 		</Styled.Input>
 	);
 };

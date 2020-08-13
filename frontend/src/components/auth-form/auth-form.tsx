@@ -2,11 +2,12 @@ import * as React from "react";
 
 import * as Context from "@/context";
 
+import * as Types from "./auth-form.types";
 import * as Styled from "./auth-form.styled";
 import { Input } from "./input";
 
 type Props = {
-	formType: "Registration" | "Sign In";
+	formType: Types.FormType;
 	submitText: "Register" | "Sign In";
 };
 

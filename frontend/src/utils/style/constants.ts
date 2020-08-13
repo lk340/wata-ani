@@ -112,6 +112,7 @@ export const size = {
 	components: {
 		authForm: {
 			logo: { width: "70px" },
+			icon: { width: "20px" },
 		},
 	},
 };

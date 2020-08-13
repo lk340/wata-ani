@@ -15,95 +15,86 @@ import passwordShowIcon from "@/icons/password-show.svg";
 // ↓↓↓ Input ↓↓↓ //
 // ============= //
 
-type InputProps = {
-	display: string;
-};
+type InputProps = { display: string };
 
 export const Input = styled("div")<InputProps>`
 	${Snippets.grid(1, "auto", 10)};
 	display: ${(props) => props.display};
 `;
 
-export const InputTitle = styled("h1")`
+export const InputTitle = styled("h2")`
 	${Snippets.clearSpacing()};
 	color: ${Colors.PRIMARY_100};
 	font-weight: bold;
 	font-size: ${Constants.fontSizes.components.authForm.inputTitle};
 `;
 
-export const InputFieldGroup = styled("div")`
+export const InputField = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
 	${Snippets.size("400px", "50px")};
 	padding: 0px 20px;
 	background-color: ${Constants.theme.components.authForm.inputBackground};
 	border: ${Constants.theme.components.authForm.inputBorder} solid 2px;
 	border-radius: ${Constants.borderRadius.components.authForm.input};
-
-	@media (max-width: ${Constants.breakpoints.mobile}) {
-		width: 100%;
-	}
 `;
 
-type InputFieldPasswordIconsProps = { input_type: string };
-
-export const InputFieldPasswordIcons = styled("div")<InputFieldPasswordIconsProps>`
-	display: ${(props) =>
-		props.input_type === "Username"
-			? "none"
-			: props.input_type === "Email"
-			? "none"
-			: "block"};
-	cursor: pointer;
-`;
-
-// ========================= //
-// ↓↓↓ Input Field Icons ↓↓↓ //
-// ========================= //
-
-const inputIconStyles = css`
-	${Snippets.square("20px")};
-`;
+// ============== //
+// ↓↓↓  Icons ↓↓↓ //
+// ============== //
 
 export const InputIconUsername = styled("img").attrs(() => ({
 	src: usernameIcon,
 	alt: "auth form component username icon",
 }))`
-	${inputIconStyles};
+	${Snippets.square(Constants.size.components.authForm.icon.width)};
 `;
 
 export const InputIconEmail = styled("img").attrs(() => ({
 	src: emailIcon,
 	alt: "auth form component email icon",
 }))`
-	${inputIconStyles};
+	${Snippets.square(Constants.size.components.authForm.icon.width)};
 `;
 
 export const InputIconPassword = styled("img").attrs(() => ({
 	src: passwordIcon,
 	alt: "auth form component password icon",
 }))`
-	${inputIconStyles};
+	${Snippets.square(Constants.size.components.authForm.icon.width)};
+`;
+
+type PasswordRevealIconsProps = { input_type: string };
+
+export const InputFieldPasswordRevealIcons = styled("div")<PasswordRevealIconsProps>`
+	display: ${(props) => {
+		return props.input_type === "Username"
+			? "none"
+			: props.input_type === "Email"
+			? "none"
+			: "block";
+	}};
+	cursor: pointer;
 `;
 
 export const InputIconPasswordHide = styled(animated.img).attrs(() => ({
 	src: passwordHideIcon,
 	alt: "auth form component password hide icon",
 }))`
-	${inputIconStyles};
+	${Snippets.square(Constants.size.components.authForm.icon.width)};
 `;
 
 export const InputIconPasswordShow = styled(animated.img).attrs(() => ({
 	src: passwordShowIcon,
 	alt: "auth form component password show icon",
 }))`
-	${inputIconStyles};
+	${Snippets.square(Constants.size.components.authForm.icon.width)};
 `;
 
-// ========================= //
-// ↓↓↓ Input Field Types ↓↓↓ //
-// ========================= //
+// =================== //
+// ↓↓↓ Field Types ↓↓↓ //
+// =================== //
 
-const inputTypeStyles = css`
+const fieldTypeStyles = css`
 	flex: 1;
 	height: 100%;
 	padding: 0px 20px;
@@ -119,16 +110,14 @@ const inputTypeStyles = css`
 	}
 `;
 
-type InputTypesProps = {
-	reveal_password: boolean;
-};
+type FieldTypeProps = { reveal_password: boolean };
 
 export const InputUsernameOrEmail = styled("input").attrs(() => ({
 	type: "text",
 	placeholder: "Enter your username or email",
 	required: true,
 }))`
-	${inputTypeStyles};
+	${fieldTypeStyles};
 `;
 
 export const InputUsername = styled("input").attrs(() => ({
@@ -136,7 +125,7 @@ export const InputUsername = styled("input").attrs(() => ({
 	placeholder: "WataAni",
 	required: true,
 }))`
-	${inputTypeStyles};
+	${fieldTypeStyles};
 `;
 
 export const InputEmail = styled("input").attrs(() => ({
@@ -144,23 +133,23 @@ export const InputEmail = styled("input").attrs(() => ({
 	placeholder: "wata@ani.com",
 	required: true,
 }))`
-	${inputTypeStyles};
+	${fieldTypeStyles};
 `;
 
-export const InputPassword = styled("input").attrs((props: InputTypesProps) => ({
+export const InputPassword = styled("input").attrs((props: FieldTypeProps) => ({
 	type: props.reveal_password ? "text" : "password",
 	placeholder: "aBcD!@#$123",
 	required: true,
-}))<InputTypesProps>`
-	${inputTypeStyles};
+}))<FieldTypeProps>`
+	${fieldTypeStyles};
 `;
 
 export const InputPasswordConfirmation = styled("input").attrs(
-	(props: InputTypesProps) => ({
+	(props: FieldTypeProps) => ({
 		type: props.reveal_password ? "text" : "password",
 		placeholder: "aBcD!@#$123",
 		required: true,
 	}),
-)<InputTypesProps>`
-	${inputTypeStyles};
+)<FieldTypeProps>`
+	${fieldTypeStyles};
 `;
