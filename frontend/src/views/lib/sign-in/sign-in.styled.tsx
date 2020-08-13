@@ -1,4 +1,14 @@
-import styled, { css, createGlobalStyle } from "styled-components";
-import { animated } from "react-spring";
+import styled from "styled-components";
 
-export const SignIn = styled("div")``;
+import * as Constants from "@/utils/style/constants";
+import * as Snippets from "@/utils/style/snippets";
+
+// ================ //
+// ↓↓↓ Sign In ↓↓↓ //
+// ================ //
+
+export const SignIn = styled("div")`
+	${Snippets.flexRowCenter()};
+	${Snippets.fillView()};
+	background-color: ${Constants.theme.background};
+`;
