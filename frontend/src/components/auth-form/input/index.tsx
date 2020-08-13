@@ -53,15 +53,16 @@ export const Input = (props: InputProps) => {
 	let field;
 	switch (inputType) {
 		case "Username Or Email":
-			field = <Styled.InputUsernameOrEmail onChange={onChange} />;
+			field = <Styled.InputUsernameOrEmail onChange={onChange} form_type={formType} />;
 			break;
 		case "Username":
-			field = <Styled.InputUsername onChange={onChange} />;
+			field = <Styled.InputUsername onChange={onChange} form_type={formType} />;
 			break;
 		case "Email":
-			field = <Styled.InputEmail onChange={onChange} />;
+			field = <Styled.InputEmail onChange={onChange} form_type={formType} />;
 			break;
-		case "Confirm Password":
+		case "Password":
+			// "Password" & "Confirm Password" case
 			field = (
 				<Styled.InputPassword
 					onChange={onChange}
@@ -70,11 +71,11 @@ export const Input = (props: InputProps) => {
 			);
 			break;
 		default:
-			// "Confirm Password" case
 			field = (
 				<Styled.InputPasswordConfirmation
 					onChange={onChange}
 					reveal_password={authForm.state.revealPassword}
+					form_type={formType}
 				/>
 			);
 			break;

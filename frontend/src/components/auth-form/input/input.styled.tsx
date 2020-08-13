@@ -11,6 +11,14 @@ import passwordIcon from "@/icons/password.svg";
 import passwordHideIcon from "@/icons/password-hide.svg";
 import passwordShowIcon from "@/icons/password-show.svg";
 
+import * as AuthTypes from "../auth-form.types";
+
+/**
+ * Input
+ * Icons
+ * Field Types
+ */
+
 // ============= //
 // ↓↓↓ Input ↓↓↓ //
 // ============= //
@@ -113,29 +121,32 @@ const fieldTypeStyles = css`
 	}
 `;
 
-type FieldTypeProps = { reveal_password: boolean };
+type FieldTypeProps = {
+	reveal_password?: boolean;
+	form_type?: AuthTypes.FormType;
+};
 
-export const InputUsernameOrEmail = styled("input").attrs(() => ({
+export const InputUsernameOrEmail = styled("input").attrs((props: FieldTypeProps) => ({
 	type: "text",
 	placeholder: "Enter your username or email",
-	required: true,
-}))`
+	required: props.form_type === "Registration" ? false : true,
+}))<FieldTypeProps>`
 	${fieldTypeStyles};
 `;
 
-export const InputUsername = styled("input").attrs(() => ({
+export const InputUsername = styled("input").attrs((props: FieldTypeProps) => ({
 	type: "text",
 	placeholder: "WataAni",
-	required: true,
-}))`
+	required: props.form_type === "Registration" ? true : false,
+}))<FieldTypeProps>`
 	${fieldTypeStyles};
 `;
 
-export const InputEmail = styled("input").attrs(() => ({
+export const InputEmail = styled("input").attrs((props: FieldTypeProps) => ({
 	type: "email",
 	placeholder: "wata@ani.com",
-	required: true,
-}))`
+	required: props.form_type === "Registration" ? true : false,
+}))<FieldTypeProps>`
 	${fieldTypeStyles};
 `;
 
@@ -151,7 +162,7 @@ export const InputPasswordConfirmation = styled("input").attrs(
 	(props: FieldTypeProps) => ({
 		type: props.reveal_password ? "text" : "password",
 		placeholder: "aBcD!@#$123",
-		required: true,
+		required: props.form_type === "Registration" ? true : false,
 	}),
 )<FieldTypeProps>`
 	${fieldTypeStyles};

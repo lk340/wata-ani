@@ -2,6 +2,7 @@ import * as React from "react";
 import axios from "axios";
 
 import * as Helpers from "@/context/helpers";
+import * as AuthTypes from "@/components/auth-form/auth-form.types";
 
 // axios.defaults.xsrfHeaderName = "X-CSRFToken"
 // axios.defaults.xsrfCookieName = "6kpjZ4jUn61vnF15QRXuC"
@@ -71,9 +72,24 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		setAuthForm({ passwordConfirmation });
 	}
 
-	function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+	function handleSubmit(
+		event: React.FormEvent<HTMLFormElement>,
+		formType: AuthTypes.FormType,
+	): void {
 		event.preventDefault();
 
+		// if (formType === "Registration") {
+		// 	register(
+		// 		authForm.username,
+		// 		authForm.email,
+		// 		authForm.password,
+		// 		authForm.passwordConfirmation,
+		// 	);
+		// } else {
+		// 	signIn(authForm.username, authForm.password);
+		// }
+
+		console.log(formType);
 		console.log("Submitted!");
 	}
 
@@ -88,32 +104,38 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		password2: string;
 	};
 
+	type SignInData = {
+		username: string;
+		password: string;
+	};
+
+	function POST(endpoint: string, data: RegisterData | SignInData): Promise<void> {
+		async function API() {
+			try {
+				const response = await axios.post(endpoint, data);
+				console.log("Response:", response);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		return API();
+	}
+
 	function register(
 		username: string,
 		email: string,
 		password1: string,
 		password2: string,
 	): Promise<void> {
+		const endpoint = "http://localhost:7000/auth/registration/";
 		const data: RegisterData = { username, email, password1, password2 };
-		async function POST() {
-			const response = await axios.post("http://localhost:7000/auth/registration/");
-			console.log(response.data);
-		}
-		return POST();
+		return POST(endpoint, data);
 	}
 
-	type SignInData = {
-		username: string;
-		password: string;
-	};
-
 	function signIn(username: string, password: string): Promise<void> {
+		const endpoint = "http://localhost:7000/auth/login/";
 		const data: SignInData = { username, password };
-		async function POST() {
-			const response = await axios.post("http://localhost:7000/auth/login/");
-			console.log(response.data);
-		}
-		return POST();
+		return POST(endpoint, data);
 	}
 
 	// =============== //

@@ -17,7 +17,11 @@ export const AuthForm = (props: Props) => {
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 
 	return (
-		<Styled.AuthForm onSubmit={authForm.handlers.handleSubmit}>
+		<Styled.AuthForm
+			onSubmit={(event: React.FormEvent<HTMLFormElement>) =>
+				authForm.handlers.handleSubmit(event, formType)
+			}
+		>
 			{/* Logo, Title, & Inputs */}
 			<Styled.AuthFormLogoTitleInputs>
 				{/* Logo */}
