@@ -55,6 +55,16 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
 	const { userAgent } = Context.UserAgent.useUserAgentContext();
 
+	// ===================== //
+	// ↓↓↓ Setting Theme ↓↓↓ //
+	// ===================== //
+
+	React.useEffect(() => {
+		if (!localStorage.mode) {
+			localStorage.mode = theme.state.mode;
+		}
+	}, []);
+
 	// ==================================== //
 	// ↓↓↓ Setting Context State Values ↓↓↓ //
 	// ==================================== //
@@ -63,15 +73,6 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 		windows.setters.setWindows({ width, height });
 		scroll.setters.setScroll({ x, y });
 		mouse.setters.setMouse({ x: elX, y: elY });
-
-		if (!localStorage.mode) {
-			// theme.setters.setMode("light");
-			// localStorage.mode = theme.state.mode;
-
-			theme.setters.toggleMode();
-		} else {
-			theme.setters.setMode(localStorage.mode);
-		}
 
 		// for (let index = 0; index < numberBreakpoints - 1; index++) {
 		// 	const breakpoint = breakpoints[index][0] as Context.Theme.Device;
@@ -95,7 +96,7 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 		} else {
 			userAgent.setters.setUserAgent({ isMobile: false });
 		}
-	}, [width, height, x, y, elX, elY, localStorage.mode, navigator.userAgent]);
+	}, [width, height, x, y, elX, elY, navigator.userAgent]);
 
 	// ========================================================= //
 	// ↓↓↓ Setting Current User On Page Refresh / URL Change ↓↓↓ //

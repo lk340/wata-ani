@@ -136,7 +136,7 @@ export const InputUsernameOrEmail = styled("input").attrs((props: FieldTypeProps
 	type: "text",
 	placeholder:
 		props.window_width < 335 && props.window_height <= 620
-			? "*Username/Email"
+			? "*Username or Email"
 			: props.window_height > 620
 			? "WataAni"
 			: "*Enter your username or email",

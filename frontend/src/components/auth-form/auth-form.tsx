@@ -52,7 +52,7 @@ const InputFields = (props: Props) => {
 			<Input
 				onChange={authForm.handlers.handleUsernameOrEmailChange}
 				formType={formType}
-				inputType="Username Or Email"
+				inputType="Username or Email"
 			/>
 
 			<Input
