@@ -58,6 +58,7 @@ export const Input = (props: InputProps) => {
 				<Styled.InputUsernameOrEmail
 					onChange={onChange}
 					form_type={formType}
+					window_width={windows.state.width}
 					window_height={windows.state.height}
 				/>
 			);

@@ -110,15 +110,13 @@ export const InputIconPasswordShow = styled(animated.img).attrs(() => ({
 // =================== //
 
 const fieldTypeStyles = css`
+	${Snippets.square("100%")};
 	flex: 1;
-	height: 100%;
 	padding: 0px 20px;
 	color: ${Constants.theme.text};
 	background-color: ${Colors.NEUTRALS.transparent};
 	border: none;
 	outline: none;
-
-	border: red solid 1px;
 
 	::placeholder {
 		color: ${Colors.LIGHT.five};
@@ -130,12 +128,18 @@ const fieldTypeStyles = css`
 type FieldTypeProps = {
 	reveal_password?: boolean;
 	form_type?: AuthTypes.FormType;
+	window_width?: number;
 	window_height: number;
 };
 
 export const InputUsernameOrEmail = styled("input").attrs((props: FieldTypeProps) => ({
 	type: "text",
-	placeholder: props.window_height > 620 ? "WataAni" : "*Enter your username or email",
+	placeholder:
+		props.window_width < 335 && props.window_height <= 620
+			? "*Username/Email"
+			: props.window_height > 620
+			? "WataAni"
+			: "*Enter your username or email",
 	required: props.form_type === "Registration" ? false : true,
 }))<FieldTypeProps>`
 	${fieldTypeStyles};
