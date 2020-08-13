@@ -24,7 +24,7 @@ export const AuthForm = styled("form")`
 `;
 
 export const AuthFormLogoTitleInputs = styled("div")`
-	${Snippets.grid(1, "auto", 30, "center", "center")};
+	${Snippets.grid(1, "auto", 30, "auto", "auto")};
 `;
 
 export const AuthFormLogo = styled("img").attrs(() => ({
@@ -32,6 +32,7 @@ export const AuthFormLogo = styled("img").attrs(() => ({
 	alt: "image",
 }))`
 	${Snippets.square("70px")};
+	margin: 0px auto;
 	border-radius: ${Constants.borderRadius.components.authForm.logo};
 `;
 
@@ -39,6 +40,7 @@ export const AuthFormTitle = styled("h1")`
 	${Snippets.clearSpacing()};
 	color: ${Constants.theme.text};
 	font-size: ${Constants.fontSizes.components.authForm.title};
+	text-align: center;
 `;
 
 export const AuthFormInputs = styled("div")`
@@ -56,6 +58,8 @@ export const AuthFormFieldInput = styled("div")`
 	background-color: ${Constants.theme.components.authForm.inputBackground};
 	border: ${Constants.theme.components.authForm.inputBorder} solid 2px;
 	border-radius: ${Constants.borderRadius.components.authForm.input};
+
+	border: red solid 1px;
 `;
 
 // ===================== //

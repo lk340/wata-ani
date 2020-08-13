@@ -33,5 +33,9 @@ export const LayoutChildren = styled("div")`
 	/* margin: 0px auto; */
 	/* min-height: 100vh; */
 
-	/* border: red solid 1px; */
+	border: red solid 1px;
+
+	@media (max-width: ${Constants.breakpoints.mobile}) {
+		padding: 0px ${Constants.sidePaddings.mobile};
+	}
 `;

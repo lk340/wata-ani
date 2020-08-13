@@ -59,7 +59,7 @@ export const Input = (props: InputProps) => {
 
 	return (
 		<Styled.Input display={display}>
-			<Styled.InputTitle>*{inputType}</Styled.InputTitle>
+			{/* <Styled.InputTitle>*{inputType}</Styled.InputTitle> */}
 			<Styled.InputFieldGroup>
 				{inputIcon}
 				{inputField}

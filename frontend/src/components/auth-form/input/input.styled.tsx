@@ -1,4 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled, { css } from "styled-components";
 import { animated } from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
@@ -10,9 +10,6 @@ import emailIcon from "@/icons/email.svg";
 import passwordIcon from "@/icons/password.svg";
 import passwordHideIcon from "@/icons/password-hide.svg";
 import passwordShowIcon from "@/icons/password-show.svg";
-
-import * as AuthTypes from "../auth-form.types";
-import * as InputTypes from "./input.types";
 
 // ============= //
 // ↓↓↓ Input ↓↓↓ //
@@ -41,6 +38,10 @@ export const InputFieldGroup = styled("div")`
 	background-color: ${Constants.theme.components.authForm.inputBackground};
 	border: ${Constants.theme.components.authForm.inputBorder} solid 2px;
 	border-radius: ${Constants.borderRadius.components.authForm.input};
+
+	@media (max-width: ${Constants.breakpoints.mobile}) {
+		width: 100%;
+	}
 `;
 
 type InputFieldPasswordIconsProps = { input_type: string };

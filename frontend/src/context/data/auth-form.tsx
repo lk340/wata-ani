@@ -81,6 +81,22 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	// ↓↓↓ API ↓↓↓ //
 	// =============== //
 
+	function register(): Promise<void> {
+		async function POST() {
+			const response = await axios.post("http://localhost:7000/auth/registration/");
+			console.log(response.data);
+		}
+		return POST();
+	}
+
+	function signIn(): Promise<void> {
+		async function POST() {
+			const response = await axios.post("http://localhost:7000/auth/login/");
+			console.log(response.data);
+		}
+		return POST();
+	}
+
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //
 	// =============== //
@@ -103,7 +119,10 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		handleSubmit,
 	};
 
-	const api = {};
+	const api = {
+		register,
+		signIn,
+	};
 
 	return {
 		authForm: { state, getters, setters, handlers, api },
