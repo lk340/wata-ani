@@ -1,7 +1,7 @@
 module.exports = {
 	siteMetadata: {
-		title: "My Personal Gatsby TypeScript Starter",
-		description: "A quick Gatsby TypeScript starter created by me for me.",
+		title: "WataAni",
+		description: "Anime reviews made efficient.",
 		author: "Loyd Kim",
 	},
 	plugins: [
