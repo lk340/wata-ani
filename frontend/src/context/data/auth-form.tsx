@@ -4,7 +4,7 @@ import axios from "axios";
 import * as Helpers from "@/context/helpers";
 
 // axios.defaults.xsrfHeaderName = "X-CSRFToken"
-// axios.defaults.xsrfCookieName = "CSRFToken"
+// axios.defaults.xsrfCookieName = "6kpjZ4jUn61vnF15QRXuC"
 // axios.defaults.withCredentials = true
 
 type State = {
@@ -81,7 +81,20 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	// ↓↓↓ API ↓↓↓ //
 	// =============== //
 
-	function register(): Promise<void> {
+	type RegisterData = {
+		username: string;
+		email: string;
+		password1: string;
+		password2: string;
+	};
+
+	function register(
+		username: string,
+		email: string,
+		password1: string,
+		password2: string,
+	): Promise<void> {
+		const data: RegisterData = { username, email, password1, password2 };
 		async function POST() {
 			const response = await axios.post("http://localhost:7000/auth/registration/");
 			console.log(response.data);
@@ -89,7 +102,13 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		return POST();
 	}
 
-	function signIn(): Promise<void> {
+	type SignInData = {
+		username: string;
+		password: string;
+	};
+
+	function signIn(username: string, password: string): Promise<void> {
+		const data: SignInData = { username, password };
 		async function POST() {
 			const response = await axios.post("http://localhost:7000/auth/login/");
 			console.log(response.data);

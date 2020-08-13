@@ -47,21 +47,6 @@ export const AuthFormInputs = styled("div")`
 	${Snippets.grid(1, "auto", 20)};
 `;
 
-// =================== //
-// ↓↓↓ Field Group ↓↓↓ //
-// =================== //
-
-export const AuthFormFieldInput = styled("div")`
-	${Snippets.flex("row", "auto", "center")};
-	${Snippets.size("400px", "50px")};
-	padding: 0px 20px;
-	background-color: ${Constants.theme.components.authForm.inputBackground};
-	border: ${Constants.theme.components.authForm.inputBorder} solid 2px;
-	border-radius: ${Constants.borderRadius.components.authForm.input};
-
-	border: red solid 1px;
-`;
-
 // ===================== //
 // ↓↓↓ Submit Button ↓↓↓ //
 // ===================== //
