@@ -25,8 +25,6 @@ export const Navbar = styled("div")`
 	color: ${Constants.theme.text};
 	background-color: ${Constants.theme.background};
 	border-bottom: ${Constants.theme.components.navbar.borderBottom} 1px solid;
-
-	border: red solid 1px;
 `;
 
 export const NavbarMaxWidth = styled("div")`
@@ -35,8 +33,6 @@ export const NavbarMaxWidth = styled("div")`
 	max-width: ${Constants.globals.maxWidth};
 	height: 100%;
 	font-size: ${Constants.fontSizes.components.navbar.link};
-
-	border: blue solid 1px;
 `;
 
 // ============= //

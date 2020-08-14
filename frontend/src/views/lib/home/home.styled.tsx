@@ -10,11 +10,16 @@ import * as Constants from "@/utils/style/constants";
 export const Home = styled("div")`
 	${Snippets.flex("column")};
 	position: relative;
+	min-height: 100vh;
+	background-color: ${Constants.theme.pages.home.background};
 `;
 
 export const HomeComponents = styled("div")`
-	/* margin: 0px auto; */
+	flex: 1;
+	margin: 0px auto;
+	width: 100%;
 	max-width: ${Constants.globals.maxWidth};
+	color: ${Constants.theme.text};
 
-	border: red solid 1px;
+	/* border: red solid 1px; */
 `;

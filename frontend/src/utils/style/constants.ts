@@ -40,6 +40,11 @@ export const theme = {
 			profileIcon: Snippets.theme(Colors.LIGHT.seven, Colors.LIGHT.five),
 		},
 	},
+	pages: {
+		home: {
+			background: Snippets.theme(Colors.LIGHT.one, Colors.DARK.two),
+		},
+	},
 };
 
 // ==================== //
