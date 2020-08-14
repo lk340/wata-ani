@@ -13,7 +13,7 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({ children })
 								<Context.Auth.Provider>
 									<Context.UserAgent.Provider>
 										<Context.AuthForm.Provider>
-											<Context.Welcome.Provider>{children}</Context.Welcome.Provider>
+											<Context.Navbar.Provider>{children}</Context.Navbar.Provider>
 										</Context.AuthForm.Provider>
 									</Context.UserAgent.Provider>
 								</Context.Auth.Provider>

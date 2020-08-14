@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import * as Context from "@/context";
-import * as Components from "@/components";
 import * as Icons from "@/icons/navbar";
 import * as Constants from "@/utils/style/constants";
 import * as Colors from "@/utils/style/colors";
@@ -11,6 +10,7 @@ import * as Styled from "./navbar.styled";
 import logoJapanese from "@/images/logo/japanese.svg";
 
 export const Navbar = () => {
+	const { navbar } = Context.Navbar.useNavbarContext();
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 	const { theme } = Context.Theme.useThemeContext();
 
@@ -39,22 +39,28 @@ export const Navbar = () => {
 					</Styled.NavbarLink>
 
 					{/* Like Button */}
-					<Styled.NavbarModalButton display={isUser}>
+					<Styled.NavbarModalButton onClick={navbar.setters.toggleLikes} display={isUser}>
 						<Icons.LikeHollow width={Constants.size.components.navbar.icon} fill={fill} />
 					</Styled.NavbarModalButton>
 
 					{/* Create Button */}
-					<Styled.NavbarModalButton display={isUser}>
+					<Styled.NavbarModalButton
+						onClick={navbar.setters.toggleCreate}
+						display={isUser}
+					>
 						<Icons.Plus width={Constants.size.components.navbar.icon} fill={fill} />
 					</Styled.NavbarModalButton>
 
 					{/* Search Button */}
-					<Styled.NavbarModalButton>
+					<Styled.NavbarModalButton onClick={navbar.setters.toggleSearch}>
 						<Icons.Search width={Constants.size.components.navbar.icon} fill={fill} />
 					</Styled.NavbarModalButton>
 
 					{/* Settings Button */}
-					<Styled.NavbarModalButton display={isUser}>
+					<Styled.NavbarModalButton
+						onClick={navbar.setters.toggleSettings}
+						display={isUser}
+					>
 						<Icons.SettingsHollow
 							width={Constants.size.components.navbar.icon}
 							fill={fill}
@@ -73,12 +79,12 @@ export const Navbar = () => {
 					</Styled.NavbarThemeButton>
 
 					{/* Sign In Link */}
-					<Styled.NavbarSignInLink user={!!authForm.state.user}>
+					<Styled.NavbarSignInLink user={(!!authForm.state.user).toString()}>
 						Sign In
 					</Styled.NavbarSignInLink>
 
 					{/* Register Link */}
-					<Styled.NavbarRegisterLink user={!!authForm.state.user}>
+					<Styled.NavbarRegisterLink user={(!!authForm.state.user).toString()}>
 						Register
 					</Styled.NavbarRegisterLink>
 				</Styled.NavbarLinks>

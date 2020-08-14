@@ -9,6 +9,7 @@ export const Home = () => {
 		<Styled.Home>
 			<Components.Navbar />
 			<Styled.HomeComponents>Home Components</Styled.HomeComponents>
+			<Components.NavbarMobile />
 		</Styled.Home>
 	);
 };

@@ -39,6 +39,10 @@ export const theme = {
 			registerButton: Snippets.theme(Colors.LIGHT.three, Colors.DARK.four),
 			profileIcon: Snippets.theme(Colors.LIGHT.seven, Colors.LIGHT.five),
 		},
+		navbarMobile: {
+			borderTop: Snippets.theme(Colors.LIGHT.four, Colors.DARK.five),
+			option: Snippets.theme(Colors.LIGHT.seven, Colors.LIGHT.five),
+		},
 	},
 	pages: {
 		home: {
@@ -134,6 +138,10 @@ export const size = {
 			height: "100px",
 			icon: "20px",
 			spacer: "40px",
+		},
+		navbarMobile: {
+			height: "80px",
+			icon: "20px",
 		},
 	},
 };

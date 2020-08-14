@@ -25,6 +25,14 @@ export const Navbar = styled("div")`
 	color: ${Constants.theme.text};
 	background-color: ${Constants.theme.background};
 	border-bottom: ${Constants.theme.components.navbar.borderBottom} 1px solid;
+
+	@media (max-width: 1260px) {
+		padding: 0px ${Constants.sidePaddings.tablet};
+	}
+
+	@media (max-width: 575px) {
+		display: none;
+	}
 `;
 
 export const NavbarMaxWidth = styled("div")`
@@ -48,18 +56,18 @@ export const NavbarLink = styled(Gatsby.Link)`
 	${Snippets.flexRowCenter()};
 `;
 
-type FormProps = { user: boolean };
+type FormProps = { user: string };
 
 export const NavbarSignInLink = styled(Gatsby.Link).attrs(() => ({
-	to: "sign-in",
+	to: "/sign-in",
 }))<FormProps>`
 	${Snippets.flexRowCenter()};
 	${Snippets.clearAnchor()};
-	display: ${(props) => (props.user ? "none" : "flex")};
+	display: ${(props) => (props.user === "true" ? "none" : "flex")};
 `;
 
 export const NavbarRegisterLink = styled(Gatsby.Link).attrs(() => ({
-	to: "registration",
+	to: "/registration",
 }))<FormProps>`
 	${Snippets.flexRowCenter()};
 	${Snippets.clearAnchor()};

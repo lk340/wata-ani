@@ -8,5 +8,17 @@ import * as UserAgent from "@/context/utilities/user-agent";
 
 import * as Welcome from "@/context/data/welcome";
 import * as AuthForm from "@/context/data/auth-form";
+import * as Navbar from "@/context/data/navbar";
 
-export { Theme, Windows, Scroll, Mouse, Location, Auth, UserAgent, Welcome, AuthForm };
+export {
+	Theme,
+	Windows,
+	Scroll,
+	Mouse,
+	Location,
+	Auth,
+	UserAgent,
+	Welcome,
+	AuthForm,
+	Navbar,
+};
