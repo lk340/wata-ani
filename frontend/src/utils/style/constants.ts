@@ -109,6 +109,9 @@ export const borderRadius = {
 			logo: "0.375rem",
 			input: "0.3125rem",
 		},
+		navbar: {
+			register: "0.3125rem",
+		},
 	},
 };
 

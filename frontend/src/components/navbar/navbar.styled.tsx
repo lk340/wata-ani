@@ -109,3 +109,10 @@ export const NavbarModalButton = styled("div")`
 export const NavbarThemeButton = styled("div")`
 	${buttonStyles};
 `;
+
+export const NavbarRegisterButton = styled("div")`
+	${buttonStyles};
+	padding: 12px 18px;
+	background-color: ${Constants.theme.components.navbar.registerButton};
+	border-radius: ${Constants.borderRadius.components.navbar.register};
+`;

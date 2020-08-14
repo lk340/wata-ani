@@ -73,10 +73,16 @@ export const Navbar = () => {
 						<Styled.NavbarThemeButtonLightIcon mode={theme.state.mode} />
 						<Styled.NavbarThemeButtonDarkIcon mode={theme.state.mode} />
 					</Styled.NavbarThemeButton>
+					<Components.Spacer width={Constants.size.components.navbar.spacer} />
 
 					{/* Sign In */}
+					<Styled.NavbarLink to="sign-in">Sign In</Styled.NavbarLink>
+					<Components.Spacer width={Constants.size.components.navbar.spacer} />
 
 					{/* Register */}
+					<Styled.NavbarRegisterButton>
+						<Styled.NavbarLink to="registration">Register</Styled.NavbarLink>
+					</Styled.NavbarRegisterButton>
 				</Styled.NavbarLinks>
 			</Styled.NavbarMaxWidth>
 		</Styled.Navbar>
