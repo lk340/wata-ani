@@ -4,10 +4,7 @@ import Cookies from "js-cookie";
 
 import * as Helpers from "@/context/helpers";
 import * as AuthTypes from "@/components/auth-form/auth-form.types";
-
-// axios.defaults.xsrfHeaderName = "X-CSRFToken"
-// axios.defaults.xsrfCookieName = "6kpjZ4jUn61vnF15QRXuC"
-// axios.defaults.withCredentials = true
+import * as JWT from "@/utils/api/jwt";
 
 type User = {
 	id: number;
@@ -55,6 +52,18 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 
 	function toggleRevealPassword(): void {
 		setAuthForm({ revealPassword: !authForm.revealPassword });
+	}
+
+	function setUser(userId: number): Promise<void> {
+		async function GET() {
+			try {
+				const response = await axios.get(`/api/users/${userId}/`);
+				setAuthForm({ user: response.data });
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		return GET();
 	}
 
 	// =============== //
@@ -129,12 +138,8 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	): Promise<void> {
 		async function API() {
 			try {
-				const xsrfCookieName = "6kpjZ4jUn61vnF15QRXuC";
 				const validateStatus = (status: number) => status >= 200 && status < 500;
-				const response = await axios.post(endpoint, data, {
-					xsrfCookieName,
-					validateStatus,
-				});
+				const response = await axios.post(endpoint, data, { validateStatus });
 
 				const status = response.status;
 				if (status >= 400 && status < 500) {
@@ -152,14 +157,18 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 						Cookies.set("jacLs1NGQZN07D92L8PVwOi", response.data.access_token);
 						localStorage.rt = response.data.refresh_token;
 						setAuthForm({ user: response.data.user });
-						
-						console.log(localStorage.rt);
-						console.log(authForm.user);
+
+						console.log("LS Refresh Token:", localStorage.rt);
+						console.log("Auth Form User:", authForm.user);
+						console.log(
+							"JWT Access Token:",
+							JWT.decryptJWTAccessTokenPayload(Cookies.get("jacLs1NGQZN07D92L8PVwOi")),
+						);
 						console.log("Logged In!");
 					}
 				}
 			} catch (error) {
-				// Just in case
+				// Catching error (just in case)
 				console.log(error);
 			}
 		}
@@ -172,22 +181,23 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		password1: string,
 		password2: string,
 	): Promise<void> {
-		const endpoint = "http://localhost:7000/auth/registration/";
+		const endpoint = "/auth/registration/";
 		const data: RegisterData = { username, email, password1, password2 };
 		return POST("Registration", endpoint, data);
 	}
 
 	function signIn(username: string, password: string): Promise<void> {
-		const endpoint = "http://localhost:7000/auth/login/";
+		const endpoint = "/auth/login/";
 		const data: SignInData = { username, password };
 		return POST("Sign In", endpoint, data);
 	}
 
 	function signOut(): Promise<void> {
-		const endpoint = "http://localhost:7000/auth/logout/";
+		const endpoint = "/auth/logout/";
 		async function POST() {
 			try {
 				const response = await axios.post(endpoint);
+				setAuthForm({ user: null });
 				console.log(response);
 			} catch (error) {
 				console.log(error);
@@ -207,6 +217,7 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	const setters = {
 		setAuthForm,
 		toggleRevealPassword,
+		setUser,
 	};
 
 	const handlers = {

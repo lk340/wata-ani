@@ -1,8 +1,10 @@
 import * as React from "react";
 import * as Use from "react-use";
-import { ThemeProvider } from "styled-components";
 import * as Reach from "@reach/router";
 import * as Gatsby from "gatsby";
+import { ThemeProvider } from "styled-components";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 import * as Context from "@/context";
 import * as Constants from "@/utils/style/constants";
@@ -11,6 +13,22 @@ import * as JWT from "@/utils/api/jwt";
 import * as Styled from "./observer.styled";
 
 export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+	// ====================== //
+	// ↓↓↓ Axios Defaults ↓↓↓ //
+	// ====================== //
+
+	axios.defaults.baseURL = "http://localhost:7000";
+	axios.defaults.xsrfCookieName = "6kpjZ4jUn61vnF15QRXuC";
+
+	const accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
+	if (accessToken) {
+		// If an access token exists, add the following authorization header to every
+		// axios call.
+		axios.defaults.headers = {
+			headers: { Authorization: `Bearer ${Cookies.get("jacLs1NGQZN07D92L8PVwOi")}` },
+		};
+	}
+
 	// =================== //
 	// ↓↓↓ Window Size ↓↓↓ //
 	// =================== //
@@ -103,14 +121,21 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ========================================================= //
 
 	const { auth } = Context.Auth.useAuthContext();
+	const { authForm } = Context.AuthForm.useAuthFormContext();
 	React.useEffect(() => {
-		if (localStorage.access) {
-			if (auth.state.currentUser === null) {
+		if (accessToken) {
+			if (authForm.state.user === null) {
 				JWT.checkRefreshJWT();
-				const accessToken = JWT.decryptJWTAccessTokenPayload(localStorage.access);
-				auth.setters.setCurrentUser(accessToken.user_id);
+				authForm.setters.setUser(JWT.decryptJWTAccessTokenPayload(accessToken).user_id);
 			}
 		}
+		// if (localStorage.access) {
+		// 	if (auth.state.currentUser === null) {
+		// 		JWT.checkRefreshJWT();
+		// 		const accessToken = JWT.decryptJWTAccessTokenPayload(localStorage.access);
+		// 		auth.setters.setCurrentUser(accessToken.user_id);
+		// 	}
+		// }
 	}, [auth.state.currentUser]);
 
 	// =============================== //
