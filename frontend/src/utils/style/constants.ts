@@ -37,6 +37,7 @@ export const theme = {
 		navbar: {
 			borderBottom: Snippets.theme(Colors.LIGHT.four, Colors.DARK.five),
 			registerButton: Snippets.theme(Colors.LIGHT.three, Colors.DARK.four),
+			profileIcon: Snippets.theme(Colors.LIGHT.seven, Colors.LIGHT.five),
 		},
 	},
 };
@@ -123,6 +124,8 @@ export const size = {
 		},
 		navbar: {
 			height: "100px",
+			icon: "20px",
+			spacer: "40px",
 		},
 	},
 };

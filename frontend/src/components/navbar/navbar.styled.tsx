@@ -6,13 +6,13 @@ import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 
 import logoJapanese from "@/images/logo/japanese.svg";
-import lightMode from "@/images/logo/light-mode.svg";
-import darkMode from "@/images/logo/dark-mode.svg";
+import lightMode from "@/icons/navbar/light-mode.svg";
+import darkMode from "@/icons/navbar/dark-mode.svg";
 
 /**
  * Navbar
  * Links
- * Icons
+ * Icons (images)
  * Buttons
  */
 
@@ -44,45 +44,68 @@ export const NavbarMaxWidth = styled("div")`
 // ============= //
 
 export const NavbarLinks = styled("div")`
-	${Snippets.grid(5, "auto", 20, "auto", "center")};
+	${Snippets.flex()};
 `;
 
 export const NavbarLink = styled(Gatsby.Link)`
 	${Snippets.clearAnchor()};
+	${Snippets.flexRowCenter()};
 `;
 
-// ============= //
-// ↓↓↓ Icons ↓↓↓ //
-// ============= //
+// ====================== //
+// ↓↓↓ Icons (images) ↓↓↓ //
+// ====================== //
 
 export const NavbarLogoIcon = styled("img").attrs(() => ({
 	src: logoJapanese,
 	alt: "navbar component logo",
 }))`
-  ${Snippets.size("40px")};
+	${Snippets.square("40px")};
+	display: block;
 	border-radius: ${Constants.borderRadius.components.authForm.logo};
 `;
 
-export const NavbarHomeIcon = styled("img").attrs(() => ({
-	src: "",
-	alt: "",
-}))``;
+export const NavbarProfileIcon = styled("img").attrs((props) => ({
+	src: props.src,
+	alt: "navbar component profile icon",
+}))`
+	${Snippets.square(Constants.size.components.navbar.icon)};
+	${Snippets.circle()};
+	display: block;
+	border: ${Constants.theme.components.navbar.profileIcon} solid 1px;
+`;
 
-export const NavbarSearchIcon = styled("img").attrs(() => ({
-	src: "",
-	alt: "",
-}))``;
+type ThemeProps = { mode: string };
 
-export const NavbarModeIcon = styled("img").attrs(() => ({
-	src: "",
-	alt: "",
-}))``;
+export const NavbarThemeButtonLightIcon = styled("img").attrs(() => ({
+	src: lightMode,
+	alt: "navbar component light theme button",
+}))<ThemeProps>`
+	${Snippets.square(Constants.size.components.navbar.icon)};
+	display: ${(props) => (props.mode === "light" ? "none" : "block")};
+`;
+
+export const NavbarThemeButtonDarkIcon = styled("img").attrs(() => ({
+	src: darkMode,
+	alt: "navbar component dark theme button",
+}))<ThemeProps>`
+	${Snippets.square(Constants.size.components.navbar.icon)};
+	display: ${(props) => (props.mode === "light" ? "block" : "none")};
+`;
 
 // =============== //
 // ↓↓↓ Buttons ↓↓↓ //
 // =============== //
 
-export const NavbarRegisterButton = styled("div")`
+const buttonStyles = css`
 	${Snippets.flexRowCenter()};
-	padding: 12px 18px;
+	cursor: pointer;
+`;
+
+export const NavbarModalButton = styled("div")`
+	${buttonStyles};
+`;
+
+export const NavbarThemeButton = styled("div")`
+	${buttonStyles};
 `;
