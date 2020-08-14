@@ -14,6 +14,7 @@ type State = {
 	password: string;
 	passwordConfirmation: string;
 	revealPassword: boolean;
+	errors: string[];
 };
 
 const initialState = Object.freeze<State>({
@@ -22,6 +23,7 @@ const initialState = Object.freeze<State>({
 	password: "",
 	passwordConfirmation: "",
 	revealPassword: false,
+	errors: [],
 });
 
 export const useAuthFormContext = Helpers.createUseContext(() => {
@@ -109,9 +111,23 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	function POST(endpoint: string, data: RegisterData | SignInData): Promise<void> {
 		async function API() {
 			try {
-				const response = await axios.post(endpoint, data);
-				console.log("Response:", response);
+				const validateStatus = (status: number) => status >= 200 && status < 500;
+				const response = await axios.post(endpoint, data, { validateStatus });
+
+				const status = response.status;
+				if (status >= 400 && status < 500) {
+					// Error Handling
+					const responseErrors = Object.values(response.data) as string[];
+					setAuthForm({ errors: responseErrors });
+
+					console.log("Auth Errors:", authForm.errors);
+					console.log("Response Errors:", responseErrors);
+				} else {
+					// Success handling
+					console.log("Response:", response);
+				}
 			} catch (error) {
+				// Just in case
 				console.log(error);
 			}
 		}
