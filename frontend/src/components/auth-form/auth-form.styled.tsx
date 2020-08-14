@@ -96,11 +96,7 @@ export const AuthFormSubmitButton = styled("button").attrs(() => ({
 // ↓↓↓ Redirect ↓↓↓ //
 // ================ //
 
-export const AuthFormRedirect = styled("div")`
-	${Snippets.flex()};
-`;
-
-export const AuthFormRedirectText = styled("p")`
+export const AuthFormRedirect = styled("p")`
 	${Snippets.clearSpacing()};
 	color: ${Constants.theme.text};
 	font-size: ${Constants.fontSizes.components.authForm.redirect};
@@ -112,6 +108,7 @@ export const AuthFormRedirectLink = styled(Gatsby.Link).attrs((props: RedirectLi
 	to: props.form_type === "Registration" ? "/sign-in" : "/registration",
 }))<RedirectLink>`
 	${Snippets.clearAnchor()};
+	display: inline;
 	color: ${Colors.PRIMARY_100};
 	font-weight: bold;
 	font-size: ${Constants.fontSizes.components.authForm.redirect};

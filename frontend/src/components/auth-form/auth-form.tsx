@@ -93,10 +93,7 @@ const SubmitButtonAndRedirect = (props: Props) => {
 
 			{/* Redirect */}
 			<Styled.AuthFormRedirect>
-				<Styled.AuthFormRedirectText>
-					{formType === "Registration" ? "Already a member?" : "Need an account?"}
-				</Styled.AuthFormRedirectText>
-				&nbsp;
+				{formType === "Registration" ? "Already a member?" : "Need an account?"}&nbsp;
 				<Styled.AuthFormRedirectLink form_type={formType}>
 					{formType === "Registration" ? "Sign In" : "Register"}
 				</Styled.AuthFormRedirectLink>

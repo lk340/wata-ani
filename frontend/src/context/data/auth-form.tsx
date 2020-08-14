@@ -1,5 +1,6 @@
 import * as React from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import * as Helpers from "@/context/helpers";
 import * as AuthTypes from "@/components/auth-form/auth-form.types";
@@ -8,6 +9,17 @@ import * as AuthTypes from "@/components/auth-form/auth-form.types";
 // axios.defaults.xsrfCookieName = "6kpjZ4jUn61vnF15QRXuC"
 // axios.defaults.withCredentials = true
 
+type User = {
+	id: number;
+	username: string;
+	email: string;
+	date_joined: string;
+	last_login: string;
+	first_name: string;
+	last_name: string;
+	profile_picture: string;
+};
+
 type State = {
 	username: string;
 	email: string;
@@ -15,6 +27,7 @@ type State = {
 	passwordConfirmation: string;
 	revealPassword: boolean;
 	errors: string[];
+	user: User | null;
 };
 
 const initialState = Object.freeze<State>({
@@ -24,6 +37,7 @@ const initialState = Object.freeze<State>({
 	passwordConfirmation: "",
 	revealPassword: false,
 	errors: [],
+	user: null,
 });
 
 export const useAuthFormContext = Helpers.createUseContext(() => {
@@ -108,11 +122,19 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		password: string;
 	};
 
-	function POST(endpoint: string, data: RegisterData | SignInData): Promise<void> {
+	function POST(
+		formType: AuthTypes.FormType,
+		endpoint: string,
+		data: RegisterData | SignInData,
+	): Promise<void> {
 		async function API() {
 			try {
+				const xsrfCookieName = "6kpjZ4jUn61vnF15QRXuC";
 				const validateStatus = (status: number) => status >= 200 && status < 500;
-				const response = await axios.post(endpoint, data, { validateStatus });
+				const response = await axios.post(endpoint, data, {
+					xsrfCookieName,
+					validateStatus,
+				});
 
 				const status = response.status;
 				if (status >= 400 && status < 500) {
@@ -124,7 +146,17 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 					console.log("Response Errors:", responseErrors);
 				} else {
 					// Success handling
-					console.log("Response:", response);
+					if (formType === "Registration") {
+						console.log("Response:", response);
+					} else {
+						Cookies.set("jacLs1NGQZN07D92L8PVwOi", response.data.access_token);
+						localStorage.rt = response.data.refresh_token;
+						setAuthForm({ user: response.data.user });
+						
+						console.log(localStorage.rt);
+						console.log(authForm.user);
+						console.log("Logged In!");
+					}
 				}
 			} catch (error) {
 				// Just in case
@@ -142,13 +174,13 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	): Promise<void> {
 		const endpoint = "http://localhost:7000/auth/registration/";
 		const data: RegisterData = { username, email, password1, password2 };
-		return POST(endpoint, data);
+		return POST("Registration", endpoint, data);
 	}
 
 	function signIn(username: string, password: string): Promise<void> {
 		const endpoint = "http://localhost:7000/auth/login/";
 		const data: SignInData = { username, password };
-		return POST(endpoint, data);
+		return POST("Sign In", endpoint, data);
 	}
 
 	function signOut(): Promise<void> {
