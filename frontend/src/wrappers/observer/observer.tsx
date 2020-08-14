@@ -80,6 +80,10 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	React.useEffect(() => {
 		if (!localStorage.mode) {
 			localStorage.mode = theme.state.mode;
+		} else {
+			if (theme.state.mode !== localStorage.mode) {
+				theme.setters.setTheme({ mode: localStorage.mode });
+			}
 		}
 	}, []);
 

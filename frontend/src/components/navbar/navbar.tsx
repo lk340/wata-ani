@@ -11,13 +11,17 @@ import * as Styled from "./navbar.styled";
 import logoJapanese from "@/images/logo/japanese.svg";
 
 export const Navbar = () => {
+	const { authForm } = Context.AuthForm.useAuthFormContext();
 	const { theme } = Context.Theme.useThemeContext();
+
 	const [fill, setFill] = React.useState("");
 
 	React.useEffect(() => {
 		if (theme.state.mode === "light") setFill(Colors.LIGHT.seven);
 		else setFill(Colors.LIGHT.five);
 	}, [theme.state.mode]);
+
+	const isUser = !!authForm.state.user ? "flex" : "none";
 
 	return (
 		<Styled.Navbar>
@@ -29,60 +33,54 @@ export const Navbar = () => {
 
 				{/* Links */}
 				<Styled.NavbarLinks>
-					{/* Home */}
+					{/* Home Link */}
 					<Styled.NavbarLink to="/">
 						<Icons.HomeHollow width={Constants.size.components.navbar.icon} fill={fill} />
 					</Styled.NavbarLink>
-					<Components.Spacer width={Constants.size.components.navbar.spacer} />
 
-					{/* Like */}
-					<Styled.NavbarModalButton>
+					{/* Like Button */}
+					<Styled.NavbarModalButton display={isUser}>
 						<Icons.LikeHollow width={Constants.size.components.navbar.icon} fill={fill} />
 					</Styled.NavbarModalButton>
-					<Components.Spacer width={Constants.size.components.navbar.spacer} />
 
-					{/* Create */}
-					<Styled.NavbarModalButton>
+					{/* Create Button */}
+					<Styled.NavbarModalButton display={isUser}>
 						<Icons.Plus width={Constants.size.components.navbar.icon} fill={fill} />
 					</Styled.NavbarModalButton>
-					<Components.Spacer width={Constants.size.components.navbar.spacer} />
 
-					{/* Search */}
+					{/* Search Button */}
 					<Styled.NavbarModalButton>
 						<Icons.Search width={Constants.size.components.navbar.icon} fill={fill} />
 					</Styled.NavbarModalButton>
-					<Components.Spacer width={Constants.size.components.navbar.spacer} />
 
-					{/* Settings */}
-					<Styled.NavbarModalButton>
+					{/* Settings Button */}
+					<Styled.NavbarModalButton display={isUser}>
 						<Icons.SettingsHollow
 							width={Constants.size.components.navbar.icon}
 							fill={fill}
 						/>
 					</Styled.NavbarModalButton>
-					<Components.Spacer width={Constants.size.components.navbar.spacer} />
 
-					{/* Profile */}
+					{/* Profile Link */}
 					<Styled.NavbarLink to="/">
-						<Styled.NavbarProfileIcon src={logoJapanese} />
+						<Styled.NavbarProfileIcon src={logoJapanese} display={isUser} />
 					</Styled.NavbarLink>
-					<Components.Spacer width={Constants.size.components.navbar.spacer} />
 
-					{/* Theme */}
+					{/* Theme Button */}
 					<Styled.NavbarThemeButton onClick={theme.setters.toggleMode}>
-						<Styled.NavbarThemeButtonLightIcon mode={theme.state.mode} />
-						<Styled.NavbarThemeButtonDarkIcon mode={theme.state.mode} />
+						<Styled.NavbarLightModeIcon mode={theme.state.mode} />
+						<Styled.NavbarDarkModeIcon mode={theme.state.mode} />
 					</Styled.NavbarThemeButton>
-					<Components.Spacer width={Constants.size.components.navbar.spacer} />
 
-					{/* Sign In */}
-					<Styled.NavbarLink to="sign-in">Sign In</Styled.NavbarLink>
-					<Components.Spacer width={Constants.size.components.navbar.spacer} />
+					{/* Sign In Link */}
+					<Styled.NavbarSignInLink user={!!authForm.state.user}>
+						Sign In
+					</Styled.NavbarSignInLink>
 
-					{/* Register */}
-					<Styled.NavbarRegisterButton>
-						<Styled.NavbarLink to="registration">Register</Styled.NavbarLink>
-					</Styled.NavbarRegisterButton>
+					{/* Register Link */}
+					<Styled.NavbarRegisterLink user={!!authForm.state.user}>
+						Register
+					</Styled.NavbarRegisterLink>
 				</Styled.NavbarLinks>
 			</Styled.NavbarMaxWidth>
 		</Styled.Navbar>

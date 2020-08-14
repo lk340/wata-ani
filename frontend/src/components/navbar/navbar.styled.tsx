@@ -48,6 +48,29 @@ export const NavbarLink = styled(Gatsby.Link)`
 	${Snippets.flexRowCenter()};
 `;
 
+type FormProps = { user: boolean };
+
+export const NavbarSignInLink = styled(Gatsby.Link).attrs(() => ({
+	to: "sign-in",
+}))<FormProps>`
+	${Snippets.flexRowCenter()};
+	${Snippets.clearAnchor()};
+	display: ${(props) => (props.user ? "none" : "flex")};
+`;
+
+export const NavbarRegisterLink = styled(Gatsby.Link).attrs(() => ({
+	to: "registration",
+}))<FormProps>`
+	${Snippets.flexRowCenter()};
+	${Snippets.clearAnchor()};
+	display: ${(props) => (props.user ? "none" : "flex")};
+	margin-left: ${Constants.size.components.navbar.spacer};
+	padding: 12px 18px;
+	background-color: ${Constants.theme.components.navbar.registerButton};
+	border-radius: ${Constants.borderRadius.components.navbar.register};
+	cursor: pointer;
+`;
+
 // ====================== //
 // ↓↓↓ Icons (images) ↓↓↓ //
 // ====================== //
@@ -61,30 +84,33 @@ export const NavbarLogoIcon = styled("img").attrs(() => ({
 	border-radius: ${Constants.borderRadius.components.authForm.logo};
 `;
 
+type ProfileIconProps = { display: string };
+
 export const NavbarProfileIcon = styled("img").attrs((props) => ({
 	src: props.src,
 	alt: "navbar component profile icon",
-}))`
+}))<ProfileIconProps>`
 	${Snippets.square(Constants.size.components.navbar.icon)};
 	${Snippets.circle()};
-	display: block;
+	display: ${(props) => props.display};
+	margin-left: ${Constants.size.components.navbar.spacer};
 	border: ${Constants.theme.components.navbar.profileIcon} solid 1px;
 `;
 
-type ThemeProps = { mode: string };
+type ThemeIconProps = { mode: string };
 
-export const NavbarThemeButtonLightIcon = styled("img").attrs(() => ({
+export const NavbarLightModeIcon = styled("img").attrs(() => ({
 	src: lightMode,
 	alt: "navbar component light theme button",
-}))<ThemeProps>`
+}))<ThemeIconProps>`
 	${Snippets.square(Constants.size.components.navbar.icon)};
 	display: ${(props) => (props.mode === "light" ? "none" : "block")};
 `;
 
-export const NavbarThemeButtonDarkIcon = styled("img").attrs(() => ({
+export const NavbarDarkModeIcon = styled("img").attrs(() => ({
 	src: darkMode,
 	alt: "navbar component dark theme button",
-}))<ThemeProps>`
+}))<ThemeIconProps>`
 	${Snippets.square(Constants.size.components.navbar.icon)};
 	display: ${(props) => (props.mode === "light" ? "block" : "none")};
 `;
@@ -95,20 +121,18 @@ export const NavbarThemeButtonDarkIcon = styled("img").attrs(() => ({
 
 const buttonStyles = css`
 	${Snippets.flexRowCenter()};
+	margin-left: ${Constants.size.components.navbar.spacer};
 	cursor: pointer;
 `;
 
-export const NavbarModalButton = styled("div")`
+type ButtonProps = { display?: string };
+
+export const NavbarModalButton = styled("div")<ButtonProps>`
 	${buttonStyles};
+	display: ${(props) => props.display || "flex"};
 `;
 
 export const NavbarThemeButton = styled("div")`
 	${buttonStyles};
-`;
-
-export const NavbarRegisterButton = styled("div")`
-	${buttonStyles};
-	padding: 12px 18px;
-	background-color: ${Constants.theme.components.navbar.registerButton};
-	border-radius: ${Constants.borderRadius.components.navbar.register};
+	margin-right: ${Constants.size.components.navbar.spacer};
 `;
