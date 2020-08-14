@@ -5,11 +5,11 @@ import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
-import usernameIcon from "@/icons/username.svg";
-import emailIcon from "@/icons/email.svg";
-import passwordIcon from "@/icons/password.svg";
-import passwordHideIcon from "@/icons/password-hide.svg";
-import passwordShowIcon from "@/icons/password-show.svg";
+import usernameIcon from "@/icons/auth/username.svg";
+import emailIcon from "@/icons/auth/email.svg";
+import passwordIcon from "@/icons/auth/password.svg";
+import passwordHideIcon from "@/icons/auth/password-hide.svg";
+import passwordShowIcon from "@/icons/auth/password-show.svg";
 
 import * as AuthTypes from "../auth-form.types";
 

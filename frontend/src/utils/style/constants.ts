@@ -34,6 +34,10 @@ export const theme = {
 			inputBackground: Snippets.theme(Colors.LIGHT.one, Colors.DARK.three),
 			inputBorder: Snippets.theme(Colors.LIGHT.three, Colors.DARK.five),
 		},
+		navbar: {
+			borderBottom: Snippets.theme(Colors.LIGHT.four, Colors.DARK.five),
+			registerButton: Snippets.theme(Colors.LIGHT.three, Colors.DARK.four),
+		},
 	},
 };
 
@@ -60,6 +64,9 @@ export const fontSizes = {
 			inputPlaceholder: "0.75rem",
 			submit: "1rem",
 			redirect: "0.875rem",
+		},
+		navbar: {
+			link: "0.875rem",
 		},
 	},
 };
@@ -113,6 +120,9 @@ export const size = {
 		authForm: {
 			logo: { width: "70px" },
 			icon: { width: "20px" },
+		},
+		navbar: {
+			height: "100px",
 		},
 	},
 };

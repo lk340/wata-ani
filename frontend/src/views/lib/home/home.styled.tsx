@@ -15,4 +15,6 @@ export const Home = styled("div")`
 export const HomeComponents = styled("div")`
 	/* margin: 0px auto; */
 	max-width: ${Constants.globals.maxWidth};
+
+	border: red solid 1px;
 `;
