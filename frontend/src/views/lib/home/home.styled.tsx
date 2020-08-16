@@ -12,7 +12,6 @@ export const Home = styled(animated.div)`
 	${Snippets.flex("column")};
 	position: relative;
 	min-height: 100vh;
-	/* background-color: ${Constants.theme.pages.home.background}; */
 `;
 
 export const HomeComponents = styled("div")`

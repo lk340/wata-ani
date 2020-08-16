@@ -24,29 +24,29 @@ export const globals = {
 // ==================== //
 
 export const theme = {
-	background: Snippets.theme(Colors.NEUTRALS.white_100, Colors.DARK.one),
-	text: Snippets.theme(Colors.TEXT.black, Colors.TEXT.white),
-	shadowOneLight: Snippets.theme(Shadows.light.one, Shadows.dark.one),
-	shadowTwo: Snippets.theme(Shadows.light.two, Shadows.dark.two),
-	shadowThree: Snippets.theme(Shadows.light.three, Shadows.dark.three),
+	background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+	text: { light: Colors.TEXT.black, dark: Colors.TEXT.white },
+	shadowOneLight: { light: Shadows.light.one, dark: Shadows.dark.one },
+	shadowTwo: { light: Shadows.light.two, dark: Shadows.dark.two },
+	shadowThree: { light: Shadows.light.three, dark: Shadows.dark.three },
 	components: {
 		authForm: {
-			inputBackground: Snippets.theme(Colors.LIGHT.one, Colors.DARK.three),
-			inputBorder: Snippets.theme(Colors.LIGHT.three, Colors.DARK.five),
+			inputBackground: { light: Colors.LIGHT.one, dark: Colors.DARK.three },
+			inputBorder: { light: Colors.LIGHT.three, dark: Colors.DARK.five },
 		},
 		navbar: {
-			borderBottom: Snippets.theme(Colors.LIGHT.four, Colors.DARK.five),
-			registerButton: Snippets.theme(Colors.LIGHT.three, Colors.DARK.four),
-			profileIcon: Snippets.theme(Colors.LIGHT.seven, Colors.LIGHT.five),
+			borderBottom: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+			registerButton: { light: Colors.LIGHT.three, dark: Colors.DARK.four },
+			profileIcon: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 		},
 		navbarMobile: {
-			borderTop: Snippets.theme(Colors.LIGHT.four, Colors.DARK.five),
-			option: Snippets.theme(Colors.LIGHT.seven, Colors.LIGHT.five),
+			borderTop: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+			option: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 		},
 	},
 	pages: {
 		home: {
-			background: Snippets.theme(Colors.LIGHT.one, Colors.DARK.two),
+			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
 		},
 	},
 };

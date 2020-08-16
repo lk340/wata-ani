@@ -2,10 +2,12 @@ import * as React from "react";
 
 import * as Context from "@/context";
 import * as Icons from "@/icons/navbar";
+import * as Animations from "@/utils/style/animations";
 import * as Constants from "@/utils/style/constants";
 import * as Colors from "@/utils/style/colors";
 
 import * as Styled from "./navbar.styled";
+import * as Springs from "./navbar.springs";
 
 import logoJapanese from "@/images/logo/japanese.svg";
 
@@ -13,6 +15,8 @@ export const Navbar = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 	const { theme } = Context.Theme.useThemeContext();
+
+	const animateNavbar = Springs.navbar(theme.state.mode);
 
 	const [fill, setFill] = React.useState("");
 
@@ -24,7 +28,7 @@ export const Navbar = () => {
 	const isUser = !!authForm.state.user ? "flex" : "none";
 
 	return (
-		<Styled.Navbar>
+		<Styled.Navbar style={animateNavbar}>
 			<Styled.NavbarMaxWidth>
 				{/* Logo Link */}
 				<Styled.NavbarLink to="/">

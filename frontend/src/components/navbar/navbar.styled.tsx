@@ -20,11 +20,8 @@ import darkMode from "@/icons/navbar/dark-mode.svg";
 // ↓↓↓ Navbar ↓↓↓ //
 // ============== //
 
-export const Navbar = styled("div")`
+export const Navbar = styled(animated.div)`
 	height: ${Constants.size.components.navbar.height};
-	color: ${Constants.theme.text};
-	background-color: ${Constants.theme.background};
-	border-bottom: ${Constants.theme.components.navbar.borderBottom} 1px solid;
 
 	@media (max-width: 1260px) {
 		padding: 0px ${Constants.sidePaddings.tablet};

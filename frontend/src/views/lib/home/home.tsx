@@ -3,7 +3,7 @@ import * as React from "react";
 import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Animations from "@/utils/style/animations";
-import * as Colors from "@/utils/style/colors";
+import * as Constants from "@/utils/style/constants";
 
 import * as Styled from "./home.styled";
 
@@ -12,8 +12,8 @@ export const Home = () => {
 
 	const animateBackground = Animations.background(
 		theme.state.mode,
-		Colors.LIGHT.one,
-		Colors.DARK.two,
+		Constants.theme.pages.home.background.light,
+		Constants.theme.pages.home.background.dark,
 	);
 
 	return (
