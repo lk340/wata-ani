@@ -16,7 +16,7 @@ export const NavbarMobile = styled("div")`
 	background-color: ${Constants.theme.background};
 	border-top: ${Constants.theme.components.navbarMobile.borderTop} solid 1px;
 
-  border: red solid 1px;
+	border: red solid 1px;
 
 	@media (max-width: 575px) {
 		display: block;
@@ -29,9 +29,9 @@ export const NavbarMobile = styled("div")`
 
 export const NavbarMobileOption = styled("div")`
 	${Snippets.flexColumnCenter()};
-  height: 100%;
+	height: 100%;
 
-  border: red solid 1px;
+	border: red solid 1px;
 `;
 
 export const NavbarMobileOptionIcon = styled("div")`
