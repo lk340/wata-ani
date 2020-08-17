@@ -26,6 +26,7 @@ export const NavbarMobile = () => {
 			{/* Home */}
 			<OptionLink
 				to="/"
+				state={location.state.pathname === "/"}
 				mode={theme.state.mode}
 				icon={
 					<Icons.HomeHollow
@@ -92,7 +93,8 @@ export const NavbarMobile = () => {
 
 			{/* Profile */}
 			<OptionLink
-				to="/profile"
+				to="/"
+				state={location.state.pathname === "/"}
 				mode={theme.state.mode}
 				icon={
 					<Icons.HomeHollow
@@ -113,19 +115,20 @@ export const NavbarMobile = () => {
 // ====================== //
 
 type OptionProps = {
+	state: boolean;
 	mode: Context.Theme.Mode;
 	icon: React.ReactNode;
 	text: string;
 };
 
-type OptionLinkProps = {
-	to: string;
-} & OptionProps;
+// --- Option Link --- //
+
+type OptionLinkProps = { to: string } & OptionProps;
 
 const OptionLink = (props: OptionLinkProps) => {
-	const { icon, text, mode, to } = props;
+	const { state, icon, text, mode, to } = props;
 
-	const animateOptionText = Springs.optionIconText(mode);
+	const animateOptionText = Springs.optionIconText(mode, state);
 
 	return (
 		<Styled.NavbarMobileOptionLink to={to}>
@@ -137,10 +140,9 @@ const OptionLink = (props: OptionLinkProps) => {
 	);
 };
 
-type OptionButtonProps = {
-	state: boolean;
-	onClick: React.MouseEventHandler;
-} & OptionProps;
+// --- Option Button --- //
+
+type OptionButtonProps = { onClick: React.MouseEventHandler } & OptionProps;
 
 const OptionButton = (props: OptionButtonProps) => {
 	const { state, icon, text, mode, onClick } = props;

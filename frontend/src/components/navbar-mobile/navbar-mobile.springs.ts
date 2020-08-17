@@ -19,7 +19,7 @@ export function navbarMobile(mode: Context.Theme.Mode) {
 	});
 }
 
-export function optionIconText(mode: Context.Theme.Mode, state: boolean = false) {
+export function optionIconText(mode: Context.Theme.Mode, state: boolean) {
 	return Spring.useSpring({
 		to: {
 			color:
