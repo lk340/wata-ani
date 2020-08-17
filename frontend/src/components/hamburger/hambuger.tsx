@@ -8,12 +8,12 @@ import * as Springs from "./hamburger.springs";
 export const Hamburger = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 
-	const animateLineTop = Springs.lineTop(navbar.state.hamburger);
-	const animateLineMiddle = Springs.lineMiddle(navbar.state.hamburger);
-	const animateLineBottom = Springs.lineBottom(navbar.state.hamburger);
+	const animateLineTop = Springs.lineTop(navbar.state.hamburgerOpen);
+	const animateLineMiddle = Springs.lineMiddle(navbar.state.hamburgerOpen);
+	const animateLineBottom = Springs.lineBottom(navbar.state.hamburgerOpen);
 
 	return (
-		<Styled.Hamburger onClick={navbar.setters.toggleHamburger}>
+		<Styled.Hamburger onClick={navbar.setters.toggleHamburgerOpen}>
 			<Styled.HamburgerLines>
 				<Styled.HamburgerLinesLineTop style={animateLineTop} />
 				<Styled.HamburgerLinesLineMiddle style={animateLineMiddle} />

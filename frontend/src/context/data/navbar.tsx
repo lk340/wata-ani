@@ -10,7 +10,7 @@ type State = {
 	search: boolean;
 	settings: boolean;
 	iconFill: string;
-	hamburger: boolean;
+	hamburgerOpen: boolean;
 };
 
 const initialState = Object.freeze<State>({
@@ -19,7 +19,7 @@ const initialState = Object.freeze<State>({
 	search: false,
 	settings: false,
 	iconFill: "",
-	hamburger: false,
+	hamburgerOpen: false,
 });
 
 export const useNavbarContext = Helpers.createUseContext(() => {
@@ -69,7 +69,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const setFill = (fillColor: string): void => setNavbar({ iconFill: fillColor });
 
-	const toggleHamburger = (): void => setNavbar({ hamburger: !navbar.hamburger });
+	const toggleHamburgerOpen = (): void => setNavbar({ hamburgerOpen: !navbar.hamburgerOpen });
 
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //
@@ -86,7 +86,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 		toggleSearch,
 		toggleSettings,
 		setFill,
-		toggleHamburger,
+		toggleHamburgerOpen,
 	};
 
 	const handlers = {};
