@@ -65,7 +65,7 @@ export const Navbar = () => {
 						onClick={navbar.setters.toggleCreate}
 						display={isUserDisplay}
 					>
-						<Icons.Plus
+						<Icons.Create
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 						/>

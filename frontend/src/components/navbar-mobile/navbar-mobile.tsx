@@ -3,7 +3,6 @@ import * as React from "react";
 import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Icons from "@/icons/navbar";
-import * as Animations from "@/utils/style/animations";
 import * as Constants from "@/utils/style/constants";
 import * as Colors from "@/utils/style/colors";
 
@@ -24,7 +23,9 @@ export const NavbarMobile = () => {
 	return (
 		<Styled.NavbarMobile style={animateNavbarMobile}>
 			{/* Home */}
-			<Option
+			<OptionLink
+				to="/"
+				mode={theme.state.mode}
 				icon={
 					<Icons.HomeHollow
 						width={Constants.size.components.navbarMobile.icon}
@@ -32,51 +33,55 @@ export const NavbarMobile = () => {
 					/>
 				}
 				text="Home"
-				mode={theme.state.mode}
 			/>
 			<Components.Spacer width="40px" />
 
 			{/* Likes */}
-			<Option
+			<OptionButton
+				onClick={navbar.setters.toggleLikes}
+				mode={theme.state.mode}
 				icon={
-					<Icons.HomeHollow
+					<Icons.LikeHollow
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
 					/>
 				}
 				text="Likes"
-				mode={theme.state.mode}
 			/>
 			<Components.Spacer width="40px" />
 
 			{/* Create */}
-			<Option
+			<OptionButton
+				onClick={navbar.setters.toggleCreate}
+				mode={theme.state.mode}
 				icon={
-					<Icons.HomeHollow
+					<Icons.Create
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
 					/>
 				}
 				text="Create"
-				mode={theme.state.mode}
 			/>
 			<Components.Spacer width="40px" />
 
 			{/* Search */}
-			<Option
+			<OptionButton
+				onClick={navbar.setters.toggleSearch}
+				mode={theme.state.mode}
 				icon={
-					<Icons.HomeHollow
+					<Icons.Search
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
 					/>
 				}
 				text="Search"
-				mode={theme.state.mode}
 			/>
 			<Components.Spacer width="40px" />
 
 			{/* Profile */}
-			<Option
+			<OptionLink
+				to="/profile"
+				mode={theme.state.mode}
 				icon={
 					<Icons.HomeHollow
 						width={Constants.size.components.navbarMobile.icon}
@@ -84,7 +89,6 @@ export const NavbarMobile = () => {
 					/>
 				}
 				text="Profile"
-				mode={theme.state.mode}
 			/>
 		</Styled.NavbarMobile>
 	);
@@ -95,22 +99,45 @@ export const NavbarMobile = () => {
 // ====================== //
 
 type OptionProps = {
+	mode: Context.Theme.Mode;
 	icon: React.ReactNode;
 	text: string;
-	mode: Context.Theme.Mode;
 };
 
-const Option = (props: OptionProps) => {
-	const { icon, text, mode } = props;
+type OptionLinkProps = {
+	to: string;
+} & OptionProps;
+
+const OptionLink = (props: OptionLinkProps) => {
+	const { icon, text, mode, to } = props;
 
 	const animateOptionText = Springs.optionText(mode);
 
 	return (
-		<Styled.NavbarMobileOption>
+		<Styled.NavbarMobileOptionLink to={to}>
 			<Styled.NavbarMobileOptionIcon>{icon}</Styled.NavbarMobileOptionIcon>
 			<Styled.NavbarMobileOptionText style={animateOptionText}>
 				{text}
 			</Styled.NavbarMobileOptionText>
-		</Styled.NavbarMobileOption>
+		</Styled.NavbarMobileOptionLink>
+	);
+};
+
+type OptionButtonProps = {
+	onClick: React.MouseEventHandler;
+} & OptionProps;
+
+const OptionButton = (props: OptionButtonProps) => {
+	const { icon, text, mode, onClick } = props;
+
+	const animateOptionText = Springs.optionText(mode);
+
+	return (
+		<Styled.NavbarMobileOptionButton onClick={onClick}>
+			<Styled.NavbarMobileOptionIcon>{icon}</Styled.NavbarMobileOptionIcon>
+			<Styled.NavbarMobileOptionText style={animateOptionText}>
+				{text}
+			</Styled.NavbarMobileOptionText>
+		</Styled.NavbarMobileOptionButton>
 	);
 };

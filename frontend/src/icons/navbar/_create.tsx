@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Props } from "./__types";
 
-export const Plus = (props: Props) => {
+export const Create = (props: Props) => {
 	const { width, fill } = props;
 
 	const w = width || "10";

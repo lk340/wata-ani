@@ -79,6 +79,9 @@ export const fontSizes = {
 		navbar: {
 			link: "0.875rem",
 		},
+		navbarMobile: {
+			text: "0.75rem",
+		},
 	},
 };
 
