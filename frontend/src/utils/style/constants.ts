@@ -37,6 +37,7 @@ export const theme = {
 		navbar: {
 			borderBottom: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 			registerButton: { light: Colors.LIGHT.three, dark: Colors.DARK.four },
+			registerButtonHover: Colors.PRIMARY_100,
 			profileIcon: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 		},
 		navbarMobile: {

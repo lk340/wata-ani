@@ -94,12 +94,12 @@ export const Navbar = () => {
 					</Styled.NavbarSignInLink>
 
 					{/* Register Link */}
-					<Styled.NavbarRegisterLink
+					<Styled.NavbarRegisterLinkContainer
 						user={(!!authForm.state.user).toString()}
 						style={animateRegisterButton}
 					>
-						<Styled.NavbarLink to="/registration">Register</Styled.NavbarLink>
-					</Styled.NavbarRegisterLink>
+						<Styled.NavbarRegisterLink>Register</Styled.NavbarRegisterLink>
+					</Styled.NavbarRegisterLinkContainer>
 				</Styled.NavbarLinks>
 			</Styled.NavbarMaxWidth>
 		</Styled.Navbar>

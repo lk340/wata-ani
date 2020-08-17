@@ -63,16 +63,19 @@ export const NavbarSignInLink = styled(Gatsby.Link).attrs(() => ({
 	display: ${(props) => (props.user === "true" ? "none" : "flex")};
 `;
 
-export const NavbarRegisterLink = styled(animated.div).attrs(() => ({
-	to: "/registration",
-}))<FormProps>`
+export const NavbarRegisterLinkContainer = styled(animated.div)<FormProps>`
 	${Snippets.flexRowCenter()};
 	display: ${(props) => (props.user === "true" ? "none" : "flex")};
 	margin-left: ${Constants.size.components.navbar.spacer};
-	padding: 12px 18px;
-	background-color: ${Constants.theme.components.navbar.registerButton};
 	border-radius: ${Constants.borderRadius.components.navbar.register};
 	cursor: pointer;
+`;
+
+export const NavbarRegisterLink = styled(Gatsby.Link).attrs(() => ({
+	to: "/registration",
+}))`
+	${Snippets.clearAnchor()};
+	padding: 12px 18px;
 `;
 
 // ====================== //
