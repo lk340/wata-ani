@@ -1,4 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled, { css } from "styled-components";
 import { animated } from "react-spring";
 import * as Gatsby from "gatsby";
 
@@ -34,9 +34,9 @@ export const Navbar = styled(animated.div)`
 
 export const NavbarMaxWidth = styled("div")`
 	${Snippets.flex("row", "space-between", "center")};
+	${Snippets.fillContainer()};
 	margin: 0px auto;
 	max-width: ${Constants.globals.maxWidth};
-	height: 100%;
 	font-size: ${Constants.fontSizes.components.navbar.link};
 `;
 
@@ -98,7 +98,7 @@ export const NavbarProfileIcon = styled("img").attrs((props) => ({
 	alt: "navbar component profile icon",
 }))<ProfileIconProps>`
 	${Snippets.square(Constants.size.components.navbar.icon)};
-	${Snippets.circle()};
+	${Snippets.makeCircle()};
 	display: ${(props) => props.display};
 	margin-left: ${Constants.size.components.navbar.spacer};
 	border: ${Constants.theme.components.navbar.profileIcon} solid 1px;

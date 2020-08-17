@@ -24,14 +24,12 @@ export const Navbar = () => {
 		Constants.theme.components.navbar.registerButton.dark,
 	);
 
-	const [fill, setFill] = React.useState("");
-
 	React.useEffect(() => {
-		if (theme.state.mode === "light") setFill(Colors.LIGHT.seven);
-		else setFill(Colors.LIGHT.five);
+		if (theme.state.mode === "light") navbar.setters.setFill(Colors.LIGHT.seven);
+		else navbar.setters.setFill(Colors.LIGHT.five);
 	}, [theme.state.mode]);
 
-	const isUser = !!authForm.state.user ? "flex" : "none";
+	const isUserDisplay = !!authForm.state.user ? "flex" : "none";
 
 	return (
 		<Styled.Navbar style={animateNavbar}>
@@ -45,41 +43,56 @@ export const Navbar = () => {
 				<Styled.NavbarLinks>
 					{/* Home Link */}
 					<Styled.NavbarLink to="/">
-						<Icons.HomeHollow width={Constants.size.components.navbar.icon} fill={fill} />
+						<Icons.HomeHollow
+							width={Constants.size.components.navbar.icon}
+							fill={navbar.state.iconFill}
+						/>
 					</Styled.NavbarLink>
 
 					{/* Like Button */}
-					<Styled.NavbarModalButton onClick={navbar.setters.toggleLikes} display={isUser}>
-						<Icons.LikeHollow width={Constants.size.components.navbar.icon} fill={fill} />
+					<Styled.NavbarModalButton
+						onClick={navbar.setters.toggleLikes}
+						display={isUserDisplay}
+					>
+						<Icons.LikeHollow
+							width={Constants.size.components.navbar.icon}
+							fill={navbar.state.iconFill}
+						/>
 					</Styled.NavbarModalButton>
 
 					{/* Create Button */}
 					<Styled.NavbarModalButton
 						onClick={navbar.setters.toggleCreate}
-						display={isUser}
+						display={isUserDisplay}
 					>
-						<Icons.Plus width={Constants.size.components.navbar.icon} fill={fill} />
+						<Icons.Plus
+							width={Constants.size.components.navbar.icon}
+							fill={navbar.state.iconFill}
+						/>
 					</Styled.NavbarModalButton>
 
 					{/* Search Button */}
 					<Styled.NavbarModalButton onClick={navbar.setters.toggleSearch}>
-						<Icons.Search width={Constants.size.components.navbar.icon} fill={fill} />
+						<Icons.Search
+							width={Constants.size.components.navbar.icon}
+							fill={navbar.state.iconFill}
+						/>
 					</Styled.NavbarModalButton>
 
 					{/* Settings Button */}
 					<Styled.NavbarModalButton
 						onClick={navbar.setters.toggleSettings}
-						display={isUser}
+						display={isUserDisplay}
 					>
 						<Icons.SettingsHollow
 							width={Constants.size.components.navbar.icon}
-							fill={fill}
+							fill={navbar.state.iconFill}
 						/>
 					</Styled.NavbarModalButton>
 
 					{/* Profile Link */}
 					<Styled.NavbarLink to="/">
-						<Styled.NavbarProfileIcon src={logoJapanese} display={isUser} />
+						<Styled.NavbarProfileIcon src={logoJapanese} display={isUserDisplay} />
 					</Styled.NavbarLink>
 
 					{/* Theme Button */}

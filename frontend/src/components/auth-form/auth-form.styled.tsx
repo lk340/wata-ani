@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { animated } from "react-spring";
 import * as Gatsby from "gatsby";
 
 import * as Constants from "@/utils/style/constants";
@@ -54,9 +55,8 @@ export const AuthFormLogo = styled("img").attrs(() => ({
 	}
 `;
 
-export const AuthFormTitle = styled("h1")`
+export const AuthFormTitle = styled(animated.h1)`
 	${Snippets.clearSpacing()};
-	color: ${Constants.theme.text};
 	font-size: ${Constants.fontSizes.components.authForm.title};
 	text-align: center;
 `;
@@ -96,7 +96,7 @@ export const AuthFormSubmitButton = styled("button").attrs(() => ({
 // ↓↓↓ Redirect ↓↓↓ //
 // ================ //
 
-export const AuthFormRedirect = styled("p")`
+export const AuthFormRedirect = styled(animated.p)`
 	${Snippets.clearSpacing()};
 	color: ${Constants.theme.text};
 	font-size: ${Constants.fontSizes.components.authForm.redirect};

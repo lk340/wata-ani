@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import * as Context from "@/context";
+import * as Animations from "@/utils/style/animations";
 
 import * as AuthTypes from "../auth-form.types";
 import * as Styled from "./input.styled";
@@ -17,6 +18,10 @@ export const Input = (props: InputProps) => {
 
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 	const { windows } = Context.Windows.useWindowsContext();
+	const { theme } = Context.Theme.useThemeContext();
+
+	const animateInputField = Springs.inputField(theme.state.mode);
+	const animateInputText = Animations.text(theme.state.mode);
 
 	// Hides or shows certain input fields depending on whether we're dealing
 	// with a registration form or a sign in form.
@@ -60,6 +65,7 @@ export const Input = (props: InputProps) => {
 					form_type={formType}
 					window_width={windows.state.width}
 					window_height={windows.state.height}
+					style={animateInputText}
 				/>
 			);
 			break;
@@ -69,6 +75,7 @@ export const Input = (props: InputProps) => {
 					onChange={onChange}
 					form_type={formType}
 					window_height={windows.state.height}
+					style={animateInputText}
 				/>
 			);
 			break;
@@ -78,6 +85,7 @@ export const Input = (props: InputProps) => {
 					onChange={onChange}
 					form_type={formType}
 					window_height={windows.state.height}
+					style={animateInputText}
 				/>
 			);
 			break;
@@ -88,6 +96,7 @@ export const Input = (props: InputProps) => {
 					onChange={onChange}
 					reveal_password={authForm.state.revealPassword}
 					window_height={windows.state.height}
+					style={animateInputText}
 				/>
 			);
 			break;
@@ -98,6 +107,7 @@ export const Input = (props: InputProps) => {
 					reveal_password={authForm.state.revealPassword}
 					window_height={windows.state.height}
 					form_type={formType}
+					style={animateInputText}
 				/>
 			);
 			break;
@@ -106,7 +116,7 @@ export const Input = (props: InputProps) => {
 	return (
 		<Styled.Input display={display}>
 			<Styled.InputTitle>*{inputType}</Styled.InputTitle>
-			<Styled.InputField>
+			<Styled.InputField style={animateInputField}>
 				{icon}
 				{field}
 

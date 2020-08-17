@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import * as Context from "@/context";
+import * as Animations from "@/utils/style/animations";
 
 import * as Types from "./auth-form.types";
 import * as Styled from "./auth-form.styled";
@@ -15,6 +16,9 @@ export const AuthForm = (props: Props) => {
 	const { formType, submitText } = props;
 
 	const { authForm } = Context.AuthForm.useAuthFormContext();
+	const { theme } = Context.Theme.useThemeContext();
+
+	const animateTitle = Animations.text(theme.state.mode);
 
 	return (
 		<Styled.AuthForm
@@ -27,7 +31,7 @@ export const AuthForm = (props: Props) => {
 				{/* Logo */}
 				<Styled.AuthFormLogo />
 				{/* Title */}
-				<Styled.AuthFormTitle>{formType}</Styled.AuthFormTitle>
+				<Styled.AuthFormTitle style={animateTitle}>{formType}</Styled.AuthFormTitle>
 				{/* Inputs */}
 				<InputFields formType={formType} submitText={submitText} />
 			</Styled.AuthFormLogoTitleInputs>
@@ -86,13 +90,17 @@ const InputFields = (props: Props) => {
 const SubmitButtonAndRedirect = (props: Props) => {
 	const { formType, submitText } = props;
 
+	const { theme } = Context.Theme.useThemeContext();
+
+	const animateRedirect = Animations.text(theme.state.mode);
+
 	return (
 		<Styled.AuthFormSubmitRedirect>
 			{/* Submit Button */}
 			<Styled.AuthFormSubmitButton>{submitText}</Styled.AuthFormSubmitButton>
 
 			{/* Redirect */}
-			<Styled.AuthFormRedirect>
+			<Styled.AuthFormRedirect style={animateRedirect}>
 				{formType === "Registration" ? "Already a member?" : "Need an account?"}&nbsp;
 				<Styled.AuthFormRedirectLink form_type={formType}>
 					{formType === "Registration" ? "Sign In" : "Register"}

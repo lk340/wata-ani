@@ -1,7 +1,7 @@
 import * as Spring from "react-spring";
 
 import * as Context from "@/context";
-import * as Colors from "@/utils/style/colors";
+import * as Constants from "@/utils/style/constants";
 
 /**
  * background
@@ -23,7 +23,9 @@ export function background(
 
 export function text(mode: Context.Theme.Mode, duration: number = 100) {
 	return Spring.useSpring({
-		to: { color: mode === "light" ? Colors.TEXT.black : Colors.TEXT.white },
+		to: {
+			color: mode === "light" ? Constants.theme.text.light : Constants.theme.text.dark,
+		},
 		config: { duration },
 	});
 }

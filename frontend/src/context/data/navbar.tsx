@@ -7,6 +7,7 @@ type State = {
 	create: boolean;
 	search: boolean;
 	settings: boolean;
+	iconFill: string;
 };
 
 const initialState = Object.freeze<State>({
@@ -14,14 +15,11 @@ const initialState = Object.freeze<State>({
 	create: false,
 	search: false,
 	settings: false,
+	iconFill: "",
 });
 
 export const useNavbarContext = Helpers.createUseContext(() => {
 	const [navbar, _setNavbar] = React.useState<State>({ ...initialState });
-
-	// =============== //
-	// ↓↓↓ Getters ↓↓↓ //
-	// =============== //
 
 	// =============== //
 	// ↓↓↓ Setters ↓↓↓ //
@@ -37,13 +35,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const toggleSettings = (): void => setNavbar({ settings: !navbar.settings });
 
-	// =============== //
-	// ↓↓↓ Handlers ↓↓↓ //
-	// =============== //
-
-	// =============== //
-	// ↓↓↓ API ↓↓↓ //
-	// =============== //
+	const setFill = (fillColor: string): void => setNavbar({ iconFill: fillColor });
 
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //
@@ -59,6 +51,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 		toggleCreate,
 		toggleSearch,
 		toggleSettings,
+		setFill,
 	};
 
 	const handlers = {};

@@ -41,12 +41,10 @@ export const InputTitle = styled("h2")`
 	}
 `;
 
-export const InputField = styled("div")`
+export const InputField = styled(animated.div)`
 	${Snippets.flex("row", "auto", "center")};
 	height: 50px;
 	padding: 0px 20px;
-	background-color: ${Constants.theme.components.authForm.inputBackground};
-	border: ${Constants.theme.components.authForm.inputBorder} solid 2px;
 	border-radius: ${Constants.borderRadius.components.authForm.input};
 `;
 
@@ -113,7 +111,6 @@ const fieldTypeStyles = css`
 	${Snippets.square("100%")};
 	flex: 1;
 	padding: 0px 20px;
-	color: ${Constants.theme.text};
 	background-color: ${Colors.NEUTRALS.transparent};
 	border: none;
 	outline: none;
@@ -132,20 +129,22 @@ type FieldTypeProps = {
 	window_height: number;
 };
 
-export const InputUsernameOrEmail = styled("input").attrs((props: FieldTypeProps) => ({
-	type: "text",
-	placeholder:
-		props.window_width < 335 && props.window_height <= 620
-			? "*Username or Email"
-			: props.window_height > 620
-			? "WataAni"
-			: "*Enter your username or email",
-	required: props.form_type === "Registration" ? false : true,
-}))<FieldTypeProps>`
+export const InputUsernameOrEmail = styled(animated.input).attrs(
+	(props: FieldTypeProps) => ({
+		type: "text",
+		placeholder:
+			props.window_width < 335 && props.window_height <= 620
+				? "*Username or Email"
+				: props.window_height > 620
+				? "WataAni"
+				: "*Enter your username or email",
+		required: props.form_type === "Registration" ? false : true,
+	}),
+)<FieldTypeProps>`
 	${fieldTypeStyles};
 `;
 
-export const InputUsername = styled("input").attrs((props: FieldTypeProps) => ({
+export const InputUsername = styled(animated.input).attrs((props: FieldTypeProps) => ({
 	type: "text",
 	placeholder: props.window_height > 620 ? "WataAni" : "*Username",
 	required: props.form_type === "Registration" ? true : false,
@@ -153,7 +152,7 @@ export const InputUsername = styled("input").attrs((props: FieldTypeProps) => ({
 	${fieldTypeStyles};
 `;
 
-export const InputEmail = styled("input").attrs((props: FieldTypeProps) => ({
+export const InputEmail = styled(animated.input).attrs((props: FieldTypeProps) => ({
 	type: "email",
 	placeholder: props.window_height > 620 ? "wata@ani.com" : "*Email",
 	required: props.form_type === "Registration" ? true : false,
@@ -161,7 +160,7 @@ export const InputEmail = styled("input").attrs((props: FieldTypeProps) => ({
 	${fieldTypeStyles};
 `;
 
-export const InputPassword = styled("input").attrs((props: FieldTypeProps) => ({
+export const InputPassword = styled(animated.input).attrs((props: FieldTypeProps) => ({
 	type: props.reveal_password ? "text" : "password",
 	placeholder: props.window_height > 620 ? "aBcD!@#$123" : "*Password",
 	required: true,
@@ -169,7 +168,7 @@ export const InputPassword = styled("input").attrs((props: FieldTypeProps) => ({
 	${fieldTypeStyles};
 `;
 
-export const InputPasswordConfirmation = styled("input").attrs(
+export const InputPasswordConfirmation = styled(animated.input).attrs(
 	(props: FieldTypeProps) => ({
 		type: props.reveal_password ? "text" : "password",
 		placeholder: props.window_height > 620 ? "aBcD!@#$123" : "*Confirm Password",

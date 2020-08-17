@@ -70,7 +70,7 @@ export function square(size: string) {
 	`;
 }
 
-export function circle() {
+export function makeCircle() {
 	return css`
 		border-radius: 50%;
 	`;
