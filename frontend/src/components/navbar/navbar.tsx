@@ -17,6 +17,12 @@ export const Navbar = () => {
 	const { theme } = Context.Theme.useThemeContext();
 
 	const animateNavbar = Springs.navbar(theme.state.mode);
+	const animateLightModeIcon = Animations.opacity(theme.state.mode === "dark");
+	const animateRegisterButton = Animations.background(
+		theme.state.mode,
+		Constants.theme.components.navbar.registerButton.light,
+		Constants.theme.components.navbar.registerButton.dark,
+	);
 
 	const [fill, setFill] = React.useState("");
 
@@ -78,8 +84,8 @@ export const Navbar = () => {
 
 					{/* Theme Button */}
 					<Styled.NavbarThemeButton onClick={theme.setters.toggleMode}>
-						<Styled.NavbarLightModeIcon mode={theme.state.mode} />
-						<Styled.NavbarDarkModeIcon mode={theme.state.mode} />
+						<Styled.NavbarLightModeIcon style={animateLightModeIcon} />
+						<Styled.NavbarDarkModeIcon />
 					</Styled.NavbarThemeButton>
 
 					{/* Sign In Link */}
@@ -88,8 +94,11 @@ export const Navbar = () => {
 					</Styled.NavbarSignInLink>
 
 					{/* Register Link */}
-					<Styled.NavbarRegisterLink user={(!!authForm.state.user).toString()}>
-						Register
+					<Styled.NavbarRegisterLink
+						user={(!!authForm.state.user).toString()}
+						style={animateRegisterButton}
+					>
+						<Styled.NavbarLink to="/registration">Register</Styled.NavbarLink>
 					</Styled.NavbarRegisterLink>
 				</Styled.NavbarLinks>
 			</Styled.NavbarMaxWidth>

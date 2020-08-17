@@ -49,8 +49,8 @@ export const NavbarLinks = styled("div")`
 `;
 
 export const NavbarLink = styled(Gatsby.Link)`
-	${Snippets.clearAnchor()};
 	${Snippets.flexRowCenter()};
+	${Snippets.clearAnchor()};
 `;
 
 type FormProps = { user: string };
@@ -63,12 +63,11 @@ export const NavbarSignInLink = styled(Gatsby.Link).attrs(() => ({
 	display: ${(props) => (props.user === "true" ? "none" : "flex")};
 `;
 
-export const NavbarRegisterLink = styled(Gatsby.Link).attrs(() => ({
+export const NavbarRegisterLink = styled(animated.div).attrs(() => ({
 	to: "/registration",
 }))<FormProps>`
 	${Snippets.flexRowCenter()};
-	${Snippets.clearAnchor()};
-	display: ${(props) => (props.user ? "none" : "flex")};
+	display: ${(props) => (props.user === "true" ? "none" : "flex")};
 	margin-left: ${Constants.size.components.navbar.spacer};
 	padding: 12px 18px;
 	background-color: ${Constants.theme.components.navbar.registerButton};
@@ -102,22 +101,19 @@ export const NavbarProfileIcon = styled("img").attrs((props) => ({
 	border: ${Constants.theme.components.navbar.profileIcon} solid 1px;
 `;
 
-type ThemeIconProps = { mode: string };
-
-export const NavbarLightModeIcon = styled("img").attrs(() => ({
+export const NavbarLightModeIcon = styled(animated.img).attrs(() => ({
 	src: lightMode,
 	alt: "navbar component light theme button",
-}))<ThemeIconProps>`
+}))`
 	${Snippets.square(Constants.size.components.navbar.icon)};
-	display: ${(props) => (props.mode === "light" ? "none" : "block")};
+	position: absolute;
 `;
 
 export const NavbarDarkModeIcon = styled("img").attrs(() => ({
 	src: darkMode,
 	alt: "navbar component dark theme button",
-}))<ThemeIconProps>`
+}))`
 	${Snippets.square(Constants.size.components.navbar.icon)};
-	display: ${(props) => (props.mode === "light" ? "block" : "none")};
 `;
 
 // =============== //
@@ -139,5 +135,6 @@ export const NavbarModalButton = styled("div")<ButtonProps>`
 
 export const NavbarThemeButton = styled("div")`
 	${buttonStyles};
+	position: relative;
 	margin-right: ${Constants.size.components.navbar.spacer};
 `;

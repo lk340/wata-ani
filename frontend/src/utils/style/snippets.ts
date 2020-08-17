@@ -158,6 +158,16 @@ export function absolute(
 	`;
 }
 
+export function absoluteCenter(zIndex: number = 1) {
+	return css`
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: ${zIndex};
+		transform: translate3d(-50%, -50%, 0%);
+	`;
+}
+
 export function fixed(
 	top: string = "auto",
 	right: string = "auto",
@@ -215,8 +225,8 @@ export function clearSpacing() {
 
 export function clearAnchor() {
 	return css`
-		display: block;
-		color: ${Constants.theme.text};
+		display: inherit;
+		color: inherit;
 		text-decoration: none;
 	`;
 }
