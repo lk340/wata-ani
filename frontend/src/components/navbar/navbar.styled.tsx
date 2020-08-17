@@ -28,7 +28,8 @@ export const Navbar = styled(animated.div)`
 	}
 
 	@media (max-width: 575px) {
-		display: none;
+		height: 50px;
+		padding: 0px ${Constants.sidePaddings.mobile};
 	}
 `;
 
@@ -46,6 +47,10 @@ export const NavbarMaxWidth = styled("div")`
 
 export const NavbarLinks = styled("div")`
 	${Snippets.flex()};
+
+	@media (max-width: 575px) {
+		display: none;
+	}
 `;
 
 export const NavbarLink = styled(Gatsby.Link)`
@@ -89,6 +94,11 @@ export const NavbarLogoIcon = styled("img").attrs(() => ({
 	${Snippets.square("40px")};
 	display: block;
 	border-radius: ${Constants.borderRadius.components.authForm.logo};
+
+	@media (max-width: 575px) {
+		${Snippets.square("20px")};
+		border-radius: 0.1875rem;
+	}
 `;
 
 type ProfileIconProps = { display: string };

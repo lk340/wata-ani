@@ -2,12 +2,15 @@ import * as React from "react";
 
 import * as Helpers from "@/context/helpers";
 
+type Modal = "likes" | "create" | "search" | "settings";
+
 type State = {
 	likes: boolean;
 	create: boolean;
 	search: boolean;
 	settings: boolean;
 	iconFill: string;
+	hamburger: boolean;
 };
 
 const initialState = Object.freeze<State>({
@@ -16,6 +19,7 @@ const initialState = Object.freeze<State>({
 	search: false,
 	settings: false,
 	iconFill: "",
+	hamburger: false,
 });
 
 export const useNavbarContext = Helpers.createUseContext(() => {
@@ -27,15 +31,45 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const setNavbar = (state: Partial<State>) => _setNavbar({ ...navbar, ...state });
 
-	const toggleLikes = (): void => setNavbar({ likes: !navbar.likes });
+	function toggleLikes(): void {
+		setNavbar({
+			likes: !navbar.likes,
+			create: false,
+			search: false,
+			settings: false,
+		});
+	}
 
-	const toggleCreate = (): void => setNavbar({ create: !navbar.create });
+	function toggleCreate(): void {
+		setNavbar({
+			likes: false,
+			create: !navbar.create,
+			search: false,
+			settings: false,
+		});
+	}
 
-	const toggleSearch = (): void => setNavbar({ search: !navbar.search });
+	function toggleSearch(): void {
+		setNavbar({
+			likes: false,
+			create: false,
+			search: !navbar.search,
+			settings: false,
+		});
+	}
 
-	const toggleSettings = (): void => setNavbar({ settings: !navbar.settings });
+	function toggleSettings(): void {
+		setNavbar({
+			likes: false,
+			create: false,
+			search: false,
+			settings: !navbar.settings,
+		});
+	}
 
 	const setFill = (fillColor: string): void => setNavbar({ iconFill: fillColor });
+
+	const toggleHamburger = (): void => setNavbar({ hamburger: !navbar.hamburger });
 
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //
@@ -52,6 +86,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 		toggleSearch,
 		toggleSettings,
 		setFill,
+		toggleHamburger,
 	};
 
 	const handlers = {};

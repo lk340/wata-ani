@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import * as Context from "@/context";
+import * as Components from "@/components";
 import * as Icons from "@/icons/navbar";
 import * as Animations from "@/utils/style/animations";
 import * as Constants from "@/utils/style/constants";
@@ -125,6 +126,8 @@ export const Navbar = () => {
 						<Styled.NavbarRegisterLink>Register</Styled.NavbarRegisterLink>
 					</Styled.NavbarRegisterLinkContainer>
 				</Styled.NavbarLinks>
+
+				<Components.Hamburger />
 			</Styled.NavbarMaxWidth>
 		</Styled.Navbar>
 	);
