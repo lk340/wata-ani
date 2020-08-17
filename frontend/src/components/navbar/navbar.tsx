@@ -14,6 +14,7 @@ import logoJapanese from "@/images/logo/japanese.svg";
 export const Navbar = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { authForm } = Context.AuthForm.useAuthFormContext();
+	const { location } = Context.Location.useLocationContext();
 	const { theme } = Context.Theme.useThemeContext();
 
 	const animateNavbar = Springs.navbar(theme.state.mode);
@@ -46,6 +47,8 @@ export const Navbar = () => {
 						<Icons.HomeHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
+							mode={theme.state.mode}
+							state={location.state.pathname === "/"}
 						/>
 					</Styled.NavbarLink>
 
@@ -57,6 +60,8 @@ export const Navbar = () => {
 						<Icons.LikeHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
+							mode={theme.state.mode}
+							state={navbar.state.likes}
 						/>
 					</Styled.NavbarModalButton>
 
@@ -68,6 +73,8 @@ export const Navbar = () => {
 						<Icons.Create
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
+							mode={theme.state.mode}
+							state={navbar.state.create}
 						/>
 					</Styled.NavbarModalButton>
 
@@ -76,6 +83,8 @@ export const Navbar = () => {
 						<Icons.Search
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
+							mode={theme.state.mode}
+							state={navbar.state.search}
 						/>
 					</Styled.NavbarModalButton>
 
@@ -87,6 +96,8 @@ export const Navbar = () => {
 						<Icons.SettingsHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
+							mode={theme.state.mode}
+							state={navbar.state.settings}
 						/>
 					</Styled.NavbarModalButton>
 

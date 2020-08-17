@@ -2,6 +2,7 @@ import * as Spring from "react-spring";
 
 import * as Context from "@/context";
 import * as Constants from "@/utils/style/constants";
+import * as Colors from "@/utils/style/colors";
 
 export function navbarMobile(mode: Context.Theme.Mode) {
 	return Spring.useSpring({
@@ -18,13 +19,16 @@ export function navbarMobile(mode: Context.Theme.Mode) {
 	});
 }
 
-export function optionText(mode: Context.Theme.Mode) {
+export function optionIconText(mode: Context.Theme.Mode, state: boolean = false) {
 	return Spring.useSpring({
 		to: {
 			color:
-				mode === "light"
+				state
+					? Colors.PRIMARY_100
+					: mode === "light"
 					? Constants.theme.components.navbarMobile.option.light
 					: Constants.theme.components.navbarMobile.option.dark,
 		},
+		config: { duration: 100 },
 	});
 }

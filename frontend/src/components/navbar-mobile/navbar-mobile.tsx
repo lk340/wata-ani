@@ -11,6 +11,7 @@ import * as Springs from "./navbar-mobile.springs";
 
 export const NavbarMobile = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
+	const { location } = Context.Location.useLocationContext();
 	const { theme } = Context.Theme.useThemeContext();
 
 	React.useEffect(() => {
@@ -30,6 +31,8 @@ export const NavbarMobile = () => {
 					<Icons.HomeHollow
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
+						mode={theme.state.mode}
+						state={location.state.pathname === "/"}
 					/>
 				}
 				text="Home"
@@ -44,9 +47,12 @@ export const NavbarMobile = () => {
 					<Icons.LikeHollow
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
+						mode={theme.state.mode}
+						state={navbar.state.likes}
 					/>
 				}
 				text="Likes"
+				state={navbar.state.likes}
 			/>
 			<Components.Spacer width="40px" />
 
@@ -58,9 +64,12 @@ export const NavbarMobile = () => {
 					<Icons.Create
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
+						mode={theme.state.mode}
+						state={navbar.state.create}
 					/>
 				}
 				text="Create"
+				state={navbar.state.create}
 			/>
 			<Components.Spacer width="40px" />
 
@@ -72,9 +81,12 @@ export const NavbarMobile = () => {
 					<Icons.Search
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
+						mode={theme.state.mode}
+						state={navbar.state.search}
 					/>
 				}
 				text="Search"
+				state={navbar.state.search}
 			/>
 			<Components.Spacer width="40px" />
 
@@ -86,6 +98,8 @@ export const NavbarMobile = () => {
 					<Icons.HomeHollow
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
+						mode={theme.state.mode}
+						state={location.state.pathname === "/"}
 					/>
 				}
 				text="Profile"
@@ -111,7 +125,7 @@ type OptionLinkProps = {
 const OptionLink = (props: OptionLinkProps) => {
 	const { icon, text, mode, to } = props;
 
-	const animateOptionText = Springs.optionText(mode);
+	const animateOptionText = Springs.optionIconText(mode);
 
 	return (
 		<Styled.NavbarMobileOptionLink to={to}>
@@ -124,13 +138,14 @@ const OptionLink = (props: OptionLinkProps) => {
 };
 
 type OptionButtonProps = {
+	state: boolean;
 	onClick: React.MouseEventHandler;
 } & OptionProps;
 
 const OptionButton = (props: OptionButtonProps) => {
-	const { icon, text, mode, onClick } = props;
+	const { state, icon, text, mode, onClick } = props;
 
-	const animateOptionText = Springs.optionText(mode);
+	const animateOptionText = Springs.optionIconText(mode, state);
 
 	return (
 		<Styled.NavbarMobileOptionButton onClick={onClick}>
