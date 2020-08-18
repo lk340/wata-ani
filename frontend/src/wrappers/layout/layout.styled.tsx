@@ -32,6 +32,7 @@ export const LayoutGlobalStyles = createGlobalStyle`
 export const LayoutChildren = styled("div")`
 	/* margin: 0px auto; */
 	/* min-height: 100vh; */
+	overflow-x: hidden;
 
-	/* border: red solid 1px; */
+	/* border: red solid 5px; */
 `;
