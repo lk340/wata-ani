@@ -1,8 +1,16 @@
-import { css } from "styled-components";
-
-import * as Snippets from "@/utils/style/snippets";
 import * as Shadows from "@/utils/style/shadows";
 import * as Colors from "@/utils/style/colors";
+
+/**
+ * Globals
+ * Theme Colors
+ * Breakpoints
+ * SIde Paddings
+ * Size
+ * Font Sizes
+ * Line Heights
+ * Border Radius
+ */
 
 export const threeJS = {
 	fieldOfView: 75,

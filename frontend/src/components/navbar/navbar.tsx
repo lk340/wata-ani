@@ -20,7 +20,7 @@ export const Navbar = () => {
 
 	const animateNavbar = Springs.navbar(theme.state.mode);
 	const animateLightModeIcon = Animations.opacity(theme.state.mode === "dark");
-	const animateProfileIcon = Springs.profileIcon(theme.state.mode, authForm.state.user);
+	const animateProfileIcon = Springs.profileIcon(theme.state.mode, !!authForm.state.user);
 	const animateRegisterButton = Animations.background(
 		theme.state.mode,
 		Constants.theme.components.navbar.registerButton.light,
