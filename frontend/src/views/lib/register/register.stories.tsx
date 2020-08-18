@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as Reach from "@reach/router";
 
 import * as Wrappers from "@/wrappers";
 
@@ -13,7 +14,6 @@ type Story = {
 const story: Story = {
 	component: Register,
 	title: "Register",
-	// Our exports that end in "Data" are not stories. (i.e. ignore taskData & actionsData)
 	excludeStories: /.*Data$/,
 };
 
@@ -23,8 +23,10 @@ export const registerData = {};
 
 export const Default = () => {
 	return (
-		<Wrappers.Layout>
-			<Register />
-		</Wrappers.Layout>
+		<Reach.LocationProvider>
+			<Wrappers.Layout>
+				<Register />
+			</Wrappers.Layout>
+		</Reach.LocationProvider>
 	);
 };

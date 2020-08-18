@@ -3,7 +3,7 @@ import * as Reach from "@reach/router";
 
 import * as Wrappers from "@/wrappers";
 
-import { Navbar } from "./navbar";
+import { SignIn } from "./sign-in";
 
 type Story = {
 	component: React.ReactNode;
@@ -12,20 +12,20 @@ type Story = {
 };
 
 const story: Story = {
-	component: Navbar,
-	title: "Navbar",
+	component: SignIn,
+	title: "SignIn",
 	excludeStories: /.*Data$/,
 };
 
 export default story;
 
-export const navbarData = {};
+export const signInData = {};
 
 export const Default = () => {
 	return (
 		<Reach.LocationProvider>
 			<Wrappers.Layout>
-				<Navbar />
+				<SignIn />
 			</Wrappers.Layout>
 		</Reach.LocationProvider>
 	);
