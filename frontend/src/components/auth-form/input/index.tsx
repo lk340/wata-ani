@@ -9,7 +9,7 @@ import * as Springs from "./input.springs";
 
 type InputProps = {
 	formType: AuthTypes.FormType;
-	inputType: "Username or Email" | "Username" | "Email" | "Password" | "Confirm Password";
+	inputType: "Username Or Email" | "Username" | "Email" | "Password" | "Confirm Password";
 	onChange: React.ChangeEventHandler;
 };
 
@@ -26,7 +26,7 @@ export const Input = (props: InputProps) => {
 	// Hides or shows certain input fields depending on whether we're dealing
 	// with a registration form or a sign in form.
 	const display =
-		formType === "Registration" && inputType === "Username or Email"
+		formType === "Registration" && inputType === "Username Or Email"
 			? "none"
 			: formType === "Sign In" && inputType === "Username"
 			? "none"
@@ -41,7 +41,7 @@ export const Input = (props: InputProps) => {
 	//	Password input field, Confirm Password input field.
 	let icon;
 	switch (inputType) {
-		case "Username or Email":
+		case "Username Or Email":
 			icon = <Styled.InputIconUsername />;
 			break;
 		case "Username":
@@ -58,7 +58,7 @@ export const Input = (props: InputProps) => {
 	// Renders specific input field depending on input field type.
 	let field;
 	switch (inputType) {
-		case "Username or Email":
+		case "Username Or Email":
 			field = (
 				<Styled.InputUsernameOrEmail
 					onChange={onChange}

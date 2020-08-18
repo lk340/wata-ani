@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { animated } from "react-spring";
 
-import * as Snippets from "@/utils/style/snippets";
 import * as Constants from "@/utils/style/constants";
+import * as Snippets from "@/utils/style/snippets";
 
 // ============ //
 // ↓↓↓ Home ↓↓↓ //
