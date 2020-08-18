@@ -81,11 +81,16 @@ export const HamburgerModalMain = styled(animated.div)`
 
 export const HamburgerModalMainOptionContainer = styled("div")`
 	${Snippets.grid(1, "auto", 40)};
+	position: absolute;
+	right: 0;
 	margin-top: 90px;
+	padding-right: ${Constants.sidePaddings.mobile};
 `;
 
-export const HamburgerModalMainOption = styled("div")`
-	display: flex;
+type Option = { display: boolean };
+
+export const HamburgerModalMainOption = styled("div")<Option>`
+	display: ${(props) => (props.display ? "flex" : "none")};
 `;
 
 export type OptionIcon = {
