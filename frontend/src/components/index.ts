@@ -5,4 +5,5 @@ export { Spacer } from "./spacer/spacer";
 export { AuthForm } from "./auth-form/auth-form";
 export { Navbar } from "./navbar/navbar";
 export { Hamburger } from "./hamburger/hamburger";
+export { NavbarModalPartial } from "./navbar-modal-partial/navbar-modal-partial";
 export { NavbarMobile } from "./navbar-mobile/navbar-mobile";

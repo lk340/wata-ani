@@ -141,6 +141,7 @@ export const Navbar = () => {
 				</Styled.NavbarLinks>
 
 				<Components.Hamburger />
+				<Components.NavbarModalPartial />
 			</Styled.NavbarMaxWidth>
 		</Styled.Navbar>
 	);

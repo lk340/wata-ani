@@ -52,6 +52,10 @@ export const theme = {
 			borderTop: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 			option: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 		},
+		navbarModalPartial: {
+			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
+			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+		},
 	},
 	pages: {
 		home: {
@@ -157,6 +161,9 @@ export const borderRadius = {
 		},
 		navbar: {
 			register: "0.3125rem",
+		},
+		navbarModalPartial: {
+			container: "0.3125rem",
 		},
 	},
 };
