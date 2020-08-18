@@ -103,7 +103,7 @@ export const NavbarLogoIcon = styled("img").attrs(() => ({
 
 type ProfileIconProps = { display: string };
 
-export const NavbarProfileIcon = styled("img").attrs((props) => ({
+export const NavbarProfileIcon = styled(animated.img).attrs((props) => ({
 	src: props.src,
 	alt: "navbar component profile icon",
 }))<ProfileIconProps>`
@@ -111,7 +111,6 @@ export const NavbarProfileIcon = styled("img").attrs((props) => ({
 	${Snippets.makeCircle()};
 	display: ${(props) => props.display};
 	margin-left: ${Constants.size.components.navbar.spacer};
-	border: ${Constants.theme.components.navbar.profileIcon} solid 1px;
 `;
 
 export const NavbarLightModeIcon = styled(animated.img).attrs(() => ({

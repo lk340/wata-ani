@@ -41,8 +41,9 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const setFill = (fillColor: string): void => setNavbar({ iconFill: fillColor });
 
-	const toggleHamburgerOpen = (): void =>
+	function toggleHamburgerOpen(): void {
 		setNavbar({ hamburgerOpen: !navbar.hamburgerOpen });
+	}
 
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //

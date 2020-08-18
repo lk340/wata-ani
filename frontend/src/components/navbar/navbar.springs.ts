@@ -2,6 +2,7 @@ import * as Spring from "react-spring";
 
 import * as Context from "@/context";
 import * as Constants from "@/utils/style/constants";
+import * as Colors from "@/utils/style/colors";
 
 export function navbar(mode: Context.Theme.Mode) {
 	return Spring.useSpring({
@@ -30,5 +31,17 @@ export function navbar(mode: Context.Theme.Mode) {
 						borderBottom: `${Constants.theme.components.navbar.borderBottom.dark} solid 1px`,
 				  },
 		config: { duration: 100 },
+	});
+}
+
+export function profileIcon(mode: Context.Theme.Mode, isUser: boolean) {
+	return Spring.useSpring({
+		to: {
+			border: isUser
+				? `${Colors.PRIMARY_100} solid 1px`
+				: mode === "light"
+				? `${Constants.theme.components.navbar.profileIcon.light} solid 1px`
+				: `${Constants.theme.components.navbar.profileIcon.light} solid 1px`,
+		},
 	});
 }

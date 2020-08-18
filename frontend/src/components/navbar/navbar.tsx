@@ -20,6 +20,7 @@ export const Navbar = () => {
 
 	const animateNavbar = Springs.navbar(theme.state.mode);
 	const animateLightModeIcon = Animations.opacity(theme.state.mode === "dark");
+	const animateProfileIcon = Springs.profileIcon(theme.state.mode, authForm.state.user);
 	const animateRegisterButton = Animations.background(
 		theme.state.mode,
 		Constants.theme.components.navbar.registerButton.light,
@@ -35,7 +36,8 @@ export const Navbar = () => {
 		if (location.state.pathname === "/") navbar.setters.setOption("home");
 	}, [location.state.pathname]);
 
-	const isUserDisplay = !!authForm.state.user ? "flex" : "none";
+	// const isUserDisplay = !!authForm.state.user ? "flex" : "none";
+	const isUserDisplay = "flex";
 
 	return (
 		<Styled.Navbar style={animateNavbar}>
@@ -107,8 +109,15 @@ export const Navbar = () => {
 					</Styled.NavbarModalButton>
 
 					{/* Profile Link */}
-					<Styled.NavbarLink to="/">
-						<Styled.NavbarProfileIcon src={logoJapanese} display={isUserDisplay} />
+					<Styled.NavbarLink
+						to="/profile"
+						onClick={() => navbar.setters.setOption("home")}
+					>
+						<Styled.NavbarProfileIcon
+							src={logoJapanese}
+							display={isUserDisplay}
+							style={animateProfileIcon}
+						/>
 					</Styled.NavbarLink>
 
 					{/* Theme Button */}

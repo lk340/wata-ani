@@ -5,11 +5,18 @@ import * as Gatsby from "gatsby";
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 
+/**
+ * Navbar Mobile
+ * Options
+ */
+
 // ===================== //
 // ↓↓↓ Navbar Mobile ↓↓↓ //
 // ===================== //
 
-export const NavbarMobile = styled(animated.div)`
+type Navbar = { display: boolean };
+
+export const NavbarMobile = styled(animated.div)<Navbar>`
 	${Snippets.flex("row", "space-between", "center")};
 	display: none;
 	height: ${Constants.size.components.navbarMobile.height};
@@ -19,7 +26,7 @@ export const NavbarMobile = styled(animated.div)`
 	border-top: ${Constants.theme.components.navbarMobile.borderTop} solid 1px;
 
 	@media (max-width: 575px) {
-		display: flex;
+		display: ${(props) => (props.display ? "flex" : "none")};
 	}
 `;
 
