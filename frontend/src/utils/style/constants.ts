@@ -52,6 +52,25 @@ export const theme = {
 	},
 };
 
+// =================== //
+// ↓↓↓ Breakpoints ↓↓↓ //
+// =================== //
+
+export const breakpoints = {
+	tablet: "1102px",
+	mobile: "450px",
+	paddingTablet: "865px",
+	paddingMobile: "450px",
+	navbar: {
+		1260: "1260px",
+		650: "650px",
+	},
+	home: {
+		1260: "1260px",
+		650: "650px",
+	},
+};
+
 // ==================== //
 // ↓↓↓ Side Paddings ↓↓↓ //
 // ==================== //
@@ -60,6 +79,28 @@ export const sidePaddings = {
 	desktop: "120px",
 	tablet: "60px",
 	mobile: "30px",
+};
+
+// ============ //
+// ↓↓↓ Size ↓↓↓ //
+// ============ //
+
+export const size = {
+	components: {
+		authForm: {
+			logo: { width: "70px" },
+			icon: { width: "20px" },
+		},
+		navbar: {
+			height: "100px",
+			icon: "20px",
+			spacer: "40px",
+		},
+		navbarMobile: {
+			height: "80px",
+			icon: "20px",
+		},
+	},
 };
 
 // ================== //
@@ -82,25 +123,9 @@ export const fontSizes = {
 		navbarMobile: {
 			text: "0.75rem",
 		},
-	},
-};
-
-// =================== //
-// ↓↓↓ Breakpoints ↓↓↓ //
-// =================== //
-
-export const breakpoints = {
-	tablet: "1102px",
-	mobile: "450px",
-	paddingTablet: "865px",
-	paddingMobile: "450px",
-	navbar: {
-		1260: "1260px",
-		650: "650px",
-	},
-	home: {
-		1260: "1260px",
-		650: "650px",
+		hamburger: {
+			link: "0.875rem",
+		},
 	},
 };
 
@@ -124,28 +149,6 @@ export const borderRadius = {
 		},
 		navbar: {
 			register: "0.3125rem",
-		},
-	},
-};
-
-// ============ //
-// ↓↓↓ Size ↓↓↓ //
-// ============ //
-
-export const size = {
-	components: {
-		authForm: {
-			logo: { width: "70px" },
-			icon: { width: "20px" },
-		},
-		navbar: {
-			height: "100px",
-			icon: "20px",
-			spacer: "40px",
-		},
-		navbarMobile: {
-			height: "80px",
-			icon: "20px",
 		},
 	},
 };

@@ -31,74 +31,78 @@ export const Navbar = () => {
 		else navbar.setters.setFill(Colors.LIGHT.five);
 	}, [theme.state.mode]);
 
+	React.useEffect(() => {
+		if (location.state.pathname === "/") navbar.setters.setOption("home");
+	}, [location.state.pathname]);
+
 	const isUserDisplay = !!authForm.state.user ? "flex" : "none";
 
 	return (
 		<Styled.Navbar style={animateNavbar}>
 			<Styled.NavbarMaxWidth>
 				{/* Logo Link */}
-				<Styled.NavbarLink to="/">
+				<Styled.NavbarLink to="/" onClick={() => navbar.setters.setOption("home")}>
 					<Styled.NavbarLogoIcon />
 				</Styled.NavbarLink>
 
 				{/* Links */}
 				<Styled.NavbarLinks>
 					{/* Home Link */}
-					<Styled.NavbarLink to="/">
+					<Styled.NavbarLink to="/" onClick={() => navbar.setters.setOption("home")}>
 						<Icons.HomeHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={location.state.pathname === "/"}
+							state={navbar.state.option === "home"}
 						/>
 					</Styled.NavbarLink>
 
 					{/* Like Button */}
 					<Styled.NavbarModalButton
-						onClick={navbar.setters.toggleLikes}
+						onClick={() => navbar.setters.setOption("likes")}
 						display={isUserDisplay}
 					>
 						<Icons.LikeHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={navbar.state.likes}
+							state={navbar.state.option === "likes"}
 						/>
 					</Styled.NavbarModalButton>
 
 					{/* Create Button */}
 					<Styled.NavbarModalButton
-						onClick={navbar.setters.toggleCreate}
+						onClick={() => navbar.setters.setOption("create")}
 						display={isUserDisplay}
 					>
 						<Icons.Create
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={navbar.state.create}
+							state={navbar.state.option === "create"}
 						/>
 					</Styled.NavbarModalButton>
 
 					{/* Search Button */}
-					<Styled.NavbarModalButton onClick={navbar.setters.toggleSearch}>
+					<Styled.NavbarModalButton onClick={() => navbar.setters.setOption("search")}>
 						<Icons.Search
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={navbar.state.search}
+							state={navbar.state.option === "search"}
 						/>
 					</Styled.NavbarModalButton>
 
 					{/* Settings Button */}
 					<Styled.NavbarModalButton
-						onClick={navbar.setters.toggleSettings}
+						onClick={() => navbar.setters.setOption("settings")}
 						display={isUserDisplay}
 					>
 						<Icons.SettingsHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={navbar.state.settings}
+							state={navbar.state.option === "settings"}
 						/>
 					</Styled.NavbarModalButton>
 
