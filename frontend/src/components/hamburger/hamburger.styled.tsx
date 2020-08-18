@@ -27,7 +27,7 @@ const lineStyles = css`
 	border-radius: 10rem;
 `;
 
-export const HamburgerLinesLineTop = styled(animated.div)`
+export const HamburgerLinesLine = styled(animated.div)`
 	${lineStyles};
 `;
 
@@ -35,8 +35,4 @@ export const HamburgerLinesLineMiddle = styled(animated.div)`
 	${lineStyles};
 	top: 50%;
 	transform: translateY(-50%);
-`;
-
-export const HamburgerLinesLineBottom = styled(animated.div)`
-	${lineStyles};
 `;
