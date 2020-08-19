@@ -37,6 +37,7 @@ export const NavbarModalPartialHeaderClose = styled("img").attrs(() => ({
 	alt: "navbar modal partial close icon",
 }))`
 	${Snippets.square(Constants.size.components.navbarModalPartial.header.close)};
+	cursor: pointer;
 `;
 
 // ============ //

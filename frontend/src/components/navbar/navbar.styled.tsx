@@ -36,7 +36,7 @@ export const Navbar = styled(animated.div)`
 export const NavbarMaxWidth = styled("div")`
 	${Snippets.flex("row", "space-between", "center")};
 	${Snippets.fillContainer()};
-	position: relative;
+	/* position: relative; */
 	margin: 0px auto;
 	max-width: ${Constants.globals.maxWidth};
 	font-size: ${Constants.fontSizes.components.navbar.link};

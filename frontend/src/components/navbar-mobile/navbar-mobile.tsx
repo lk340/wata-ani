@@ -15,12 +15,12 @@ export const NavbarMobile = () => {
 	const { theme } = Context.Theme.useThemeContext();
 
 	React.useEffect(() => {
-		if (theme.state.mode === "light") navbar.setters.setFill(Colors.LIGHT.seven);
-		else navbar.setters.setFill(Colors.LIGHT.five);
+		if (theme.state.mode === "light") navbar.setters.setIconFill(Colors.LIGHT.seven);
+		else navbar.setters.setIconFill(Colors.LIGHT.five);
 	}, [theme.state.mode]);
 
 	React.useEffect(() => {
-		if (location.state.pathname === "/") navbar.setters.setOption("home");
+		if (location.state.pathname === "/") navbar.setters.toggleOption("home");
 	}, [location.state.pathname]);
 
 	const animateNavbarMobile = Springs.navbarMobile(theme.state.mode);
@@ -30,15 +30,15 @@ export const NavbarMobile = () => {
 			{/* Home */}
 			<OptionLink
 				to="/"
-				onClick={() => navbar.setters.setOption("home")}
-				state={navbar.state.option === "home"}
+				onClick={() => navbar.setters.toggleOption("home")}
+				state={navbar.state.home}
 				mode={theme.state.mode}
 				icon={
 					<Icons.HomeHollow
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
-						state={navbar.state.option === "home"}
+						state={navbar.state.home}
 					/>
 				}
 				text="Home"
@@ -47,67 +47,67 @@ export const NavbarMobile = () => {
 
 			{/* Likes */}
 			<OptionButton
-				onClick={() => navbar.setters.setOption("likes")}
+				onClick={() => navbar.setters.toggleOption("likes")}
 				mode={theme.state.mode}
 				icon={
 					<Icons.LikeHollow
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
-						state={navbar.state.option === "likes"}
+						state={navbar.state.likes}
 					/>
 				}
 				text="Likes"
-				state={navbar.state.option === "likes"}
+				state={navbar.state.likes}
 			/>
 			<Components.Spacer width="40px" />
 
 			{/* Create */}
 			<OptionButton
-				onClick={() => navbar.setters.setOption("create")}
+				onClick={() => navbar.setters.toggleOption("create")}
 				mode={theme.state.mode}
 				icon={
 					<Icons.Create
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
-						state={navbar.state.option === "create"}
+						state={navbar.state.create}
 					/>
 				}
 				text="Create"
-				state={navbar.state.option === "create"}
+				state={navbar.state.create}
 			/>
 			<Components.Spacer width="40px" />
 
 			{/* Search */}
 			<OptionButton
-				onClick={() => navbar.setters.setOption("search")}
+				onClick={() => navbar.setters.toggleOption("search")}
 				mode={theme.state.mode}
 				icon={
 					<Icons.Search
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
-						state={navbar.state.option === "search"}
+						state={navbar.state.search}
 					/>
 				}
 				text="Search"
-				state={navbar.state.option === "search"}
+				state={navbar.state.search}
 			/>
 			<Components.Spacer width="40px" />
 
 			{/* Profile */}
 			<OptionLink
 				to="/"
-				onClick={() => navbar.setters.setOption("profile")}
-				state={navbar.state.option === "profile"}
+				onClick={() => navbar.setters.toggleOption("profile")}
+				state={navbar.state.profile}
 				mode={theme.state.mode}
 				icon={
 					<Icons.HomeHollow
 						width={Constants.size.components.navbarMobile.icon}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
-						state={navbar.state.option === "profile"}
+						state={navbar.state.profile}
 					/>
 				}
 				text="Profile"

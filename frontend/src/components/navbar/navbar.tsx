@@ -28,12 +28,13 @@ export const Navbar = () => {
 	);
 
 	React.useEffect(() => {
-		if (theme.state.mode === "light") navbar.setters.setFill(Colors.LIGHT.seven);
-		else navbar.setters.setFill(Colors.LIGHT.five);
+		if (theme.state.mode === "light") navbar.setters.setIconFill(Colors.LIGHT.seven);
+		else navbar.setters.setIconFill(Colors.LIGHT.five);
 	}, [theme.state.mode]);
 
 	React.useEffect(() => {
-		if (location.state.pathname === "/") navbar.setters.setOption("home");
+		if (location.state.pathname === "/") navbar.setters.setHome;
+		else navbar.setters.setProfile();
 	}, [location.state.pathname]);
 
 	// const isUserDisplay = !!authForm.state.user ? "flex" : "none";
@@ -43,76 +44,73 @@ export const Navbar = () => {
 		<Styled.Navbar style={animateNavbar}>
 			<Styled.NavbarMaxWidth>
 				{/* Logo Link */}
-				<Styled.NavbarLink to="/" onClick={() => navbar.setters.setOption("home")}>
+				<Styled.NavbarLink to="/" onClick={navbar.setters.setHome}>
 					<Styled.NavbarLogoIcon />
 				</Styled.NavbarLink>
 
 				{/* Links */}
 				<Styled.NavbarLinks>
 					{/* Home Link */}
-					<Styled.NavbarLink to="/" onClick={() => navbar.setters.setOption("home")}>
+					<Styled.NavbarLink to="/" onClick={navbar.setters.setHome}>
 						<Icons.HomeHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={navbar.state.option === "home"}
+							state={navbar.state.home}
 						/>
 					</Styled.NavbarLink>
 
 					{/* Like Button */}
 					<Styled.NavbarModalButton
-						onClick={() => navbar.setters.setOption("likes")}
+						onClick={() => navbar.setters.toggleOption("likes")}
 						display={isUserDisplay}
 					>
 						<Icons.LikeHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={navbar.state.option === "likes"}
+							state={navbar.state.likes}
 						/>
 					</Styled.NavbarModalButton>
 
 					{/* Create Button */}
 					<Styled.NavbarModalButton
-						onClick={() => navbar.setters.setOption("create")}
+						onClick={() => navbar.setters.toggleOption("create")}
 						display={isUserDisplay}
 					>
 						<Icons.Create
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={navbar.state.option === "create"}
+							state={navbar.state.create}
 						/>
 					</Styled.NavbarModalButton>
 
 					{/* Search Button */}
-					<Styled.NavbarModalButton onClick={() => navbar.setters.setOption("search")}>
+					<Styled.NavbarModalButton onClick={() => navbar.setters.toggleOption("search")}>
 						<Icons.Search
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={navbar.state.option === "search"}
+							state={navbar.state.search}
 						/>
 					</Styled.NavbarModalButton>
 
 					{/* Settings Button */}
 					<Styled.NavbarModalButton
-						onClick={() => navbar.setters.setOption("settings")}
+						onClick={() => navbar.setters.toggleOption("settings")}
 						display={isUserDisplay}
 					>
 						<Icons.SettingsHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
-							state={navbar.state.option === "settings"}
+							state={navbar.state.settings}
 						/>
 					</Styled.NavbarModalButton>
 
 					{/* Profile Link */}
-					<Styled.NavbarLink
-						to="/profile"
-						onClick={() => navbar.setters.setOption("home")}
-					>
+					<Styled.NavbarLink to="/profile" onClick={navbar.setters.setProfile}>
 						<Styled.NavbarProfileIcon
 							src={logoJapanese}
 							display={isUserDisplay}
@@ -141,7 +139,6 @@ export const Navbar = () => {
 				</Styled.NavbarLinks>
 
 				<Components.Hamburger />
-				<Components.NavbarModalPartial />
 			</Styled.NavbarMaxWidth>
 		</Styled.Navbar>
 	);

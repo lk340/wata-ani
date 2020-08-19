@@ -2,23 +2,26 @@ import * as React from "react";
 
 import * as Helpers from "@/context/helpers";
 
-export type Options =
-	| ""
-	| "home"
-	| "likes"
-	| "create"
-	| "search"
-	| "settings"
-	| "profile";
+export type Options = "home" | "likes" | "create" | "search" | "settings" | "profile";
 
 type State = {
-	option: Options;
+	home: boolean;
+	likes: boolean;
+	create: boolean;
+	search: boolean;
+	settings: boolean;
+	profile: boolean;
 	iconFill: string;
 	hamburgerOpen: boolean;
 };
 
 const initialState = Object.freeze<State>({
-	option: "",
+	home: false,
+	likes: false,
+	create: false,
+	search: false,
+	settings: false,
+	profile: false,
 	iconFill: "",
 	hamburgerOpen: false,
 });
@@ -32,14 +35,19 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const setNavbar = (state: Partial<State>) => _setNavbar({ ...navbar, ...state });
 
-	function setOption(option: Options): void {
-		return setNavbar({
-			option,
-			hamburgerOpen: false,
-		});
+	function toggleOption(option: Options): void {
+		setNavbar({ [option]: !navbar[option], home: false, profile: false });
 	}
 
-	const setFill = (fillColor: string): void => setNavbar({ iconFill: fillColor });
+	function setHome(): void {
+		setNavbar({ home: true, profile: false });
+	}
+
+	function setProfile(): void {
+		setNavbar({ home: false, profile: true });
+	}
+
+	const setIconFill = (fillColor: string): void => setNavbar({ iconFill: fillColor });
 
 	function toggleHamburgerOpen(): void {
 		setNavbar({ hamburgerOpen: !navbar.hamburgerOpen });
@@ -55,8 +63,10 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const setters = {
 		setNavbar,
-		setOption,
-		setFill,
+		toggleOption,
+		setHome,
+		setProfile,
+		setIconFill,
 		toggleHamburgerOpen,
 	};
 
