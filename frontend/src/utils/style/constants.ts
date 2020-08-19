@@ -56,6 +56,7 @@ export const theme = {
 			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 			header: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+			headerText: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 			body: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
 		},
 	},
@@ -115,7 +116,10 @@ export const size = {
 			icon: "20px",
 		},
 		navbarModalPartial: {
-			header: { height: "70px" },
+			header: {
+				height: "70px",
+				close: "20px",
+			},
 		},
 	},
 };
@@ -142,6 +146,9 @@ export const fontSizes = {
 		},
 		hamburger: {
 			link: "0.875rem",
+		},
+		navbarModalParial: {
+			header: "1rem",
 		},
 	},
 };

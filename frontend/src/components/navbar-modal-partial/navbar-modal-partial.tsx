@@ -20,6 +20,7 @@ export const NavbarModalPartial = (props: Props) => {
 
 	const animateContainer = Springs.container(theme.state.mode);
 	const animateHeader = Springs.header(theme.state.mode);
+	const animateHeaderText = Springs.headerText(theme.state.mode);
 	const animateBody = Animations.background(
 		theme.state.mode,
 		Constants.theme.components.navbarModalPartial.body.light,
@@ -28,13 +29,19 @@ export const NavbarModalPartial = (props: Props) => {
 
 	return (
 		<Styled.NavbarModalPartial style={animateContainer}>
+			{/* Header */}
 			<Styled.NavbarModalPartialHeader style={animateHeader}>
-				{/* {title} */}
-				Header
-				X
+				{/* Header Text */}
+				<Styled.NavbarModalPartialHeaderText style={animateHeaderText}>
+					{title}
+				</Styled.NavbarModalPartialHeaderText>
+				{/* Header Close */}
+				<Styled.NavbarModalPartialHeaderClose />
 			</Styled.NavbarModalPartialHeader>
+
+			{/* Body */}
 			<Styled.NavbarModalPartialBody style={animateBody}>
-				Body
+				{children}
 			</Styled.NavbarModalPartialBody>
 		</Styled.NavbarModalPartial>
 	);
