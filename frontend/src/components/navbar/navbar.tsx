@@ -33,8 +33,8 @@ export const Navbar = () => {
 	}, [theme.state.mode]);
 
 	React.useEffect(() => {
-		if (location.state.pathname === "/") navbar.setters.setHome;
-		else navbar.setters.setProfile();
+		if (location.state.pathname === "/") navbar.setters.setHomeOn;
+		else navbar.setters.setProfileOn();
 	}, [location.state.pathname]);
 
 	// const isUserDisplay = !!authForm.state.user ? "flex" : "none";
@@ -44,14 +44,14 @@ export const Navbar = () => {
 		<Styled.Navbar style={animateNavbar}>
 			<Styled.NavbarMaxWidth>
 				{/* Logo Link */}
-				<Styled.NavbarLink to="/" onClick={navbar.setters.setHome}>
+				<Styled.NavbarLink to="/" onClick={navbar.setters.setHomeOn}>
 					<Styled.NavbarLogoIcon />
 				</Styled.NavbarLink>
 
 				{/* Links */}
 				<Styled.NavbarLinks>
 					{/* Home Link */}
-					<Styled.NavbarLink to="/" onClick={navbar.setters.setHome}>
+					<Styled.NavbarLink to="/" onClick={navbar.setters.setHomeOn}>
 						<Icons.HomeHollow
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
@@ -62,7 +62,7 @@ export const Navbar = () => {
 
 					{/* Like Button */}
 					<Styled.NavbarModalButton
-						onClick={() => navbar.setters.toggleOption("likes")}
+						onClick={navbar.setters.toggleLikes}
 						display={isUserDisplay}
 					>
 						<Icons.LikeHollow
@@ -75,7 +75,7 @@ export const Navbar = () => {
 
 					{/* Create Button */}
 					<Styled.NavbarModalButton
-						onClick={() => navbar.setters.toggleOption("create")}
+						onClick={navbar.setters.toggleCreate}
 						display={isUserDisplay}
 					>
 						<Icons.Create
@@ -87,7 +87,7 @@ export const Navbar = () => {
 					</Styled.NavbarModalButton>
 
 					{/* Search Button */}
-					<Styled.NavbarModalButton onClick={() => navbar.setters.toggleOption("search")}>
+					<Styled.NavbarModalButton onClick={navbar.setters.toggleSearch}>
 						<Icons.Search
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
@@ -98,7 +98,7 @@ export const Navbar = () => {
 
 					{/* Settings Button */}
 					<Styled.NavbarModalButton
-						onClick={() => navbar.setters.toggleOption("settings")}
+						onClick={navbar.setters.toggleSettings}
 						display={isUserDisplay}
 					>
 						<Icons.SettingsHollow
@@ -110,7 +110,7 @@ export const Navbar = () => {
 					</Styled.NavbarModalButton>
 
 					{/* Profile Link */}
-					<Styled.NavbarLink to="/profile" onClick={navbar.setters.setProfile}>
+					<Styled.NavbarLink to="/profile" onClick={navbar.setters.setProfileOn}>
 						<Styled.NavbarProfileIcon
 							src={logoJapanese}
 							display={isUserDisplay}

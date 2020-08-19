@@ -35,16 +35,56 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const setNavbar = (state: Partial<State>) => _setNavbar({ ...navbar, ...state });
 
-	function toggleOption(option: Options): void {
-		setNavbar({ [option]: !navbar[option], home: false, profile: false });
-	}
-
-	function setHome(): void {
+	function setHomeOn(): void {
 		setNavbar({ home: true, profile: false });
 	}
 
-	function setProfile(): void {
+	function setProfileOn(): void {
 		setNavbar({ home: false, profile: true });
+	}
+
+	function toggleLikes(): void {
+		setNavbar({
+			home: false,
+			likes: !navbar.likes,
+			create: false,
+			search: false,
+			settings: false,
+			profile: false,
+		});
+	}
+
+	function toggleCreate(): void {
+		setNavbar({
+			home: false,
+			likes: false,
+			create: !navbar.create,
+			search: false,
+			settings: false,
+			profile: false,
+		});
+	}
+
+	function toggleSearch(): void {
+		setNavbar({
+			home: false,
+			likes: false,
+			create: false,
+			search: !navbar.search,
+			settings: false,
+			profile: false,
+		});
+	}
+
+	function toggleSettings(): void {
+		setNavbar({
+			home: false,
+			likes: false,
+			create: false,
+			search: false,
+			settings: !navbar.settings,
+			profile: false,
+		});
 	}
 
 	const setIconFill = (fillColor: string): void => setNavbar({ iconFill: fillColor });
@@ -63,9 +103,12 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const setters = {
 		setNavbar,
-		toggleOption,
-		setHome,
-		setProfile,
+		setHomeOn,
+		setProfileOn,
+		toggleLikes,
+		toggleCreate,
+		toggleSearch,
+		toggleSettings,
 		setIconFill,
 		toggleHamburgerOpen,
 	};

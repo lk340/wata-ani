@@ -20,7 +20,7 @@ export const NavbarMobile = () => {
 	}, [theme.state.mode]);
 
 	React.useEffect(() => {
-		if (location.state.pathname === "/") navbar.setters.toggleOption("home");
+		if (location.state.pathname === "/") navbar.setters.setHomeOn;
 	}, [location.state.pathname]);
 
 	const animateNavbarMobile = Springs.navbarMobile(theme.state.mode);
@@ -30,7 +30,7 @@ export const NavbarMobile = () => {
 			{/* Home */}
 			<OptionLink
 				to="/"
-				onClick={() => navbar.setters.toggleOption("home")}
+				onClick={navbar.setters.setHomeOn}
 				state={navbar.state.home}
 				mode={theme.state.mode}
 				icon={
@@ -47,7 +47,7 @@ export const NavbarMobile = () => {
 
 			{/* Likes */}
 			<OptionButton
-				onClick={() => navbar.setters.toggleOption("likes")}
+				onClick={navbar.setters.toggleLikes}
 				mode={theme.state.mode}
 				icon={
 					<Icons.LikeHollow
@@ -64,7 +64,7 @@ export const NavbarMobile = () => {
 
 			{/* Create */}
 			<OptionButton
-				onClick={() => navbar.setters.toggleOption("create")}
+				onClick={navbar.setters.toggleCreate}
 				mode={theme.state.mode}
 				icon={
 					<Icons.Create
@@ -81,7 +81,7 @@ export const NavbarMobile = () => {
 
 			{/* Search */}
 			<OptionButton
-				onClick={() => navbar.setters.toggleOption("search")}
+				onClick={navbar.setters.toggleSearch}
 				mode={theme.state.mode}
 				icon={
 					<Icons.Search
@@ -99,7 +99,7 @@ export const NavbarMobile = () => {
 			{/* Profile */}
 			<OptionLink
 				to="/"
-				onClick={() => navbar.setters.toggleOption("profile")}
+				onClick={navbar.setters.setProfileOn}
 				state={navbar.state.profile}
 				mode={theme.state.mode}
 				icon={
