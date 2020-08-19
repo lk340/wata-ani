@@ -4,24 +4,13 @@ import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Icons from "@/icons/navbar";
 import * as Constants from "@/utils/style/constants";
-import * as Colors from "@/utils/style/colors";
 
 import * as Styled from "./navbar-mobile.styled";
 import * as Springs from "./navbar-mobile.springs";
 
 export const NavbarMobile = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
-	const { location } = Context.Location.useLocationContext();
 	const { theme } = Context.Theme.useThemeContext();
-
-	React.useEffect(() => {
-		if (theme.state.mode === "light") navbar.setters.setIconFill(Colors.LIGHT.seven);
-		else navbar.setters.setIconFill(Colors.LIGHT.five);
-	}, [theme.state.mode]);
-
-	React.useEffect(() => {
-		if (location.state.pathname === "/") navbar.setters.setHomeOn;
-	}, [location.state.pathname]);
 
 	const animateNavbarMobile = Springs.navbarMobile(theme.state.mode);
 

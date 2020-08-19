@@ -36,16 +36,30 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 	const setNavbar = (state: Partial<State>) => _setNavbar({ ...navbar, ...state });
 
 	function setHomeOn(): void {
-		setNavbar({ home: true, profile: false });
+		setNavbar({
+			home: true,
+			likes: false,
+			create: false,
+			search: false,
+			settings: false,
+			profile: false,
+		});
 	}
 
 	function setProfileOn(): void {
-		setNavbar({ home: false, profile: true });
+		setNavbar({
+			home: false,
+			likes: false,
+			create: false,
+			search: false,
+			settings: false,
+			profile: true,
+		});
 	}
 
 	function toggleLikes(): void {
 		setNavbar({
-			home: false,
+			home: !!navbar.likes,
 			likes: !navbar.likes,
 			create: false,
 			search: false,
@@ -56,7 +70,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	function toggleCreate(): void {
 		setNavbar({
-			home: false,
+			home: !!navbar.create,
 			likes: false,
 			create: !navbar.create,
 			search: false,
@@ -67,7 +81,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	function toggleSearch(): void {
 		setNavbar({
-			home: false,
+			home: !!navbar.search,
 			likes: false,
 			create: false,
 			search: !navbar.search,
@@ -78,7 +92,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	function toggleSettings(): void {
 		setNavbar({
-			home: false,
+			home: !!navbar.settings,
 			likes: false,
 			create: false,
 			search: false,

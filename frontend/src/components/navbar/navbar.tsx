@@ -33,8 +33,8 @@ export const Navbar = () => {
 	}, [theme.state.mode]);
 
 	React.useEffect(() => {
-		if (location.state.pathname === "/") navbar.setters.setHomeOn;
-		else navbar.setters.setProfileOn();
+		if (location.state.pathname === "/") navbar.setters.setHomeOn();
+		else if (location.state.pathname === "/profile") navbar.setters.setProfileOn();
 	}, [location.state.pathname]);
 
 	// const isUserDisplay = !!authForm.state.user ? "flex" : "none";
