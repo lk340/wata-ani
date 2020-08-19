@@ -11,6 +11,15 @@ import * as Snippets from "@/utils/style/snippets";
 export const NavbarModalPartial = styled(animated.div)`
 	${Snippets.absolute("80px", "0px")};
 	border-radius: ${Constants.borderRadius.components.navbarModalPartial.container};
+	overflow: hidden;
+`;
 
-	border: red solid 1px;
+export const NavbarModalPartialHeader = styled(animated.div)`
+	${Snippets.flex("row", "space-between", "center")};
+	height: ${Constants.size.components.navbarModalPartial.header.height};
+	padding: 0px ${Constants.sidePaddings.mobile};
+`;
+
+export const NavbarModalPartialBody = styled(animated.div)`
+	padding: ${Constants.sidePaddings.mobile};
 `;

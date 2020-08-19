@@ -55,6 +55,8 @@ export const theme = {
 		navbarModalPartial: {
 			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+			header: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+			body: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
 		},
 	},
 	pages: {
@@ -111,6 +113,9 @@ export const size = {
 		navbarMobile: {
 			height: "80px",
 			icon: "20px",
+		},
+		navbarModalPartial: {
+			header: { height: "70px" },
 		},
 	},
 };
