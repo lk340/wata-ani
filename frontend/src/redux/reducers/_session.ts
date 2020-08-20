@@ -4,7 +4,7 @@ import * as Actions from "@/redux/actions";
 
 const initialState = { id: null };
 
-type Action = {} & Actions.Session.Receive;
+// type Action = {} & Actions.Session.Receive;
 
 export function Session(state = initialState, action: any) {
 	Object.freeze(state);
