@@ -9,7 +9,7 @@ type Action = {
 	[key: string]: any;
 };
 
-export function session(state = { id: null }, action: Action) {
+export function sessionReducer(state = { id: null }, action: Action) {
 	Object.freeze(state);
 	const newState = Lodash.merge({}, state);
 

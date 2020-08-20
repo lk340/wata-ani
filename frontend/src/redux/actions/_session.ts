@@ -75,13 +75,15 @@ async function POST(
 	data: RegisterData | SignInData,
 	dispatch: Function,
 ): Promise<void> {
-	const validateStatus = (status: number) => status >= 200 && status < 500;
 	try {
+		const validateStatus = (status: number) => status >= 200 && status < 500;
 		const response = await axios.post(endpoint, data, { validateStatus });
+		// Success
 		if (response.status < 400) dispatch(receiveCurrentUser(response.data.user));
+		// Failure
 		else dispatch(receiveErrors(response.data.errors));
 	} catch (error) {
-		// Just in case. Only really useful for development purposes.
+		// Just in case.
 		console.log(error);
 	}
 }
@@ -103,7 +105,7 @@ export function signOut(dispatch: Function) {
 			const response = await axios.post(endpoint);
 			dispatch(signOutCurrentUser());
 		} catch (error) {
-			// Just in case. Only really useful for development purposes.
+			// Just in case.
 			console.log(error);
 		}
 	}
