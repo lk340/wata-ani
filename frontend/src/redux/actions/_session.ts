@@ -1,11 +1,9 @@
 import axios from "axios";
-import Cookies from "js-cookie";
-
-import * as AuthTypes from "@/components/auth-form/auth-form.types";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const SIGN_OUT_CURRENT_USER = "SIGN_OUT_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 // ========================== //
 // ↓↓↓ Register / Sign In ↓↓↓ //
@@ -39,6 +37,23 @@ function signOutCurrentUser() {
 	};
 }
 
+// ============== //
+// ↓↓↓ Errors ↓↓↓ //
+// ============== //
+
+function receiveErrors(errors: any) {
+	return {
+		type: RECEIVE_ERRORS,
+		errors,
+	};
+}
+
+export function clearErrors() {
+	return {
+		type: CLEAR_ERRORS,
+	};
+}
+
 // ============================= //
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // ============================= //
@@ -55,70 +70,42 @@ type SignInData = {
 	password: string;
 };
 
-function POST(
-	formType: AuthTypes.FormType,
+async function POST(
 	endpoint: string,
 	data: RegisterData | SignInData,
+	dispatch: Function,
 ): Promise<void> {
-	async function API() {
+	const validateStatus = (status: number) => status >= 200 && status < 500;
+	try {
+		const response = await axios.post(endpoint, data, { validateStatus });
+		if (response.status < 400) dispatch(receiveCurrentUser(response.data.user));
+		else dispatch(receiveErrors(response.data.errors));
+	} catch (error) {
+		// Just in case. Only really useful for development purposes.
+		console.log(error);
+	}
+}
+
+export function register(dispatch: Function, data: RegisterData): void {
+	const endpoint = "/auth/registration/";
+	POST(endpoint, data, dispatch);
+}
+
+export function signIn(dispatch: Function, data: SignInData) {
+	const endpoint = "/auth/login/";
+	POST(endpoint, data, dispatch);
+}
+
+export function signOut(dispatch: Function) {
+	async function POST(): Promise<void> {
 		try {
-			const validateStatus = (status: number) => status >= 200 && status < 500;
-			const response = await axios.post(endpoint, data, { validateStatus });
-
-			const status = response.status;
-			if (status >= 400 && status < 500) {
-				// Error Handling
-				const responseErrors = Object.values(response.data) as string[];
-				setAuthForm({ errors: responseErrors });
-
-				console.log("Auth Errors:", authForm.errors);
-				console.log("Response Errors:", responseErrors);
-			} else {
-				// Success handling
-				if (formType === "Registration") {
-					console.log("Response:", response);
-				} else {
-					Cookies.set("jacLs1NGQZN07D92L8PVwOi", response.data.access_token);
-					localStorage.rt = response.data.refresh_token;
-					setAuthForm({ user: response.data.user });
-
-					console.log("LS Refresh Token:", localStorage.rt);
-					console.log("Auth Form User:", authForm.user);
-					console.log(
-						"JWT Access Token:",
-						JWT.decryptJWTAccessTokenPayload(Cookies.get("jacLs1NGQZN07D92L8PVwOi")),
-					);
-					console.log("Logged In!");
-				}
-			}
+			const endpoint = "/auth/logout/";
+			const response = await axios.post(endpoint);
+			dispatch(signOutCurrentUser());
 		} catch (error) {
-			// Catching error (just in case)
+			// Just in case. Only really useful for development purposes.
 			console.log(error);
 		}
-	}
-	return API();
-}
-
-export function register(data: RegisterData) {
-	async function POST(): Promise<void> {
-		const response = await axios.get("/auth/registration/", { data });
-		return response.data;
-	}
-	POST();
-}
-
-export function signIn(data: SignInData) {
-	async function POST(): Promise<void> {
-		const response = await axios.get("/auth/sign-in/", { data });
-		return response.data;
-	}
-	POST();
-}
-
-export function signOut(id: number) {
-	async function POST(): Promise<void> {
-		const response = await axios.get(`/auth/sign-out/${id}/`);
-		return response.data;
 	}
 	POST();
 }

@@ -9,7 +9,7 @@ const errorsReducer = Redux.combineReducers({});
 
 const rootReducer = Redux.combineReducers({
 	entities: entitiesReducer,
-	session: Reducers.Session.Session,
+	session: Reducers.Session.session,
 	errors: errorsReducer,
 });
 
