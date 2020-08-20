@@ -16,5 +16,23 @@ module.exports = {
 				path: `${__dirname}/src/views/pages`,
 			},
 		},
+		{
+			resolve: `gatsby-plugin-react-redux`,
+			options: {
+				pathToCreateStoreModule: "./src/redux/store",
+				// [optional] - options passed to `serialize-javascript`
+				// info: https://github.com/yahoo/serialize-javascript#options
+				// will be merged with these defaults:
+				serialize: {
+					space: 0,
+					isJSON: true,
+					unsafe: false,
+				},
+				// [optional] - if true will clean up after itself on the client, default:
+				cleanupOnClient: true,
+				// [optional] - name of key on `window` where serialized state will be stored, default:
+				windowKey: "__PRELOADED_STATE__",
+			},
+		},
 	],
 };

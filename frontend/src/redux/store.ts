@@ -1,19 +1,16 @@
-import * as React from "react";
 import * as Redux from "redux";
-import * as ReactRedux from "react-redux";
 
 import * as Reducers from "@/redux/reducers";
 
+const entitiesReducer = Redux.combineReducers({});
+
+const errorsReducer = Redux.combineReducers({});
+
 const reducers = Redux.combineReducers({
-	currentUser: Reducers.User.CurrentUser,
+	currentUser: Reducers.Session.Session,
+	entities: entitiesReducer,
+	session: Reducers.Session.Session,
+	errors: errorsReducer,
 });
 
-const store = Redux.createStore(reducers);
-
-type Props = { children: React.ReactNode };
-
-export const ReduxStore = (props: Props) => {
-	const { children } = props;
-
-	return <ReactRedux.Provider store={store}>{children}</ReactRedux.Provider>;
-};
+export default (preloadedState = {}) => Redux.createStore(reducers, preloadedState);
