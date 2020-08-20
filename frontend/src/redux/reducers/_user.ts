@@ -1,17 +1,22 @@
-import * as _ from "lodash";
+import * as Lodash from "lodash";
 
 import * as Actions from "@/redux/actions";
 
-export function UserReducer(state = {}, action) {
+const initialState = {};
+
+type Action = {
+	type: Actions.User.CurrentUserType;
+	currentUser: Actions.User.CurrentUser;
+};
+
+export function CurrentUser(state = initialState, action: Action) {
 	Object.freeze(state);
-	const newState = _.merge({}, state);
+	const newState = Lodash.merge({}, state);
 
 	switch (action.type) {
 		case Actions.User.CURRENT_USER:
-			break;
-
+			return action.currentUser;
 		default:
-			return state;
-			break;
+			return newState;
 	}
 }
