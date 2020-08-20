@@ -3,22 +3,22 @@ import * as Lodash from "lodash";
 import * as Actions from "@/redux/actions";
 
 type Action = {
-	type: typeof Actions.Session.RECEIVE_ERRORS | typeof Actions.Session.CLEAR_ERRORS;
+	type: typeof Actions.Session.SESSION_ERRORS | typeof Actions.Errors.CLEAR_ERRORS;
 	[key: string]: any;
 };
 
-export function errors(state = [], action: Action) {
+export function errorsReducer(state = [], action: Action) {
 	Object.freeze(state);
-	const newState = Lodash.merge([], state);
+	const stateCopy = Lodash.merge([], state);
 
 	switch (action.type) {
-		case Actions.Session.RECEIVE_ERRORS:
-			return [newState, action.errors];
+		case Actions.Session.SESSION_ERRORS:
+			return [stateCopy, action.errors];
 
-		case Actions.Session.CLEAR_ERRORS:
+		case Actions.Errors.CLEAR_ERRORS:
 			return [];
 
 		default:
-			return newState;
+			return stateCopy;
 	}
 }

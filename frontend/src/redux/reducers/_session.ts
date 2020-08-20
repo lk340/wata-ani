@@ -11,7 +11,7 @@ type Action = {
 
 export function sessionReducer(state = { id: null }, action: Action) {
 	Object.freeze(state);
-	const newState = Lodash.merge({}, state);
+	const stateCopy = Lodash.merge({}, state);
 
 	switch (action.type) {
 		case Actions.Session.RECEIVE_CURRENT_USER:
@@ -21,6 +21,6 @@ export function sessionReducer(state = { id: null }, action: Action) {
 			return { id: null };
 
 		default:
-			return newState;
+			return stateCopy;
 	}
 }

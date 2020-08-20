@@ -6,9 +6,9 @@ import * as Errors from "./errors";
 const entitiesReducer = Redux.combineReducers({});
 
 const errorsReducer = Redux.combineReducers({
-	session: Errors.Session.errors,
-	user: () => {},
-	post: () => {},
+	session: Errors.sessionErrors,
+	user: Errors.userErrors,
+	post: Errors.postErrors,
 });
 
 export const rootReducer = Redux.combineReducers({

@@ -2,8 +2,7 @@ import axios from "axios";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const SIGN_OUT_CURRENT_USER = "SIGN_OUT_CURRENT_USER";
-export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
-export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const SESSION_ERRORS = "SESSION_ERRORS";
 
 // ========================== //
 // ↓↓↓ Register / Sign In ↓↓↓ //
@@ -20,6 +19,7 @@ export type CurrentUser = {
 	profile_picture: string;
 };
 
+// Used for both registration and sign in logic.
 function receiveCurrentUser(currentUser: CurrentUser) {
 	return {
 		type: RECEIVE_CURRENT_USER,
@@ -41,16 +41,10 @@ function signOutCurrentUser() {
 // ↓↓↓ Errors ↓↓↓ //
 // ============== //
 
-function receiveErrors(errors: any) {
+function sessionErrors(errors: any) {
 	return {
-		type: RECEIVE_ERRORS,
+		type: SESSION_ERRORS,
 		errors,
-	};
-}
-
-export function clearErrors() {
-	return {
-		type: CLEAR_ERRORS,
 	};
 }
 
@@ -81,7 +75,7 @@ async function POST(
 		// Success
 		if (response.status < 400) dispatch(receiveCurrentUser(response.data.user));
 		// Failure
-		else dispatch(receiveErrors(response.data.errors));
+		else dispatch(sessionErrors(response.data.errors));
 	} catch (error) {
 		// Just in case.
 		console.log(error);
