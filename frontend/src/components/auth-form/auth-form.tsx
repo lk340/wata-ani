@@ -9,6 +9,9 @@ import * as AuthTypes from "./auth-form.types";
 import * as Styled from "./auth-form.styled";
 import { Input } from "./input";
 
+import axios from "axios";
+import Cookies from "js-cookie";
+
 type Props = {
 	formType: AuthTypes.FormType;
 	submitText: "Register" | "Sign In";
@@ -23,6 +26,16 @@ export const AuthForm = (props: Props) => {
 	const dispatch = ReactRedux.useDispatch();
 
 	const animateTitle = Animations.text(theme.state.mode);
+
+	function signOut() {
+		async function POST(): Promise<void> {
+			const response = await axios.post("/auth/logout/", {
+				headers: { Authorization: `Bearer ${Cookies.get("jacLs1NGQZN07D92L8PVwOi")}` },
+			});
+			console.log("Sign Out Response:", response);
+		}
+		POST();
+	}
 
 	return (
 		<Styled.AuthForm
@@ -42,6 +55,8 @@ export const AuthForm = (props: Props) => {
 
 			{/* Submit Button & Redirect */}
 			<SubmitButtonAndRedirect formType={formType} submitText={submitText} />
+
+			<div onClick={signOut}>SIGN OUT, BABY</div>
 		</Styled.AuthForm>
 	);
 };

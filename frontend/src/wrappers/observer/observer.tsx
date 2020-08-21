@@ -123,6 +123,8 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
 	React.useEffect(() => {
 		JWT.checkRefreshJWT();
+
+		console.log("Refresh here");
 	}, []);
 
 	// =============================== //

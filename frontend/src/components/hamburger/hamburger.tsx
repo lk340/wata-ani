@@ -22,8 +22,6 @@ export const Hamburger = () => {
 		theme.state.mode,
 	);
 
-	console.log("Navbar State:", navbar.state);
-
 	return (
 		<Styled.Hamburger>
 			{/* Lines */}
