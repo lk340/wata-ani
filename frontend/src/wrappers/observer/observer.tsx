@@ -20,6 +20,7 @@ import * as Styled from "./observer.styled";
  * User Agent
  * Setting Theme
  * Setting Context State Values
+ * Auto-Refreshing JWT Access Token
  * Debugging Context State
  * Provider Theme
  */
@@ -115,6 +116,14 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 			userAgent.setters.setUserAgent({ isMobile: false });
 		}
 	}, [width, height, x, y, elX, elY, navigator.userAgent]);
+
+	// ======================================== //
+	// ↓↓↓ Auto-Refreshing JWT Access Token ↓↓↓ //
+	// ======================================== //
+
+	React.useEffect(() => {
+		JWT.checkRefreshJWT();
+	}, []);
 
 	// =============================== //
 	// ↓↓↓ Debugging Context State ↓↓↓ //

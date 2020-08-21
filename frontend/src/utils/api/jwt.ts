@@ -24,11 +24,11 @@ export function checkRefreshJWT(): void {
 	async function REFRESH(): Promise<void> {
 		try {
 			if (accessToken && refreshToken) {
-				const exp = decryptJWTAccessTokenPayload(accessToken).exp;
-				const tokenExpirationDate = new Date(exp * 1000);
 				const dateTimeRightNow = new Date();
+				const _exp = decryptJWTAccessTokenPayload(accessToken).exp;
+				const tokenExpirationDate = new Date(_exp * 1000);
 
-				const endpoint = "http://localhost:7000/api/token/refresh/";
+				const endpoint = "/api/token/refresh/";
 				const data = { refresh: localStorage.refresh };
 
 				// If the current date is past the access token's expiration date,
@@ -40,7 +40,10 @@ export function checkRefreshJWT(): void {
 					});
 					accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
 				}
-				headers.headers.Authorization = `Bearer ${accessToken}`;
+				// headers.headers.Authorization = `Bearer ${accessToken}`;
+				axios.defaults.headers = {
+					headers: { Authorization: `Bearer ${accessToken}` },
+				};
 			}
 		} catch (error) {
 			// ↓↓↓ //

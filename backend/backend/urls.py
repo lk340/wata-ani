@@ -16,11 +16,11 @@ urlpatterns = [
     # path(r"^accounts-rest/registration/account-confirm-email/(?P<key>.+)/$",
     #      confirm_email, name="account_confirm_email"),
 
-    # dj-rest-auth
+    # dj-rest-auth (user authentication)
     path("auth/", include("dj_rest_auth.urls")),
     path("auth/registration/", include("dj_rest_auth.registration.urls")),
 
-    # [POST] - JWT
+    # simple-jwt
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
