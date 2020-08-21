@@ -123,7 +123,7 @@ const fieldTypeStyles = css`
 `;
 
 type FieldTypeProps = {
-	reveal_password?: boolean;
+	reveal_password?: string;
 	form_type?: AuthTypes.FormType;
 	window_width?: number;
 	window_height: number;
@@ -161,7 +161,7 @@ export const InputEmail = styled(animated.input).attrs((props: FieldTypeProps) =
 `;
 
 export const InputPassword = styled(animated.input).attrs((props: FieldTypeProps) => ({
-	type: props.reveal_password ? "text" : "password",
+	type: props.reveal_password === "true" ? "text" : "password",
 	placeholder: props.window_height > 620 ? "aBcD!@#$123" : "*Password",
 	required: true,
 }))<FieldTypeProps>`
@@ -170,7 +170,7 @@ export const InputPassword = styled(animated.input).attrs((props: FieldTypeProps
 
 export const InputPasswordConfirmation = styled(animated.input).attrs(
 	(props: FieldTypeProps) => ({
-		type: props.reveal_password ? "text" : "password",
+		type: props.reveal_password === "true" ? "text" : "password",
 		placeholder: props.window_height > 620 ? "aBcD!@#$123" : "*Confirm Password",
 		required: props.form_type === "Registration" ? true : false,
 	}),

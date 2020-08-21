@@ -87,6 +87,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 			search: !navbar.search,
 			settings: false,
 			profile: false,
+			hamburgerOpen: false,
 		});
 	}
 
@@ -98,6 +99,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 			search: false,
 			settings: !navbar.settings,
 			profile: false,
+			hamburgerOpen: false,
 		});
 	}
 

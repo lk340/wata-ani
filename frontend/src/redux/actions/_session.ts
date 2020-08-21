@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const SIGN_OUT_CURRENT_USER = "SIGN_OUT_CURRENT_USER";
@@ -98,8 +99,6 @@ export function register(data: RegisterData, dispatch: Function): void {
 export function signIn(data: SignInData, dispatch: Function) {
 	const endpoint = "/auth/login/";
 	POST(endpoint, data, dispatch);
-
-	console.log("Signed In!");
 }
 
 // --- Sign Out --- //

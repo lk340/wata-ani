@@ -87,10 +87,10 @@ export const HamburgerModalMainOptionContainer = styled("div")`
 	padding-right: ${Constants.sidePaddings.mobile};
 `;
 
-type Option = { display: boolean };
+type Option = { display: string };
 
 export const HamburgerModalMainOption = styled("div")<Option>`
-	display: ${(props) => (props.display ? "flex" : "none")};
+	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 `;
 
 export type OptionIcon = {
@@ -118,10 +118,10 @@ export const HamburgerModalMainOptionButton = styled("div")`
 	cursor: pointer;
 `;
 
-type OptionLink = { primary: boolean };
+type OptionLink = { primary: string };
 
 export const HamburgerModalMainOptionLink = styled(Gatsby.Link)<OptionLink>`
 	${Snippets.clearAnchor()};
-	color: ${(props) => (props.primary ? Colors.PRIMARY_100 : "inherit")};
+	color: ${(props) => (props.primary === "true" ? Colors.PRIMARY_100 : "inherit")};
 	font-size: ${Constants.fontSizes.components.hamburger.link};
 `;

@@ -18,14 +18,14 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ====================== //
 
 	axios.defaults.baseURL = "http://localhost:7000";
-	axios.defaults.xsrfCookieName = "6kpjZ4jUn61vnF15QRXuC";
+	axios.defaults.xsrfCookieName = "Co6kpjZ4jUn61vnF15QRXu";
 
 	const accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
+
 	if (accessToken) {
-		// If an access token exists, add the following authorization header to every
-		// axios call.
+		// If an access token exists, add the following authorization header to every axios call.
 		axios.defaults.headers = {
-			headers: { Authorization: `Bearer ${Cookies.get("jacLs1NGQZN07D92L8PVwOi")}` },
+			headers: { Authorization: `Bearer ${accessToken}` },
 		};
 	}
 

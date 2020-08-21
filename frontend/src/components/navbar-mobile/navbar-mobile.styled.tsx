@@ -14,7 +14,7 @@ import * as Snippets from "@/utils/style/snippets";
 // ↓↓↓ Navbar Mobile ↓↓↓ //
 // ===================== //
 
-type Navbar = { display: boolean };
+type Navbar = { display: string };
 
 export const NavbarMobile = styled(animated.div)<Navbar>`
 	${Snippets.flex("row", "space-between", "center")};
@@ -26,7 +26,7 @@ export const NavbarMobile = styled(animated.div)<Navbar>`
 	border-top: ${Constants.theme.components.navbarMobile.borderTop} solid 1px;
 
 	@media (max-width: 575px) {
-		display: ${(props) => (props.display ? "flex" : "none")};
+		display: ${(props) => (props.display === "true" ? "flex" : "none")};
 	}
 `;
 

@@ -15,7 +15,7 @@ export const NavbarMobile = () => {
 	const animateNavbarMobile = Springs.navbarMobile(theme.state.mode);
 
 	return (
-		<Styled.NavbarMobile display={true} style={animateNavbarMobile}>
+		<Styled.NavbarMobile display={true.toString()} style={animateNavbarMobile}>
 			{/* Home */}
 			<OptionLink
 				to="/"

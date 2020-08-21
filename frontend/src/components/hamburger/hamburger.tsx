@@ -22,6 +22,8 @@ export const Hamburger = () => {
 		theme.state.mode,
 	);
 
+	console.log("Navbar State:", navbar.state);
+
 	return (
 		<Styled.Hamburger>
 			{/* Lines */}
@@ -98,10 +100,14 @@ const OptionButton = (props: OptionButtonProps) => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 
 	return (
-		<Styled.HamburgerModalMainOption display={display}>
+		<Styled.HamburgerModalMainOption display={display.toString()}>
 			<Styled.HamburgerModalMainOptionIcon iconType={iconType} />
 			<Styled.HamburgerModalMainOptionButton
-				onClick={() => navbar.setters.setOption(option)}
+				onClick={
+					option === "search"
+						? navbar.setters.toggleSearch
+						: navbar.setters.toggleSettings
+				}
 			>
 				{text}
 			</Styled.HamburgerModalMainOptionButton>
@@ -120,12 +126,12 @@ const OptionLink = (props: OptionLinkProps) => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 
 	return (
-		<Styled.HamburgerModalMainOption display={display}>
+		<Styled.HamburgerModalMainOption display={display.toString()}>
 			<Styled.HamburgerModalMainOptionIcon iconType={iconType} />
 			<Styled.HamburgerModalMainOptionLink
 				to={to}
 				onClick={navbar.setters.toggleHamburgerOpen}
-				primary={primary}
+				primary={primary.toString()}
 			>
 				{text}
 			</Styled.HamburgerModalMainOptionLink>

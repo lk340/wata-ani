@@ -116,11 +116,12 @@ ACCOUNT_USERNAME_REQUIRED = True
 
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = "jacLs1NGQZN07D92L8PVwOi"
+# JWT_AUTH_SAMESITE = False
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKENS": False,
+    "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
 
     "ALGORITHM": "HS256",
@@ -134,7 +135,7 @@ SIMPLE_JWT = {
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",
 
-    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken", "dj_rest_auth.jwt_auth.JWTCookieAuthentication"),
     "TOKEN_TYPE_CLAIM": "token_type",
 
     "JTI_CLAIM": "jti",
@@ -148,7 +149,7 @@ SIMPLE_JWT = {
 # ↓↓↓ Cookie Settings ↓↓↓ #
 # ======================= #
 
-CSRF_COOKIE_NAME = "6kpjZ4jUn61vnF15QRXuC"
+CSRF_COOKIE_NAME = "Co6kpjZ4jUn61vnF15QRXu"
 CSRF_COOKIE_HTTPONLY = True
 
 SESSION_COOKIE_HTTPONLY = True

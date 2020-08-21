@@ -94,7 +94,7 @@ export const Input = (props: InputProps) => {
 			field = (
 				<Styled.InputPassword
 					onChange={onChange}
-					reveal_password={authForm.state.revealPassword}
+					reveal_password={authForm.state.revealPassword.toString()}
 					window_height={windows.state.height}
 					style={animateInputText}
 				/>
@@ -104,7 +104,7 @@ export const Input = (props: InputProps) => {
 			field = (
 				<Styled.InputPasswordConfirmation
 					onChange={onChange}
-					reveal_password={authForm.state.revealPassword}
+					reveal_password={authForm.state.revealPassword.toString()}
 					window_height={windows.state.height}
 					form_type={formType}
 					style={animateInputText}
