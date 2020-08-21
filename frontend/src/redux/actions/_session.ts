@@ -19,7 +19,7 @@ export type CurrentUser = {
 	profile_picture: string;
 };
 
-// Used for both registration and sign in logic.
+// --- Used for both registration and sign in logic. --- //
 function receiveCurrentUser(currentUser: CurrentUser) {
 	return {
 		type: RECEIVE_CURRENT_USER,
@@ -82,17 +82,17 @@ async function POST(
 	}
 }
 
-export function register(dispatch: Function, data: RegisterData): void {
+export function register(data: RegisterData, dispatch: any): void {
 	const endpoint = "/auth/registration/";
 	POST(endpoint, data, dispatch);
 }
 
-export function signIn(dispatch: Function, data: SignInData) {
+export function signIn(data: SignInData, dispatch: any) {
 	const endpoint = "/auth/login/";
 	POST(endpoint, data, dispatch);
 }
 
-export function signOut(dispatch: Function) {
+export function signOut(dispatch: any) {
 	async function POST(): Promise<void> {
 		try {
 			const endpoint = "/auth/logout/";

@@ -1,2 +1,4 @@
-export * as Session from "./_session";
-export * as Errors from "./_clear_errors";
+import * as Session from "./_session";
+import * as Errors from "./_clear_errors";
+
+export { Session, Errors };

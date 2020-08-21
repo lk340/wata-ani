@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Providers } from "@/context/providers";
+import { Providers as ContextProvider } from "@/context/providers";
 import { Observer } from "../observer/observer";
 import * as Snippets from "@/utils/style/snippets";
 
@@ -10,13 +10,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 	React.useEffect(() => Snippets.checkWebGLAvailable(), []);
 
 	return (
-		<Providers>
+		<ContextProvider>
 			<Observer>
 				<Styled.Layout>
 					<Styled.LayoutGlobalStyles />
 					<Styled.LayoutChildren>{children}</Styled.LayoutChildren>
 				</Styled.Layout>
 			</Observer>
-		</Providers>
+		</ContextProvider>
 	);
 };

@@ -12,7 +12,11 @@ const errorsReducer = Redux.combineReducers({
 });
 
 export const rootReducer = Redux.combineReducers({
-	entities: entitiesReducer,
+	// entities: entitiesReducer,
 	session: sessionReducer,
-	errors: errorsReducer,
+	// errors: errorsReducer,
 });
+
+// export const rootReducer = () => ({
+// 	session: sessionReducer,
+// });
