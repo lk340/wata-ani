@@ -1,14 +1,16 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
+import * as FormTypes from "@/utils/types/form";
 import * as Animations from "@/utils/style/animations";
 
-import * as Types from "./auth-form.types";
+import * as AuthTypes from "./auth-form.types";
 import * as Styled from "./auth-form.styled";
 import { Input } from "./input";
 
 type Props = {
-	formType: Types.FormType;
+	formType: AuthTypes.FormType;
 	submitText: "Register" | "Sign In";
 };
 
@@ -18,12 +20,14 @@ export const AuthForm = (props: Props) => {
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 	const { theme } = Context.Theme.useThemeContext();
 
+	const dispatch = ReactRedux.useDispatch();
+
 	const animateTitle = Animations.text(theme.state.mode);
 
 	return (
 		<Styled.AuthForm
-			onSubmit={(event: React.FormEvent<HTMLFormElement>) =>
-				authForm.handlers.handleSubmit(event, formType)
+			onSubmit={(event: FormTypes.Submit) =>
+				authForm.handlers.handleSubmit(event, formType, dispatch)
 			}
 		>
 			{/* Logo, Title, & Inputs */}

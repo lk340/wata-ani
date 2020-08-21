@@ -1,10 +1,10 @@
 import * as React from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 import * as Helpers from "@/context/helpers";
+import * as FormTypes from "@/utils/types/form";
 import * as AuthTypes from "@/components/auth-form/auth-form.types";
-import * as JWT from "@/utils/api/jwt";
+import * as Actions from "@/redux/actions";
 
 type User = {
 	id: number;
@@ -70,140 +70,53 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	// ↓↓↓ Handlers ↓↓↓ //
 	// =============== //
 
-	function handleUsernameOrEmailChange(event: React.ChangeEvent<HTMLInputElement>): void {
+	function handleUsernameOrEmailChange(event: FormTypes.Input): void {
 		const usernameOrEmail = event.currentTarget.value;
 		setAuthForm({ username: usernameOrEmail });
 	}
 
-	function handleUsernameChange(event: React.ChangeEvent<HTMLInputElement>): void {
+	function handleUsernameChange(event: FormTypes.Input): void {
 		const username = event.currentTarget.value;
 		setAuthForm({ username });
 	}
 
-	function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>): void {
+	function handleEmailChange(event: FormTypes.Input): void {
 		const email = event.currentTarget.value;
 		setAuthForm({ email });
 	}
 
-	function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>): void {
+	function handlePasswordChange(event: FormTypes.Input): void {
 		const password = event.currentTarget.value;
 		setAuthForm({ password });
 	}
 
-	function handlePasswordConfirmationChange(
-		event: React.ChangeEvent<HTMLInputElement>,
-	): void {
+	function handlePasswordConfirmationChange(event: FormTypes.Input): void {
 		const passwordConfirmation = event.currentTarget.value;
 		setAuthForm({ passwordConfirmation });
 	}
 
 	function handleSubmit(
-		event: React.FormEvent<HTMLFormElement>,
+		event: FormTypes.Submit,
 		formType: AuthTypes.FormType,
+		dispatch: Function,
 	): void {
 		event.preventDefault();
 
 		if (formType === "Registration") {
-			register(
-				authForm.username,
-				authForm.email,
-				authForm.password,
-				authForm.passwordConfirmation,
-			);
+			const data = {
+				username: authForm.username,
+				email: authForm.email,
+				password1: authForm.password,
+				password2: authForm.passwordConfirmation,
+			};
+			Actions.Session.register(data, dispatch);
 		} else {
-			signIn(authForm.username, authForm.password);
+			const data = {
+				username: authForm.username,
+				password: authForm.password,
+			};
+			Actions.Session.signIn(data, dispatch);
 		}
-	}
-
-	// =============== //
-	// ↓↓↓ API ↓↓↓ //
-	// =============== //
-
-	type RegisterData = {
-		username: string;
-		email: string;
-		password1: string;
-		password2: string;
-	};
-
-	type SignInData = {
-		username: string;
-		password: string;
-	};
-
-	function POST(
-		formType: AuthTypes.FormType,
-		endpoint: string,
-		data: RegisterData | SignInData,
-	): Promise<void> {
-		async function API() {
-			try {
-				const validateStatus = (status: number) => status >= 200 && status < 500;
-				const response = await axios.post(endpoint, data, { validateStatus });
-
-				const status = response.status;
-				if (status >= 400 && status < 500) {
-					// Error Handling
-					const responseErrors = Object.values(response.data) as string[];
-					setAuthForm({ errors: responseErrors });
-
-					console.log("Auth Errors:", authForm.errors);
-					console.log("Response Errors:", responseErrors);
-				} else {
-					// Success handling
-					if (formType === "Registration") {
-						console.log("Response:", response);
-					} else {
-						Cookies.set("jacLs1NGQZN07D92L8PVwOi", response.data.access_token);
-						localStorage.rt = response.data.refresh_token;
-						setAuthForm({ user: response.data.user });
-
-						console.log("LS Refresh Token:", localStorage.rt);
-						console.log("Auth Form User:", authForm.user);
-						console.log(
-							"JWT Access Token:",
-							JWT.decryptJWTAccessTokenPayload(Cookies.get("jacLs1NGQZN07D92L8PVwOi")),
-						);
-						console.log("Logged In!");
-					}
-				}
-			} catch (error) {
-				// Catching error (just in case)
-				console.log(error);
-			}
-		}
-		return API();
-	}
-
-	function register(
-		username: string,
-		email: string,
-		password1: string,
-		password2: string,
-	): Promise<void> {
-		const endpoint = "/auth/registration/";
-		const data: RegisterData = { username, email, password1, password2 };
-		return POST("Registration", endpoint, data);
-	}
-
-	function signIn(username: string, password: string): Promise<void> {
-		const endpoint = "/auth/login/";
-		const data: SignInData = { username, password };
-		return POST("Sign In", endpoint, data);
-	}
-
-	function signOut(): Promise<void> {
-		const endpoint = "/auth/logout/";
-		async function POST() {
-			try {
-				const response = await axios.post(endpoint);
-				setAuthForm({ user: null });
-				console.log(response);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		return POST();
 	}
 
 	// =============== //
@@ -229,14 +142,8 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		handleSubmit,
 	};
 
-	const api = {
-		register,
-		signIn,
-		signOut,
-	};
-
 	return {
-		authForm: { state, getters, setters, handlers, api },
+		authForm: { state, getters, setters, handlers },
 	};
 });
 

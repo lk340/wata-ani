@@ -52,18 +52,6 @@ function sessionErrors(errors: any) {
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // ============================= //
 
-type RegisterData = {
-	username: string;
-	email: string;
-	password1: string;
-	password2: string;
-};
-
-type SignInData = {
-	username: string;
-	password: string;
-};
-
 async function POST(
 	endpoint: string,
 	data: RegisterData | SignInData,
@@ -72,8 +60,12 @@ async function POST(
 	try {
 		const validateStatus = (status: number) => status >= 200 && status < 500;
 		const response = await axios.post(endpoint, data, { validateStatus });
+
 		// Success
-		if (response.status < 400) dispatch(receiveCurrentUser(response.data.user));
+		if (response.status < 400) {
+			localStorage.refresh = response.data.refresh_token;
+			dispatch(receiveCurrentUser(response.data.user));
+		}
 		// Failure
 		else dispatch(sessionErrors(response.data.errors));
 	} catch (error) {
@@ -82,21 +74,46 @@ async function POST(
 	}
 }
 
-export function register(data: RegisterData, dispatch: any): void {
+// --- Registration --- //
+
+type RegisterData = {
+	username: string;
+	email: string;
+	password1: string;
+	password2: string;
+};
+
+export function register(data: RegisterData, dispatch: Function): void {
 	const endpoint = "/auth/registration/";
 	POST(endpoint, data, dispatch);
 }
 
-export function signIn(data: SignInData, dispatch: any) {
+// --- Sign In --- //
+
+type SignInData = {
+	username: string;
+	password: string;
+};
+
+export function signIn(data: SignInData, dispatch: Function) {
 	const endpoint = "/auth/login/";
 	POST(endpoint, data, dispatch);
+
+	console.log("Signed In!");
 }
 
-export function signOut(dispatch: any) {
+// --- Sign Out --- //
+
+export function signOut(dispatch: Function) {
 	async function POST(): Promise<void> {
 		try {
 			const endpoint = "/auth/logout/";
 			const response = await axios.post(endpoint);
+
+			if (localStorage.refresh) delete localStorage["refresh"];
+
+			debugger;
+
 			dispatch(signOutCurrentUser());
 		} catch (error) {
 			// Just in case.
