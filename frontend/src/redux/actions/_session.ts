@@ -77,10 +77,16 @@ async function POST(
 		// Success
 		if (response.status < 400) {
 			localStorage.refresh = response.data.refresh_token;
+			Cookies.set("jacLs1NGQZN07D92L8PVwOi", response.data.access_token, {
+				sameSite: "strict",
+			});
+
 			dispatch(receiveCurrentUser(response.data.user));
 		}
 		// Failure
-		else dispatch(sessionErrors(response.data.errors));
+		else {
+			dispatch(sessionErrors(response.data.errors));
+		}
 	} catch (error) {
 		// Just in case.
 		console.log(error);

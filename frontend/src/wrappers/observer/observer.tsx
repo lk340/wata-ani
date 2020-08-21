@@ -1,16 +1,28 @@
 import * as React from "react";
-import * as Use from "react-use";
 import * as Reach from "@reach/router";
-import * as Gatsby from "gatsby";
+import * as Use from "react-use";
 import { ThemeProvider } from "styled-components";
-import axios from "axios";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 import * as Context from "@/context";
-import * as Constants from "@/utils/style/constants";
 import * as JWT from "@/utils/api/jwt";
 
 import * as Styled from "./observer.styled";
+
+/**
+ * Axios Defaults
+ * Window Size
+ * Window Scroll Position
+ * Mouse Position
+ * Theme
+ * Location
+ * User Agent
+ * Setting Theme
+ * Setting Context State Values
+ * Debugging Context State
+ * Provider Theme
+ */
 
 export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 	// ====================== //
@@ -21,9 +33,7 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	axios.defaults.xsrfCookieName = "Co6kpjZ4jUn61vnF15QRXu";
 
 	const accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
-
 	if (accessToken) {
-		// If an access token exists, add the following authorization header to every axios call.
 		axios.defaults.headers = {
 			headers: { Authorization: `Bearer ${accessToken}` },
 		};
@@ -49,15 +59,13 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
 	const { mouse } = Context.Mouse.useMouseContext();
 	const mouseRef = React.useRef(null);
-	const { docX, docY, posX, posY, elX, elY, elW, elH } = Use.useMouse(mouseRef);
+	const { elX, elY } = Use.useMouse(mouseRef);
 
-	// ========================================= //
-	// ↓↓↓ Theme Device Widths (breakpoints) ↓↓↓ //
-	// ========================================= //
+	// ============= //
+	// ↓↓↓ Theme ↓↓↓ //
+	// ============= //
 
 	const { theme } = Context.Theme.useThemeContext();
-	// const breakpoints = Object.entries(Constants.breakpoints);
-	// const numberBreakpoints = breakpoints.length;
 
 	// ================ //
 	// ↓↓↓ Location ↓↓↓ //
@@ -95,52 +103,18 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 		windows.setters.setWindows({ width, height });
 		scroll.setters.setScroll({ x, y });
 		mouse.setters.setMouse({ x: elX, y: elY });
-
-		// for (let index = 0; index < numberBreakpoints - 1; index++) {
-		// 	const breakpoint = breakpoints[index][0] as Context.Theme.Device;
-		// 	const min = breakpoints[index][1].min;
-		// 	const max = breakpoints[index][1].max;
-		// 	const windowWidth = width;
-		// 	if (windowWidth >= min && windowWidth <= max) {
-		// 		theme.setters.setDevice(breakpoint);
-		// 		break;
-		// 	}
-		// }
-
 		location.setters.setLocation({ pathname });
 
-		if (
-			navigator.userAgent.includes("iPhone") ||
-			navigator.userAgent.includes("iPad") ||
-			navigator.userAgent.includes("Android")
-		) {
+		const deviceIsiPhone = navigator.userAgent.includes("iPhone");
+		const deviceIsiPad = navigator.userAgent.includes("iPad");
+		const deviceIsAndroid = navigator.userAgent.includes("Android");
+
+		if (deviceIsiPhone || deviceIsiPad || deviceIsAndroid) {
 			userAgent.setters.setUserAgent({ isMobile: true });
 		} else {
 			userAgent.setters.setUserAgent({ isMobile: false });
 		}
 	}, [width, height, x, y, elX, elY, navigator.userAgent]);
-
-	// ========================================================= //
-	// ↓↓↓ Setting Current User On Page Refresh / URL Change ↓↓↓ //
-	// ========================================================= //
-
-	const { auth } = Context.Auth.useAuthContext();
-	const { authForm } = Context.AuthForm.useAuthFormContext();
-	React.useEffect(() => {
-		if (accessToken) {
-			if (authForm.state.user === null) {
-				JWT.checkRefreshJWT();
-				authForm.setters.setUser(JWT.decryptJWTAccessTokenPayload(accessToken).user_id);
-			}
-		}
-		// if (localStorage.access) {
-		// 	if (auth.state.currentUser === null) {
-		// 		JWT.checkRefreshJWT();
-		// 		const accessToken = JWT.decryptJWTAccessTokenPayload(localStorage.access);
-		// 		auth.setters.setCurrentUser(accessToken.user_id);
-		// 	}
-		// }
-	}, [auth.state.currentUser]);
 
 	// =============================== //
 	// ↓↓↓ Debugging Context State ↓↓↓ //
@@ -157,14 +131,13 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// console.log("theme mode:", theme.state.mode);
 	// console.log("pathname", location.state.pathname);
 	// console.log("user agent is mobile:", userAgent.state.isMobile);
-	console.log("Current User:", auth.state.currentUser);
+	// console.log("Current User:", auth.state.currentUser);
 
 	// ====================== //
 	// ↓↓↓ Provider Theme ↓↓↓ //
 	// ====================== //
 
 	const providerTheme = {
-		// device: theme.state.device,
 		mode: localStorage.mode,
 	};
 
@@ -173,7 +146,4 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 			<Styled.Observer>{children}</Styled.Observer>
 		</ThemeProvider>
 	);
-
-	// Uncomment below to get access to mouse cursor position.
-	// return <Styled.Observer ref={mouseRef}>{children}</Styled.Observer>;
 };

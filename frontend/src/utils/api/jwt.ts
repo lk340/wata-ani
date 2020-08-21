@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import axios from "axios";
 
 type JWTAccessTokenPayload = {
@@ -14,23 +15,32 @@ export function decryptJWTAccessTokenPayload(accessToken: string): JWTAccessToke
 // You only ever need to call checkRefreshJWT() whenever you're
 // making an API call that requires an authorization header.
 
-export const headers = { headers: { Authorization: `Bearer ${localStorage.access}` } };
+let accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
+const refreshToken = localStorage.refresh;
+
+export const headers = { headers: { Authorization: `Bearer ${accessToken}` } };
 
 export function checkRefreshJWT(): void {
 	async function REFRESH(): Promise<void> {
 		try {
-			if (localStorage.access && localStorage.refresh) {
-				const exp = decryptJWTAccessTokenPayload(localStorage.access).exp;
+			if (accessToken && refreshToken) {
+				const exp = decryptJWTAccessTokenPayload(accessToken).exp;
 				const tokenExpirationDate = new Date(exp * 1000);
-				const now = new Date();
+				const dateTimeRightNow = new Date();
+
 				const endpoint = "http://localhost:7000/api/token/refresh/";
 				const data = { refresh: localStorage.refresh };
-				// ↓↓↓ If the current date is past the access token's expiration date, refresh and create a new one. ↓↓↓ //
-				if (now > tokenExpirationDate) {
+
+				// If the current date is past the access token's expiration date,
+				// refresh and create a new one.
+				if (dateTimeRightNow > tokenExpirationDate) {
 					const response = await axios.post(endpoint, data, headers);
-					localStorage.access = response.data.access;
+					Cookies.set("jacLs1NGQZN07D92L8PVwOi", response.data.access, {
+						sameSite: "strict",
+					});
+					accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
 				}
-				headers.headers.Authorization = `Bearer ${localStorage.access}`;
+				headers.headers.Authorization = `Bearer ${accessToken}`;
 			}
 		} catch (error) {
 			// ↓↓↓ //
