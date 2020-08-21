@@ -52,6 +52,18 @@ function sessionErrors(errors: any) {
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // ============================= //
 
+type RegisterData = {
+	username: string;
+	email: string;
+	password1: string;
+	password2: string;
+};
+
+type SignInData = {
+	username: string;
+	password: string;
+};
+
 async function POST(
 	endpoint: string,
 	data: RegisterData | SignInData,
@@ -76,24 +88,12 @@ async function POST(
 
 // --- Registration --- //
 
-type RegisterData = {
-	username: string;
-	email: string;
-	password1: string;
-	password2: string;
-};
-
 export function register(data: RegisterData, dispatch: Function): void {
 	const endpoint = "/auth/registration/";
 	POST(endpoint, data, dispatch);
 }
 
 // --- Sign In --- //
-
-type SignInData = {
-	username: string;
-	password: string;
-};
 
 export function signIn(data: SignInData, dispatch: Function) {
 	const endpoint = "/auth/login/";
