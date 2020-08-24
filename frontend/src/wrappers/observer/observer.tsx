@@ -33,7 +33,8 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	axios.defaults.baseURL = "http://localhost:7000";
 	axios.defaults.xsrfCookieName = "Co6kpjZ4jUn61vnF15QRXu";
 
-	const accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
+	// const accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
+	const accessToken = localStorage.access;
 	if (accessToken) {
 		axios.defaults.headers = {
 			headers: { Authorization: `Bearer ${accessToken}` },

@@ -11,6 +11,7 @@ import { Input } from "./input";
 
 import axios from "axios";
 import Cookies from "js-cookie";
+import * as Actions from "@/redux/actions";
 
 type Props = {
 	formType: AuthTypes.FormType;
@@ -28,13 +29,15 @@ export const AuthForm = (props: Props) => {
 	const animateTitle = Animations.text(theme.state.mode);
 
 	function signOut() {
-		async function POST(): Promise<void> {
-			const response = await axios.post("/auth/logout/", {
-				headers: { Authorization: `Bearer ${Cookies.get("jacLs1NGQZN07D92L8PVwOi")}` },
-			});
-			console.log("Sign Out Response:", response);
-		}
-		POST();
+		Actions.Session.signOut(dispatch);
+
+		// async function POST(): Promise<void> {
+		// 	const response = await axios.post("/auth/logout/", {
+		// 		headers: { Authorization: `Bearer ${Cookies.get("jacLs1NGQZN07D92L8PVwOi")}` },
+		// 	});
+		// 	console.log("Sign Out Response:", response);
+		// }
+		// POST();
 	}
 
 	return (
@@ -49,7 +52,7 @@ export const AuthForm = (props: Props) => {
 				<Styled.AuthFormLogo />
 				{/* Title */}
 				<Styled.AuthFormTitle style={animateTitle}>{formType}</Styled.AuthFormTitle>
-				{/* Inputs */}
+				{/* Input Fields */}
 				<InputFields formType={formType} submitText={submitText} />
 			</Styled.AuthFormLogoTitleInputs>
 

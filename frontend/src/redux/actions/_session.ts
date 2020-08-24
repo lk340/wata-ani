@@ -77,9 +77,13 @@ async function POST(
 		// Success
 		if (response.status < 400) {
 			localStorage.refresh = response.data.refresh_token;
-			Cookies.set("jacLs1NGQZN07D92L8PVwOi", response.data.access_token, {
-				sameSite: "strict",
-			});
+			localStorage.access = response.data.access_token;
+
+			// const accessToken = response.data.access_token;
+			// Cookies.set("jacLs1NGQZN07D92L8PVwOi", accessToken, {
+			// 	sameSite: "strict",
+			// });
+			// Cookies.set("jacLs1NGQZN07D92L8PVwOi", accessToken);
 
 			dispatch(receiveCurrentUser(response.data.user));
 		}
@@ -115,9 +119,10 @@ export function signOut(dispatch: Function) {
 			const endpoint = "/auth/logout/";
 			const response = await axios.post(endpoint);
 
-			if (localStorage.refresh) delete localStorage["refresh"];
+			console.log(response.data);
 
-			debugger;
+			if (localStorage.refresh) delete localStorage["refresh"];
+			if (localStorage.access) delete localStorage["access"];
 
 			dispatch(signOutCurrentUser());
 		} catch (error) {
