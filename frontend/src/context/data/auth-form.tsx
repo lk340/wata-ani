@@ -54,17 +54,19 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		setAuthForm({ revealPassword: !authForm.revealPassword });
 	}
 
-	function setUser(userId: number): Promise<void> {
-		async function GET() {
-			try {
-				const response = await axios.get(`/api/users/${userId}/`);
-				setAuthForm({ user: response.data });
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		return GET();
-	}
+	const setUser = (user: User): void => setAuthForm({ user });
+
+	// function setUser(userId: number): Promise<void> {
+	// 	async function GET() {
+	// 		try {
+	// 			const response = await axios.get(`/api/users/${userId}/`);
+	// 			setAuthForm({ user: response.data });
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	}
+	// 	return GET();
+	// }
 
 	// =============== //
 	// ↓↓↓ Handlers ↓↓↓ //

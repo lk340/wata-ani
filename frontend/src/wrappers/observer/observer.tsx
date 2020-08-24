@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 import * as Reach from "@reach/router";
 import * as Use from "react-use";
 import { ThemeProvider } from "styled-components";
@@ -6,6 +7,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 
 import * as Context from "@/context";
+import * as Actions from "@/redux/actions";
 import * as JWT from "@/utils/api/jwt";
 
 import * as Styled from "./observer.styled";
@@ -36,9 +38,11 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// const accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
 	const accessToken = localStorage.access;
 	if (accessToken) {
-		axios.defaults.headers = {
-			headers: { Authorization: `Bearer ${accessToken}` },
-		};
+		// axios.defaults.headers = {
+		// 	headers: { Authorization: `Bearer ${accessToken}` },
+		// };
+
+		axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 	}
 
 	// =================== //
@@ -122,10 +126,41 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ↓↓↓ Auto-Refreshing JWT Access Token ↓↓↓ //
 	// ======================================== //
 
-	React.useEffect(() => {
-		JWT.checkRefreshJWT();
+	const username = ReactRedux.useSelector((state) => state.session.username);
+	const email = ReactRedux.useSelector((state) => state.session.email);
+	const dispatch = ReactRedux.useDispatch();
 
-		console.log("Refresh here");
+	const { authForm } = Context.AuthForm.useAuthFormContext();
+
+	React.useEffect(() => {
+		// JWT.checkRefreshJWT();
+
+		if (!username && localStorage.access) {
+			try {
+				async function getCurrentUser(): Promise<void> {
+					const accessToken = localStorage.access;
+					const decryptedToken = JWT.decryptJWTAccessTokenPayload(accessToken);
+					const currentUserId = decryptedToken.user_id;
+
+					const endpoint = `/api/users/${currentUserId}/`;
+					const validateStatus = (status: number) => status >= 200 && status < 500;
+					const response = await axios.get(endpoint, { validateStatus });
+					const currentUser = response.data;
+
+					// Success
+					if (response.status < 400) {
+						dispatch(Actions.Session.receiveCurrentUser(currentUser));
+					}
+					// Failure
+					else {
+						dispatch(Actions.Session.sessionErrors(response.data.non_field_errors));
+					}
+				}
+				getCurrentUser();
+			} catch (error) {
+				console.log(error);
+			}
+		}
 	}, []);
 
 	// =============================== //

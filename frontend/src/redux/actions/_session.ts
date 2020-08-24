@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const SIGN_OUT_CURRENT_USER = "SIGN_OUT_CURRENT_USER";
@@ -21,7 +20,7 @@ export type CurrentUser = {
 };
 
 // --- Used for both registration and sign in logic. --- //
-function receiveCurrentUser(currentUser: CurrentUser) {
+export function receiveCurrentUser(currentUser: CurrentUser) {
 	return {
 		type: RECEIVE_CURRENT_USER,
 		currentUser,
@@ -42,7 +41,7 @@ function signOutCurrentUser() {
 // ↓↓↓ Errors ↓↓↓ //
 // ============== //
 
-function sessionErrors(errors: any) {
+export function sessionErrors(errors: any) {
 	return {
 		type: SESSION_ERRORS,
 		errors,
@@ -89,7 +88,7 @@ async function POST(
 		}
 		// Failure
 		else {
-			dispatch(sessionErrors(response.data.errors));
+			dispatch(sessionErrors(response.data.non_field_errors));
 		}
 	} catch (error) {
 		// Just in case.

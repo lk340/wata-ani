@@ -34,16 +34,9 @@ export function checkRefreshJWT(): void {
 				// If the current date is past the access token's expiration date,
 				// refresh and create a new one.
 				if (dateTimeRightNow > tokenExpirationDate) {
-					const response = await axios.post(endpoint, data, headers);
-					Cookies.set("jacLs1NGQZN07D92L8PVwOi", response.data.access, {
-						sameSite: "strict",
-					});
-					accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
+					const response = await axios.post(endpoint, data);
+					localStorage.access = response.data.access;
 				}
-				// headers.headers.Authorization = `Bearer ${accessToken}`;
-				axios.defaults.headers = {
-					headers: { Authorization: `Bearer ${accessToken}` },
-				};
 			}
 		} catch (error) {
 			// ↓↓↓ //

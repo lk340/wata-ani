@@ -13,7 +13,7 @@ export function errorsReducer(state = [], action: Action) {
 
 	switch (action.type) {
 		case Actions.Session.SESSION_ERRORS:
-			return [stateCopy, action.errors];
+			return Lodash.merge([], stateCopy, action.errors);
 
 		case Actions.Errors.CLEAR_ERRORS:
 			return [];
