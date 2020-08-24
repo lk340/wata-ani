@@ -1,4 +1,7 @@
+import * as Reach from "@reach/router";
 import axios from "axios";
+
+import { clearErrors } from "./_clear_errors";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const SIGN_OUT_CURRENT_USER = "SIGN_OUT_CURRENT_USER";
@@ -78,6 +81,8 @@ async function POST(
 			localStorage.refresh = response.data.refresh_token;
 			localStorage.access = response.data.access_token;
 			dispatch(receiveCurrentUser(response.data.user));
+			dispatch(clearErrors());
+			Reach.navigate("/");
 		}
 		// Failure
 		else {
