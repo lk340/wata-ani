@@ -3,7 +3,6 @@ import * as ReactRedux from "react-redux";
 import * as Reach from "@reach/router";
 import * as Use from "react-use";
 import { ThemeProvider } from "styled-components";
-import Cookies from "js-cookie";
 import axios from "axios";
 
 import * as Context from "@/context";
@@ -35,13 +34,8 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	axios.defaults.baseURL = "http://localhost:7000";
 	axios.defaults.xsrfCookieName = "Co6kpjZ4jUn61vnF15QRXu";
 
-	// const accessToken = Cookies.get("jacLs1NGQZN07D92L8PVwOi");
 	const accessToken = localStorage.access;
 	if (accessToken) {
-		// axios.defaults.headers = {
-		// 	headers: { Authorization: `Bearer ${accessToken}` },
-		// };
-
 		axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 	}
 
@@ -99,7 +93,7 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 				theme.setters.setTheme({ mode: localStorage.mode });
 			}
 		}
-	}, []);
+	}, [theme.state.mode]);
 
 	// ==================================== //
 	// ↓↓↓ Setting Context State Values ↓↓↓ //
@@ -130,34 +124,36 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	const email = ReactRedux.useSelector((state) => state.session.email);
 	const dispatch = ReactRedux.useDispatch();
 
+	async function getCurrentUser(): Promise<void> {
+		try {
+			const accessToken = localStorage.access;
+			const decryptedToken = JWT.decryptJWTAccessTokenPayload(accessToken);
+			const currentUserId = decryptedToken.user_id;
+
+			const endpoint = `/api/users/${currentUserId}/`;
+			const validateStatus = (status: number) => status >= 200 && status < 500;
+			const response = await axios.get(endpoint, { validateStatus });
+			const currentUser = response.data;
+
+			// Success
+			if (response.status < 400) {
+				dispatch(Actions.Session.receiveCurrentUser(currentUser));
+			}
+			// Failure
+			else {
+				dispatch(Actions.Session.sessionErrors(response.data.non_field_errors));
+			}
+		} catch (error) {
+			// Just in case.
+			console.log(error);
+		}
+	}
+
 	React.useEffect(() => {
 		JWT.checkRefreshJWT();
 
 		if (!username && !email && localStorage.access) {
-			try {
-				async function getCurrentUser(): Promise<void> {
-					const accessToken = localStorage.access;
-					const decryptedToken = JWT.decryptJWTAccessTokenPayload(accessToken);
-					const currentUserId = decryptedToken.user_id;
-
-					const endpoint = `/api/users/${currentUserId}/`;
-					const validateStatus = (status: number) => status >= 200 && status < 500;
-					const response = await axios.get(endpoint, { validateStatus });
-					const currentUser = response.data;
-
-					// Success
-					if (response.status < 400) {
-						dispatch(Actions.Session.receiveCurrentUser(currentUser));
-					}
-					// Failure
-					else {
-						dispatch(Actions.Session.sessionErrors(response.data.non_field_errors));
-					}
-				}
-				getCurrentUser();
-			} catch (error) {
-				console.log(error);
-			}
+			getCurrentUser();
 		}
 	}, []);
 
