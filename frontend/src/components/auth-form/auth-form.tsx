@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
+import * as Gatsby from "gatsby";
 
 import * as Context from "@/context";
 import * as FormTypes from "@/utils/types/form";
@@ -8,10 +9,6 @@ import * as Animations from "@/utils/style/animations";
 import * as AuthTypes from "./auth-form.types";
 import * as Styled from "./auth-form.styled";
 import { Input } from "./input";
-
-import axios from "axios";
-import Cookies from "js-cookie";
-import * as Actions from "@/redux/actions";
 
 type Props = {
 	formType: AuthTypes.FormType;
@@ -24,21 +21,16 @@ export const AuthForm = (props: Props) => {
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 	const { theme } = Context.Theme.useThemeContext();
 
+	React.useEffect(() => {
+		// "sign-in" and "registration" endpoints are not accessible to users who are logged in.
+		if (localStorage.refresh && localStorage.access) {
+			Gatsby.navigate("/");
+		}
+	}, []);
+
 	const dispatch = ReactRedux.useDispatch();
 
 	const animateTitle = Animations.text(theme.state.mode);
-
-	function signOut() {
-		Actions.Session.signOut(dispatch);
-
-		// async function POST(): Promise<void> {
-		// 	const response = await axios.post("/auth/logout/", {
-		// 		headers: { Authorization: `Bearer ${Cookies.get("jacLs1NGQZN07D92L8PVwOi")}` },
-		// 	});
-		// 	console.log("Sign Out Response:", response);
-		// }
-		// POST();
-	}
 
 	return (
 		<Styled.AuthForm
