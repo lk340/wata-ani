@@ -1,4 +1,4 @@
-import * as Reach from "@reach/router";
+import * as Gatsby from "gatsby";
 import axios from "axios";
 
 import { clearErrors } from "./_clear_errors";
@@ -82,7 +82,7 @@ async function POST(
 			localStorage.access = response.data.access_token;
 			dispatch(receiveCurrentUser(response.data.user));
 			dispatch(clearErrors());
-			Reach.navigate("/");
+			Gatsby.navigate("/");
 		}
 		// Failure
 		else {
