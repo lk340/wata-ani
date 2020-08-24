@@ -77,13 +77,6 @@ async function POST(
 		if (response.status < 400) {
 			localStorage.refresh = response.data.refresh_token;
 			localStorage.access = response.data.access_token;
-
-			// const accessToken = response.data.access_token;
-			// Cookies.set("jacLs1NGQZN07D92L8PVwOi", accessToken, {
-			// 	sameSite: "strict",
-			// });
-			// Cookies.set("jacLs1NGQZN07D92L8PVwOi", accessToken);
-
 			dispatch(receiveCurrentUser(response.data.user));
 		}
 		// Failure

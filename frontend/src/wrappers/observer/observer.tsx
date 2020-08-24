@@ -22,7 +22,7 @@ import * as Styled from "./observer.styled";
  * User Agent
  * Setting Theme
  * Setting Context State Values
- * Auto-Refreshing JWT Access Token
+ * JWT Refresh & Setting Current User On Page Refresh
  * Debugging Context State
  * Provider Theme
  */
@@ -122,20 +122,18 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 		}
 	}, [width, height, x, y, elX, elY, navigator.userAgent]);
 
-	// ======================================== //
-	// ↓↓↓ Auto-Refreshing JWT Access Token ↓↓↓ //
-	// ======================================== //
+	// ========================================================== //
+	// ↓↓↓ JWT Refresh & Setting Current User On Page Refresh ↓↓↓ //
+	// ========================================================== //
 
 	const username = ReactRedux.useSelector((state) => state.session.username);
 	const email = ReactRedux.useSelector((state) => state.session.email);
 	const dispatch = ReactRedux.useDispatch();
 
-	const { authForm } = Context.AuthForm.useAuthFormContext();
-
 	React.useEffect(() => {
-		// JWT.checkRefreshJWT();
+		JWT.checkRefreshJWT();
 
-		if (!username && localStorage.access) {
+		if (!username && !email && localStorage.access) {
 			try {
 				async function getCurrentUser(): Promise<void> {
 					const accessToken = localStorage.access;
