@@ -1,6 +1,8 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
+import * as Actions from "@/redux/actions";
 
 import * as Styled from "./hamburger.styled";
 import * as Springs from "./hamburger.springs";
@@ -61,6 +63,8 @@ const Options = () => {
 				to="/sign-in"
 				primary={false}
 			/>
+			{/* Sign Out */}
+			<SignOutButton iconType="sign in" text="Sign Out" display={true} />
 			{/* Registration */}
 			<OptionLink
 				iconType="registration"
@@ -133,6 +137,29 @@ const OptionLink = (props: OptionLinkProps) => {
 			>
 				{text}
 			</Styled.HamburgerModalMainOptionLink>
+		</Styled.HamburgerModalMainOption>
+	);
+};
+
+// ================ //
+// ↓↓↓ Sign Out ↓↓↓ //
+// ================ //
+
+const SignOutButton = (props: OptionProps) => {
+	const { iconType, text, display } = props;
+
+	const { navbar } = Context.Navbar.useNavbarContext();
+
+	const dispatch = ReactRedux.useDispatch();
+
+	return (
+		<Styled.HamburgerModalMainOption display={display.toString()}>
+			<Styled.HamburgerModalMainOptionIcon iconType={iconType} />
+			<Styled.HamburgerModalMainOptionButton
+				onClick={() => Actions.Session.signOut(dispatch)}
+			>
+				{text}
+			</Styled.HamburgerModalMainOptionButton>
 		</Styled.HamburgerModalMainOption>
 	);
 };

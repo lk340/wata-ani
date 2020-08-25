@@ -29,13 +29,14 @@ export const AuthForm = (props: Props) => {
 	}, []);
 
 	const dispatch = ReactRedux.useDispatch();
+	const sessionErrors = ReactRedux.useSelector((state) => state.errors.session);
 
 	const animateTitle = Animations.text(theme.state.mode);
 
 	return (
 		<Styled.AuthForm
 			onSubmit={(event: FormTypes.Submit) =>
-				authForm.handlers.handleSubmit(event, formType, dispatch)
+				authForm.handlers.handleSubmit(event, formType, dispatch, sessionErrors)
 			}
 		>
 			{/* Logo, Title, & Inputs */}

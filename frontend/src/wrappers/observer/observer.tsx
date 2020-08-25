@@ -121,8 +121,6 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ↓↓↓ JWT Refresh & Setting Current User On Page Refresh ↓↓↓ //
 	// ========================================================== //
 
-	const username = ReactRedux.useSelector((state) => state.session.username);
-	const email = ReactRedux.useSelector((state) => state.session.email);
 	const dispatch = ReactRedux.useDispatch();
 
 	async function getCurrentUser(): Promise<void> {
@@ -151,6 +149,9 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 			console.log(error);
 		}
 	}
+
+	const username = ReactRedux.useSelector((state) => state.session.username);
+	const email = ReactRedux.useSelector((state) => state.session.email);
 
 	React.useEffect(() => {
 		JWT.checkRefresh();

@@ -1,3 +1,4 @@
+import * as ReactRedux from "react-redux";
 import * as Gatsby from "gatsby";
 import axios from "axios";
 
@@ -12,14 +13,14 @@ export const SESSION_ERRORS = "SESSION_ERRORS";
 // ========================== //
 
 export type CurrentUser = {
-	id: number;
-	username: string;
-	email: string;
-	date_joined: string;
-	last_login: string;
-	first_name: string;
-	last_name: string;
-	profile_picture: string;
+	id: number | null;
+	username: string | null;
+	email: string | null;
+	date_joined: string | null;
+	last_login: string | null;
+	first_name: string | null;
+	last_name: string | null;
+	profile_picture: string | null;
 };
 
 // --- Used for both registration and sign in logic. --- //
@@ -71,6 +72,7 @@ async function POST(
 	endpoint: string,
 	data: RegisterData | SignInData,
 	dispatch: Function,
+	authErrors: string[],
 ): Promise<void> {
 	try {
 		const validateStatus = (status: number) => status >= 200 && status < 500;
@@ -81,7 +83,7 @@ async function POST(
 			localStorage.refresh = response.data.refresh_token;
 			localStorage.access = response.data.access_token;
 			dispatch(receiveCurrentUser(response.data.user));
-			dispatch(clearErrors());
+			if (authErrors.length > 0) dispatch(clearErrors());
 			Gatsby.navigate("/");
 		}
 		// Failure
@@ -96,16 +98,20 @@ async function POST(
 
 // --- Registration --- //
 
-export function register(data: RegisterData, dispatch: Function): void {
+export function register(
+	data: RegisterData,
+	dispatch: Function,
+	authErrors: string[],
+): void {
 	const endpoint = "/auth/registration/";
-	POST(endpoint, data, dispatch);
+	POST(endpoint, data, dispatch, authErrors);
 }
 
 // --- Sign In --- //
 
-export function signIn(data: SignInData, dispatch: Function) {
+export function signIn(data: SignInData, dispatch: Function, authErrors: string[]) {
 	const endpoint = "/auth/login/";
-	POST(endpoint, data, dispatch);
+	POST(endpoint, data, dispatch, authErrors);
 }
 
 // --- Sign Out --- //
@@ -113,10 +119,8 @@ export function signIn(data: SignInData, dispatch: Function) {
 export function signOut(dispatch: Function) {
 	async function POST(): Promise<void> {
 		try {
-			const endpoint = "/auth/logout/";
-			const response = await axios.post(endpoint);
-
-			console.log(response.data);
+			// const endpoint = "/auth/logout/";
+			// const response = await axios.post(endpoint);
 
 			if (localStorage.refresh) delete localStorage["refresh"];
 			if (localStorage.access) delete localStorage["access"];

@@ -1,12 +1,11 @@
 import * as React from "react";
-import axios from "axios";
 
 import * as Helpers from "@/context/helpers";
 import * as FormTypes from "@/utils/types/form";
 import * as AuthTypes from "@/components/auth-form/auth-form.types";
 import * as Actions from "@/redux/actions";
 
-type User = {
+type CurrentUser = {
 	id: number;
 	username: string;
 	email: string;
@@ -24,7 +23,7 @@ type State = {
 	passwordConfirmation: string;
 	revealPassword: boolean;
 	errors: string[];
-	user: User | null;
+	currentUser: CurrentUser | null;
 };
 
 const initialState = Object.freeze<State>({
@@ -34,7 +33,7 @@ const initialState = Object.freeze<State>({
 	passwordConfirmation: "",
 	revealPassword: false,
 	errors: [],
-	user: null,
+	currentUser: null,
 });
 
 export const useAuthFormContext = Helpers.createUseContext(() => {
@@ -54,19 +53,9 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		setAuthForm({ revealPassword: !authForm.revealPassword });
 	}
 
-	const setUser = (user: User): void => setAuthForm({ user });
-
-	// function setUser(userId: number): Promise<void> {
-	// 	async function GET() {
-	// 		try {
-	// 			const response = await axios.get(`/api/users/${userId}/`);
-	// 			setAuthForm({ user: response.data });
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	}
-	// 	return GET();
-	// }
+	function setUser(currentUser: CurrentUser): void {
+		setAuthForm({ currentUser });
+	}
 
 	// =============== //
 	// ↓↓↓ Handlers ↓↓↓ //
@@ -101,6 +90,7 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 		event: FormTypes.Submit,
 		formType: AuthTypes.FormType,
 		dispatch: Function,
+		authErrors: string[]
 	): void {
 		event.preventDefault();
 
@@ -111,13 +101,13 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 				password1: authForm.password,
 				password2: authForm.passwordConfirmation,
 			};
-			Actions.Session.register(data, dispatch);
+			Actions.Session.register(data, dispatch, authErrors);
 		} else {
 			const data = {
 				username: authForm.username,
 				password: authForm.password,
 			};
-			Actions.Session.signIn(data, dispatch);
+			Actions.Session.signIn(data, dispatch, authErrors);
 		}
 	}
 
