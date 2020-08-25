@@ -69,6 +69,7 @@ type SignInData = {
 };
 
 async function POST(
+	type: "register" | "sign in",
 	endpoint: string,
 	data: RegisterData | SignInData,
 	dispatch: Function,
@@ -80,15 +81,26 @@ async function POST(
 
 		// Success
 		if (response.status < 400) {
-			localStorage.refresh = response.data.refresh_token;
-			localStorage.access = response.data.access_token;
-			dispatch(receiveCurrentUser(response.data.user));
-			if (authErrors.length > 0) dispatch(clearErrors());
-			Gatsby.navigate("/");
+			if (type === "register") {
+				console.log(response.data.detail);
+			} else {
+				localStorage.refresh = response.data.refresh_token;
+				localStorage.access = response.data.access_token;
+				dispatch(receiveCurrentUser(response.data.user));
+				if (authErrors.length > 0) dispatch(clearErrors());
+				Gatsby.navigate("/");
+			}
 		}
 		// Failure
 		else {
-			dispatch(sessionErrors(response.data.non_field_errors));
+			if (type === "register") {
+				console.log("Failure:", Object.values(response.data));
+				const errors: string[] = [];
+				Object.values(response.data).forEach((data: string[]) => errors.push(data[0]));
+				dispatch(sessionErrors(errors));
+			} else {
+				dispatch(sessionErrors(response.data.non_field_errors));
+			}
 		}
 	} catch (error) {
 		// Just in case.
@@ -104,14 +116,14 @@ export function register(
 	authErrors: string[],
 ): void {
 	const endpoint = "/auth/registration/";
-	POST(endpoint, data, dispatch, authErrors);
+	POST("register", endpoint, data, dispatch, authErrors);
 }
 
 // --- Sign In --- //
 
 export function signIn(data: SignInData, dispatch: Function, authErrors: string[]) {
 	const endpoint = "/auth/login/";
-	POST(endpoint, data, dispatch, authErrors);
+	POST("sign in", endpoint, data, dispatch, authErrors);
 }
 
 // --- Sign Out --- //
