@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
@@ -37,8 +38,11 @@ export const Navbar = () => {
 		else if (location.state.pathname === "/profile") navbar.setters.setProfileOn();
 	}, [location.state.pathname]);
 
-	// const isUserDisplay = !!authForm.state.user ? "flex" : "none";
-	const isUserDisplay = "flex";
+	const userId = ReactRedux.useSelector((state) => state.session.id);
+
+	const isUser = !!userId;
+	const displayWhenSignedIn = isUser;
+	const displayWhenSignedOut = !isUser;
 
 	return (
 		<Styled.Navbar style={animateNavbar}>
@@ -63,7 +67,7 @@ export const Navbar = () => {
 					{/* Like Button */}
 					<Styled.NavbarModalButton
 						onClick={navbar.setters.toggleLikes}
-						display={isUserDisplay}
+						display={displayWhenSignedIn.toString()}
 					>
 						<Icons.LikeHollow
 							width={Constants.size.components.navbar.icon}
@@ -76,7 +80,7 @@ export const Navbar = () => {
 					{/* Create Button */}
 					<Styled.NavbarModalButton
 						onClick={navbar.setters.toggleCreate}
-						display={isUserDisplay}
+						display={displayWhenSignedIn.toString()}
 					>
 						<Icons.Create
 							width={Constants.size.components.navbar.icon}
@@ -87,7 +91,10 @@ export const Navbar = () => {
 					</Styled.NavbarModalButton>
 
 					{/* Search Button */}
-					<Styled.NavbarModalButton onClick={navbar.setters.toggleSearch}>
+					<Styled.NavbarModalButton
+						onClick={navbar.setters.toggleSearch}
+						display={displayWhenSignedIn.toString()}
+					>
 						<Icons.Search
 							width={Constants.size.components.navbar.icon}
 							fill={navbar.state.iconFill}
@@ -99,7 +106,7 @@ export const Navbar = () => {
 					{/* Settings Button */}
 					<Styled.NavbarModalButton
 						onClick={navbar.setters.toggleSettings}
-						display={isUserDisplay}
+						display={displayWhenSignedIn.toString()}
 					>
 						<Icons.SettingsHollow
 							width={Constants.size.components.navbar.icon}
@@ -113,7 +120,7 @@ export const Navbar = () => {
 					<Styled.NavbarLink to="/profile" onClick={navbar.setters.setProfileOn}>
 						<Styled.NavbarProfileIcon
 							src={logoJapanese}
-							display={isUserDisplay}
+							display={displayWhenSignedIn.toString()}
 							style={animateProfileIcon}
 						/>
 					</Styled.NavbarLink>
@@ -125,13 +132,13 @@ export const Navbar = () => {
 					</Styled.NavbarThemeButton>
 
 					{/* Sign In Link */}
-					<Styled.NavbarSignInLink user={(!!authForm.state.user).toString()}>
+					<Styled.NavbarSignInLink display={displayWhenSignedOut.toString()}>
 						Sign In
 					</Styled.NavbarSignInLink>
 
 					{/* Register Link */}
 					<Styled.NavbarRegisterLinkContainer
-						user={(!!authForm.state.user).toString()}
+						display={displayWhenSignedOut.toString()}
 						style={animateRegisterButton}
 					>
 						<Styled.NavbarRegisterLink>Register</Styled.NavbarRegisterLink>

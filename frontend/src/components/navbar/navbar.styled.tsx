@@ -59,19 +59,19 @@ export const NavbarLink = styled(Gatsby.Link)`
 	${Snippets.clearAnchor()};
 `;
 
-type FormProps = { user: string };
+type FormProps = { display: string };
 
 export const NavbarSignInLink = styled(Gatsby.Link).attrs(() => ({
 	to: "/sign-in",
 }))<FormProps>`
 	${Snippets.flexRowCenter()};
 	${Snippets.clearAnchor()};
-	display: ${(props) => (props.user === "true" ? "none" : "flex")};
+	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 `;
 
 export const NavbarRegisterLinkContainer = styled(animated.div)<FormProps>`
 	${Snippets.flexRowCenter()};
-	display: ${(props) => (props.user === "true" ? "none" : "flex")};
+	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 	margin-left: ${Constants.size.components.navbar.spacer};
 	border-radius: ${Constants.borderRadius.components.navbar.register};
 	cursor: pointer;
@@ -139,11 +139,11 @@ const buttonStyles = css`
 	cursor: pointer;
 `;
 
-type ButtonProps = { display?: string };
+type ButtonProps = { display: string };
 
 export const NavbarModalButton = styled("div")<ButtonProps>`
 	${buttonStyles};
-	display: ${(props) => props.display || "flex"};
+	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 `;
 
 export const NavbarThemeButton = styled("div")`
