@@ -52,30 +52,35 @@ const Options = () => {
 	const userId = ReactRedux.useSelector((state) => state.session.id);
 
 	const isUser = !!userId;
-	const displayWhenLoggedIn = isUser.toString();
-	const displayWhenLoggedOut = !isUser.toString();
+	const displayWhenSignedIn = isUser;
+	const displayWhenSignedOut = !isUser;
 
 	return (
 		<Styled.HamburgerModalMainOptionContainer>
 			{/* Home */}
 			<OptionLink iconType="home" text="Home" display={true} to="/" primary={false} />
 			{/* Search */}
-			<OptionButton iconType="search" text="Search" display={true} option="search" />
+			<OptionButton
+				iconType="search"
+				text="Search"
+				display={displayWhenSignedIn}
+				option="search"
+			/>
 			{/* Sign In */}
 			<OptionLink
 				iconType="sign in"
 				text="Sign In"
-				display={true}
+				display={displayWhenSignedOut}
 				to="/sign-in"
 				primary={false}
 			/>
 			{/* Sign Out */}
-			<SignOutButton iconType="sign in" text="Sign Out" display={true} />
+			<SignOutButton iconType="sign in" text="Sign Out" display={displayWhenSignedIn} />
 			{/* Registration */}
 			<OptionLink
 				iconType="registration"
 				text="Register"
-				display={true}
+				display={displayWhenSignedOut}
 				to="/registration"
 				primary={true}
 			/>
@@ -83,7 +88,7 @@ const Options = () => {
 			<OptionButton
 				iconType="settings"
 				text="Settings"
-				display={true}
+				display={displayWhenSignedIn}
 				option="settings"
 			/>
 		</Styled.HamburgerModalMainOptionContainer>
