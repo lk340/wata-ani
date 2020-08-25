@@ -49,6 +49,12 @@ export const Hamburger = () => {
 // ======================== //
 
 const Options = () => {
+	const userId = ReactRedux.useSelector((state) => state.session.id);
+
+	const isUser = !!userId;
+	const displayWhenLoggedIn = isUser.toString();
+	const displayWhenLoggedOut = !isUser.toString();
+
 	return (
 		<Styled.HamburgerModalMainOptionContainer>
 			{/* Home */}
@@ -152,12 +158,15 @@ const SignOutButton = (props: OptionProps) => {
 
 	const dispatch = ReactRedux.useDispatch();
 
+	function handleClick(): void {
+		Actions.Session.signOut(dispatch);
+		navbar.setters.toggleHamburgerOpen();
+	}
+
 	return (
 		<Styled.HamburgerModalMainOption display={display.toString()}>
 			<Styled.HamburgerModalMainOptionIcon iconType={iconType} />
-			<Styled.HamburgerModalMainOptionButton
-				onClick={() => Actions.Session.signOut(dispatch)}
-			>
+			<Styled.HamburgerModalMainOptionButton onClick={handleClick}>
 				{text}
 			</Styled.HamburgerModalMainOptionButton>
 		</Styled.HamburgerModalMainOption>
