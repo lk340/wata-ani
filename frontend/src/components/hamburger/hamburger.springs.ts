@@ -62,31 +62,29 @@ export function modal(open: boolean) {
 	});
 }
 
-export function modalMain(open: boolean, mode: Context.Theme.Mode) {
+export function modalMainContainer(open: boolean) {
+	return Spring.useSpring({
+		from: { transform: "translateX(100%)" },
+		to: { transform: open ? "translateX(0%)" : "translateX(100%)" },
+		config: { duration: open ? undefined : 100 },
+		delay: open ? 100 : 0,
+	});
+}
+
+export function modalMain(mode: Context.Theme.Mode) {
 	return Spring.useSpring({
 		from: {
-			transform: "translateX(100%)",
 			backgroundColor:
 				mode === "light"
 					? Constants.theme.background.light
 					: Constants.theme.background.dark,
 		},
-		to: open
-			? {
-					transform: "translateX(0%)",
-					backgroundColor:
-						mode === "light"
-							? Constants.theme.background.light
-							: Constants.theme.background.dark,
-			  }
-			: {
-					transform: "translateX(100%)",
-					backgroundColor:
-						mode === "light"
-							? Constants.theme.background.light
-							: Constants.theme.background.dark,
-			  },
-		config: { duration: open ? undefined : 200 },
-		delay: open ? 100 : 0,
+		to: {
+			backgroundColor:
+				mode === "light"
+					? Constants.theme.background.light
+					: Constants.theme.background.dark,
+		},
+		config: { duration: 200 },
 	});
 }

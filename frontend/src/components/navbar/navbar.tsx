@@ -19,15 +19,6 @@ export const Navbar = () => {
 	const { location } = Context.Location.useLocationContext();
 	const { theme } = Context.Theme.useThemeContext();
 
-	const animateNavbar = Springs.navbar(theme.state.mode);
-	const animateLightModeIcon = Animations.opacity(theme.state.mode === "dark");
-	const animateProfileIcon = Springs.profileIcon(theme.state.mode, !!authForm.state.user);
-	const animateRegisterButton = Animations.background(
-		theme.state.mode,
-		Constants.theme.components.navbar.registerButton.light,
-		Constants.theme.components.navbar.registerButton.dark,
-	);
-
 	React.useEffect(() => {
 		if (theme.state.mode === "light") navbar.setters.setIconFill(Colors.LIGHT.seven);
 		else navbar.setters.setIconFill(Colors.LIGHT.five);
@@ -39,10 +30,18 @@ export const Navbar = () => {
 	}, [location.state.pathname]);
 
 	const userId = ReactRedux.useSelector((state) => state.session.id);
-
 	const isUser = !!userId;
 	const displayWhenSignedIn = isUser;
 	const displayWhenSignedOut = !isUser;
+
+	const animateNavbar = Springs.navbar(theme.state.mode);
+	const animateLightModeIcon = Animations.opacity(theme.state.mode === "dark");
+	const animateProfileIcon = Springs.profileIcon(theme.state.mode, isUser);
+	const animateRegisterButton = Animations.background(
+		theme.state.mode,
+		Constants.theme.components.navbar.registerButton.light,
+		Constants.theme.components.navbar.registerButton.dark,
+	);
 
 	return (
 		<Styled.Navbar style={animateNavbar}>
@@ -126,10 +125,7 @@ export const Navbar = () => {
 					</Styled.NavbarLink>
 
 					{/* Theme Button */}
-					<Styled.NavbarThemeButton onClick={theme.setters.toggleMode}>
-						<Styled.NavbarLightModeIcon style={animateLightModeIcon} />
-						<Styled.NavbarDarkModeIcon />
-					</Styled.NavbarThemeButton>
+					<Components.ThemeButton />
 
 					{/* Sign In Link */}
 					<Styled.NavbarSignInLink display={displayWhenSignedOut.toString()}>

@@ -6,8 +6,6 @@ import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 
 import logoJapanese from "@/images/logo/japanese.svg";
-import lightMode from "@/icons/navbar/light-mode.svg";
-import darkMode from "@/icons/navbar/dark-mode.svg";
 
 /**
  * Navbar
@@ -114,21 +112,6 @@ export const NavbarProfileIcon = styled(animated.img).attrs((props) => ({
 	margin-left: ${Constants.size.components.navbar.spacer};
 `;
 
-export const NavbarLightModeIcon = styled(animated.img).attrs(() => ({
-	src: lightMode,
-	alt: "navbar component light theme button",
-}))`
-	${Snippets.square(Constants.size.components.navbar.icon)};
-	position: absolute;
-`;
-
-export const NavbarDarkModeIcon = styled("img").attrs(() => ({
-	src: darkMode,
-	alt: "navbar component dark theme button",
-}))`
-	${Snippets.square(Constants.size.components.navbar.icon)};
-`;
-
 // =============== //
 // ↓↓↓ Buttons ↓↓↓ //
 // =============== //
@@ -142,12 +125,8 @@ const buttonStyles = css`
 type ButtonProps = { display: string };
 
 export const NavbarModalButton = styled("div")<ButtonProps>`
-	${buttonStyles};
+	${Snippets.flexRowCenter()};
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
-`;
-
-export const NavbarThemeButton = styled("div")`
-	${buttonStyles};
-	position: relative;
-	margin-right: ${Constants.size.components.navbar.spacer};
+	margin-left: ${Constants.size.components.navbar.spacer};
+	cursor: pointer;
 `;

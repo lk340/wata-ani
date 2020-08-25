@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
+import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
 
 import * as Styled from "./hamburger.styled";
@@ -19,10 +20,10 @@ export const Hamburger = () => {
 
 	// --- Modal Animations --- //
 	const animateModal = Springs.modal(navbar.state.hamburgerOpen);
-	const animateModalMain = Springs.modalMain(
+	const animateModalMainContainer = Springs.modalMainContainer(
 		navbar.state.hamburgerOpen,
-		theme.state.mode,
 	);
+	const animateModalMain = Springs.modalMain(theme.state.mode);
 
 	return (
 		<Styled.Hamburger>
@@ -36,9 +37,16 @@ export const Hamburger = () => {
 
 			{/* Modal */}
 			<Styled.HamburgerModal style={animateModal}>
-				<Styled.HamburgerModalMain style={animateModalMain}>
-					<Options />
-				</Styled.HamburgerModalMain>
+				{/* Main */}
+				<Styled.HamburgerModalMainContainer style={animateModalMainContainer}>
+					<Styled.HamburgerModalMain style={animateModalMain}>
+						<Options />
+					</Styled.HamburgerModalMain>
+				</Styled.HamburgerModalMainContainer>
+				{/* Theme Button */}
+				<Styled.HamburgerModalThemeButton>
+					<Components.ThemeButton />
+				</Styled.HamburgerModalThemeButton>
 			</Styled.HamburgerModal>
 		</Styled.Hamburger>
 	);

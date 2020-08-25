@@ -70,9 +70,17 @@ export const HamburgerModal = styled(animated.div)`
 	background-color: ${Colors.PRIMARY_100};
 `;
 
-export const HamburgerModalMain = styled(animated.div)`
+export const HamburgerModalMainContainer = styled(animated.div)`
 	${Snippets.absolute("0px", "0px", "0px", "0px", 2)};
 	${Snippets.fillContainer()};
+`;
+
+export const HamburgerModalMain = styled(animated.div)`
+	${Snippets.fillContainer()};
+`;
+
+export const HamburgerModalThemeButton = styled("div")`
+	${Snippets.absolute("auto", "0px", "30px", "auto", 3)};
 `;
 
 // ==================== //
