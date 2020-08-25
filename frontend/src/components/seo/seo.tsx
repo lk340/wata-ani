@@ -10,6 +10,8 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
+import favicon from "@/images/favicon.ico";
+
 type Meta = {
 	name: string;
 	content: any;
@@ -60,6 +62,7 @@ export const SEO = (props: Props) => {
 				{ name: `twitter:title`, content: title },
 				{ name: `twitter:description`, content: metaDescription },
 			].concat(meta)}
+			link={[{ rel: "shortcut icon", type: "image/png", href: `${favicon}` }]}
 		/>
 	);
 };
