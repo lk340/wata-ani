@@ -50,8 +50,6 @@ export const AuthForm = (props: Props) => {
 
 			{/* Submit Button & Redirect */}
 			<SubmitButtonAndRedirect formType={formType} submitText={submitText} />
-
-			<div onClick={signOut}>SIGN OUT, BABY</div>
 		</Styled.AuthForm>
 	);
 };

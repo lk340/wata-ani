@@ -7,6 +7,7 @@ import axios from "axios";
 
 import * as Context from "@/context";
 import * as Actions from "@/redux/actions";
+import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as JWT from "@/utils/api/jwt";
 
 import * as Styled from "./observer.styled";
@@ -127,20 +128,22 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	async function getCurrentUser(): Promise<void> {
 		try {
 			const accessToken = localStorage.access;
-			const decryptedToken = JWT.decryptJWTAccessTokenPayload(accessToken);
+			const decryptedToken = JWT.decryptAccessToken(accessToken);
 			const currentUserId = decryptedToken.user_id;
 
 			const endpoint = `/api/users/${currentUserId}/`;
-			const validateStatus = (status: number) => status >= 200 && status < 500;
+			const validateStatus = AxiosHelpers.validateStatus;
 			const response = await axios.get(endpoint, { validateStatus });
 			const currentUser = response.data;
 
 			// Success
 			if (response.status < 400) {
+				console.log("Observer Response:", response);
 				dispatch(Actions.Session.receiveCurrentUser(currentUser));
 			}
 			// Failure
 			else {
+				console.log("Observer Response:", response);
 				dispatch(Actions.Session.sessionErrors(response.data.non_field_errors));
 			}
 		} catch (error) {
@@ -150,7 +153,7 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	}
 
 	React.useEffect(() => {
-		JWT.checkRefreshJWT();
+		JWT.checkRefresh();
 
 		if (!username && !email && localStorage.access) {
 			getCurrentUser();
