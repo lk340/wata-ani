@@ -11,4 +11,8 @@ import * as Snippets from "@/utils/style/snippets";
 export const Register = styled(animated.div)`
 	${Snippets.flexRowCenter()};
 	${Snippets.fillView()};
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		padding: 0px ${Constants.sidePaddings.mobile}px;
+	}
 `;
