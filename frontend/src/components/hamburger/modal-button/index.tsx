@@ -3,7 +3,7 @@ import * as React from "react";
 import * as Context from "@/context";
 
 import * as Styled from "./modal-button.styled";
-import { OptionProps } from "../hamburger";
+import { OptionProps } from "../modal-options";
 
 type Props = {
 	buttonType: "search" | "settings";
