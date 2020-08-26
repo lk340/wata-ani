@@ -12,7 +12,7 @@ export const NavbarMobile = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { theme } = Context.Theme.useThemeContext();
 
-	const animateNavbarMobile = Springs.navbarMobile(theme.state.mode);
+	const animateNavbarMobile = Springs.navbarMobile();
 
 	return (
 		<Styled.NavbarMobile display={true.toString()} style={animateNavbarMobile}>
@@ -24,7 +24,7 @@ export const NavbarMobile = () => {
 				mode={theme.state.mode}
 				icon={
 					<Icons.HomeHollow
-						width={Constants.size.components.navbarMobile.icon}
+						width={`${Constants.size.components.navbarMobile.icon}px`}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
 						state={navbar.state.home}
@@ -40,7 +40,7 @@ export const NavbarMobile = () => {
 				mode={theme.state.mode}
 				icon={
 					<Icons.LikeHollow
-						width={Constants.size.components.navbarMobile.icon}
+						width={`${Constants.size.components.navbarMobile.icon}px`}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
 						state={navbar.state.likes}
@@ -57,7 +57,7 @@ export const NavbarMobile = () => {
 				mode={theme.state.mode}
 				icon={
 					<Icons.Create
-						width={Constants.size.components.navbarMobile.icon}
+						width={`${Constants.size.components.navbarMobile.icon}px`}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
 						state={navbar.state.create}
@@ -74,7 +74,7 @@ export const NavbarMobile = () => {
 				mode={theme.state.mode}
 				icon={
 					<Icons.Search
-						width={Constants.size.components.navbarMobile.icon}
+						width={`${Constants.size.components.navbarMobile.icon}px`}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
 						state={navbar.state.search}
@@ -93,7 +93,7 @@ export const NavbarMobile = () => {
 				mode={theme.state.mode}
 				icon={
 					<Icons.HomeHollow
-						width={Constants.size.components.navbarMobile.icon}
+						width={`${Constants.size.components.navbarMobile.icon}px`}
 						fill={navbar.state.iconFill}
 						mode={theme.state.mode}
 						state={navbar.state.profile}
@@ -124,7 +124,7 @@ type OptionLinkProps = { to: string } & OptionProps;
 const OptionLink = (props: OptionLinkProps) => {
 	const { state, icon, text, mode, to, onClick } = props;
 
-	const animateOptionText = Springs.optionIconText(mode, state);
+	const animateOptionText = Springs.optionIconText(state);
 
 	return (
 		<Styled.NavbarMobileOptionLink to={to} onClick={onClick}>
@@ -141,7 +141,7 @@ const OptionLink = (props: OptionLinkProps) => {
 const OptionButton = (props: OptionProps) => {
 	const { state, icon, text, mode, onClick } = props;
 
-	const animateOptionText = Springs.optionIconText(mode, state);
+	const animateOptionText = Springs.optionIconText(state);
 
 	return (
 		<Styled.NavbarMobileOptionButton onClick={onClick}>

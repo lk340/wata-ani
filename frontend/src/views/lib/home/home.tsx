@@ -8,10 +8,9 @@ import * as Constants from "@/utils/style/constants";
 import * as Styled from "./home.styled";
 
 export const Home = () => {
-	const { theme } = Context.Theme.useThemeContext();
+	Context.Theme.useThemeContext();
 
 	const animateBackground = Animations.background(
-		theme.state.mode,
 		Constants.theme.pages.home.background.light,
 		Constants.theme.pages.home.background.dark,
 	);

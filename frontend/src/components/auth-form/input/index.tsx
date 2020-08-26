@@ -20,8 +20,8 @@ export const Input = (props: InputProps) => {
 	const { windows } = Context.Windows.useWindowsContext();
 	const { theme } = Context.Theme.useThemeContext();
 
-	const animateInputField = Springs.inputField(theme.state.mode);
-	const animateInputText = Animations.text(theme.state.mode);
+	const animateInputField = Springs.inputField();
+	const animateInputText = Animations.text();
 
 	// Hides or shows certain input fields depending on whether we're dealing
 	// with a registration form or a sign in form.

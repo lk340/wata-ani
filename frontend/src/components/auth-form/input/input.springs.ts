@@ -17,10 +17,10 @@ export function togglePasswordShowIcon(revealPassword: boolean) {
 	});
 }
 
-export function inputField(mode: Context.Theme.Mode) {
+export function inputField() {
 	return Spring.useSpring({
 		to:
-			mode === "light"
+			localStorage.mode === "light"
 				? {
 						backgroundColor: Constants.theme.components.authForm.inputBackground.light,
 						border: `${Constants.theme.components.authForm.inputBorder.light} solid 2px`,

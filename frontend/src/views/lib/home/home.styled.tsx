@@ -18,7 +18,7 @@ export const HomeComponents = styled("div")`
 	flex: 1;
 	margin: 0px auto;
 	width: 100%;
-	max-width: ${Constants.globals.maxWidth};
+	max-width: ${Constants.globals.maxWidth}px;
 	color: ${Constants.theme.text};
 
 	/* border: red solid 1px; */

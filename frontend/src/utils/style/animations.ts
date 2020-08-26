@@ -1,6 +1,5 @@
 import * as Spring from "react-spring";
 
-import * as Context from "@/context";
 import * as Constants from "@/utils/style/constants";
 
 /**
@@ -9,22 +8,20 @@ import * as Constants from "@/utils/style/constants";
  * opacity
  */
 
-export function background(
-	mode: Context.Theme.Mode,
-	light: string,
-	dark: string,
-	duration: number = 100,
-) {
+export function background(light: string, dark: string, duration: number = 100) {
 	return Spring.useSpring({
-		to: { backgroundColor: mode === "light" ? light : dark },
+		to: { backgroundColor: localStorage.mode === "light" ? light : dark },
 		config: { duration },
 	});
 }
 
-export function text(mode: Context.Theme.Mode, duration: number = 100) {
+export function text(duration: number = 100) {
 	return Spring.useSpring({
 		to: {
-			color: mode === "light" ? Constants.theme.text.light : Constants.theme.text.dark,
+			color:
+				localStorage.mode === "light"
+					? Constants.theme.text.light
+					: Constants.theme.text.dark,
 		},
 		config: { duration },
 	});

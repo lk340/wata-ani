@@ -8,10 +8,9 @@ import * as Constants from "@/utils/style/constants";
 import * as Styled from "./register.styled";
 
 export const Register = () => {
-	const { theme } = Context.Theme.useThemeContext();
+	Context.Theme.useThemeContext();
 
 	const animateRegister = Animations.background(
-		theme.state.mode,
 		Constants.theme.background.light,
 		Constants.theme.background.dark,
 	);

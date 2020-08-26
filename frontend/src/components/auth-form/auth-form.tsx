@@ -31,7 +31,7 @@ export const AuthForm = (props: Props) => {
 	const dispatch = ReactRedux.useDispatch();
 	const sessionErrors = ReactRedux.useSelector((state) => state.errors.session);
 
-	const animateTitle = Animations.text(theme.state.mode);
+	const animateTitle = Animations.text();
 
 	return (
 		<Styled.AuthForm
@@ -105,7 +105,7 @@ const SubmitButtonAndRedirect = (props: Props) => {
 
 	const { theme } = Context.Theme.useThemeContext();
 
-	const animateRedirect = Animations.text(theme.state.mode);
+	const animateRedirect = Animations.text();
 
 	return (
 		<Styled.AuthFormSubmitRedirect>

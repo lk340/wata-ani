@@ -33,11 +33,9 @@ export const Navbar = () => {
 	const displayWhenSignedIn = isUser;
 	const displayWhenSignedOut = !isUser;
 
-	const animateNavbar = Springs.navbar(theme.state.mode);
-	const animateLightModeIcon = Animations.opacity(theme.state.mode === "dark");
-	const animateProfileIcon = Springs.profileIcon(theme.state.mode, isUser);
+	const animateNavbar = Springs.navbar();
+	const animateProfileIcon = Springs.profileIcon(isUser);
 	const animateRegisterButton = Animations.background(
-		theme.state.mode,
 		Constants.theme.components.navbar.registerButton.light,
 		Constants.theme.components.navbar.registerButton.dark,
 	);
@@ -55,7 +53,7 @@ export const Navbar = () => {
 					{/* Home Link */}
 					<Styled.NavbarLink to="/" onClick={navbar.setters.setHomeOn}>
 						<Icons.HomeHollow
-							width={Constants.size.components.navbar.icon}
+							width={`${Constants.size.components.navbar.icon}px`}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
 							state={navbar.state.home}
@@ -68,7 +66,7 @@ export const Navbar = () => {
 						display={displayWhenSignedIn.toString()}
 					>
 						<Icons.LikeHollow
-							width={Constants.size.components.navbar.icon}
+							width={`${Constants.size.components.navbar.icon}px`}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
 							state={navbar.state.likes}
@@ -81,7 +79,7 @@ export const Navbar = () => {
 						display={displayWhenSignedIn.toString()}
 					>
 						<Icons.Create
-							width={Constants.size.components.navbar.icon}
+							width={`${Constants.size.components.navbar.icon}px`}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
 							state={navbar.state.create}
@@ -94,7 +92,7 @@ export const Navbar = () => {
 						display={displayWhenSignedIn.toString()}
 					>
 						<Icons.Search
-							width={Constants.size.components.navbar.icon}
+							width={`${Constants.size.components.navbar.icon}px`}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
 							state={navbar.state.search}
@@ -107,7 +105,7 @@ export const Navbar = () => {
 						display={displayWhenSignedIn.toString()}
 					>
 						<Icons.SettingsHollow
-							width={Constants.size.components.navbar.icon}
+							width={`${Constants.size.components.navbar.icon}px`}
 							fill={navbar.state.iconFill}
 							mode={theme.state.mode}
 							state={navbar.state.settings}

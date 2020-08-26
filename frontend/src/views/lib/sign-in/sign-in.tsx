@@ -8,10 +8,9 @@ import * as Constants from "@/utils/style/constants";
 import * as Styled from "./sign-in.styled";
 
 export const SignIn = () => {
-	const { theme } = Context.Theme.useThemeContext();
+	Context.Theme.useThemeContext();
 
 	const animateBackground = Animations.background(
-		theme.state.mode,
 		Constants.theme.background.light,
 		Constants.theme.background.dark,
 	);
