@@ -9,9 +9,8 @@ import logoJapanese from "@/images/logo/japanese.svg";
 
 /**
  * Navbar
- * Links
- * Icons (images)
- * Buttons
+ * Options
+ * Navbar Logo Icon
  */
 
 // ============== //
@@ -39,11 +38,11 @@ export const NavbarMaxWidth = styled("div")`
 	font-size: ${Constants.fontSizes.components.navbar.link};
 `;
 
-// ============= //
-// ↓↓↓ Links ↓↓↓ //
-// ============= //
+// =============== //
+// ↓↓↓ Options ↓↓↓ //
+// =============== //
 
-export const NavbarLinks = styled("div")`
+export const NavbarOptions = styled("div")`
 	${Snippets.flex()};
 
 	@media (max-width: 575px) {
@@ -51,7 +50,7 @@ export const NavbarLinks = styled("div")`
 	}
 `;
 
-export const NavbarLink = styled(Gatsby.Link)`
+export const NavbarOption = styled(Gatsby.Link)`
 	${Snippets.flexRowCenter()};
 	${Snippets.clearAnchor()};
 `;
@@ -81,9 +80,9 @@ export const NavbarRegisterLink = styled(Gatsby.Link).attrs(() => ({
 	padding: 12px 18px;
 `;
 
-// ====================== //
-// ↓↓↓ Icons (images) ↓↓↓ //
-// ====================== //
+// ======================== //
+// ↓↓↓ Navbar Logo Icon ↓↓↓ //
+// ======================== //
 
 export const NavbarLogoIcon = styled("img").attrs(() => ({
 	src: logoJapanese,
@@ -97,35 +96,4 @@ export const NavbarLogoIcon = styled("img").attrs(() => ({
 		${Snippets.square("20px")};
 		border-radius: 0.1875rem;
 	}
-`;
-
-type ProfileIconProps = { display: string };
-
-export const NavbarProfileIcon = styled(animated.img).attrs((props) => ({
-	src: props.src,
-	alt: "navbar component profile icon",
-}))<ProfileIconProps>`
-	${Snippets.square(`${Constants.size.components.navbar.icon}px`)};
-	${Snippets.makeCircle()};
-	display: ${(props) => props.display};
-	margin-left: ${Constants.size.components.navbar.spacer}px;
-`;
-
-// =============== //
-// ↓↓↓ Buttons ↓↓↓ //
-// =============== //
-
-const buttonStyles = css`
-	${Snippets.flexRowCenter()};
-	margin-left: ${Constants.size.components.navbar.spacer}px;
-	cursor: pointer;
-`;
-
-type ButtonProps = { display: string };
-
-export const NavbarModalButton = styled("div")<ButtonProps>`
-	${Snippets.flexRowCenter()};
-	display: ${(props) => (props.display === "true" ? "flex" : "none")};
-	margin-left: ${Constants.size.components.navbar.spacer}px;
-	cursor: pointer;
 `;
