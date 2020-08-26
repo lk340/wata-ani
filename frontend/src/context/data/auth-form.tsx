@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import * as Helpers from "@/context/helpers";
-import * as FormTypes from "@/utils/types/form";
-import * as AuthTypes from "@/components/auth-form/auth-form.types";
+import { FormType } from "@/components/auth-form/auth-form";
 import * as Actions from "@/redux/actions";
+import * as Types from "@/utils/types";
 
 type CurrentUser = {
 	id: number;
@@ -61,36 +61,36 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	// ↓↓↓ Handlers ↓↓↓ //
 	// =============== //
 
-	function handleUsernameOrEmailChange(event: FormTypes.Input): void {
+	function handleUsernameOrEmailChange(event: Types.Input): void {
 		const usernameOrEmail = event.currentTarget.value;
 		setAuthForm({ username: usernameOrEmail });
 	}
 
-	function handleUsernameChange(event: FormTypes.Input): void {
+	function handleUsernameChange(event: Types.Input): void {
 		const username = event.currentTarget.value;
 		setAuthForm({ username });
 	}
 
-	function handleEmailChange(event: FormTypes.Input): void {
+	function handleEmailChange(event: Types.Input): void {
 		const email = event.currentTarget.value;
 		setAuthForm({ email });
 	}
 
-	function handlePasswordChange(event: FormTypes.Input): void {
+	function handlePasswordChange(event: Types.Input): void {
 		const password = event.currentTarget.value;
 		setAuthForm({ password });
 	}
 
-	function handlePasswordConfirmationChange(event: FormTypes.Input): void {
+	function handlePasswordConfirmationChange(event: Types.Input): void {
 		const passwordConfirmation = event.currentTarget.value;
 		setAuthForm({ passwordConfirmation });
 	}
 
 	function handleSubmit(
-		event: FormTypes.Submit,
-		formType: AuthTypes.FormType,
+		event: Types.Submit,
+		formType: FormType,
 		dispatch: Function,
-		authErrors: string[]
+		authErrors: string[],
 	): void {
 		event.preventDefault();
 

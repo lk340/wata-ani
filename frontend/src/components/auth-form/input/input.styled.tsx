@@ -11,7 +11,7 @@ import passwordIcon from "@/icons/auth/password.svg";
 import passwordHideIcon from "@/icons/auth/password-hide.svg";
 import passwordShowIcon from "@/icons/auth/password-show.svg";
 
-import * as AuthTypes from "../auth-form.types";
+import { FormType } from "../auth-form";
 
 /**
  * Input
@@ -78,13 +78,12 @@ type PasswordRevealIconsProps = { input_type: string };
 export const InputFieldPasswordRevealIcons = styled("div")<PasswordRevealIconsProps>`
 	display: ${(props) => {
 		const { input_type } = props;
-		return input_type === "Username Or Email"
-			? "none"
-			: input_type === "Username"
-			? "none"
-			: input_type === "Email"
-			? "none"
-			: "block";
+		const usernameOrEmail = input_type === "Username Or Email";
+		const username = input_type === "Username";
+		const email = input_type === "Email";
+
+		if (usernameOrEmail || username || email) return "none";
+		else return "block";
 	}};
 	cursor: pointer;
 `;
@@ -124,7 +123,7 @@ const fieldTypeStyles = css`
 
 type FieldTypeProps = {
 	reveal_password?: string;
-	form_type?: AuthTypes.FormType;
+	form_type?: FormType;
 	window_width?: number;
 	window_height: number;
 };

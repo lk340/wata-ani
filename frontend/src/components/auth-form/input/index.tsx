@@ -3,38 +3,56 @@ import * as React from "react";
 import * as Context from "@/context";
 import * as Animations from "@/utils/style/animations";
 
-import * as AuthTypes from "../auth-form.types";
+import { FormType } from "../auth-form";
 import * as Styled from "./input.styled";
 import * as Springs from "./input.springs";
 
-type InputProps = {
-	formType: AuthTypes.FormType;
-	inputType: "Username Or Email" | "Username" | "Email" | "Password" | "Confirm Password";
+type InputType =
+	| "Username Or Email"
+	| "Username"
+	| "Email"
+	| "Password"
+	| "Confirm Password";
+
+type Props = {
+	formType: FormType;
+	inputType: InputType;
 	onChange: React.ChangeEventHandler;
 };
 
-export const Input = (props: InputProps) => {
+export const Input = (props: Props) => {
 	const { formType, inputType, onChange } = props;
 
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 	const { windows } = Context.Windows.useWindowsContext();
-	const { theme } = Context.Theme.useThemeContext();
 
 	const animateInputField = Springs.inputField();
 	const animateInputText = Animations.text();
 
 	// Hides or shows certain input fields depending on whether we're dealing
 	// with a registration form or a sign in form.
-	const display =
-		formType === "Registration" && inputType === "Username Or Email"
-			? "none"
-			: formType === "Sign In" && inputType === "Username"
-			? "none"
-			: formType === "Sign In" && inputType === "Email"
-			? "none"
-			: formType === "Sign In" && inputType === "Confirm Password"
-			? "none"
-			: "grid";
+	let display;
+	switch (true) {
+		case formType === "Registration" && inputType === "Username Or Email":
+			display = "none";
+			break;
+
+		case formType === "Sign In" && inputType === "Username":
+			display = "none";
+			break;
+
+		case formType === "Sign In" && inputType === "Email":
+			display = "none";
+			break;
+
+		case formType === "Sign In" && inputType === "Confirm Password":
+			display = "none";
+			break;
+
+		default:
+			display = "grid";
+			break;
+	}
 
 	// Shows the icon that corresponds with the specific input field type.
 	// 	e.g. Username or Email field, Username input field, Email input field,
@@ -44,12 +62,15 @@ export const Input = (props: InputProps) => {
 		case "Username Or Email":
 			icon = <Styled.InputIconUsername />;
 			break;
+
 		case "Username":
 			icon = <Styled.InputIconUsername />;
 			break;
+
 		case "Email":
 			icon = <Styled.InputIconEmail />;
 			break;
+
 		default:
 			icon = <Styled.InputIconPassword />;
 			break;
@@ -69,6 +90,7 @@ export const Input = (props: InputProps) => {
 				/>
 			);
 			break;
+
 		case "Username":
 			field = (
 				<Styled.InputUsername
@@ -79,6 +101,7 @@ export const Input = (props: InputProps) => {
 				/>
 			);
 			break;
+
 		case "Email":
 			field = (
 				<Styled.InputEmail
@@ -89,6 +112,7 @@ export const Input = (props: InputProps) => {
 				/>
 			);
 			break;
+
 		case "Password":
 			// "Password" & "Confirm Password" case
 			field = (
@@ -100,6 +124,7 @@ export const Input = (props: InputProps) => {
 				/>
 			);
 			break;
+
 		default:
 			field = (
 				<Styled.InputPasswordConfirmation

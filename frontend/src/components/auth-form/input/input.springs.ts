@@ -1,6 +1,5 @@
 import * as Spring from "react-spring";
 
-import * as Context from "@/context";
 import * as Constants from "@/utils/style/constants";
 
 export function togglePasswordHideIcon(revealPassword: boolean) {

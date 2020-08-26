@@ -228,6 +228,7 @@ export function clearAnchor() {
 		display: inherit;
 		color: inherit;
 		text-decoration: none;
+		outline: none;
 	`;
 }
 

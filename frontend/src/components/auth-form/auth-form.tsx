@@ -3,15 +3,16 @@ import * as ReactRedux from "react-redux";
 import * as Gatsby from "gatsby";
 
 import * as Context from "@/context";
-import * as FormTypes from "@/utils/types/form";
+import * as Types from "@/utils/types";
 import * as Animations from "@/utils/style/animations";
 
-import * as AuthTypes from "./auth-form.types";
 import * as Styled from "./auth-form.styled";
 import { Input } from "./input";
 
+export type FormType = "Registration" | "Sign In";
+
 type Props = {
-	formType: AuthTypes.FormType;
+	formType: FormType;
 	submitText: "Register" | "Sign In";
 };
 
@@ -19,13 +20,11 @@ export const AuthForm = (props: Props) => {
 	const { formType, submitText } = props;
 
 	const { authForm } = Context.AuthForm.useAuthFormContext();
-	const { theme } = Context.Theme.useThemeContext();
 
 	React.useEffect(() => {
-		// "sign-in" and "registration" endpoints are not accessible to users who are logged in.
-		if (localStorage.refresh && localStorage.access) {
-			Gatsby.navigate("/");
-		}
+		const refreshToken = localStorage.refresh;
+		const accessToken = localStorage.access;
+		if (refreshToken && accessToken) Gatsby.navigate("/");
 	}, []);
 
 	const dispatch = ReactRedux.useDispatch();
@@ -35,7 +34,7 @@ export const AuthForm = (props: Props) => {
 
 	return (
 		<Styled.AuthForm
-			onSubmit={(event: FormTypes.Submit) =>
+			onSubmit={(event: Types.Submit) =>
 				authForm.handlers.handleSubmit(event, formType, dispatch, sessionErrors)
 			}
 		>
@@ -46,7 +45,7 @@ export const AuthForm = (props: Props) => {
 				{/* Title */}
 				<Styled.AuthFormTitle style={animateTitle}>{formType}</Styled.AuthFormTitle>
 				{/* Input Fields */}
-				<InputFields formType={formType} submitText={submitText} />
+				<InputFields formType={formType} />
 			</Styled.AuthFormLogoTitleInputs>
 
 			{/* Submit Button & Redirect */}
@@ -59,34 +58,36 @@ export const AuthForm = (props: Props) => {
 // ↓↓↓ Input Fields ↓↓↓ //
 // ==================== //
 
-const InputFields = (props: Props) => {
-	const { formType } = props;
-
+const InputFields: React.FC<{ formType: FormType }> = ({ formType }) => {
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 
 	return (
 		<Styled.AuthFormInputs>
+			{/* Username Or Email */}
 			<Input
 				onChange={authForm.handlers.handleUsernameOrEmailChange}
 				formType={formType}
 				inputType="Username Or Email"
 			/>
-
+			{/* Username */}
 			<Input
 				onChange={authForm.handlers.handleUsernameChange}
 				formType={formType}
 				inputType="Username"
 			/>
+			{/* Email */}
 			<Input
 				onChange={authForm.handlers.handleEmailChange}
 				formType={formType}
 				inputType="Email"
 			/>
+			{/* Password */}
 			<Input
 				onChange={authForm.handlers.handlePasswordChange}
 				formType={formType}
 				inputType="Password"
 			/>
+			{/* Confirm Password */}
 			<Input
 				onChange={authForm.handlers.handlePasswordConfirmationChange}
 				formType={formType}
@@ -103,8 +104,6 @@ const InputFields = (props: Props) => {
 const SubmitButtonAndRedirect = (props: Props) => {
 	const { formType, submitText } = props;
 
-	const { theme } = Context.Theme.useThemeContext();
-
 	const animateRedirect = Animations.text();
 
 	return (
@@ -115,6 +114,7 @@ const SubmitButtonAndRedirect = (props: Props) => {
 			{/* Redirect */}
 			<Styled.AuthFormRedirect style={animateRedirect}>
 				{formType === "Registration" ? "Already a member?" : "Need an account?"}&nbsp;
+				{/* Link */}
 				<Styled.AuthFormRedirectLink form_type={formType}>
 					{formType === "Registration" ? "Sign In" : "Register"}
 				</Styled.AuthFormRedirectLink>
