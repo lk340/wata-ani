@@ -34,34 +34,6 @@ export const Hamburger = styled("div")`
 `;
 
 // ============= //
-// ↓↓↓ Lines ↓↓↓ //
-// ============= //
-
-export const HamburgerLines = styled("div")`
-	${Snippets.fillContainer()};
-	position: relative;
-	z-index: 3;
-	cursor: pointer;
-`;
-
-const lineStyles = css`
-	${Snippets.size("100%", "4px")};
-	position: absolute;
-	background-color: ${Colors.PRIMARY_100};
-	border-radius: 10rem;
-`;
-
-export const HamburgerLinesLine = styled(animated.div)`
-	${lineStyles};
-`;
-
-export const HamburgerLinesLineMiddle = styled(animated.div)`
-	${lineStyles};
-	top: 50%;
-	transform: translateY(-50%);
-`;
-
-// ============= //
 // ↓↓↓ Modal ↓↓↓ //
 // ============= //
 

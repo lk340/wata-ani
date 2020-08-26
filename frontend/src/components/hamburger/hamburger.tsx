@@ -8,12 +8,12 @@ import * as Actions from "@/redux/actions";
 import * as Styled from "./hamburger.styled";
 import * as Springs from "./hamburger.springs";
 import { Lines } from "./lines";
+import { ModalButton } from "./modal-button";
 
 export const Hamburger = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { theme } = Context.Theme.useThemeContext();
 
-	// --- Modal Animations --- //
 	const animateModal = Springs.modal(navbar.state.hamburgerOpen);
 	const animateModalMainContainer = Springs.modalMainContainer(
 		navbar.state.hamburgerOpen,
@@ -56,11 +56,11 @@ const Options = () => {
 			{/* Home */}
 			<OptionLink iconType="home" text="Home" display={true} to="/" primary={false} />
 			{/* Search */}
-			<OptionButton
+			<ModalButton
 				iconType="search"
 				text="Search"
 				display={displayWhenSignedIn}
-				option="search"
+				buttonType="search"
 			/>
 			{/* Sign In */}
 			<OptionLink
@@ -81,11 +81,11 @@ const Options = () => {
 				primary={true}
 			/>
 			{/* Settings */}
-			<OptionButton
+			<ModalButton
 				iconType="settings"
 				text="Settings"
 				display={displayWhenSignedIn}
-				option="settings"
+				buttonType="settings"
 			/>
 		</Styled.HamburgerModalMainOptionContainer>
 	);
@@ -95,7 +95,7 @@ const Options = () => {
 // ↓↓↓ Option ↓↓↓ //
 // ============== //
 
-type OptionProps = {
+export type OptionProps = {
 	iconType: "home" | "search" | "settings" | "sign in" | "registration";
 	text: string;
 	display: boolean;

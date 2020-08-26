@@ -2,8 +2,6 @@ import * as React from "react";
 
 import * as Helpers from "@/context/helpers";
 
-export type Options = "home" | "likes" | "create" | "search" | "settings" | "profile";
-
 type State = {
 	home: boolean;
 	likes: boolean;
