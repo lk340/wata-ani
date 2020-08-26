@@ -44,7 +44,7 @@ export const InputTitle = styled("h2")`
 export const InputField = styled(animated.div)`
 	${Snippets.flex("row", "auto", "center")};
 	height: 50px;
-	padding: 0px 20px;
+	padding-left: 20px;
 	border-radius: ${Constants.borderRadius.components.authForm.input};
 `;
 
@@ -73,18 +73,20 @@ export const InputIconPassword = styled("img").attrs(() => ({
 	${Snippets.square(`${Constants.size.components.authForm.icon.width}px`)};
 `;
 
+// ===================================== //
+// ↓↓↓ Icons - Password Reveal (eye) ↓↓↓ //
+// ===================================== //
+
 type PasswordRevealIconsProps = { input_type: string };
 
 export const InputFieldPasswordRevealIcons = styled("div")<PasswordRevealIconsProps>`
 	display: ${(props) => {
-		const { input_type } = props;
-		const usernameOrEmail = input_type === "Username Or Email";
-		const username = input_type === "Username";
-		const email = input_type === "Email";
-
-		if (usernameOrEmail || username || email) return "none";
-		else return "block";
+		const password = props.input_type === "Password";
+		const confirmPassword = props.input_type === "Confirm Password";
+		if (password || confirmPassword) return "block";
+		else return "none";
 	}};
+	padding-right: 20px;
 	cursor: pointer;
 `;
 
@@ -107,8 +109,8 @@ export const InputIconPasswordShow = styled(animated.img).attrs(() => ({
 // =================== //
 
 const fieldTypeStyles = css`
-	${Snippets.square("100%")};
 	flex: 1;
+	height: 100%;
 	padding: 0px 20px;
 	background-color: ${Colors.NEUTRALS.transparent};
 	border: none;

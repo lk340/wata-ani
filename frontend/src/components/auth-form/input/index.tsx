@@ -1,13 +1,13 @@
 import * as React from "react";
 
 import * as Context from "@/context";
-import * as Animations from "@/utils/style/animations";
 
 import { FormType } from "../auth-form";
 import * as Styled from "./input.styled";
 import * as Springs from "./input.springs";
+import * as Helpers from "./helpers";
 
-type InputType =
+export type InputType =
 	| "Username Or Email"
 	| "Username"
 	| "Email"
@@ -27,116 +27,17 @@ export const Input = (props: Props) => {
 	const { windows } = Context.Windows.useWindowsContext();
 
 	const animateInputField = Springs.inputField();
-	const animateInputText = Animations.text();
 
-	// Hides or shows certain input fields depending on whether we're dealing
-	// with a registration form or a sign in form.
-	let display;
-	switch (true) {
-		case formType === "Registration" && inputType === "Username Or Email":
-			display = "none";
-			break;
-
-		case formType === "Sign In" && inputType === "Username":
-			display = "none";
-			break;
-
-		case formType === "Sign In" && inputType === "Email":
-			display = "none";
-			break;
-
-		case formType === "Sign In" && inputType === "Confirm Password":
-			display = "none";
-			break;
-
-		default:
-			display = "grid";
-			break;
-	}
-
-	// Shows the icon that corresponds with the specific input field type.
-	// 	e.g. Username or Email field, Username input field, Email input field,
-	//	Password input field, Confirm Password input field.
-	let icon;
-	switch (inputType) {
-		case "Username Or Email":
-			icon = <Styled.InputIconUsername />;
-			break;
-
-		case "Username":
-			icon = <Styled.InputIconUsername />;
-			break;
-
-		case "Email":
-			icon = <Styled.InputIconEmail />;
-			break;
-
-		default:
-			icon = <Styled.InputIconPassword />;
-			break;
-	}
-
-	// Renders specific input field depending on input field type.
-	let field;
-	switch (inputType) {
-		case "Username Or Email":
-			field = (
-				<Styled.InputUsernameOrEmail
-					onChange={onChange}
-					form_type={formType}
-					window_width={windows.state.width}
-					window_height={windows.state.height}
-					style={animateInputText}
-				/>
-			);
-			break;
-
-		case "Username":
-			field = (
-				<Styled.InputUsername
-					onChange={onChange}
-					form_type={formType}
-					window_height={windows.state.height}
-					style={animateInputText}
-				/>
-			);
-			break;
-
-		case "Email":
-			field = (
-				<Styled.InputEmail
-					onChange={onChange}
-					form_type={formType}
-					window_height={windows.state.height}
-					style={animateInputText}
-				/>
-			);
-			break;
-
-		case "Password":
-			// "Password" & "Confirm Password" case
-			field = (
-				<Styled.InputPassword
-					onChange={onChange}
-					reveal_password={authForm.state.revealPassword.toString()}
-					window_height={windows.state.height}
-					style={animateInputText}
-				/>
-			);
-			break;
-
-		default:
-			field = (
-				<Styled.InputPasswordConfirmation
-					onChange={onChange}
-					reveal_password={authForm.state.revealPassword.toString()}
-					window_height={windows.state.height}
-					form_type={formType}
-					style={animateInputText}
-				/>
-			);
-			break;
-	}
+	const display = Helpers.generateDisplay(formType, inputType);
+	const icon = Helpers.generateIcon(inputType);
+	const field = Helpers.Field(
+		inputType,
+		onChange,
+		formType,
+		windows.state.width,
+		windows.state.height,
+		authForm.state.revealPassword,
+	);
 
 	return (
 		<Styled.Input display={display}>
