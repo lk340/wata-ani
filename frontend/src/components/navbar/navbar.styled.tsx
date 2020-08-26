@@ -19,24 +19,23 @@ import logoJapanese from "@/images/logo/japanese.svg";
 // ============== //
 
 export const Navbar = styled(animated.div)`
-	height: ${Constants.size.components.navbar.height};
+	height: ${Constants.size.components.navbar.height}px;
 
 	@media (max-width: 1260px) {
-		padding: 0px ${Constants.sidePaddings.tablet};
+		padding: 0px ${Constants.sidePaddings.tablet}px;
 	}
 
 	@media (max-width: 575px) {
 		height: 50px;
-		padding: 0px ${Constants.sidePaddings.mobile};
+		padding: 0px ${Constants.sidePaddings.mobile}px;
 	}
 `;
 
 export const NavbarMaxWidth = styled("div")`
 	${Snippets.flex("row", "space-between", "center")};
 	${Snippets.fillContainer()};
-	/* position: relative; */
 	margin: 0px auto;
-	max-width: ${Constants.globals.maxWidth};
+	max-width: ${Constants.globals.maxWidth}px;
 	font-size: ${Constants.fontSizes.components.navbar.link};
 `;
 
@@ -70,7 +69,7 @@ export const NavbarSignInLink = styled(Gatsby.Link).attrs(() => ({
 export const NavbarRegisterLinkContainer = styled(animated.div)<FormProps>`
 	${Snippets.flexRowCenter()};
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
-	margin-left: ${Constants.size.components.navbar.spacer};
+	margin-left: ${Constants.size.components.navbar.spacer}px;
 	border-radius: ${Constants.borderRadius.components.navbar.register};
 	cursor: pointer;
 `;
@@ -106,10 +105,10 @@ export const NavbarProfileIcon = styled(animated.img).attrs((props) => ({
 	src: props.src,
 	alt: "navbar component profile icon",
 }))<ProfileIconProps>`
-	${Snippets.square(Constants.size.components.navbar.icon)};
+	${Snippets.square(`${Constants.size.components.navbar.icon}px`)};
 	${Snippets.makeCircle()};
 	display: ${(props) => props.display};
-	margin-left: ${Constants.size.components.navbar.spacer};
+	margin-left: ${Constants.size.components.navbar.spacer}px;
 `;
 
 // =============== //
@@ -118,7 +117,7 @@ export const NavbarProfileIcon = styled(animated.img).attrs((props) => ({
 
 const buttonStyles = css`
 	${Snippets.flexRowCenter()};
-	margin-left: ${Constants.size.components.navbar.spacer};
+	margin-left: ${Constants.size.components.navbar.spacer}px;
 	cursor: pointer;
 `;
 
@@ -127,6 +126,6 @@ type ButtonProps = { display: string };
 export const NavbarModalButton = styled("div")<ButtonProps>`
 	${Snippets.flexRowCenter()};
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
-	margin-left: ${Constants.size.components.navbar.spacer};
+	margin-left: ${Constants.size.components.navbar.spacer}px;
 	cursor: pointer;
 `;

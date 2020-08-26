@@ -15,7 +15,6 @@ import logoJapanese from "@/images/logo/japanese.svg";
 
 export const Navbar = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
-	const { authForm } = Context.AuthForm.useAuthFormContext();
 	const { location } = Context.Location.useLocationContext();
 	const { theme } = Context.Theme.useThemeContext();
 

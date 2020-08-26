@@ -56,21 +56,21 @@ export const InputIconUsername = styled("img").attrs(() => ({
 	src: usernameIcon,
 	alt: "auth form component username icon",
 }))`
-	${Snippets.square(Constants.size.components.authForm.icon.width)};
+	${Snippets.square(`${Constants.size.components.authForm.icon.width}px`)};
 `;
 
 export const InputIconEmail = styled("img").attrs(() => ({
 	src: emailIcon,
 	alt: "auth form component email icon",
 }))`
-	${Snippets.square(Constants.size.components.authForm.icon.width)};
+	${Snippets.square(`${Constants.size.components.authForm.icon.width}px`)};
 `;
 
 export const InputIconPassword = styled("img").attrs(() => ({
 	src: passwordIcon,
 	alt: "auth form component password icon",
 }))`
-	${Snippets.square(Constants.size.components.authForm.icon.width)};
+	${Snippets.square(`${Constants.size.components.authForm.icon.width}px`)};
 `;
 
 type PasswordRevealIconsProps = { input_type: string };
@@ -93,14 +93,14 @@ export const InputIconPasswordHide = styled(animated.img).attrs(() => ({
 	src: passwordHideIcon,
 	alt: "auth form component password hide icon",
 }))`
-	${Snippets.square(Constants.size.components.authForm.icon.width)};
+	${Snippets.square(`${Constants.size.components.authForm.icon.width}px`)};
 `;
 
 export const InputIconPasswordShow = styled(animated.img).attrs(() => ({
 	src: passwordShowIcon,
 	alt: "auth form component password show icon",
 }))`
-	${Snippets.square(Constants.size.components.authForm.icon.width)};
+	${Snippets.square(`${Constants.size.components.authForm.icon.width}px`)};
 `;
 
 // =================== //

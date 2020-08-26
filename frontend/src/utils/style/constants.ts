@@ -23,8 +23,8 @@ export const threeJS = {
 // ============== //
 
 export const globals = {
-	// maxWidth: "1440px",
-	maxWidth: "1200px",
+	// maxWidth: "1440",
+	maxWidth: 1200,
 };
 
 // ==================== //
@@ -72,17 +72,17 @@ export const theme = {
 // =================== //
 
 export const breakpoints = {
-	tablet: "1102px",
-	mobile: "450px",
-	paddingTablet: "865px",
-	paddingMobile: "450px",
+	tablet: 1102,
+	mobile: 450,
+	paddingTablet: 865,
+	paddingMobile: 450,
 	navbar: {
-		1260: "1260px",
-		650: "650px",
+		1260: 1260,
+		650: 650,
 	},
 	home: {
-		1260: "1260px",
-		650: "650px",
+		1260: 1260,
+		650: 650,
 	},
 };
 
@@ -91,9 +91,9 @@ export const breakpoints = {
 // ==================== //
 
 export const sidePaddings = {
-	desktop: "120px",
-	tablet: "60px",
-	mobile: "30px",
+	desktop: 120,
+	tablet: 60,
+	mobile: 30,
 };
 
 // ============ //
@@ -103,22 +103,22 @@ export const sidePaddings = {
 export const size = {
 	components: {
 		authForm: {
-			logo: { width: "70px" },
-			icon: { width: "20px" },
+			logo: { width: 70 },
+			icon: { width: 20 },
 		},
 		navbar: {
-			height: "100px",
-			icon: "20px",
-			spacer: "40px",
+			height: 100,
+			icon: 20,
+			spacer: 40,
 		},
 		navbarMobile: {
-			height: "80px",
-			icon: "20px",
+			height: 80,
+			icon: 20,
 		},
 		navbarModalPartial: {
 			header: {
-				height: "70px",
-				close: "20px",
+				height: 70,
+				close: 20,
 			},
 		},
 	},
@@ -147,7 +147,7 @@ export const fontSizes = {
 		hamburger: {
 			link: "0.875rem",
 		},
-		navbarModalParial: {
+		navbarModalPartial: {
 			header: "1rem",
 		},
 	},

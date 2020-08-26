@@ -92,7 +92,7 @@ export const HamburgerModalMainOptionContainer = styled("div")`
 	position: absolute;
 	right: 0;
 	margin-top: 90px;
-	padding-right: ${Constants.sidePaddings.mobile};
+	padding-right: ${Constants.sidePaddings.mobile}px;
 `;
 
 type Option = { display: string };

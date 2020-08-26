@@ -22,13 +22,13 @@ export const NavbarModalPartial = styled(animated.div)`
 
 export const NavbarModalPartialHeader = styled(animated.div)`
 	${Snippets.flex("row", "space-between", "center")};
-	height: ${Constants.size.components.navbarModalPartial.header.height};
-	padding: 0px ${Constants.sidePaddings.mobile};
+	height: ${Constants.size.components.navbarModalPartial.header.height}px;
+	padding: 0px ${Constants.sidePaddings.mobile}px;
 `;
 
 export const NavbarModalPartialHeaderText = styled(animated.span)`
 	display: block;
-	font-size: ${Constants.fontSizes.components.navbarModalParial.header};
+	font-size: ${Constants.fontSizes.components.navbarModalPartial.header};
 	font-weight: bold;
 `;
 
@@ -36,7 +36,7 @@ export const NavbarModalPartialHeaderClose = styled("img").attrs(() => ({
 	src: close,
 	alt: "navbar modal partial close icon",
 }))`
-	${Snippets.square(Constants.size.components.navbarModalPartial.header.close)};
+	${Snippets.square(`${Constants.size.components.navbarModalPartial.header.close}px`)};
 	cursor: pointer;
 `;
 
@@ -45,5 +45,5 @@ export const NavbarModalPartialHeaderClose = styled("img").attrs(() => ({
 // ============ //
 
 export const NavbarModalPartialBody = styled(animated.div)`
-	padding: ${Constants.sidePaddings.mobile};
+	padding: ${Constants.sidePaddings.mobile}px;
 `;

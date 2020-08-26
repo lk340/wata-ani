@@ -10,7 +10,7 @@ import darkMode from "@/icons/navbar/dark-mode.svg";
 export const ThemeButton = styled("div")`
 	${Snippets.flexRowCenter()};
 	position: relative;
-	margin: 0px ${Constants.size.components.navbar.spacer};
+	margin: 0px ${Constants.size.components.navbar.spacer}px;
 	cursor: pointer;
 `;
 
@@ -18,7 +18,7 @@ export const ThemeButtonLightModeIcon = styled(animated.img).attrs(() => ({
 	src: lightMode,
 	alt: "navbar component light theme button",
 }))`
-	${Snippets.square(Constants.size.components.navbar.icon)};
+	${Snippets.square(`${Constants.size.components.navbar.icon}px`)};
 	position: absolute;
 `;
 
@@ -26,5 +26,5 @@ export const ThemeButtonDarkModeIcon = styled("img").attrs(() => ({
 	src: darkMode,
 	alt: "navbar component dark theme button",
 }))`
-	${Snippets.square(Constants.size.components.navbar.icon)};
+	${Snippets.square(`${Constants.size.components.navbar.icon}px`)};
 `;

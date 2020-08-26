@@ -25,7 +25,7 @@ export const AuthForm = styled("form")`
 	width: 400px;
 
 	@media (max-width: ${Constants.breakpoints.mobile}) {
-		padding: 0px ${Constants.sidePaddings.mobile};
+		padding: 0px ${Constants.sidePaddings.mobile}px;
 		width: 100%;
 	}
 

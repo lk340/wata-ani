@@ -19,8 +19,8 @@ type Navbar = { display: string };
 export const NavbarMobile = styled(animated.div)<Navbar>`
 	${Snippets.flex("row", "space-between", "center")};
 	display: none;
-	height: ${Constants.size.components.navbarMobile.height};
-	padding: 0px ${Constants.sidePaddings.mobile};
+	height: ${Constants.size.components.navbarMobile.height}px;
+	padding: 0px ${Constants.sidePaddings.mobile}px;
 	color: ${Constants.theme.text};
 	background-color: ${Constants.theme.background};
 	border-top: ${Constants.theme.components.navbarMobile.borderTop} solid 1px;
