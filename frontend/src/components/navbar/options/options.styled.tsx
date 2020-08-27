@@ -23,9 +23,12 @@ export const Options = styled("div")`
 	}
 `;
 
-export const Option = styled(Gatsby.Link)`
+type OptionProps = { display: string };
+
+export const Option = styled(Gatsby.Link)<OptionProps>`
 	${Snippets.flexRowCenter()};
 	${Snippets.clearAnchor()};
+	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 `;
 
 type FormProps = { display: string };
@@ -57,15 +60,12 @@ export const OptionRegisterLink = styled(Gatsby.Link).attrs(() => ({
 // ↓↓↓ Profile Icon ↓↓↓ //
 // ==================== //
 
-type ProfileIconProps = { display: string };
-
 export const OptionProfileIcon = styled(animated.img).attrs((props) => ({
 	src: props.src,
 	alt: "navbar component profile icon",
-}))<ProfileIconProps>`
+}))`
 	${Snippets.square(`${Constants.size.components.navbar.icon}px`)};
 	${Snippets.makeCircle()};
-	display: ${(props) => props.display};
 	margin-left: ${Constants.size.components.navbar.spacer}px;
 `;
 

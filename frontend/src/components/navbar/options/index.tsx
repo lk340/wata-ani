@@ -30,7 +30,7 @@ export const Options = () => {
 	return (
 		<Styled.Options>
 			{/* Home Link */}
-			<Styled.Option to="/" onClick={navbar.setters.setHomeOn}>
+			<Styled.Option to="/" onClick={navbar.setters.setHomeOn} display={"true"}>
 				<Icons.HomeHollow
 					width={`${Constants.size.components.navbar.icon}px`}
 					fill={navbar.state.iconFill}
@@ -92,12 +92,12 @@ export const Options = () => {
 			</Styled.OptionModalButton>
 
 			{/* Profile Link */}
-			<Styled.Option to="/profile" onClick={navbar.setters.setProfileOn}>
-				<Styled.OptionProfileIcon
-					src={logoJapanese}
-					display={displayWhenSignedIn.toString()}
-					style={animateProfileIcon}
-				/>
+			<Styled.Option
+				to="/profile"
+				onClick={navbar.setters.setProfileOn}
+				display={displayWhenSignedIn.toString()}
+			>
+				<Styled.OptionProfileIcon src={logoJapanese} style={animateProfileIcon} />
 			</Styled.Option>
 
 			{/* Theme Button */}
