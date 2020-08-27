@@ -135,6 +135,7 @@ export const fontSizes = {
 			title: "1.5rem",
 			inputTitle: "0.875rem",
 			inputPlaceholder: "0.75rem",
+			inputError: "0.75rem",
 			submit: "1rem",
 			redirect: "0.875rem",
 		},

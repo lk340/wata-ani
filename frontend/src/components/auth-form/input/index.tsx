@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
 
@@ -26,6 +27,7 @@ export const Input = (props: Props) => {
 
 	const { authForm } = Context.AuthForm.useAuthFormContext();
 	const { windows } = Context.Windows.useWindowsContext();
+	const { theme } = Context.Theme.useThemeContext();
 
 	const animateInputField = Springs.inputField();
 
@@ -40,10 +42,33 @@ export const Input = (props: Props) => {
 		authForm.state.revealPassword,
 	);
 
+	const sessionErrors = ReactRedux.useSelector((state) => state.errors.session);
+
+	let error: string | undefined;
+	switch (inputType) {
+		case "Username Or Email":
+			error = sessionErrors.filter((error: string) => error.includes("username"))[0];
+			break;
+		case "Username":
+			error = sessionErrors.filter((error: string) => error.includes("username"))[0];
+			break;
+		case "Email":
+			error = sessionErrors.filter((error: string) => error.includes("e-mail"))[0];
+			break;
+		case "Password":
+			error = sessionErrors.filter((error: string) => error.includes("short"))[0];
+			break;
+		default:
+			error = sessionErrors.filter((error: string) => error.includes("didn't match"))[0];
+			break;
+	}
+
+	console.log("Error:", error);
+
 	return (
 		<Styled.Input display={display}>
 			<Styled.InputTitle>*{inputType}</Styled.InputTitle>
-			<Styled.InputField style={animateInputField}>
+			<Styled.InputFieldContainer style={animateInputField}>
 				{icon}
 				{field}
 
@@ -59,7 +84,12 @@ export const Input = (props: Props) => {
 						style={Springs.togglePasswordShowIcon(authForm.state.revealPassword)}
 					/>
 				</Styled.InputFieldPasswordRevealIcons>
-			</Styled.InputField>
+			</Styled.InputFieldContainer>
+
+			{/* Error */}
+			<Styled.InputError mode={theme.state.mode} error={error}>
+				{error}
+			</Styled.InputError>
 		</Styled.Input>
 	);
 };

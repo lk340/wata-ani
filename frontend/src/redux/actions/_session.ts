@@ -1,4 +1,3 @@
-import * as ReactRedux from "react-redux";
 import * as Gatsby from "gatsby";
 import axios from "axios";
 
@@ -94,10 +93,9 @@ async function POST(
 		// Failure
 		else {
 			if (type === "register") {
-				console.log("Failure:", Object.values(response.data));
+				// console.log("Failure:", Object.values(response.data));
 				const errors: string[] = [];
 				Object.values(response.data).forEach((data: string[]) => errors.push(data[0]));
-				console.log("Errors:", errors);
 				dispatch(sessionErrors(errors));
 			} else {
 				dispatch(sessionErrors(response.data.non_field_errors));

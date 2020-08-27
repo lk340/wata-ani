@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { animated } from "react-spring";
 
+import * as Context from "@/context";
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
@@ -17,6 +18,7 @@ import { FormType } from "../auth-form";
  * Input
  * Icons
  * Field Types
+ * Error
  */
 
 // ============= //
@@ -41,7 +43,7 @@ export const InputTitle = styled("h2")`
 	}
 `;
 
-export const InputField = styled(animated.div)`
+export const InputFieldContainer = styled(animated.div)`
 	${Snippets.flex("row", "auto", "center")};
 	height: 50px;
 	padding-left: 20px;
@@ -111,7 +113,7 @@ export const InputIconPasswordShow = styled(animated.img).attrs(() => ({
 const fieldTypeStyles = css`
 	flex: 1;
 	height: 100%;
-	padding: 0px 20px;
+	margin: 0px 20px;
 	background-color: ${Colors.NEUTRALS.transparent};
 	border: none;
 	outline: none;
@@ -177,4 +179,26 @@ export const InputPasswordConfirmation = styled(animated.input).attrs(
 	}),
 )<FieldTypeProps>`
 	${fieldTypeStyles};
+`;
+
+// ============= //
+// ↓↓↓ Error ↓↓↓ //
+// ============= //
+
+type ErrorProps = {
+	mode: Context.Theme.Mode;
+	error: string | undefined;
+};
+
+export const InputError = styled("p")<ErrorProps>`
+	${Snippets.clearSpacing()};
+	display: ${(props) => {
+		const { error } = props;
+		if (error !== undefined && error !== "") return "block";
+		else return "none";
+	}};
+	color: ${(props) => {
+		return props.mode === "light" ? Colors.ALERTS.error.light : Colors.ALERTS.error.dark;
+	}};
+	font-size: ${Constants.fontSizes.components.authForm.inputError};
 `;
