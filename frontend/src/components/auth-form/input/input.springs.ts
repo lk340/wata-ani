@@ -1,6 +1,9 @@
 import * as Spring from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
+import * as Colors from "@/utils/style/colors";
+
+import { FormType } from "../auth-form";
 
 export function togglePasswordHideIcon(revealPassword: boolean) {
 	return Spring.useSpring({
@@ -16,17 +19,23 @@ export function togglePasswordShowIcon(revealPassword: boolean) {
 	});
 }
 
-export function inputField() {
+export function inputField(isError: boolean, formType: AuthForm) {
 	return Spring.useSpring({
 		to:
 			localStorage.mode === "light"
 				? {
 						backgroundColor: Constants.theme.components.authForm.inputBackground.light,
-						border: `${Constants.theme.components.authForm.inputBorder.light} solid 2px`,
+						border:
+							isError && formType !== "Sign In"
+								? `${Colors.ALERTS.error.light} solid 2px`
+								: `${Constants.theme.components.authForm.inputBorder.light} solid 2px`,
 				  }
 				: {
 						backgroundColor: Constants.theme.components.authForm.inputBackground.dark,
-						border: `${Constants.theme.components.authForm.inputBorder.dark} solid 2px`,
+						border:
+							isError && formType !== "Sign In"
+								? `${Colors.ALERTS.error.dark} solid 2px`
+								: `${Constants.theme.components.authForm.inputBorder.dark} solid 2px`,
 				  },
 	});
 }

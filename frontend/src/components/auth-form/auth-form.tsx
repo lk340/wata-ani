@@ -3,6 +3,7 @@ import * as ReactRedux from "react-redux";
 import * as Gatsby from "gatsby";
 
 import * as Context from "@/context";
+import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
 import * as Animations from "@/utils/style/animations";
 

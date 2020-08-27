@@ -29,8 +29,6 @@ export const Input = (props: Props) => {
 	const { windows } = Context.Windows.useWindowsContext();
 	const { theme } = Context.Theme.useThemeContext();
 
-	const animateInputField = Springs.inputField();
-
 	const display = Helpers.generateDisplay(formType, inputType);
 	const icon = Helpers.generateIcon(inputType);
 	const field = Helpers.Field(
@@ -46,9 +44,6 @@ export const Input = (props: Props) => {
 
 	let error: string | undefined;
 	switch (inputType) {
-		// case "Username Or Email":
-		// 	error = sessionErrors.filter((error: string) => error.includes("credentials"))[0];
-		// 	break;
 		case "Username":
 			error = sessionErrors.filter((error: string) => error.includes("username"))[0];
 			break;
@@ -66,7 +61,7 @@ export const Input = (props: Props) => {
 			break;
 	}
 
-	console.log("Error:", error);
+	const animateInputField = Springs.inputField(error !== undefined, formType);
 
 	return (
 		<Styled.Input display={display}>
