@@ -82,6 +82,7 @@ async function POST(
 		if (response.status < 400) {
 			if (type === "register") {
 				console.log(response.data.detail);
+				if (authErrors.length > 0) dispatch(clearErrors());
 			} else {
 				localStorage.refresh = response.data.refresh_token;
 				localStorage.access = response.data.access_token;

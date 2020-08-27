@@ -46,9 +46,9 @@ export const Input = (props: Props) => {
 
 	let error: string | undefined;
 	switch (inputType) {
-		case "Username Or Email":
-			error = sessionErrors.filter((error: string) => error.includes("username"))[0];
-			break;
+		// case "Username Or Email":
+		// 	error = sessionErrors.filter((error: string) => error.includes("credentials"))[0];
+		// 	break;
 		case "Username":
 			error = sessionErrors.filter((error: string) => error.includes("username"))[0];
 			break;
@@ -56,7 +56,10 @@ export const Input = (props: Props) => {
 			error = sessionErrors.filter((error: string) => error.includes("e-mail"))[0];
 			break;
 		case "Password":
-			error = sessionErrors.filter((error: string) => error.includes("short"))[0];
+			error =
+				formType === "Registration"
+					? sessionErrors.filter((error: string) => error.includes("short"))[0]
+					: sessionErrors.filter((error: string) => error.includes("credentials"))[0];
 			break;
 		default:
 			error = sessionErrors.filter((error: string) => error.includes("didn't match"))[0];
