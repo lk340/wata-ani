@@ -7,9 +7,7 @@ import * as Snippets from "@/utils/style/snippets";
 // ↓↓↓ Errors ↓↓↓ //
 // ============== //
 
-export const Errors = styled(animated.div)`
-	border: red solid 1px;
-`;
+export const Errors = styled(animated.div)``;
 
 export const ErrorsText = styled("p")`
 	${Snippets.clearSpacing()};

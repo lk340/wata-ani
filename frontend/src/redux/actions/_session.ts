@@ -45,7 +45,7 @@ function signOutCurrentUser() {
 // ↓↓↓ Errors ↓↓↓ //
 // ============== //
 
-export function sessionErrors(errors: any) {
+export function sessionErrors(errors: string[]) {
 	return {
 		type: SESSION_ERRORS,
 		errors,
@@ -97,6 +97,7 @@ async function POST(
 				console.log("Failure:", Object.values(response.data));
 				const errors: string[] = [];
 				Object.values(response.data).forEach((data: string[]) => errors.push(data[0]));
+				console.log("Errors:", errors);
 				dispatch(sessionErrors(errors));
 			} else {
 				dispatch(sessionErrors(response.data.non_field_errors));
