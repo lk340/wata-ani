@@ -1,5 +1,5 @@
 var WEBGL = {
-	isWebGLAvailable: function() {
+	isWebGLAvailable: function () {
 		try {
 			var canvas = document.createElement("canvas");
 			return !!(
@@ -11,7 +11,7 @@ var WEBGL = {
 		}
 	},
 
-	isWebGL2Available: function() {
+	isWebGL2Available: function () {
 		try {
 			var canvas = document.createElement("canvas");
 			return !!(window.WebGL2RenderingContext && canvas.getContext("webgl2"));
@@ -20,15 +20,15 @@ var WEBGL = {
 		}
 	},
 
-	getWebGLErrorMessage: function() {
+	getWebGLErrorMessage: function () {
 		return this.getErrorMessage(1);
 	},
 
-	getWebGL2ErrorMessage: function() {
+	getWebGL2ErrorMessage: function () {
 		return this.getErrorMessage(2);
 	},
 
-	getErrorMessage: function(version) {
+	getErrorMessage: function (version) {
 		var names = {
 			1: "WebGL",
 			2: "WebGL 2",

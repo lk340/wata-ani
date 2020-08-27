@@ -5,7 +5,7 @@ import * as Colors from "@/utils/style/colors";
  * Globals
  * Theme Colors
  * Breakpoints
- * SIde Paddings
+ * Side Paddings
  * Size
  * Font Sizes
  * Line Heights

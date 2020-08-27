@@ -5,6 +5,7 @@ import * as Context from "@/context";
 import * as Actions from "@/redux/actions";
 
 import * as Styled from "./modal-sign-out-button.styled";
+
 import { OptionProps } from "../modal-options";
 
 export const ModalSignOutButton = (props: OptionProps) => {

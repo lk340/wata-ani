@@ -5,6 +5,7 @@ import * as Components from "@/components";
 
 import * as Styled from "./hamburger.styled";
 import * as Springs from "./hamburger.springs";
+
 import { Lines } from "./lines";
 import { ModalOptions } from "./modal-options";
 

@@ -7,6 +7,7 @@ import * as Types from "@/utils/types";
 import * as Animations from "@/utils/style/animations";
 
 import * as Styled from "./auth-form.styled";
+
 import { InputFields } from "./input-fields";
 import { SubmitButtonAndRedirect } from "./submit-button-and-redirect";
 

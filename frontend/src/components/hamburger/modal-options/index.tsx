@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactRedux from "react-redux";
 
 import * as Styled from "./modal-options.styled";
+
 import { ModalButton } from "../modal-button";
 import { ModalLink } from "../modal-link";
 import { ModalSignOutButton } from "../modal-sign-out-button";

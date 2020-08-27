@@ -1,9 +1,13 @@
 import { WEBGL } from "./webgl-check";
 import { css } from "styled-components";
-import { animated } from "react-spring";
 
 import * as Context from "@/context";
-import * as Constants from "@/utils/style/constants";
+
+/**
+ * Checks
+ * Styles
+ * Responsive Styles
+ */
 
 // ============== //
 // ↓↓↓ Checks ↓↓↓ //
@@ -266,41 +270,41 @@ export function gridResponsive(minSize: string = "200px", maxSize: string = "1fr
 	`;
 }
 
-export function responsive(
-	device: Context.Theme.Device,
-	ultrawide: string,
-	desktop: string,
-	iPadPro: string,
-	iPad: string,
-	iPhone678Plus: string,
-	pixel2: string,
-	iPhoneX: string,
-	galaxyS5: string,
-	iPhone5SE: string,
-) {
-	switch (device) {
-		case "ultrawide":
-			return ultrawide;
-		case "desktop":
-			return desktop;
-		case "iPadPro":
-			return iPadPro;
-		case "iPad":
-			return iPad;
-		case "iPhone678Plus":
-			return iPhone678Plus;
-		case "pixel2":
-			return pixel2;
-		case "iPhoneX":
-			return iPhoneX;
-		case "galaxyS5":
-			return galaxyS5;
-		case "iPhone5SE":
-			return iPhone5SE;
-		default:
-			break;
-	}
-}
+// export function responsive(
+// 	device: Context.Theme.Device,
+// 	ultrawide: string,
+// 	desktop: string,
+// 	iPadPro: string,
+// 	iPad: string,
+// 	iPhone678Plus: string,
+// 	pixel2: string,
+// 	iPhoneX: string,
+// 	galaxyS5: string,
+// 	iPhone5SE: string,
+// ) {
+// 	switch (device) {
+// 		case "ultrawide":
+// 			return ultrawide;
+// 		case "desktop":
+// 			return desktop;
+// 		case "iPadPro":
+// 			return iPadPro;
+// 		case "iPad":
+// 			return iPad;
+// 		case "iPhone678Plus":
+// 			return iPhone678Plus;
+// 		case "pixel2":
+// 			return pixel2;
+// 		case "iPhoneX":
+// 			return iPhoneX;
+// 		case "galaxyS5":
+// 			return galaxyS5;
+// 		case "iPhone5SE":
+// 			return iPhone5SE;
+// 		default:
+// 			break;
+// 	}
+// }
 
 // export function responsivePaddingHome() {
 // 	function paddingTop(padding: string) {

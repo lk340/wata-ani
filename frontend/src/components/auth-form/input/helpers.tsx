@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Animations from "@/utils/style/animations";
 
 import * as Styled from "./input.styled";
+
 import { FormType } from "../auth-form";
 import { InputType } from "./index";
 

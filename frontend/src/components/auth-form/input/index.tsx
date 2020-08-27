@@ -2,10 +2,11 @@ import * as React from "react";
 
 import * as Context from "@/context";
 
-import { FormType } from "../auth-form";
 import * as Styled from "./input.styled";
 import * as Springs from "./input.springs";
 import * as Helpers from "./helpers";
+
+import { FormType } from "../auth-form";
 
 export type InputType =
 	| "Username Or Email"

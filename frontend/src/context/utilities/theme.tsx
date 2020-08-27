@@ -16,10 +16,6 @@ export const useThemeContext = Helpers.createUseContext(() => {
 	const [theme, _setTheme] = React.useState<State>({ ...initialState });
 
 	// =============== //
-	// ↓↓↓ Getters ↓↓↓ //
-	// =============== //
-
-	// =============== //
 	// ↓↓↓ Setters ↓↓↓ //
 	// =============== //
 
@@ -36,15 +32,13 @@ export const useThemeContext = Helpers.createUseContext(() => {
 
 	const state = theme;
 
-	const getters = {};
-
 	const setters = {
 		setTheme,
 		toggleMode,
 	};
 
 	return {
-		theme: { state, getters, setters },
+		theme: { state, setters },
 	};
 });
 

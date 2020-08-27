@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Animations from "@/utils/style/animations";
 
 import * as Styled from "./submit-button-and-redirect.styled";
+
 import { Props } from "../auth-form";
 
 export const SubmitButtonAndRedirect = (props: Props) => {

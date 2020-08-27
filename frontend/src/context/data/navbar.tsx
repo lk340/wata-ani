@@ -113,8 +113,6 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const state = navbar;
 
-	const getters = {};
-
 	const setters = {
 		setNavbar,
 		setHomeOn,
@@ -127,12 +125,8 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 		toggleHamburgerOpen,
 	};
 
-	const handlers = {};
-
-	const api = {};
-
 	return {
-		navbar: { state, getters, setters, handlers, api },
+		navbar: { state, setters },
 	};
 });
 

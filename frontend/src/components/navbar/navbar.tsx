@@ -6,6 +6,7 @@ import * as Colors from "@/utils/style/colors";
 
 import * as Styled from "./navbar.styled";
 import * as Springs from "./navbar.springs";
+
 import { Options } from "./options";
 
 export const Navbar = () => {

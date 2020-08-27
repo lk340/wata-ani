@@ -1,5 +1,18 @@
 import * as Polished from "polished";
 
+/**
+ * Neutrals
+ * Primary
+ * Secondary
+ * Light Mode
+ * Dark Mode
+ * Text
+ * Task Status
+ * Registration Password Strength
+ * Modal
+ * Alerts
+ */
+
 // ================ //
 // ↓↓↓ Neutrals ↓↓↓ //
 // ================ //

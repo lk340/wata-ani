@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import * as Helpers from "@/context/helpers";
-import { FormType } from "@/components/auth-form/auth-form";
 import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
+import { FormType } from "@/components/auth-form/auth-form";
 
 type CurrentUser = {
 	id: number;
@@ -38,10 +38,6 @@ const initialState = Object.freeze<State>({
 
 export const useAuthFormContext = Helpers.createUseContext(() => {
 	const [authForm, _setAuthForm] = React.useState<State>({ ...initialState });
-
-	// =============== //
-	// ↓↓↓ Getters ↓↓↓ //
-	// =============== //
 
 	// =============== //
 	// ↓↓↓ Setters ↓↓↓ //
@@ -117,8 +113,6 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 
 	const state = authForm;
 
-	const getters = {};
-
 	const setters = {
 		setAuthForm,
 		toggleRevealPassword,
@@ -135,7 +129,7 @@ export const useAuthFormContext = Helpers.createUseContext(() => {
 	};
 
 	return {
-		authForm: { state, getters, setters, handlers },
+		authForm: { state, setters, handlers },
 	};
 });
 

@@ -14,10 +14,6 @@ export const useLocationContext = Helpers.createUseContext(() => {
 	const [location, _setLocation] = React.useState<State>({ ...initialState });
 
 	// =============== //
-	// ↓↓↓ Getters ↓↓↓ //
-	// =============== //
-
-	// =============== //
 	// ↓↓↓ Setters ↓↓↓ //
 	// =============== //
 
@@ -29,14 +25,12 @@ export const useLocationContext = Helpers.createUseContext(() => {
 
 	const state = location;
 
-	const getters = {};
-
 	const setters = {
 		setLocation,
 	};
 
 	return {
-		location: { state, getters, setters },
+		location: { state, setters },
 	};
 });
 
