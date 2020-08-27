@@ -22,7 +22,7 @@ export const ModalLink = styled("div")<Option>`
 `;
 
 export type LinkIcon = {
-	iconType: "home" | "search" | "settings" | "sign in" | "registration";
+	iconType: "home" | "search" | "settings" | "registration" | "sign in";
 };
 
 export const ModalLinkIcon = styled("img").attrs((props: LinkIcon) => ({

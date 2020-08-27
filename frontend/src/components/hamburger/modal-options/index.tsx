@@ -42,11 +42,7 @@ export const ModalOptions = () => {
 			/>
 
 			{/* Sign Out */}
-			<ModalSignOutButton
-				iconType="sign in"
-				text="Sign Out"
-				display={displayWhenSignedIn}
-			/>
+			<ModalSignOutButton text="Sign Out" display={displayWhenSignedIn} />
 
 			{/* Registration */}
 			<ModalLink

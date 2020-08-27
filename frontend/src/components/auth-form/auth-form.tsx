@@ -10,6 +10,7 @@ import * as Styled from "./auth-form.styled";
 
 import { InputFields } from "./input-fields";
 import { SubmitButtonAndRedirect } from "./submit-button-and-redirect";
+import { Errors } from "./errors";
 
 export type FormType = "Registration" | "Sign In";
 
@@ -49,6 +50,9 @@ export const AuthForm = (props: Props) => {
 
 			{/* Submit Button & Redirect */}
 			<SubmitButtonAndRedirect formType={formType} submitText={submitText} />
+
+			{/* Errors */}
+			<Errors />
 		</Styled.AuthForm>
 	);
 };

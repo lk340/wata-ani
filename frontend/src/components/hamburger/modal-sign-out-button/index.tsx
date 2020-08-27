@@ -6,10 +6,13 @@ import * as Actions from "@/redux/actions";
 
 import * as Styled from "./modal-sign-out-button.styled";
 
-import { OptionProps } from "../modal-options";
+type Props = {
+	text: string;
+	display: boolean;
+};
 
-export const ModalSignOutButton = (props: OptionProps) => {
-	const { iconType, text, display } = props;
+export const ModalSignOutButton = (props: Props) => {
+	const { text, display } = props;
 
 	const { navbar } = Context.Navbar.useNavbarContext();
 
@@ -22,7 +25,7 @@ export const ModalSignOutButton = (props: OptionProps) => {
 
 	return (
 		<Styled.ModalSignOutButton display={display.toString()}>
-			<Styled.ModalSignOutButtonIcon iconType={iconType} />
+			<Styled.ModalSignOutButtonIcon />
 			<Styled.ModalSignOutButtonText onClick={handleClick}>
 				{text}
 			</Styled.ModalSignOutButtonText>
