@@ -21,18 +21,27 @@ describe("AuthForm Component", () => {
 			const authForm = Tests.renderWithContext(
 				<AuthForm formType="Sign In" submitText="Sign In" />,
 			);
+
+			const logo = authForm.getByAltText(/auth form component logo image/);
+			expect(logo).not.toBe(null);
 		});
 
 		it("renders the form title", () => {
 			const authForm = Tests.renderWithContext(
 				<AuthForm formType="Sign In" submitText="Sign In" />,
 			);
+
+			const title = authForm.getByRole("heading", { name: /Sign In/ });
+			expect(title).toHaveTextContent(/Sign In/);
 		});
 
 		it("renders the Username Or Email field", () => {
 			const authForm = Tests.renderWithContext(
 				<AuthForm formType="Sign In" submitText="Sign In" />,
 			);
+
+			const usernameOrEmailField = authForm.getByPlaceholderText(/Enter your username or email/);
+			expect(usernameOrEmailField).not.toBe(null);
 		});
 
 		it("renders the Password field", () => {

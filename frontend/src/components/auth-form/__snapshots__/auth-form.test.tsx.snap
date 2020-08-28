@@ -413,7 +413,7 @@ exports[`AuthForm Component matches the snapshot 1`] = `
       class="c1"
     >
       <img
-        alt="image"
+        alt="auth form component logo image"
         class="c2"
         src="[object Object]"
       />

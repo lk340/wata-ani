@@ -34,7 +34,7 @@ export const AuthFormLogoTitleInputs = styled("div")`
 
 export const AuthFormLogo = styled("img").attrs(() => ({
 	src: logoJapanese,
-	alt: "image",
+	alt: "auth form component logo image",
 }))`
 	${Snippets.square("70px")};
 	margin: 0px auto;
