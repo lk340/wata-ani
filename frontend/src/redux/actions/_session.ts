@@ -103,7 +103,7 @@ async function POST(
 			}
 		}
 	} catch (error) {
-		// Just in case.
+		// Dev debug log
 		console.log(error);
 	}
 }
@@ -139,7 +139,7 @@ export function signOut(dispatch: Function) {
 
 			dispatch(signOutCurrentUser());
 		} catch (error) {
-			// Just in case.
+			// Dev debug log
 			console.log(error);
 		}
 	}

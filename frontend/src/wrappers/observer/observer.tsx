@@ -136,18 +136,18 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
 			// Success
 			if (response.status < 400) {
-				console.log("Observer Response:", response);
+				console.log("Observer Response Success:", response);
 				dispatch(Actions.Session.receiveCurrentUser(currentUser));
 			}
 			// Failure
 			else {
-				console.log("Observer Response:", response);
+				console.log("Observer Response Failure:", response);
 				// If there is a JWT error on the server side, just log the user out.
 				if (response.status >= 500) dispatch(Actions.Session.signOut(dispatch));
 				dispatch(Actions.Session.sessionErrors(response.data.non_field_errors));
 			}
 		} catch (error) {
-			// Just in case.
+			// Dev debug log
 			console.log(error);
 		}
 	}

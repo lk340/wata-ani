@@ -25,38 +25,37 @@ export async function checkRefresh(): Promise<void> {
 			const _accessTokenExp = decryptAccessToken(accessToken).exp;
 			const accessTokenExpirationDate = new Date(_accessTokenExp * 1000);
 			const dateTimeRightNow = new Date();
+			const accessTokenExpired = accessTokenExpirationDate < dateTimeRightNow;
 
 			console.log("Access Token Expiration Date:", accessTokenExpirationDate);
 			console.log("Date Time Right Now:", dateTimeRightNow);
-			console.log("Date Comparison:", accessTokenExpirationDate < dateTimeRightNow);
+			console.log("Access token expire?", accessTokenExpired);
 
-			const endpoint = "/api/token/refresh/";
-			const data = { refresh: refreshToken };
-			const validateStatus = AxiosHelpers.validateStatus;
+			if (accessTokenExpired) {
+				const endpoint = "/api/token/refresh/";
+				const data = { refresh: refreshToken };
+				const validateStatus = AxiosHelpers.validateStatus;
 
-			if (accessTokenExpirationDate < dateTimeRightNow) {
 				const response = await axios.post(endpoint, data, { validateStatus });
 
 				// Success
 				if (response.status < 400) {
-					console.log(response);
+					console.log("JWT Refresh Success:", response);
 					localStorage.access = response.data.access;
 				}
 				// Failure
 				else {
-					// ↓↓↓ //
 					// If we enter this area, it means that the refresh token has expired.
 					// In that case, we're going to have to remove the tokens from local storage.
 					// User must sign in again manually.
-					// ↓↓↓ //
 					localStorage.removeItem("access");
 					localStorage.removeItem("refresh");
-					console.log(response);
+					console.log("JWT Refresh Failure", response);
 				}
 			}
 		}
 	} catch (error) {
-		// Just in case.
+		// Dev debug log
 		console.log(error);
 	}
 }
