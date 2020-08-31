@@ -495,6 +495,7 @@ exports[`AuthForm Component matches the snapshot 1`] = `
             />
             <input
               class="c15"
+              data-testid="auth form component username input field"
               form_type="Registration"
               placeholder="*Username"
               required=""
