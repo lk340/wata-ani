@@ -1,0 +1,784 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar Component matches the snapshot 1`] = `
+<DocumentFragment>
+  .c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  display: none;
+}
+
+.c19 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1;
+  background-color: #6BA6FF;
+}
+
+.c20 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.c21 {
+  width: 100%;
+  height: 100%;
+}
+
+.c33 {
+  position: absolute;
+  top: auto;
+  right: 0px;
+  bottom: 30px;
+  left: auto;
+  z-index: 3;
+}
+
+.c16 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.c17 {
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  background-color: #6BA6FF;
+  border-radius: 10rem;
+}
+
+.c18 {
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  background-color: #6BA6FF;
+  border-radius: 10rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.c22 {
+  display: grid;
+  grid-template-columns: repeat(1,auto);
+  grid-gap: 40px;
+  justify-items: auto;
+  -webkit-align-items: auto;
+  -webkit-box-align: auto;
+  -ms-flex-align: auto;
+  align-items: auto;
+  position: absolute;
+  right: 0;
+  margin-top: 90px;
+  padding-right: 30px;
+}
+
+.c26 {
+  display: none;
+}
+
+.c27 {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.c28 {
+  display: block;
+  cursor: pointer;
+}
+
+.c23 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c24 {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.c25 {
+  display: inherit;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+  font-size: 0.875rem;
+}
+
+.c32 {
+  display: inherit;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  color: #6BA6FF;
+  font-size: 0.875rem;
+}
+
+.c29 {
+  display: none;
+}
+
+.c30 {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.c31 {
+  display: block;
+  cursor: pointer;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  margin: 0px 40px;
+  cursor: pointer;
+}
+
+.c10 {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}
+
+.c11 {
+  width: 20px;
+  height: 20px;
+}
+
+.c0 {
+  height: 100px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0px auto;
+  max-width: 1200px;
+  font-size: 0.875rem;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: inherit;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+}
+
+.c3 {
+  width: 40px;
+  height: 40px;
+  display: block;
+  border-radius: 0.375rem;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: auto;
+  -webkit-justify-content: auto;
+  -ms-flex-pack: auto;
+  justify-content: auto;
+  -webkit-align-items: auto;
+  -webkit-box-align: auto;
+  -ms-flex-align: auto;
+  align-items: auto;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: inherit;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: inherit;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  display: none;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: inherit;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 40px;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+}
+
+.c14 {
+  display: inherit;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  padding: 12px 18px;
+}
+
+.c8 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 40px;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: none;
+  margin-left: 40px;
+  cursor: pointer;
+}
+
+@media (max-width:575px) {
+  .c15 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (max-width:1260px) {
+  .c0 {
+    padding: 0px 60px;
+  }
+}
+
+@media (max-width:575px) {
+  .c0 {
+    height: 50px;
+    padding: 0px 30px;
+  }
+}
+
+@media (max-width:575px) {
+  .c3 {
+    width: 20px;
+    height: 20px;
+    border-radius: 0.1875rem;
+  }
+}
+
+@media (max-width:575px) {
+  .c4 {
+    display: none;
+  }
+}
+
+<div
+    class="c0"
+    style="color: rgb(242, 242, 242); background-color: rgb(34, 39, 44); border-bottom: 1px solid rgba(87, 90, 93, 1);"
+  >
+    <div
+      class="c1"
+    >
+      <a
+        class="c2"
+        href="/"
+      >
+        <img
+          alt="navbar component logo"
+          class="c3"
+          src="[object Object]"
+        />
+      </a>
+      <div
+        class="c4"
+      >
+        <a
+          class="c5"
+          display="true"
+          href="/"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 10 10"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g
+              clip-path="url(#A)"
+            >
+              <path
+                d="M9 8.983V3.457l-4-2.44-4 2.44v5.526h2V7.585a2.05 2.05 0 0 1 .586-1.438C3.96 5.765 4.47 5.55 5 5.55s1.04.214 1.414.596A2.05 2.05 0 0 1 7 7.585v1.398h2zM6 10V7.585c0-.27-.105-.528-.293-.72a.99.99 0 0 0-1.414 0c-.188.19-.293.45-.293.72V10H1a.99.99 0 0 1-.707-.298C.105 9.51 0 9.253 0 8.983V3.457a1.03 1.03 0 0 1 .13-.501 1.01 1.01 0 0 1 .356-.371l4-2.44C4.64.05 4.82 0 5 0s.36.05.515.145l4 2.44a1.01 1.01 0 0 1 .356.371 1.03 1.03 0 0 1 .13.501v5.526c0 .27-.105.528-.293.72A.99.99 0 0 1 9 10H6z"
+                fill="#71758A"
+                style="fill: rgba(113, 117, 138, 1);"
+              />
+            </g>
+            <defs>
+              <clippath
+                id="A"
+              >
+                <path
+                  d="M0 0h10v10H0z"
+                  fill="#fff"
+                  style="fill: rgba(113, 117, 138, 1);"
+                />
+              </clippath>
+            </defs>
+          </svg>
+        </a>
+        <div
+          class="c6"
+          display="false"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 10 10"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.758 2.336a3.01 3.01 0 0 0-.659-.958 3.06 3.06 0 0 0-.972-.642A3.07 3.07 0 0 0 6.942.5 3.09 3.09 0 0 0 5.33.951a3.02 3.02 0 0 0-.33.233c-.104-.085-.214-.162-.33-.233A3.09 3.09 0 0 0 3.059.5a3.07 3.07 0 0 0-1.185.235c-.363.15-.69.367-.972.642a2.99 2.99 0 0 0-.659.958A2.97 2.97 0 0 0 0 3.515a3.35 3.35 0 0 0 .235 1.196c.13.34.318.696.558 1.053.38.566.902 1.156 1.55 1.755 1.074.992 2.138 1.677 2.183 1.705L4.8 9.4a.37.37 0 0 0 .399 0l.274-.176a17.55 17.55 0 0 0 2.183-1.705c.648-.598 1.17-1.19 1.55-1.755.24-.358.428-.712.558-1.053A3.35 3.35 0 0 0 10 3.515a2.95 2.95 0 0 0-.242-1.18zM5 8.485S.88 5.844.88 3.515c0-1.18.976-2.136 2.18-2.136.846 0 1.58.472 1.94 1.162.36-.7 1.095-1.162 1.94-1.162 1.204 0 2.18.956 2.18 2.136 0 2.33-4.12 4.97-4.12 4.97z"
+              fill="#71758A"
+              style="fill: rgba(113, 117, 138, 1);"
+            />
+          </svg>
+        </div>
+        <div
+          class="c6"
+          display="false"
+        >
+          <svg
+            fill="#71758A"
+            viewBox="0 0 10 10"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 1a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0V1z"
+              style="fill: rgba(113, 117, 138, 1);"
+            />
+            <path
+              d="M1 4a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H1z"
+              style="fill: rgba(113, 117, 138, 1);"
+            />
+          </svg>
+        </div>
+        <div
+          class="c6"
+          display="false"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 10 10"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.577 6.83c.66-.85.97-1.92.87-2.993S7.84 1.77 7.032 1.06a4.23 4.23 0 0 0-5.791.179C.48 2 .036 3.023.002 4.1s.344 2.126 1.056 2.934a4.23 4.23 0 0 0 5.772.541l.023.024 2.244 2.245a.53.53 0 0 0 .374.155.53.53 0 0 0 .374-.155.53.53 0 0 0 .155-.374.53.53 0 0 0-.155-.374L7.577 6.83zM6.48 1.987c.3.294.536.644.7 1.03s.247.8.25 1.22-.08.834-.24 1.222-.394.74-.7 1.036-.648.53-1.036.69-.803.24-1.222.24-.833-.086-1.22-.25-.736-.4-1.03-.7c-.587-.597-.915-1.402-.91-2.24s.338-1.64.93-2.232 1.394-.927 2.23-.93 1.642.324 2.24.912z"
+              fill="#71758A"
+              fill-rule="evenodd"
+              style="fill: rgba(113, 117, 138, 1);"
+            />
+          </svg>
+        </div>
+        <div
+          class="c6"
+          display="false"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 10 10"
+            width="20px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.27.953a4.12 4.12 0 0 1 .714 0c.022.002.067.022.086.09l.18.69c.092.35.344.604.623.743.11.054.213.114.313.18a1.17 1.17 0 0 0 .956.169l.69-.19c.07-.02.11.01.122.03a4.04 4.04 0 0 1 .358.618c.01.02.014.07-.037.12l-.51.504c-.257.254-.35.598-.33.9.008.12.008.243 0 .364-.02.312.074.656.33.9l.51.504c.05.05.046.1.037.12a4.06 4.06 0 0 1-.358.619c-.013.018-.054.046-.122.028l-.69-.19a1.17 1.17 0 0 0-.956.169 2.82 2.82 0 0 1-.312.181 1.17 1.17 0 0 0-.624.743l-.18.69c-.018.07-.063.09-.086.09-.237.02-.476.02-.714 0-.022-.002-.067-.023-.086-.09l-.18-.69c-.092-.35-.344-.604-.623-.743a2.81 2.81 0 0 1-.313-.181 1.17 1.17 0 0 0-.956-.169l-.69.19c-.07.02-.11-.01-.122-.03-.137-.195-.257-.402-.358-.618-.01-.02-.014-.07.037-.12l.51-.504c.257-.254.35-.598.33-.9-.008-.12-.008-.243 0-.364.02-.312-.074-.656-.33-.9l-.51-.504c-.05-.05-.046-.1-.037-.12.1-.216.22-.424.358-.62.012-.018.054-.047.122-.028l.69.19a1.17 1.17 0 0 0 .956-.169 2.82 2.82 0 0 1 .313-.181c.28-.14.532-.393.624-.743l.18-.69c.018-.07.063-.09.086-.09zM4.628 0L4.2.02c-.464.04-.806.384-.91.788l-.18.69c-.01.04-.05.1-.132.14-.144.07-.284.152-.417.24-.077.05-.146.056-.187.044l-.69-.19c-.402-.11-.87.012-1.138.394-.17.24-.316.495-.44.76-.197.422-.07.89.227 1.182l.51.504c.03.03.06.092.055.184-.01.16-.01.322 0 .482.006.092-.024.154-.055.184l-.51.504c-.296.293-.424.76-.227 1.182.125.268.273.522.44.76.268.38.735.504 1.138.394l.69-.19c.04-.012.1-.007.187.044.133.09.272.17.418.24.083.04.12.1.132.14l.18.69c.106.404.447.748.91.788.292.025.585.025.876 0 .464-.04.806-.384.91-.788l.18-.69c.01-.04.05-.1.132-.14.144-.07.284-.152.418-.24.077-.05.146-.056.188-.044l.69.19c.402.11.87-.013 1.138-.394.168-.24.316-.493.44-.76.197-.422.07-.89-.227-1.182l-.51-.504c-.03-.03-.06-.092-.055-.184.01-.16.01-.322 0-.482-.006-.092.024-.154.055-.184l.51-.504c.297-.293.424-.76.227-1.182-.124-.266-.27-.52-.44-.76-.268-.38-.735-.504-1.138-.394l-.69.19c-.04.012-.1.007-.187-.044-.134-.09-.273-.17-.418-.24-.083-.04-.12-.1-.132-.14l-.18-.692C5.872.403 5.53.06 5.066.02L4.628 0zm.938 5a.94.94 0 0 1-.275.663c-.176.176-.414.275-.663.275A.94.94 0 0 1 3.691 5a.94.94 0 0 1 .938-.937c.25 0 .487.1.663.275A.94.94 0 0 1 5.566 5zm.938 0c0 .497-.198.974-.55 1.326s-.83.55-1.326.55-.974-.198-1.326-.55-.55-.83-.55-1.326.198-.974.55-1.326.83-.55 1.326-.55.974.198 1.326.55.55.83.55 1.326z"
+              fill="#71758A"
+              fill-rule="evenodd"
+              style="fill: rgba(113, 117, 138, 1);"
+            />
+          </svg>
+        </div>
+        <a
+          class="c7"
+          display="false"
+          href="/profile"
+        >
+          <img
+            alt="navbar component profile icon"
+            class="c8"
+            src="[object Object]"
+            style="border: 1px solid rgba(113, 117, 138, 1);"
+          />
+        </a>
+        <div
+          class="c9"
+        >
+          <img
+            alt="navbar component light theme button"
+            class="c10"
+            src="[object Object]"
+            style="opacity: 0;"
+          />
+          <img
+            alt="navbar component dark theme button"
+            class="c11"
+            src="[object Object]"
+          />
+        </div>
+        <a
+          class="c12"
+          display="true"
+          href="/sign-in"
+        >
+          Sign In
+        </a>
+        <div
+          class="c13"
+          display="true"
+          style="background-color: rgb(56, 60, 64);"
+        >
+          <a
+            class="c14"
+            href="/registration"
+          >
+            Register
+          </a>
+        </div>
+      </div>
+      <div
+        class="c15"
+      >
+        <div
+          class="c16"
+        >
+          <div
+            class="c17"
+            style="top: 0%; transform: translateY(0%); opacity: 1;"
+          />
+          <div
+            class="c18"
+            style="transform: translateY(-50%) rotate(0deg);"
+          />
+          <div
+            class="c18"
+            style="transform: translateY(-50%) rotate(0deg);"
+          />
+          <div
+            class="c17"
+            style="bottom: 0%; transform: translateY(0%); opacity: 1;"
+          />
+        </div>
+        <div
+          class="c19"
+          style="transform: translateX(100%);"
+        >
+          <div
+            class="c20"
+            style="transform: translateX(100%);"
+          >
+            <div
+              class="c21"
+              style="background-color: rgb(255, 255, 255);"
+            >
+              <div
+                class="c22"
+              >
+                <div
+                  class="c23"
+                  display="true"
+                >
+                  <img
+                    alt="hamburger modal home icon"
+                    class="c24"
+                    src="[object Object]"
+                  />
+                  <a
+                    class="c25"
+                    href="/"
+                    primary="false"
+                  >
+                    Home
+                  </a>
+                </div>
+                <div
+                  class="c26"
+                  display="false"
+                >
+                  <img
+                    alt="hamburger modal search icon"
+                    class="c27"
+                    src="[object Object]"
+                  />
+                  <span
+                    class="c28"
+                  >
+                    Search
+                  </span>
+                </div>
+                <div
+                  class="c23"
+                  display="true"
+                >
+                  <img
+                    alt="hamburger modal sign in icon"
+                    class="c24"
+                    src="[object Object]"
+                  />
+                  <a
+                    class="c25"
+                    href="/sign-in"
+                    primary="false"
+                  >
+                    Sign In
+                  </a>
+                </div>
+                <div
+                  class="c29"
+                  display="false"
+                >
+                  <img
+                    alt="hamburger modal sign out icon"
+                    class="c30"
+                    src="[object Object]"
+                  />
+                  <span
+                    class="c31"
+                  >
+                    Sign Out
+                  </span>
+                </div>
+                <div
+                  class="c23"
+                  display="true"
+                >
+                  <img
+                    alt="hamburger modal registration icon"
+                    class="c24"
+                    src="[object Object]"
+                  />
+                  <a
+                    class="c32"
+                    href="/registration"
+                    primary="true"
+                  >
+                    Register
+                  </a>
+                </div>
+                <div
+                  class="c26"
+                  display="false"
+                >
+                  <img
+                    alt="hamburger modal settings icon"
+                    class="c27"
+                    src="[object Object]"
+                  />
+                  <span
+                    class="c28"
+                  >
+                    Settings
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="c33"
+          >
+            <div
+              class="c9"
+            >
+              <img
+                alt="navbar component light theme button"
+                class="c10"
+                src="[object Object]"
+                style="opacity: 0;"
+              />
+              <img
+                alt="navbar component dark theme button"
+                class="c11"
+                src="[object Object]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -9,10 +9,11 @@ import * as Styled from "./modal-sign-out-button.styled";
 type Props = {
 	text: string;
 	display: boolean;
+	test_id: string;
 };
 
 export const ModalSignOutButton = (props: Props) => {
-	const { text, display } = props;
+	const { text, display, test_id } = props;
 
 	const { navbar } = Context.Navbar.useNavbarContext();
 
@@ -24,7 +25,7 @@ export const ModalSignOutButton = (props: Props) => {
 	}
 
 	return (
-		<Styled.ModalSignOutButton display={display.toString()}>
+		<Styled.ModalSignOutButton display={display.toString()} test_id={test_id}>
 			<Styled.ModalSignOutButtonIcon />
 			<Styled.ModalSignOutButtonText onClick={handleClick}>
 				{text}

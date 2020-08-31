@@ -22,7 +22,14 @@ export const ModalOptions = () => {
 	return (
 		<Styled.ModalOptions>
 			{/* Home */}
-			<ModalLink iconType="home" text="Home" display={true} to="/" primary={false} />
+			<ModalLink
+				iconType="home"
+				text="Home"
+				display={true}
+				to="/"
+				primary={false}
+				test_id="home"
+			/>
 
 			{/* Search */}
 			<ModalButton
@@ -30,6 +37,7 @@ export const ModalOptions = () => {
 				text="Search"
 				display={displayWhenSignedIn}
 				buttonType="search"
+				test_id="search"
 			/>
 
 			{/* Sign In */}
@@ -39,10 +47,15 @@ export const ModalOptions = () => {
 				display={displayWhenSignedOut}
 				to="/sign-in"
 				primary={false}
+				test_id="sign in"
 			/>
 
 			{/* Sign Out */}
-			<ModalSignOutButton text="Sign Out" display={displayWhenSignedIn} />
+			<ModalSignOutButton
+				text="Sign Out"
+				display={displayWhenSignedIn}
+				test_id="sign out"
+			/>
 
 			{/* Registration */}
 			<ModalLink
@@ -51,6 +64,7 @@ export const ModalOptions = () => {
 				display={displayWhenSignedOut}
 				to="/registration"
 				primary={true}
+				test_id="registration"
 			/>
 
 			{/* Settings */}
@@ -59,6 +73,7 @@ export const ModalOptions = () => {
 				text="Settings"
 				display={displayWhenSignedIn}
 				buttonType="settings"
+				test_id="settings"
 			/>
 		</Styled.ModalOptions>
 	);

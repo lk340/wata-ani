@@ -8,15 +8,16 @@ import { OptionProps } from "../modal-options";
 
 type Props = {
 	buttonType: "search" | "settings";
+	test_id: string;
 } & OptionProps;
 
 export const ModalButton = (props: Props) => {
-	const { iconType, text, display, buttonType } = props;
+	const { iconType, text, display, buttonType, test_id } = props;
 
 	const { navbar } = Context.Navbar.useNavbarContext();
 
 	return (
-		<Styled.ModalButton display={display.toString()}>
+		<Styled.ModalButton display={display.toString()} test_id={test_id}>
 			<Styled.ModalButtonIcon iconType={iconType} />
 			<Styled.ModalButtonText
 				onClick={

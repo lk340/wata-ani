@@ -52,6 +52,7 @@ export const SEO = (props: Props) => {
 			}}
 			title={title}
 			titleTemplate={`%s | ${site.siteMetadata.title}`}
+			// link={[{ rel: "shortcut icon", type: "image/png", href: `${favicon}` }]}
 			meta={[
 				{ name: `description`, content: metaDescription },
 				{ property: `og:title`, content: title },
@@ -62,7 +63,6 @@ export const SEO = (props: Props) => {
 				{ name: `twitter:title`, content: title },
 				{ name: `twitter:description`, content: metaDescription },
 			].concat(meta)}
-			link={[{ rel: "shortcut icon", type: "image/png", href: `${favicon}` }]}
 		/>
 	);
 };

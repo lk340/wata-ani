@@ -8,7 +8,9 @@ import * as Colors from "@/utils/style/colors";
 // ↓↓↓ Lines ↓↓↓ //
 // ============= //
 
-export const Lines = styled("div")`
+export const Lines = styled("div").attrs(() => ({
+	"data-testid": "hamburger component lines",
+}))`
 	${Snippets.fillContainer()};
 	position: relative;
 	z-index: 3;

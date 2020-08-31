@@ -12,9 +12,14 @@ import signIn from "@/icons/mobile-modal/sign-in.svg";
 // ↓↓↓ Modal Button ↓↓↓ //
 // ==================== //
 
-type Option = { display: string };
+type Button = {
+	display: string;
+	test_id: string;
+};
 
-export const ModalButton = styled("div")<Option>`
+export const ModalButton = styled("div").attrs((props: Button) => ({
+	"data-testid": `hamburger component ${props.test_id} button`,
+}))<Button>`
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 `;
 

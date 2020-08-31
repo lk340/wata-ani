@@ -8,9 +8,14 @@ import signOut from "@/icons/mobile-modal/sign-out.svg";
 // ↓↓↓ Modal Sign Out Button ↓↓↓ //
 // ============================= //
 
-type Option = { display: string };
+type Button = {
+	display: string;
+	test_id: string;
+};
 
-export const ModalSignOutButton = styled("div")<Option>`
+export const ModalSignOutButton = styled("div").attrs((props: Button) => ({
+	"data-testid": `hamburger component ${props.test_id} button`,
+}))<Button>`
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 `;
 

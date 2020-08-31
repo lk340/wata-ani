@@ -15,9 +15,14 @@ import signIn from "@/icons/mobile-modal/sign-in.svg";
 // ↓↓↓ Modal Link ↓↓↓ //
 // ================== //
 
-type Option = { display: string };
+type Link = {
+	display: string;
+	test_id: string;
+};
 
-export const ModalLink = styled("div")<Option>`
+export const ModalLink = styled("div").attrs((props: Link) => ({
+	"data-testid": `hamburger component ${props.test_id} link`,
+}))<Link>`
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 `;
 
