@@ -30,19 +30,25 @@ export const Options = () => {
 	return (
 		<Styled.Options>
 			{/* Home Link */}
-			<Styled.Option to="/" onClick={navbar.setters.setHomeOn} display={"true"}>
+			<Styled.OptionLink
+				to="/"
+				onClick={navbar.setters.setHomeOn}
+				display={"true"}
+				test_id="home"
+			>
 				<Icons.HomeHollow
 					width={`${Constants.size.components.navbar.icon}px`}
 					fill={navbar.state.iconFill}
 					mode={theme.state.mode}
 					state={navbar.state.home}
 				/>
-			</Styled.Option>
+			</Styled.OptionLink>
 
 			{/* Like Button */}
-			<Styled.OptionModalButton
+			<Styled.OptionButton
 				onClick={navbar.setters.toggleLikes}
 				display={displayWhenSignedIn.toString()}
+				test_id="like"
 			>
 				<Icons.LikeHollow
 					width={`${Constants.size.components.navbar.icon}px`}
@@ -50,12 +56,13 @@ export const Options = () => {
 					mode={theme.state.mode}
 					state={navbar.state.likes}
 				/>
-			</Styled.OptionModalButton>
+			</Styled.OptionButton>
 
 			{/* Create Button */}
-			<Styled.OptionModalButton
+			<Styled.OptionButton
 				onClick={navbar.setters.toggleCreate}
 				display={displayWhenSignedIn.toString()}
+				test_id="create"
 			>
 				<Icons.Create
 					width={`${Constants.size.components.navbar.icon}px`}
@@ -63,12 +70,13 @@ export const Options = () => {
 					mode={theme.state.mode}
 					state={navbar.state.create}
 				/>
-			</Styled.OptionModalButton>
+			</Styled.OptionButton>
 
 			{/* Search Button */}
-			<Styled.OptionModalButton
+			<Styled.OptionButton
 				onClick={navbar.setters.toggleSearch}
 				display={displayWhenSignedIn.toString()}
+				test_id="search"
 			>
 				<Icons.Search
 					width={`${Constants.size.components.navbar.icon}px`}
@@ -76,12 +84,13 @@ export const Options = () => {
 					mode={theme.state.mode}
 					state={navbar.state.search}
 				/>
-			</Styled.OptionModalButton>
+			</Styled.OptionButton>
 
 			{/* Settings Button */}
-			<Styled.OptionModalButton
+			<Styled.OptionButton
 				onClick={navbar.setters.toggleSettings}
 				display={displayWhenSignedIn.toString()}
+				test_id="settings"
 			>
 				<Icons.SettingsHollow
 					width={`${Constants.size.components.navbar.icon}px`}
@@ -89,16 +98,17 @@ export const Options = () => {
 					mode={theme.state.mode}
 					state={navbar.state.settings}
 				/>
-			</Styled.OptionModalButton>
+			</Styled.OptionButton>
 
 			{/* Profile Link */}
-			<Styled.Option
+			<Styled.OptionLink
 				to="/profile"
 				onClick={navbar.setters.setProfileOn}
 				display={displayWhenSignedIn.toString()}
+				test_id="profile"
 			>
 				<Styled.OptionProfileIcon src={logoJapanese} style={animateProfileIcon} />
-			</Styled.Option>
+			</Styled.OptionLink>
 
 			{/* Theme Button */}
 			<Components.ThemeButton />

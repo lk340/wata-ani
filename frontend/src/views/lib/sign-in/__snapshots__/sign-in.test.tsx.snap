@@ -1,0 +1,732 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn Component matches the snapshot 1`] = `
+<DocumentFragment>
+  .c1 {
+  display: grid;
+  grid-template-columns: repeat(1,auto);
+  grid-gap: 40px;
+  justify-items: auto;
+  -webkit-align-items: auto;
+  -webkit-box-align: auto;
+  -ms-flex-align: auto;
+  align-items: auto;
+  width: 400px;
+}
+
+.c2 {
+  display: grid;
+  grid-template-columns: repeat(1,auto);
+  grid-gap: 30px;
+  justify-items: auto;
+  -webkit-align-items: auto;
+  -webkit-box-align: auto;
+  -ms-flex-align: auto;
+  align-items: auto;
+}
+
+.c3 {
+  width: 70px;
+  height: 70px;
+  margin: 0px auto;
+  border-radius: 0.375rem;
+}
+
+.c4 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.c5 {
+  display: grid;
+  grid-template-columns: repeat(1,auto);
+  grid-gap: 20px;
+  justify-items: auto;
+  -webkit-align-items: auto;
+  -webkit-box-align: auto;
+  -ms-flex-align: auto;
+  align-items: auto;
+}
+
+.c6 {
+  display: grid;
+  grid-template-columns: repeat(1,auto);
+  grid-gap: 10px;
+  justify-items: auto;
+  -webkit-align-items: auto;
+  -webkit-box-align: auto;
+  -ms-flex-align: auto;
+  align-items: auto;
+  display: grid;
+}
+
+.c15 {
+  display: grid;
+  grid-template-columns: repeat(1,auto);
+  grid-gap: 10px;
+  justify-items: auto;
+  -webkit-align-items: auto;
+  -webkit-box-align: auto;
+  -ms-flex-align: auto;
+  align-items: auto;
+  display: none;
+}
+
+.c7 {
+  margin: 0;
+  padding: 0;
+  color: #6BA6FF;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: auto;
+  -webkit-justify-content: auto;
+  -ms-flex-pack: auto;
+  justify-content: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 50px;
+  padding-left: 20px;
+  border-radius: 0.3125rem;
+}
+
+.c9 {
+  width: 20px;
+  height: 20px;
+}
+
+.c17 {
+  width: 20px;
+  height: 20px;
+}
+
+.c19 {
+  width: 20px;
+  height: 20px;
+}
+
+.c11 {
+  display: none;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.c21 {
+  display: block;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.c12 {
+  width: 20px;
+  height: 20px;
+}
+
+.c13 {
+  width: 20px;
+  height: 20px;
+}
+
+.c10 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  margin: 0px 20px;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  outline: none;
+}
+
+.c10::-webkit-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c10::-moz-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c10:-ms-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c10::placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c16 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  margin: 0px 20px;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  outline: none;
+}
+
+.c16::-webkit-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c16::-moz-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c16:-ms-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c16::placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c18 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  margin: 0px 20px;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  outline: none;
+}
+
+.c18::-webkit-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c18::-moz-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c18:-ms-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c18::placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c20 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  margin: 0px 20px;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  outline: none;
+}
+
+.c20::-webkit-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c20::-moz-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c20:-ms-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c20::placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c22 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  margin: 0px 20px;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  outline: none;
+}
+
+.c22::-webkit-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c22::-moz-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c22:-ms-input-placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c22::placeholder {
+  color: #C4C4C4;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.c14 {
+  margin: 0;
+  padding: 0;
+  display: none;
+  color: #C32263;
+  font-size: 0.75rem;
+}
+
+.c23 {
+  display: grid;
+  grid-template-columns: repeat(1,auto);
+  grid-gap: 20px;
+  justify-items: auto;
+  -webkit-align-items: auto;
+  -webkit-box-align: auto;
+  -ms-flex-align: auto;
+  align-items: auto;
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 50px;
+  color: #FFFFFF;
+  background-color: #6BA6FF;
+  border: none;
+  border-radius: 0.3125rem;
+  font-size: 1rem;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+}
+
+.c25 {
+  margin: 0;
+  padding: 0;
+  color: light:#212121;
+  dark: #F2F2F2;
+  font-size: 0.875rem;
+}
+
+.c26 {
+  display: inherit;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  display: inline;
+  color: #6BA6FF;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+@media (max-width:450) {
+  .c1 {
+    padding: 0px 30px;
+    width: 100%;
+  }
+}
+
+@media (max-height:620px) {
+  .c1 {
+    grid-gap: 20px;
+  }
+}
+
+@media (max-height:740px) {
+  .c3 {
+    display: none;
+  }
+}
+
+@media (max-height:620px) {
+  .c7 {
+    display: none;
+  }
+}
+
+@media (max-width:450px) {
+  .c0 {
+    padding: 0px 30px;
+  }
+}
+
+<div
+    class="c0"
+    style="background-color: rgb(34, 39, 44);"
+  >
+    <form
+      class="c1"
+    >
+      <div
+        class="c2"
+      >
+        <img
+          alt="auth form component logo image"
+          class="c3"
+          src="[object Object]"
+        />
+        <h1
+          class="c4"
+          style="color: rgb(242, 242, 242);"
+        >
+          Sign In
+        </h1>
+        <div
+          class="c5"
+        >
+          <div
+            class="c6"
+            display="grid"
+          >
+            <h2
+              class="c7"
+            >
+              *Username Or Email
+            </h2>
+            <div
+              class="c8"
+              style="background-color: rgb(46, 52, 59); border: 2px solid rgba(87, 90, 93, 1);"
+            >
+              <img
+                alt="auth form component username icon"
+                class="c9"
+                src="[object Object]"
+              />
+              <input
+                class="c10"
+                form_type="Sign In"
+                placeholder="*Username or Email"
+                required=""
+                style="color: rgb(242, 242, 242);"
+                type="text"
+                window_height="0"
+                window_width="0"
+              />
+              <div
+                class="c11"
+              >
+                <img
+                  alt="auth form component password hide icon"
+                  class="c12"
+                  src="[object Object]"
+                  style="display: block;"
+                />
+                <img
+                  alt="auth form component password show icon"
+                  class="c13"
+                  src="[object Object]"
+                  style="display: none;"
+                />
+              </div>
+            </div>
+            <p
+              class="c14"
+              mode="light"
+            />
+          </div>
+          <div
+            class="c15"
+            display="none"
+          >
+            <h2
+              class="c7"
+            >
+              *Username
+            </h2>
+            <div
+              class="c8"
+              style="background-color: rgb(46, 52, 59); border: 2px solid rgba(87, 90, 93, 1);"
+            >
+              <img
+                alt="auth form component username icon"
+                class="c9"
+                src="[object Object]"
+              />
+              <input
+                class="c16"
+                data-testid="auth form component username input field"
+                form_type="Sign In"
+                placeholder="*Username"
+                style="color: rgb(242, 242, 242);"
+                type="text"
+                window_height="0"
+              />
+              <div
+                class="c11"
+              >
+                <img
+                  alt="auth form component password hide icon"
+                  class="c12"
+                  src="[object Object]"
+                  style="display: block;"
+                />
+                <img
+                  alt="auth form component password show icon"
+                  class="c13"
+                  src="[object Object]"
+                  style="display: none;"
+                />
+              </div>
+            </div>
+            <p
+              class="c14"
+              mode="light"
+            />
+          </div>
+          <div
+            class="c15"
+            display="none"
+          >
+            <h2
+              class="c7"
+            >
+              *Email
+            </h2>
+            <div
+              class="c8"
+              style="background-color: rgb(46, 52, 59); border: 2px solid rgba(87, 90, 93, 1);"
+            >
+              <img
+                alt="auth form component email icon"
+                class="c17"
+                src="[object Object]"
+              />
+              <input
+                class="c18"
+                form_type="Sign In"
+                placeholder="*Email"
+                style="color: rgb(242, 242, 242);"
+                type="email"
+                window_height="0"
+              />
+              <div
+                class="c11"
+              >
+                <img
+                  alt="auth form component password hide icon"
+                  class="c12"
+                  src="[object Object]"
+                  style="display: block;"
+                />
+                <img
+                  alt="auth form component password show icon"
+                  class="c13"
+                  src="[object Object]"
+                  style="display: none;"
+                />
+              </div>
+            </div>
+            <p
+              class="c14"
+              mode="light"
+            />
+          </div>
+          <div
+            class="c6"
+            display="grid"
+          >
+            <h2
+              class="c7"
+            >
+              *Password
+            </h2>
+            <div
+              class="c8"
+              style="background-color: rgb(46, 52, 59); border: 2px solid rgba(87, 90, 93, 1);"
+            >
+              <img
+                alt="auth form component password icon"
+                class="c19"
+                src="[object Object]"
+              />
+              <input
+                class="c20"
+                placeholder="*Password"
+                required=""
+                reveal_password="false"
+                style="color: rgb(242, 242, 242);"
+                type="password"
+                window_height="0"
+              />
+              <div
+                class="c21"
+              >
+                <img
+                  alt="auth form component password hide icon"
+                  class="c12"
+                  src="[object Object]"
+                  style="display: block;"
+                />
+                <img
+                  alt="auth form component password show icon"
+                  class="c13"
+                  src="[object Object]"
+                  style="display: none;"
+                />
+              </div>
+            </div>
+            <p
+              class="c14"
+              mode="light"
+            />
+          </div>
+          <div
+            class="c15"
+            display="none"
+          >
+            <h2
+              class="c7"
+            >
+              *Confirm Password
+            </h2>
+            <div
+              class="c8"
+              style="background-color: rgb(46, 52, 59); border: 2px solid rgba(87, 90, 93, 1);"
+            >
+              <img
+                alt="auth form component password icon"
+                class="c19"
+                src="[object Object]"
+              />
+              <input
+                class="c22"
+                form_type="Sign In"
+                placeholder="*Confirm Password"
+                reveal_password="false"
+                style="color: rgb(242, 242, 242);"
+                type="password"
+                window_height="0"
+              />
+              <div
+                class="c21"
+              >
+                <img
+                  alt="auth form component password hide icon"
+                  class="c12"
+                  src="[object Object]"
+                  style="display: block;"
+                />
+                <img
+                  alt="auth form component password show icon"
+                  class="c13"
+                  src="[object Object]"
+                  style="display: none;"
+                />
+              </div>
+            </div>
+            <p
+              class="c14"
+              mode="light"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="c23"
+      >
+        <button
+          class="c24"
+          type="submit"
+        >
+          Sign In
+        </button>
+        <p
+          class="c25"
+          style="color: rgb(242, 242, 242);"
+        >
+          Need an account? 
+          <a
+            class="c26"
+            form_type="Sign In"
+            href="/registration"
+          >
+            Register
+          </a>
+        </p>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;

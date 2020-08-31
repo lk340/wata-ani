@@ -469,8 +469,10 @@ exports[`Navbar Component matches the snapshot 1`] = `
       >
         <a
           class="c5"
+          data-testid="navbar component home link"
           display="true"
           href="/"
+          test_id="home"
         >
           <svg
             fill="none"
@@ -502,6 +504,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
         </a>
         <div
           class="c6"
+          data-testid="navbar component like button"
           display="false"
         >
           <svg
@@ -519,6 +522,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
         </div>
         <div
           class="c6"
+          data-testid="navbar component create button"
           display="false"
         >
           <svg
@@ -539,6 +543,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
         </div>
         <div
           class="c6"
+          data-testid="navbar component search button"
           display="false"
         >
           <svg
@@ -557,6 +562,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
         </div>
         <div
           class="c6"
+          data-testid="navbar component settings button"
           display="false"
         >
           <svg
@@ -575,8 +581,10 @@ exports[`Navbar Component matches the snapshot 1`] = `
         </div>
         <a
           class="c7"
+          data-testid="navbar component profile link"
           display="false"
           href="/profile"
+          test_id="profile"
         >
           <img
             alt="navbar component profile icon"
@@ -587,6 +595,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
         </a>
         <div
           class="c9"
+          data-testid="theme button component"
         >
           <img
             alt="navbar component light theme button"
@@ -602,6 +611,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
         </div>
         <a
           class="c12"
+          data-testid="navbar component sign in link"
           display="true"
           href="/sign-in"
         >
@@ -609,6 +619,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
         </a>
         <div
           class="c13"
+          data-testid="navbar component register link"
           display="true"
           style="background-color: rgb(56, 60, 64);"
         >
@@ -625,6 +636,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
       >
         <div
           class="c16"
+          data-testid="hamburger component lines"
         >
           <div
             class="c17"
@@ -660,6 +672,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
               >
                 <div
                   class="c23"
+                  data-testid="hamburger component home link"
                   display="true"
                 >
                   <img
@@ -677,6 +690,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
                 </div>
                 <div
                   class="c26"
+                  data-testid="hamburger component search button"
                   display="false"
                 >
                   <img
@@ -692,6 +706,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
                 </div>
                 <div
                   class="c23"
+                  data-testid="hamburger component sign in link"
                   display="true"
                 >
                   <img
@@ -709,6 +724,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
                 </div>
                 <div
                   class="c29"
+                  data-testid="hamburger component sign out button"
                   display="false"
                 >
                   <img
@@ -724,6 +740,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
                 </div>
                 <div
                   class="c23"
+                  data-testid="hamburger component registration link"
                   display="true"
                 >
                   <img
@@ -741,6 +758,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
                 </div>
                 <div
                   class="c26"
+                  data-testid="hamburger component settings button"
                   display="false"
                 >
                   <img
@@ -762,6 +780,7 @@ exports[`Navbar Component matches the snapshot 1`] = `
           >
             <div
               class="c9"
+              data-testid="theme button component"
             >
               <img
                 alt="navbar component light theme button"

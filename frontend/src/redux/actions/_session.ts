@@ -80,21 +80,30 @@ async function POST(
 
 		// Success
 		if (response.status < 400) {
-			if (type === "register") {
-				console.log(response.data.detail);
-				if (authErrors.length > 0) dispatch(clearErrors());
-			} else {
-				localStorage.refresh = response.data.refresh_token;
-				localStorage.access = response.data.access_token;
-				dispatch(receiveCurrentUser(response.data.user));
-				if (authErrors.length > 0) dispatch(clearErrors());
-				Gatsby.navigate("/");
-			}
+			localStorage.refresh = response.data.refresh_token;
+			localStorage.access = response.data.access_token;
+			dispatch(receiveCurrentUser(response.data.user));
+			if (authErrors.length > 0) dispatch(clearErrors());
+			Gatsby.navigate("/");
+
+			// if (type === "register") {
+			// 	// console.log(response.data.detail);
+			// 	console.log(response.data);
+
+			// 	if (authErrors.length > 0) dispatch(clearErrors());
+			// } else {
+			// 	localStorage.refresh = response.data.refresh_token;
+			// 	localStorage.access = response.data.access_token;
+			// 	dispatch(receiveCurrentUser(response.data.user));
+			// 	if (authErrors.length > 0) dispatch(clearErrors());
+			// 	Gatsby.navigate("/");
+			// }
 		}
 		// Failure
 		else {
 			if (type === "register") {
-				// console.log("Failure:", Object.values(response.data));
+				console.log("Failure:", Object.values(response.data));
+
 				const errors: string[] = [];
 				Object.values(response.data).forEach((data: string[]) => errors.push(data[0]));
 				dispatch(sessionErrors(errors));

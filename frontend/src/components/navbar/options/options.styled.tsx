@@ -23,9 +23,14 @@ export const Options = styled("div")`
 	}
 `;
 
-type OptionProps = { display: string };
+type OptionProps = {
+	display: string;
+	test_id: string;
+};
 
-export const Option = styled(Gatsby.Link)<OptionProps>`
+export const OptionLink = styled(Gatsby.Link).attrs((props: OptionProps) => ({
+	"data-testid": `navbar component ${props.test_id} link`,
+}))<OptionProps>`
 	${Snippets.flexRowCenter()};
 	${Snippets.clearAnchor()};
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
@@ -35,18 +40,21 @@ type FormProps = { display: string };
 
 export const OptionSignInLink = styled(Gatsby.Link).attrs(() => ({
 	to: "/sign-in",
+	"data-testid": "navbar component sign in link",
 }))<FormProps>`
 	${Snippets.flexRowCenter()};
 	${Snippets.clearAnchor()};
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 `;
 
-export const OptionRegisterLinkContainer = styled(animated.div)<FormProps>`
+export const OptionRegisterLinkContainer = styled(animated.div).attrs(() => ({
+	"data-testid": "navbar component register link",
+}))<FormProps>`
 	${Snippets.flexRowCenter()};
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 	margin-left: ${Constants.size.components.navbar.spacer}px;
 	border-radius: ${Constants.borderRadius.components.navbar.register};
-	cursor: pointer;
+	cursor: pointer;t
 `;
 
 export const OptionRegisterLink = styled(Gatsby.Link).attrs(() => ({
@@ -73,9 +81,9 @@ export const OptionProfileIcon = styled(animated.img).attrs((props) => ({
 // ↓↓↓ Button ↓↓↓ //
 // ============== //
 
-type ButtonProps = { display: string };
-
-export const OptionModalButton = styled("div")<ButtonProps>`
+export const OptionButton = styled("div").attrs((props: OptionProps) => ({
+	"data-testid": `navbar component ${props.test_id} button`,
+}))<OptionProps>`
 	${Snippets.flexRowCenter()};
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 	margin-left: ${Constants.size.components.navbar.spacer}px;
