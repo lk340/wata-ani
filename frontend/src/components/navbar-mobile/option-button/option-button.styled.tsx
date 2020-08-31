@@ -8,7 +8,11 @@ import * as Snippets from "@/utils/style/snippets";
 // ↓↓↓ Option Button ↓↓↓ //
 // ===================== //
 
-export const OptionButton = styled("div")`
+type Button = { test_id: string };
+
+export const OptionButton = styled("div").attrs((props: Button) => ({
+	"data-testid": `navbar mobile component ${props.test_id} button`,
+}))<Button>`
 	${Snippets.flexColumnCenter()};
 	height: 100%;
 	cursor: pointer;

@@ -1,0 +1,320 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavbarMobile Component matches the snapshot 1`] = `
+<DocumentFragment>
+  .c4 {
+  width: 40px;
+  height: 0px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: none;
+  height: 80px;
+  padding: 0px 30px;
+  color: light:#212121;
+  dark: #F2F2F2;
+  background-color: light:#FFFFFF;
+  dark: #22272C;
+  border-top: light:#DBD9E0;
+  dark: #575A5D;
+  solid: 1px;
+}
+
+.c1 {
+  display: inherit;
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  outline: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+}
+
+.c2 {
+  margin-bottom: 4px;
+}
+
+.c3 {
+  margin: 0;
+  padding: 0;
+  font-size: 0.75rem;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+}
+
+.c6 {
+  margin-bottom: 4px;
+}
+
+.c7 {
+  margin: 0;
+  padding: 0;
+  font-size: 0.75rem;
+}
+
+@media (max-width:575px) {
+  .c0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (max-width:300px) {
+  .c3 {
+    display: none;
+  }
+}
+
+@media (max-width:300px) {
+  .c7 {
+    display: none;
+  }
+}
+
+<div
+    class="c0"
+    display="true"
+    style="background-color: rgb(34, 39, 44); border-top: 1px solid rgba(87, 90, 93, 1);"
+  >
+    <a
+      class="c1"
+      data-testid="navbar mobile component home link"
+      href="/"
+      test_id="home"
+    >
+      <div
+        class="c2"
+      >
+        <svg
+          fill="none"
+          viewBox="0 0 10 10"
+          width="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            clip-path="url(#A)"
+          >
+            <path
+              d="M9 8.983V3.457l-4-2.44-4 2.44v5.526h2V7.585a2.05 2.05 0 0 1 .586-1.438C3.96 5.765 4.47 5.55 5 5.55s1.04.214 1.414.596A2.05 2.05 0 0 1 7 7.585v1.398h2zM6 10V7.585c0-.27-.105-.528-.293-.72a.99.99 0 0 0-1.414 0c-.188.19-.293.45-.293.72V10H1a.99.99 0 0 1-.707-.298C.105 9.51 0 9.253 0 8.983V3.457a1.03 1.03 0 0 1 .13-.501 1.01 1.01 0 0 1 .356-.371l4-2.44C4.64.05 4.82 0 5 0s.36.05.515.145l4 2.44a1.01 1.01 0 0 1 .356.371 1.03 1.03 0 0 1 .13.501v5.526c0 .27-.105.528-.293.72A.99.99 0 0 1 9 10H6z"
+              fill="#6ba6ff"
+              style="fill: rgba(113, 117, 138, 1);"
+            />
+          </g>
+          <defs>
+            <clippath
+              id="A"
+            >
+              <path
+                d="M0 0h10v10H0z"
+                fill="#fff"
+                style="fill: rgba(113, 117, 138, 1);"
+              />
+            </clippath>
+          </defs>
+        </svg>
+      </div>
+      <p
+        class="c3"
+        style="color: rgb(196, 196, 196);"
+      >
+        Home
+      </p>
+    </a>
+    <div
+      class="c4"
+      width="40px"
+    />
+    <div
+      class="c5"
+      data-testid="navbar mobile component likes button"
+    >
+      <div
+        class="c6"
+      >
+        <svg
+          fill="none"
+          viewBox="0 0 10 10"
+          width="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9.758 2.336a3.01 3.01 0 0 0-.659-.958 3.06 3.06 0 0 0-.972-.642A3.07 3.07 0 0 0 6.942.5 3.09 3.09 0 0 0 5.33.951a3.02 3.02 0 0 0-.33.233c-.104-.085-.214-.162-.33-.233A3.09 3.09 0 0 0 3.059.5a3.07 3.07 0 0 0-1.185.235c-.363.15-.69.367-.972.642a2.99 2.99 0 0 0-.659.958A2.97 2.97 0 0 0 0 3.515a3.35 3.35 0 0 0 .235 1.196c.13.34.318.696.558 1.053.38.566.902 1.156 1.55 1.755 1.074.992 2.138 1.677 2.183 1.705L4.8 9.4a.37.37 0 0 0 .399 0l.274-.176a17.55 17.55 0 0 0 2.183-1.705c.648-.598 1.17-1.19 1.55-1.755.24-.358.428-.712.558-1.053A3.35 3.35 0 0 0 10 3.515a2.95 2.95 0 0 0-.242-1.18zM5 8.485S.88 5.844.88 3.515c0-1.18.976-2.136 2.18-2.136.846 0 1.58.472 1.94 1.162.36-.7 1.095-1.162 1.94-1.162 1.204 0 2.18.956 2.18 2.136 0 2.33-4.12 4.97-4.12 4.97z"
+            fill="#6ba6ff"
+            style="fill: rgba(113, 117, 138, 1);"
+          />
+        </svg>
+      </div>
+      <p
+        class="c7"
+        style="color: rgb(196, 196, 196);"
+      >
+        Likes
+      </p>
+    </div>
+    <div
+      class="c4"
+      width="40px"
+    />
+    <div
+      class="c5"
+      data-testid="navbar mobile component create button"
+    >
+      <div
+        class="c6"
+      >
+        <svg
+          fill="#6ba6ff"
+          viewBox="0 0 10 10"
+          width="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6 1a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0V1z"
+            style="fill: rgba(113, 117, 138, 1);"
+          />
+          <path
+            d="M1 4a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H1z"
+            style="fill: rgba(113, 117, 138, 1);"
+          />
+        </svg>
+      </div>
+      <p
+        class="c7"
+        style="color: rgb(196, 196, 196);"
+      >
+        Create
+      </p>
+    </div>
+    <div
+      class="c4"
+      width="40px"
+    />
+    <div
+      class="c5"
+      data-testid="navbar mobile component search button"
+    >
+      <div
+        class="c6"
+      >
+        <svg
+          fill="none"
+          viewBox="0 0 10 10"
+          width="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7.577 6.83c.66-.85.97-1.92.87-2.993S7.84 1.77 7.032 1.06a4.23 4.23 0 0 0-5.791.179C.48 2 .036 3.023.002 4.1s.344 2.126 1.056 2.934a4.23 4.23 0 0 0 5.772.541l.023.024 2.244 2.245a.53.53 0 0 0 .374.155.53.53 0 0 0 .374-.155.53.53 0 0 0 .155-.374.53.53 0 0 0-.155-.374L7.577 6.83zM6.48 1.987c.3.294.536.644.7 1.03s.247.8.25 1.22-.08.834-.24 1.222-.394.74-.7 1.036-.648.53-1.036.69-.803.24-1.222.24-.833-.086-1.22-.25-.736-.4-1.03-.7c-.587-.597-.915-1.402-.91-2.24s.338-1.64.93-2.232 1.394-.927 2.23-.93 1.642.324 2.24.912z"
+            fill="#6ba6ff"
+            fill-rule="evenodd"
+            style="fill: rgba(113, 117, 138, 1);"
+          />
+        </svg>
+      </div>
+      <p
+        class="c7"
+        style="color: rgb(196, 196, 196);"
+      >
+        Search
+      </p>
+    </div>
+    <div
+      class="c4"
+      width="40px"
+    />
+    <a
+      class="c1"
+      data-testid="navbar mobile component profile link"
+      href="/"
+      test_id="profile"
+    >
+      <div
+        class="c2"
+      >
+        <svg
+          fill="none"
+          viewBox="0 0 10 10"
+          width="20px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            clip-path="url(#A)"
+          >
+            <path
+              d="M9 8.983V3.457l-4-2.44-4 2.44v5.526h2V7.585a2.05 2.05 0 0 1 .586-1.438C3.96 5.765 4.47 5.55 5 5.55s1.04.214 1.414.596A2.05 2.05 0 0 1 7 7.585v1.398h2zM6 10V7.585c0-.27-.105-.528-.293-.72a.99.99 0 0 0-1.414 0c-.188.19-.293.45-.293.72V10H1a.99.99 0 0 1-.707-.298C.105 9.51 0 9.253 0 8.983V3.457a1.03 1.03 0 0 1 .13-.501 1.01 1.01 0 0 1 .356-.371l4-2.44C4.64.05 4.82 0 5 0s.36.05.515.145l4 2.44a1.01 1.01 0 0 1 .356.371 1.03 1.03 0 0 1 .13.501v5.526c0 .27-.105.528-.293.72A.99.99 0 0 1 9 10H6z"
+              fill="#6ba6ff"
+              style="fill: rgba(113, 117, 138, 1);"
+            />
+          </g>
+          <defs>
+            <clippath
+              id="A"
+            >
+              <path
+                d="M0 0h10v10H0z"
+                fill="#fff"
+                style="fill: rgba(113, 117, 138, 1);"
+              />
+            </clippath>
+          </defs>
+        </svg>
+      </div>
+      <p
+        class="c3"
+        style="color: rgb(196, 196, 196);"
+      >
+        Profile
+      </p>
+    </a>
+  </div>
+</DocumentFragment>
+`;

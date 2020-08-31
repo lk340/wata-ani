@@ -40,6 +40,7 @@ export const NavbarMobile = () => {
 					/>
 				}
 				text="Home"
+				test_id="home"
 			/>
 			<Components.Spacer width="40px" />
 
@@ -56,6 +57,7 @@ export const NavbarMobile = () => {
 				}
 				text="Likes"
 				state={navbar.state.likes}
+				test_id="likes"
 			/>
 			<Components.Spacer width="40px" />
 
@@ -72,6 +74,7 @@ export const NavbarMobile = () => {
 				}
 				text="Create"
 				state={navbar.state.create}
+				test_id="create"
 			/>
 			<Components.Spacer width="40px" />
 
@@ -88,6 +91,7 @@ export const NavbarMobile = () => {
 				}
 				text="Search"
 				state={navbar.state.search}
+				test_id="search"
 			/>
 			<Components.Spacer width="40px" />
 
@@ -105,6 +109,7 @@ export const NavbarMobile = () => {
 					/>
 				}
 				text="Profile"
+				test_id="profile"
 			/>
 		</Styled.NavbarMobile>
 	);

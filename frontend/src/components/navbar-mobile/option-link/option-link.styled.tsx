@@ -9,7 +9,11 @@ import * as Snippets from "@/utils/style/snippets";
 // ↓↓↓ Option Link ↓↓↓ //
 // ========================= //
 
-export const OptionLink = styled(Gatsby.Link)`
+type Link = { test_id: string };
+
+export const OptionLink = styled(Gatsby.Link).attrs((props: Link) => ({
+	"data-testid": `navbar mobile component ${props.test_id} link`,
+}))<Link>`
 	${Snippets.clearAnchor()};
 	${Snippets.flexColumnCenter()};
 	height: 100%;

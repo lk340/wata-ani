@@ -5,13 +5,15 @@ import * as NavbarMobileSprings from "../navbar-mobile.springs";
 
 import { OptionProps } from "../navbar-mobile";
 
-export const OptionButton = (props: OptionProps) => {
-	const { state, icon, text, onClick } = props;
+type OptionButtonProps = { test_id: string } & OptionProps;
+
+export const OptionButton = (props: OptionButtonProps) => {
+	const { state, icon, text, onClick, test_id } = props;
 
 	const animateOptionText = NavbarMobileSprings.optionIconText(state);
 
 	return (
-		<Styled.OptionButton onClick={onClick}>
+		<Styled.OptionButton onClick={onClick} test_id={test_id}>
 			<Styled.OptionIcon>{icon}</Styled.OptionIcon>
 			<Styled.OptionText style={animateOptionText}>{text}</Styled.OptionText>
 		</Styled.OptionButton>
