@@ -151,7 +151,7 @@ export const InputUsername = styled(animated.input).attrs((props: FieldTypeProps
 	type: "text",
 	placeholder: props.window_height > 620 ? "WataAni" : "*Username",
 	required: props.form_type === "Registration" ? true : false,
-	"data-testid": "auth form component username input field"
+	"data-testid": "auth form component username input field",
 }))<FieldTypeProps>`
 	${fieldTypeStyles};
 `;

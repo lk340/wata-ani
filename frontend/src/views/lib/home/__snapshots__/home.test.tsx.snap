@@ -603,6 +603,7 @@ exports[`Home Component matches the snapshot 1`] = `
   >
     <div
       class="c1"
+      data-testid="navbar component"
       style="color: rgb(242, 242, 242); background-color: rgb(34, 39, 44); border-bottom: 1px solid rgba(87, 90, 93, 1);"
     >
       <div
@@ -960,6 +961,7 @@ exports[`Home Component matches the snapshot 1`] = `
     </div>
     <div
       class="c36"
+      data-testid="navbar mobile component"
       display="true"
       style="background-color: rgb(34, 39, 44); border-top: 1px solid rgba(87, 90, 93, 1);"
     >

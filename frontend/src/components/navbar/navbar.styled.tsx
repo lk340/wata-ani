@@ -17,7 +17,9 @@ import logoJapanese from "@/images/logo/japanese.svg";
 // ↓↓↓ Navbar ↓↓↓ //
 // ============== //
 
-export const Navbar = styled(animated.div)`
+export const Navbar = styled(animated.div).attrs(() => ({
+	"data-testid": "navbar component",
+}))`
 	height: ${Constants.size.components.navbar.height}px;
 
 	@media (max-width: 1260px) {

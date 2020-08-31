@@ -28,6 +28,9 @@ describe("Home Component", () => {
 				<Home />
 			</ReactRedux.Provider>,
 		);
+
+		const navbar = home.getByTestId("navbar component");
+		expect(navbar).not.toBe(null);
 	});
 
 	it("renders the navbar mobile component", () => {
@@ -36,5 +39,8 @@ describe("Home Component", () => {
 				<Home />
 			</ReactRedux.Provider>,
 		);
+
+		const navbarMobile = home.getByTestId("navbar mobile component");
+		expect(navbarMobile).not.toBe(null);
 	});
 });

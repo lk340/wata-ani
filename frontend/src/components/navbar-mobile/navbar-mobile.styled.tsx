@@ -10,7 +10,9 @@ import * as Snippets from "@/utils/style/snippets";
 
 type Navbar = { display: string };
 
-export const NavbarMobile = styled(animated.div)<Navbar>`
+export const NavbarMobile = styled(animated.div).attrs(() => ({
+	"data-testid": "navbar mobile component",
+}))<Navbar>`
 	${Snippets.flex("row", "space-between", "center")};
 	display: none;
 	height: ${Constants.size.components.navbarMobile.height}px;
