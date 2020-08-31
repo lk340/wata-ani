@@ -21,10 +21,10 @@ describe("Hamburger Component", () => {
 			const { navbar } = Context.Navbar.useNavbarContext();
 
 			return (
-				<>
+				<React.Fragment>
 					<Hamburger />
 					<div data-testid="modalState">{navbar.state.hamburgerOpen.toString()}</div>
-				</>
+				</React.Fragment>
 			);
 		};
 

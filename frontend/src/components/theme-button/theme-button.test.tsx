@@ -18,10 +18,10 @@ describe("ThemeButton Component", () => {
 			const { theme } = Context.Theme.useThemeContext();
 
 			return (
-				<>
+				<React.Fragment>
 					<ThemeButton />
 					<div data-testid="mode">{theme.state.mode}</div>
-				</>
+				</React.Fragment>
 			);
 		};
 
