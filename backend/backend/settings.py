@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     "corsheaders",
 
     "users.apps.UsersConfig",
+    "posts.apps.PostsConfig",
+    "tags.apps.TagsConfig"
 ]
 
 # ====================== #

@@ -28,7 +28,10 @@ urlpatterns = [
     # path("api/auth/", include("jwt_auth.urls"), name="jwt_auth"),
 
     # Users
-    path("api/users/", include("users.urls"))
+    path("api/users/", include("users.urls")),
+
+    # Tags
+    path("api/tags/", include("tags.urls"))
 ]
 
 if settings.DEBUG:
