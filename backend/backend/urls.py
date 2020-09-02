@@ -30,6 +30,9 @@ urlpatterns = [
     # Users
     path("api/users/", include("users.urls")),
 
+    # Posts
+    path("api/posts/", include("posts.urls")),
+
     # Tags
     path("api/tags/", include("tags.urls"))
 ]
