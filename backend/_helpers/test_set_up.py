@@ -11,7 +11,8 @@ class TestSetUp(APITestCase):
         un, em, pw = "testUser", "test@user.com", "testPassword"
         self.user = User.objects.create_user(username=un, email=em, password=pw)
 
-        sign_in_endpoint = reverse("api-auth-sign-in")
+        # sign_in_endpoint = reverse("api-auth-sign-in")
+        sign_in_endpoint = reverse("user_detail")
         credentials = {"username": "testUser", "password": "testPassword"}
 
         self.user.is_active = False

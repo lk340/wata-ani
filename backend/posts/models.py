@@ -1,5 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
+User = get_user_model()
 
 
 class Post(models.Model):
@@ -8,3 +11,4 @@ class Post(models.Model):
     text = models.TextField(_("Post Text"), max_length=500)
     author_rating = models.IntegerField(_("Author Rating"))
     user_rating = models.IntegerField(_("User Rating"))
+    author = models.ForeignKey(User, on_delete=models.CASCADE)

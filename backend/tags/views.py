@@ -19,6 +19,7 @@ class TagList(APIView):
     def post(self, request, format=None):
         serializer = serializers.TagSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -28,7 +29,7 @@ class TagDetail(APIView):
     def get_tag(self, pk):
         try:
             return models.Tag.objects.get(pk=pk)
-        except Tag.DoesNotExist:
+        except models.Tag.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
