@@ -7,8 +7,10 @@ User = get_user_model()
 
 
 class PostSerializer(serializers.ModelSerializer):
+    author = serializers.ReadOnlyField(source="author.username")
+
     class Meta:
         model = models.Post
         fields = (
-            "title", "series_title", "text", "author_rating", "user_rating", "author"
+            "id", "title", "series_title", "text", "personal_rating", "user_rating", "author", "tags"
         )

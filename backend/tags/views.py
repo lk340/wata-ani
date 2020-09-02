@@ -9,7 +9,7 @@ from . import serializers
 
 
 class TagList(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get(self, request, format=None):
         tags = models.Tag.objects.all()
@@ -24,7 +24,7 @@ class TagList(APIView):
 
 
 class TagDetail(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_tag(self, pk):
         try:

@@ -6,10 +6,13 @@ from rest_framework.response import Response
 
 from . import models
 from . import serializers
+from . import permissions as CustomPermissions
 
 
 class PostList(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly, CustomPermissions.IsOwnerOrReadOnly
+    )
 
     def get(self, request, format=None):
         post = models.Post.objects.all()
@@ -22,9 +25,14 @@ class PostList(APIView):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
 
 class PostDetail(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly, CustomPermissions.IsOwnerOrReadOnly
+    )
 
     def get_post(self, pk):
         try:
