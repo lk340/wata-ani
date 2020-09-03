@@ -88,19 +88,6 @@ async function POST(
 			dispatch(receiveCurrentUser(response.data.user));
 			if (authErrors.length > 0) dispatch(clearErrors());
 			Gatsby.navigate("/");
-
-			// if (type === "register") {
-			// 	// console.log(response.data.detail);
-			// 	console.log(response.data);
-
-			// 	if (authErrors.length > 0) dispatch(clearErrors());
-			// } else {
-			// 	localStorage.refresh = response.data.refresh_token;
-			// 	localStorage.access = response.data.access_token;
-			// 	dispatch(receiveCurrentUser(response.data.user));
-			// 	if (authErrors.length > 0) dispatch(clearErrors());
-			// 	Gatsby.navigate("/");
-			// }
 		}
 		// Failure
 		else {
@@ -143,9 +130,6 @@ export function signIn(data: SignInData, dispatch: Function, authErrors: string[
 export function signOut(dispatch: Function) {
 	async function POST(): Promise<void> {
 		try {
-			// const endpoint = "/auth/logout/";
-			// const response = await axios.post(endpoint);
-
 			if (localStorage.refresh) delete localStorage["refresh"];
 			if (localStorage.access) delete localStorage["access"];
 

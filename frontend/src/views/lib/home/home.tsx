@@ -5,6 +5,9 @@ import * as Components from "@/components";
 import * as Animations from "@/utils/style/animations";
 import * as Constants from "@/utils/style/constants";
 
+import * as Actions from "@/redux/actions";
+import * as ReactRedux from "react-redux";
+
 import * as Styled from "./home.styled";
 
 export const Home = () => {
@@ -15,10 +18,18 @@ export const Home = () => {
 		Constants.theme.pages.home.background.dark,
 	);
 
+	const dispatch = ReactRedux.useDispatch();
+
 	return (
 		<Styled.Home style={animateBackground}>
 			<Components.Navbar />
-			<Styled.HomeComponents>Home Components</Styled.HomeComponents>
+			<Styled.HomeComponents>
+				Home Components
+
+				<div onClick={() => Actions.Posts.thunkReceivePosts(dispatch)}>Receive Posts</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(3, dispatch)}>Receive Post</div>
+
+			</Styled.HomeComponents>
 			<Components.NavbarMobile />
 		</Styled.Home>
 	);

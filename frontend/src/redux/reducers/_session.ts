@@ -20,7 +20,10 @@ type Action = {
 	[key: string]: any;
 };
 
-export function sessionReducer(state = initialState, action: Action) {
+export function sessionReducer(
+	state: Actions.Session.CurrentUser = initialState,
+	action: Action,
+) {
 	Object.freeze(state);
 	const stateCopy = Lodash.merge({}, state);
 
