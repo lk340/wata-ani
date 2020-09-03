@@ -30,7 +30,7 @@ export const Home = () => {
 		series_title: "Pokémon the Movie 2000",
 		text: "Lest the world turns to ash.",
 		personal_rating: 7,
-		author: currentUser
+		author: currentUser.id
 	}
 
 	const patchData = {
