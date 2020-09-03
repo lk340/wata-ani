@@ -25,7 +25,7 @@ urlpatterns = [
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
     # JWT-based auth
-    # path("api/auth/", include("jwt_auth.urls"), name="jwt_auth"),
+    path("api/auth/", include("jwt_auth.urls"), name="jwt_auth"),
 
     # Users
     path("api/users/", include("users.urls")),
