@@ -51,6 +51,14 @@ export const Home = () => {
 				<div onClick={() => Actions.Posts.thunkUpdatePost(3, patchData, dispatch)}>Update Post</div>
 				<div onClick={() => Actions.Posts.thunkDeletePost(3, dispatch)}>Delete Post</div>
 
+				<br/>
+
+				<div onClick={() => Actions.Tags.thunkReceiveTags(dispatch)}>Receive Tags</div>
+				<div onClick={() => Actions.Tags.thunkReceiveTag(1, dispatch)}>Receive Tag</div>
+				{/* <div onClick={() => Actions.Tags.thunkCreateTag(dispatch)}>Create Tag</div> */}
+				{/* <div onClick={() => Actions.Tags.thunkUpdateTag(dispatch)}>Update Tag</div> */}
+				{/* <div onClick={() => Actions.Tags.thunkDeleteTag(dispatch)}>Delete Tag</div> */}
+
 			</Styled.HomeComponents>
 			<Components.NavbarMobile />
 		</Styled.Home>
