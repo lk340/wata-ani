@@ -18,10 +18,22 @@ export const Home = () => {
 		Constants.theme.pages.home.background.dark,
 	);
 
+	const currentUser = ReactRedux.useSelector(state => state.session);
+	const postError = ReactRedux.useSelector(state => state.errors.posts);
 	const dispatch = ReactRedux.useDispatch();
 
 	const postData = {
-		
+		title: "Ash, the Chosen One",
+		series_title: "Pokémon the Movie 2000",
+		text: "Lest the world turns to ash.",
+		personal_rating: 7,
+		author: currentUser
+	}
+
+	const patchData = {
+		title: "Ash, the Chosen Two",
+		text: "Lemons!",
+		personal_rating: 6,
 	}
 	
 	return (
@@ -30,11 +42,11 @@ export const Home = () => {
 			<Styled.HomeComponents>
 				Home Components
 
-				<div onClick={() => Actions.Posts.thunkReceivePosts(dispatch)}>Receive Posts</div>
-				<div onClick={() => Actions.Posts.thunkReceivePost(3, dispatch)}>Receive Post</div>
-				<div onClick={() => Actions.Posts.thunkReceivePost(3, dispatch)}>Create Post</div>
-				<div onClick={() => Actions.Posts.thunkReceivePost(3, dispatch)}>Update Post</div>
-				<div onClick={() => Actions.Posts.thunkReceivePost(3, dispatch)}>Delete Post</div>
+				<div onClick={() => Actions.Posts.thunkReceivePosts(postError, dispatch)}>Receive Posts</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(3, postError, dispatch)}>Receive Post</div>
+				<div onClick={() => Actions.Posts.thunkCreatePost(postData, dispatch)}>Create Post</div>
+				<div onClick={() => Actions.Posts.thunkUpdatePost(3, patchData, dispatch)}>Update Post</div>
+				<div onClick={() => Actions.Posts.thunkDeletePost(3, dispatch)}>Delete Post</div>
 
 			</Styled.HomeComponents>
 			<Components.NavbarMobile />

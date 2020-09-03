@@ -1,6 +1,9 @@
 import axios from "axios";
 
+import * as Context from "@/context";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
+
+import { clearErrors } from "./_clear_errors";
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
@@ -27,6 +30,15 @@ export type Post = {
 	date_created: string | null;
 	author: string | null;
 	tags: Tag[] | null;
+};
+
+type CreateData = {
+	title: string;
+	series_title: string;
+	text: string;
+	personal_rating: number;
+	author: Context.AuthForm.CurrentUser;
+	tags?: Tag | Tag[];
 };
 
 function receivePosts(posts: Post[]) {
@@ -75,35 +87,45 @@ function postErrors(error: string) {
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // ============================= //
 
-export async function thunkReceivePosts(dispatch: Function) {
+export async function thunkReceivePosts(error: string, dispatch: Function) {
 	try {
 		const response = await axios.get("/api/posts/", { validateStatus });
 
 		// Success
-		if (response.status < 400) dispatch(receivePosts(response.data));
+		if (response.status < 400) {
+			dispatch(receivePosts(response.data));
+			if (error !== "") dispatch(clearErrors);
+		}
 		// Failure
-		else console.log("Error:", response);
+		else {
+			console.log("Error:", response);
+		}
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
 	}
 }
 
-export async function thunkReceivePost(id: number, dispatch: Function) {
+export async function thunkReceivePost(id: number, error: string, dispatch: Function) {
 	try {
 		const response = await axios.get(`/api/posts/${id}/`, { validateStatus });
 
 		// Success
-		if (response.status < 400) dispatch(receivePost(response.data));
+		if (response.status < 400) {
+			dispatch(receivePost(response.data));
+			if (error !== "") dispatch(clearErrors);
+		}
 		// Failure
-		else dispatch(postErrors(response.data.detail));
+		else {
+			dispatch(postErrors(response.data.detail));
+		}
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
 	}
 }
 
-export async function thunkCreatePost(data: Post, dispatch: Function) {
+export async function thunkCreatePost(data: CreateData, dispatch: Function) {
 	try {
 		const response = await axios.post("/api/posts/", data, { validateStatus });
 
@@ -123,7 +145,7 @@ export async function thunkCreatePost(data: Post, dispatch: Function) {
 
 export async function thunkUpdatePost(
 	id: number,
-	data: Partial<Post>,
+	data: Partial<CreateData>,
 	dispatch: Function,
 ) {
 	try {

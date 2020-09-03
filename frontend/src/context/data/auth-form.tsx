@@ -5,7 +5,7 @@ import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
 import { FormType } from "@/components/auth-form/auth-form";
 
-type CurrentUser = {
+export type CurrentUser = {
 	id: number;
 	username: string;
 	email: string;
