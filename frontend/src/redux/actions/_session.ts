@@ -1,11 +1,15 @@
 import * as Gatsby from "gatsby";
 import axios from "axios";
 
+import * as AxiosHelpers from "@/utils/api/axios-helpers";
+
 import { clearErrors } from "./_clear_errors";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const SIGN_OUT_CURRENT_USER = "SIGN_OUT_CURRENT_USER";
 export const SESSION_ERRORS = "SESSION_ERRORS";
+
+const validateStatus = AxiosHelpers.validateStatus;
 
 // ========================== //
 // ↓↓↓ Register / Sign In ↓↓↓ //
@@ -75,7 +79,6 @@ async function POST(
 	authErrors: string[],
 ): Promise<void> {
 	try {
-		const validateStatus = (status: number) => status >= 200 && status < 500;
 		const response = await axios.post(endpoint, data, { validateStatus });
 
 		// Success
