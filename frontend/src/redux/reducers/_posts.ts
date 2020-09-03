@@ -24,7 +24,9 @@ type Action = {
 	[key: string]: any;
 };
 
-export function postsReducer(state: Actions.Posts.Post = initialState, action: Action) {
+type State = Actions.Posts.Post[] | Actions.Posts.Post;
+
+export function postsReducer(state: State = initialState, action: Action) {
 	Object.freeze(state);
 	const stateCopy = Lodash.merge({}, state);
 

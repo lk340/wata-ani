@@ -80,13 +80,9 @@ export async function thunkReceivePosts(dispatch: Function) {
 		const response = await axios.get("/api/posts/", { validateStatus });
 
 		// Success
-		if (response.status < 400) {
-			console.log("Data:", response.data);
-		}
+		if (response.status < 400) dispatch(receivePosts(response.data));
 		// Failure
-		else {
-			console.log("Error:", response);
-		}
+		else console.log("Error:", response);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
@@ -98,14 +94,9 @@ export async function thunkReceivePost(id: number, dispatch: Function) {
 		const response = await axios.get(`/api/posts/${id}/`, { validateStatus });
 
 		// Success
-		if (response.status < 400) {
-			dispatch(receivePost(response.data));
-		}
+		if (response.status < 400) dispatch(receivePost(response.data));
 		// Failure
-		else {
-			console.log("Error:", response.data.detail);
-			dispatch(postErrors(response.data.detail))
-		}
+		else dispatch(postErrors(response.data.detail));
 	} catch (error) {
 		// Dev debug log
 		console.log(error);

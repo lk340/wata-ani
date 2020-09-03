@@ -20,6 +20,10 @@ export const Home = () => {
 
 	const dispatch = ReactRedux.useDispatch();
 
+	const postData = {
+		
+	}
+	
 	return (
 		<Styled.Home style={animateBackground}>
 			<Components.Navbar />
@@ -28,6 +32,9 @@ export const Home = () => {
 
 				<div onClick={() => Actions.Posts.thunkReceivePosts(dispatch)}>Receive Posts</div>
 				<div onClick={() => Actions.Posts.thunkReceivePost(3, dispatch)}>Receive Post</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(3, dispatch)}>Create Post</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(3, dispatch)}>Update Post</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(3, dispatch)}>Delete Post</div>
 
 			</Styled.HomeComponents>
 			<Components.NavbarMobile />
