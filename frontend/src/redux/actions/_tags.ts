@@ -8,6 +8,7 @@ export const RECEIVE_TAG = "RECEIVE_TAG";
 export const CREATE_TAG = "CREATE_TAG";
 export const UPDATE_TAG = "UPDATE_TAG";
 export const DELETE_TAG = "DELETE_TAG";
+export const TAG_ERRORS = "TAG_ERRORS";
 
 const validateStatus = AxiosHelpers.validateStatus;
 
@@ -15,7 +16,7 @@ const validateStatus = AxiosHelpers.validateStatus;
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // =========================---- //
 
-export type Tag = { title: string };
+export type Tag = { title: string | null };
 
 function receiveTags(tags: Tag[]) {
 	return {
@@ -48,6 +49,13 @@ function updateTag(tag: Partial<Tag>) {
 function deleteTag() {
 	return {
 		type: DELETE_TAG,
+	};
+}
+
+function tagErrors(error: string) {
+	return {
+		type: TAG_ERRORS,
+		error,
 	};
 }
 

@@ -1,5 +1,3 @@
-import * as Lodash from "lodash";
-
 import * as Actions from "@/redux/actions";
 
 type Action = {
@@ -9,7 +7,6 @@ type Action = {
 
 export function errorsReducer(state = "", action: Action) {
 	Object.freeze(state);
-	const stateCopy = Lodash.merge("", state);
 
 	switch (action.type) {
 		case Actions.Posts.POST_ERRORS:
@@ -19,6 +16,6 @@ export function errorsReducer(state = "", action: Action) {
 			return "";
 
 		default:
-			return stateCopy;
+			return state;
 	}
 }
