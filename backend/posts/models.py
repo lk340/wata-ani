@@ -13,10 +13,10 @@ class Post(models.Model):
     series_title = models.CharField(verbose_name=_("Series Title"), max_length=100)
     text = models.TextField(verbose_name=_("Post Text"), max_length=500)
     personal_rating = models.IntegerField(verbose_name=_("Personal Rating"))
-    user_rating = models.IntegerField(verbose_name=_("User Rating"), default=0, blank=True)
+    user_rating = models.IntegerField(verbose_name=_("User Rating"), null=True)
     date_created = models.DateTimeField(_("Date Created"), default=timezone.now)
     author = models.ForeignKey(User, verbose_name=_("Post Author"), on_delete=models.CASCADE)
-    tags = models.ForeignKey(Tag, verbose_name=_("Post Tag"), on_delete=models.CASCADE, blank=True)
+    tags = models.ForeignKey(Tag, verbose_name=_("Post Tag"), on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.author.username}'s Post: {self.title}"

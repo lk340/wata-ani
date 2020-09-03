@@ -4,6 +4,7 @@ import * as Context from "@/context";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
 import { clearErrors } from "./_clear_errors";
+import { Tag } from "./_tags";
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
@@ -17,8 +18,6 @@ const validateStatus = AxiosHelpers.validateStatus;
 // ======================= //
 // ↓↓↓ Action Creators ↓↓↓ //
 // ======================= //
-
-type Tag = { title: string };
 
 export type Post = {
 	id: number | null;
@@ -69,10 +68,9 @@ function updatePost(post: Partial<Post>) {
 	};
 }
 
-function deletePost(post: Post) {
+function deletePost() {
 	return {
 		type: DELETE_POST,
-		post,
 	};
 }
 

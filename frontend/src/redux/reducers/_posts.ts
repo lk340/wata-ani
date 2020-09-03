@@ -44,7 +44,7 @@ export function postsReducer(state: State = initialState, action: Action) {
 			return action.post;
 
 		case Actions.Posts.DELETE_POST:
-			return action.post;
+			return initialState;
 
 		default:
 			return stateCopy;

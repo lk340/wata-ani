@@ -46,7 +46,7 @@ export const Home = () => {
 				Home Components
 
 				<div onClick={() => Actions.Posts.thunkReceivePosts(postError,dispatch)}>Receive Posts</div>
-				<div onClick={() => Actions.Posts.thunkReceivePost(3, postError, dispatch)}>Receive Post</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(6, postError, dispatch)}>Receive Post</div>
 				<div onClick={() => Actions.Posts.thunkCreatePost(postData, dispatch)}>Create Post</div>
 				<div onClick={() => Actions.Posts.thunkUpdatePost(3, patchData, dispatch)}>Update Post</div>
 				<div onClick={() => Actions.Posts.thunkDeletePost(3, dispatch)}>Delete Post</div>

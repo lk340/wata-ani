@@ -114,16 +114,16 @@ export function register(
 	dispatch: Function,
 	authErrors: string[],
 ): void {
-	// const endpoint = "/auth/registration/";
-	const endpoint = "/api/auth/register/";
+	const endpoint = "/auth/registration/";
+	// const endpoint = "/api/auth/register/";
 	POST("register", endpoint, data, dispatch, authErrors);
 }
 
 // --- Sign In --- //
 
 export function signIn(data: SignInData, dispatch: Function, authErrors: string[]) {
-	// const endpoint = "/auth/login/";
-	const endpoint = "/api/auth/signin/";
+	const endpoint = "/auth/login/";
+	// const endpoint = "/api/auth/signin/";
 	POST("sign in", endpoint, data, dispatch, authErrors);
 }
 
