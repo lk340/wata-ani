@@ -47,10 +47,10 @@ export const Home = () => {
 				<div>Home Components</div>
 				<br/>
 				<div onClick={() => Actions.Posts.thunkReceivePosts(postError,dispatch)}>Receive Posts</div>
-				<div onClick={() => Actions.Posts.thunkReceivePost(2, postError, dispatch)}>Receive Post</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(13, postError, dispatch)}>Receive Post</div>
 				<div onClick={() => Actions.Posts.thunkCreatePost(postPostData, postError, dispatch)}>Create Post</div>
-				<div onClick={() => Actions.Posts.thunkUpdatePost(25, postPatchData, postError, dispatch)}>Update Post</div>
-				<div onClick={() => Actions.Posts.thunkDeletePost(2, postError, dispatch)}>Delete Post</div>
+				<div onClick={() => Actions.Posts.thunkUpdatePost(11, postPatchData, postError, dispatch)}>Update Post</div>
+				<div onClick={() => Actions.Posts.thunkDeletePost(29, postError, dispatch)}>Delete Post</div>
 
 			</Styled.HomeComponents>
 			<Components.NavbarMobile />

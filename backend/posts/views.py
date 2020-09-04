@@ -45,6 +45,11 @@ class PostDetail(APIView):
         serializer = serializers.PostSerializer(post)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+        # print(serializer.data["id"])
+        # response_data = { serializer.data["id"]: serializer.data }
+        # return Response(response_data, status=status.HTTP_200_OK)
+        
+
     def patch(self, request, pk, format=None):
         post = self.get_post(pk)
         serializer = serializers.PostSerializer(post, data=request.data)

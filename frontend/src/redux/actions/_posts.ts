@@ -68,9 +68,10 @@ function updatePost(post: Partial<Post>) {
 	};
 }
 
-function deletePost() {
+function deletePost(id: number) {
 	return {
 		type: DELETE_POST,
+		id,
 	};
 }
 
@@ -91,8 +92,6 @@ export async function thunkReceivePosts(errors: string, dispatch: Function) {
 
 		// Success
 		if (response.status < 400) {
-			console.log("Response:", response.data);
-
 			dispatch(receivePosts(response.data));
 			if (errors.length > 0) dispatch(clearErrors());
 		}
@@ -185,9 +184,7 @@ export async function thunkDeletePost(id: number, errors: string, dispatch: Func
 
 		// Success
 		if (response.status < 400) {
-			dispatch(deletePost());
-
-			console.log("Data:", response);
+			dispatch(deletePost(id));
 		}
 		// Failure
 		else {

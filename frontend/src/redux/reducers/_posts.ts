@@ -28,27 +28,29 @@ type Action = {
 type State = Actions.Posts.Post[] | [];
 
 // export function postsReducer(state: State = initialState, action: Action) {
-export function postsReducer(state: State = [], action: Action) {
+export function postsReducer(state = {}, action: Action) {
 	Object.freeze(state);
-	const stateCopy = Lodash.merge([], state);
+	const stateCopy = Lodash.merge({}, state);
 
 	switch (action.type) {
 		case Actions.Posts.RECEIVE_POSTS:
 			return action.posts;
 
 		case Actions.Posts.RECEIVE_POST:
-			return action.post;
+			stateCopy[action.post.id] = action.post;
+			return stateCopy;
 
 		case Actions.Posts.CREATE_POST:
-			stateCopy.push(action.post);
+			stateCopy[action.post.id] = action.post;
 			return stateCopy;
 
 		case Actions.Posts.UPDATE_POST:
-			stateCopy.push(action.post);
+			stateCopy[action.post.id] = action.post;
 			return stateCopy;
 
 		case Actions.Posts.DELETE_POST:
-			return initialState;
+			delete stateCopy[action.id];
+			return stateCopy;
 
 		default:
 			return stateCopy;
