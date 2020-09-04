@@ -19,7 +19,7 @@ export function errorsReducer(state = [], action: Action) {
 
 	switch (action.type) {
 		case Actions.Posts.POST_ERRORS:
-			if (Object.keys(action.errors).length < 2) {
+			if (action.errors.detail) {
 				return action.errors.detail;
 			} else {
 				const errorEntries = Object.entries(action.errors);

@@ -1,3 +1,5 @@
+import * as Lodash from "lodash";
+
 import * as Actions from "@/redux/actions";
 
 type Action = {
@@ -5,15 +7,27 @@ type Action = {
 	error: string;
 };
 
-export function tagsReducer(state = "", action: Action) {
+type Errors = [string, string][];
+
+export function tagsReducer(state = [], action: Action) {
 	Object.freeze(state);
+	const stateCopy = Lodash.merge([], state);
 
 	switch (action.type) {
 		case Actions.Tags.TAG_ERRORS:
-			return action.error;
+			if (action.errors.detail) {
+				return action.errors.detail;
+			} else {
+				const errorEntries = Object.entries(action.errors);
+				const errors: Errors = [];
+				errorEntries.forEach((error: any) => {
+					errors.push([error[0], error[1][0]]);
+				});
+				return errors;
+			}
 
 		case Actions.Errors.CLEAR_ERRORS:
-			return "";
+			return [];
 
 		default:
 			return state;

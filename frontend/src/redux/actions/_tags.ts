@@ -46,16 +46,17 @@ function updateTag(tag: Partial<Tag>) {
 	};
 }
 
-function deleteTag() {
+function deleteTag(id: number) {
 	return {
 		type: DELETE_TAG,
+		id,
 	};
 }
 
-function tagErrors(error: string) {
+function tagErrors(errors: string) {
 	return {
 		type: TAG_ERRORS,
-		error,
+		errors,
 	};
 }
 
@@ -69,8 +70,8 @@ export async function thunkReceiveTags(error: string, dispatch: Function) {
 
 		// Success
 		if (response.status < 400) {
-			if (error !== "") dispatch(clearErrors());
 			dispatch(receiveTags(response.data));
+			if (error.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
@@ -88,12 +89,12 @@ export async function thunkReceiveTag(id: number, error: string, dispatch: Funct
 
 		// Success
 		if (response.status < 400) {
-			if (error !== "") dispatch(clearErrors());
 			dispatch(receiveTag(response.data));
+			if (error.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
-			dispatch(tagErrors(response.data.detail));
+			dispatch(tagErrors(response.data));
 		}
 	} catch (error) {
 		// Dev debug log
@@ -107,12 +108,12 @@ export async function thunkCreateTag(data: Tag, error: string, dispatch: Functio
 
 		// Success
 		if (response.status < 400) {
-			if (error !== "") dispatch(clearErrors());
 			dispatch(createTag(response.data));
+			if (error.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
-			dispatch(tagErrors(response.data.detail));
+			dispatch(tagErrors(response.data));
 		}
 	} catch (error) {
 		// Dev debug log
@@ -131,8 +132,8 @@ export async function thunkUpdateTag(
 
 		// Success
 		if (response.status < 400) {
-			if (error !== "") dispatch(clearErrors());
 			dispatch(updateTag(response.data));
+			if (error.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
@@ -150,12 +151,12 @@ export async function thunkDeleteTag(id: number, error: string, dispatch: Functi
 
 		// Success
 		if (response.status < 400) {
-			if (error !== "") dispatch(clearErrors());
-			dispatch(deleteTag());
+			dispatch(deleteTag(id));
+			if (error.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
-			dispatch(tagErrors(response.data.detail));
+			dispatch(tagErrors(response.data));
 		}
 	} catch (error) {
 		// Dev debug log

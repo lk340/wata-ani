@@ -116,9 +116,6 @@ export async function thunkReceivePost(id: number, errors: string, dispatch: Fun
 		}
 		// Failure
 		else {
-			console.log(response);
-
-			// dispatch(postErrors(response.data.detail));
 			dispatch(postErrors(response.data));
 		}
 	} catch (error) {
@@ -161,15 +158,11 @@ export async function thunkUpdatePost(
 
 		// Success
 		if (response.status < 400) {
-			console.log("Data:", response.data);
-
 			dispatch(updatePost(response.data));
 			if (errors.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
-			console.log("Error:", response);
-
 			dispatch(postErrors(response.data));
 		}
 	} catch (error) {

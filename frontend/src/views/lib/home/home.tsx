@@ -23,6 +23,7 @@ export const Home = () => {
 	// console.log("Current User:", currentUser)
 	
 	const postErrors = ReactRedux.useSelector(state => state.errors.posts);
+	const tagErrors = ReactRedux.useSelector(state => state.errors.tags);
 	const dispatch = ReactRedux.useDispatch();
 
 	const postPostData = {
@@ -34,9 +35,17 @@ export const Home = () => {
 	}
 
 	const postPatchData = {
-		title: "Ash, the Chosen Ten",
+		title: "Ash, the Chosen One",
 		text: "Lest the world turns to ash.",
 		personal_rating: 6
+	}
+
+	const tagPostData = {
+		title: "Ecchi"
+	}
+
+	const tagPatchData = {
+		title: "Hentai"
 	}
 	
 	return (
@@ -51,6 +60,12 @@ export const Home = () => {
 				<div onClick={() => Actions.Posts.thunkCreatePost(postPostData, postErrors, dispatch)}>Create Post</div>
 				<div onClick={() => Actions.Posts.thunkUpdatePost(14, postPatchData, postErrors, dispatch)}>Update Post</div>
 				<div onClick={() => Actions.Posts.thunkDeletePost(13, postErrors, dispatch)}>Delete Post</div>
+				<br/>
+				<div onClick={() => Actions.Tags.thunkReceiveTags(tagErrors,dispatch)}>Receive Tags</div>
+				<div onClick={() => Actions.Tags.thunkReceiveTag(1, tagErrors, dispatch)}>Receive Tag</div>
+				<div onClick={() => Actions.Tags.thunkCreateTag(tagPostData, tagErrors, dispatch)}>Create Tag</div>
+				<div onClick={() => Actions.Tags.thunkUpdateTag(2, tagPatchData, tagErrors, dispatch)}>Update Tag</div>
+				<div onClick={() => Actions.Tags.thunkDeleteTag(2, tagErrors, dispatch)}>Delete Tag</div>
 
 			</Styled.HomeComponents>
 			<Components.NavbarMobile />

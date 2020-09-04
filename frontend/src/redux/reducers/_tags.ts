@@ -2,10 +2,6 @@ import * as Lodash from "lodash";
 
 import * as Actions from "@/redux/actions";
 
-const initialState: Actions.Tags.Tag = {
-	title: null,
-};
-
 type Action = {
 	type:
 		| typeof Actions.Tags.RECEIVE_TAGS
@@ -16,9 +12,7 @@ type Action = {
 	[key: string]: any;
 };
 
-type State = Actions.Tags.Tag[] | Actions.Tags.Tag;
-
-export function tagsReducer(state: State = initialState, action: Action) {
+export function tagsReducer(state = {}, action: Action) {
 	Object.freeze(state);
 	const stateCopy = Lodash.merge({}, state);
 
@@ -27,16 +21,20 @@ export function tagsReducer(state: State = initialState, action: Action) {
 			return action.tags;
 
 		case Actions.Tags.RECEIVE_TAG:
-			return action.tag;
+			stateCopy[action.tag.id] = action.tag;
+			return stateCopy;
 
 		case Actions.Tags.CREATE_TAG:
-			return action.tag;
+			stateCopy[action.tag.id] = action.tag;
+			return stateCopy;
 
 		case Actions.Tags.UPDATE_TAG:
-			return action.tag;
+			stateCopy[action.tag.id] = action.tag;
+			return stateCopy;
 
 		case Actions.Tags.DELETE_TAG:
-			return initialState;
+			delete stateCopy[action.id];
+			return stateCopy;
 
 		default:
 			return stateCopy;
