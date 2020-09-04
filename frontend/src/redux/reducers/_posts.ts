@@ -2,6 +2,12 @@ import * as Lodash from "lodash";
 
 import * as Actions from "@/redux/actions";
 
+type State = StateCopy | {};
+
+type StateCopy = {
+	[key: string]: Actions.Posts.Post;
+};
+
 type Action = {
 	type:
 		| typeof Actions.Posts.RECEIVE_POSTS
@@ -12,11 +18,7 @@ type Action = {
 	[key: string]: any;
 };
 
-type StateCopy = {
-	[key: string]: Actions.Posts.Post;
-};
-
-export function postsReducer(state = {}, action: Action) {
+export function postsReducer(state: State = {}, action: Action) {
 	Object.freeze(state);
 	const stateCopy: StateCopy = Lodash.merge({}, state);
 
