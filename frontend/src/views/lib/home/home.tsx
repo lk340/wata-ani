@@ -56,16 +56,16 @@ export const Home = () => {
 				<div>Home Components</div>
 				<br/>
 				<div onClick={() => Actions.Posts.thunkReceivePosts(postErrors,dispatch)}>Receive Posts</div>
-				<div onClick={() => Actions.Posts.thunkReceivePost(13, postErrors, dispatch)}>Receive Post</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(250, postErrors, dispatch)}>Receive Post</div>
 				<div onClick={() => Actions.Posts.thunkCreatePost(postPostData, postErrors, dispatch)}>Create Post</div>
 				<div onClick={() => Actions.Posts.thunkUpdatePost(14, postPatchData, postErrors, dispatch)}>Update Post</div>
-				<div onClick={() => Actions.Posts.thunkDeletePost(13, postErrors, dispatch)}>Delete Post</div>
+				<div onClick={() => Actions.Posts.thunkDeletePost(130, dispatch)}>Delete Post</div>
 				<br/>
 				<div onClick={() => Actions.Tags.thunkReceiveTags(tagErrors,dispatch)}>Receive Tags</div>
 				<div onClick={() => Actions.Tags.thunkReceiveTag(1, tagErrors, dispatch)}>Receive Tag</div>
 				<div onClick={() => Actions.Tags.thunkCreateTag(tagPostData, tagErrors, dispatch)}>Create Tag</div>
-				<div onClick={() => Actions.Tags.thunkUpdateTag(3, tagPatchData, tagErrors, dispatch)}>Update Tag</div>
-				<div onClick={() => Actions.Tags.thunkDeleteTag(3, tagErrors, dispatch)}>Delete Tag</div>
+				<div onClick={() => Actions.Tags.thunkUpdateTag(5, tagPatchData, tagErrors, dispatch)}>Update Tag</div>
+				<div onClick={() => Actions.Tags.thunkDeleteTag(6, dispatch)}>Delete Tag</div>
 
 			</Styled.HomeComponents>
 			<Components.NavbarMobile />

@@ -1,26 +1,16 @@
 import * as Lodash from "lodash";
 
 import * as Actions from "@/redux/actions";
-
-type State = StateCopy | [];
-
-type StateCopy = string | Errors;
-
-type ActionErrors = {
-	[key: string]: any;
-};
+import * as Types from "../__types";
 
 type Action = {
 	type: typeof Actions.Posts.POST_ERRORS | typeof Actions.Errors.CLEAR_ERRORS;
-	errors: ActionErrors;
+	errors: Types.ActionErrors;
 };
 
-type Errors = [string, string][];
-type Error = [string, [string]];
-
-export function errorsReducer(state: State = [], action: Action) {
+export function errorsReducer(state: Types.State = [], action: Action) {
 	Object.freeze(state);
-	const stateCopy: StateCopy = Lodash.merge([], state);
+	const stateCopy: Types.StateCopy = Lodash.merge([], state);
 
 	switch (action.type) {
 		case Actions.Posts.POST_ERRORS:
@@ -28,8 +18,8 @@ export function errorsReducer(state: State = [], action: Action) {
 				return action.errors.detail;
 			} else {
 				const errorEntries = Object.entries(action.errors);
-				const errors: Errors = [];
-				errorEntries.forEach((error: Error) => {
+				const errors: Types.Errors = [];
+				errorEntries.forEach((error: Types.Error) => {
 					errors.push([error[0], error[1][0]]);
 				});
 				return errors;

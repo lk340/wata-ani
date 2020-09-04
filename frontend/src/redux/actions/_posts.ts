@@ -3,6 +3,7 @@ import axios from "axios";
 import * as Context from "@/context";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
+import * as ReducerTypes from "@/redux/reducers/__types";
 import { clearErrors } from "./_clear_errors";
 import { Tag } from "./_tags";
 
@@ -12,6 +13,8 @@ export const CREATE_POST = "CREATE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 export const POST_ERRORS = "POST_ERRORS";
+
+type Errors = string | ReducerTypes.Errors;
 
 const validateStatus = AxiosHelpers.validateStatus;
 
@@ -75,7 +78,7 @@ function deletePost(id: number) {
 	};
 }
 
-function postErrors(errors: string) {
+function postErrors(errors: Errors) {
 	return {
 		type: POST_ERRORS,
 		errors,
@@ -86,38 +89,37 @@ function postErrors(errors: string) {
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // ============================= //
 
-export async function thunkReceivePosts(errors: string, dispatch: Function) {
+function handleResponse(
+	dispatch: Function,
+	response: any,
+	actionCreator: Function,
+	errors: Errors,
+) {
+	// Success
+	if (response.status < 400) {
+		dispatch(actionCreator(response.data));
+		if (errors.length > 0) dispatch(clearErrors());
+	}
+	// Failure
+	else {
+		dispatch(postErrors(response.data));
+	}
+}
+
+export async function thunkReceivePosts(errors: Errors, dispatch: Function) {
 	try {
 		const response = await axios.get("/api/posts/", { validateStatus });
-
-		// Success
-		if (response.status < 400) {
-			dispatch(receivePosts(response.data));
-			if (errors.length > 0) dispatch(clearErrors());
-		}
-		// Failure
-		else {
-			console.log("Error:", response);
-		}
+		handleResponse(dispatch, response, receivePosts, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
 	}
 }
 
-export async function thunkReceivePost(id: number, errors: string, dispatch: Function) {
+export async function thunkReceivePost(id: number, errors: Errors, dispatch: Function) {
 	try {
 		const response = await axios.get(`/api/posts/${id}/`, { validateStatus });
-
-		// Success
-		if (response.status < 400) {
-			dispatch(receivePost(response.data));
-			if (errors.length > 0) dispatch(clearErrors());
-		}
-		// Failure
-		else {
-			dispatch(postErrors(response.data));
-		}
+		handleResponse(dispatch, response, receivePost, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
@@ -126,21 +128,12 @@ export async function thunkReceivePost(id: number, errors: string, dispatch: Fun
 
 export async function thunkCreatePost(
 	data: CreateData,
-	errors: string,
+	errors: Errors,
 	dispatch: Function,
 ) {
 	try {
 		const response = await axios.post("/api/posts/", data, { validateStatus });
-
-		// Success
-		if (response.status < 400) {
-			dispatch(createPost(response.data));
-			if (errors.length > 0) dispatch(clearErrors());
-		}
-		// Failure
-		else {
-			dispatch(postErrors(response.data));
-		}
+		handleResponse(dispatch, response, createPost, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
@@ -150,39 +143,26 @@ export async function thunkCreatePost(
 export async function thunkUpdatePost(
 	id: number,
 	data: Partial<CreateData>,
-	errors: string,
+	errors: Errors,
 	dispatch: Function,
 ) {
 	try {
 		const response = await axios.patch(`/api/posts/${id}/`, data, { validateStatus });
-
-		// Success
-		if (response.status < 400) {
-			dispatch(updatePost(response.data));
-			if (errors.length > 0) dispatch(clearErrors());
-		}
-		// Failure
-		else {
-			dispatch(postErrors(response.data));
-		}
+		handleResponse(dispatch, response, updatePost, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
 	}
 }
 
-export async function thunkDeletePost(id: number, errors: string, dispatch: Function) {
+export async function thunkDeletePost(id: number, dispatch: Function) {
 	try {
 		const response = await axios.delete(`/api/posts/${id}/`, { validateStatus });
 
 		// Success
-		if (response.status < 400) {
-			dispatch(deletePost(id));
-		}
+		if (response.status < 400) dispatch(deletePost(id));
 		// Failure
-		else {
-			dispatch(postErrors(response.data));
-		}
+		else dispatch(postErrors(response.data));
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
