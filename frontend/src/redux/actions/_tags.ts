@@ -107,11 +107,12 @@ export async function thunkCreateTag(data: Tag, error: string, dispatch: Functio
 
 		// Success
 		if (response.status < 400) {
-			console.log("Success:", response);
+			dispatch(createTag(response.data));
+			if (error !== "") dispatch(clearErrors);
 		}
 		// Failure
 		else {
-			console.log("Error:", response);
+			dispatch(tagErrors(response.data.detail));
 		}
 	} catch (error) {
 		// Dev debug log
@@ -130,11 +131,12 @@ export async function thunkUpdateTag(
 
 		// Success
 		if (response.status < 400) {
-			console.log("Success:", response);
+			dispatch(updateTag(response.data));
+			if (error !== "") dispatch(clearErrors);
 		}
 		// Failure
 		else {
-			console.log("Error:", response);
+			dispatch(response.data.detail);
 		}
 	} catch (error) {
 		// Dev debug log
@@ -148,11 +150,12 @@ export async function thunkDeleteTag(id: number, error: string, dispatch: Functi
 
 		// Success
 		if (response.status < 400) {
-			console.log("Success:", response);
+			dispatch(deleteTag);
+			if (error !== "") dispatch(clearErrors);
 		}
 		// Failure
 		else {
-			console.log("Error:", response);
+			dispatch(tagErrors(response.data.detail));
 		}
 	} catch (error) {
 		// Dev debug log

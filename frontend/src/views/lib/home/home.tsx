@@ -24,6 +24,7 @@ export const Home = () => {
 	
 	const postError = ReactRedux.useSelector(state => state.errors.posts);
 	const tagError = ReactRedux.useSelector(state => state.errors.tags);
+	
 	const dispatch = ReactRedux.useDispatch();
 
 	const postPostData = {
@@ -57,7 +58,7 @@ export const Home = () => {
 				<br/>
 
 				<div onClick={() => Actions.Posts.thunkReceivePosts(postError,dispatch)}>Receive Posts</div>
-				<div onClick={() => Actions.Posts.thunkReceivePost(6, postError, dispatch)}>Receive Post</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(60, postError, dispatch)}>Receive Post</div>
 				<div onClick={() => Actions.Posts.thunkCreatePost(postPostData, dispatch)}>Create Post</div>
 				<div onClick={() => Actions.Posts.thunkUpdatePost(3, postPatchData, dispatch)}>Update Post</div>
 				<div onClick={() => Actions.Posts.thunkDeletePost(3, dispatch)}>Delete Post</div>
