@@ -17,16 +17,14 @@ class PostList(APIView):
     def get(self, request, format=None):
         post = models.Post.objects.all()
         serializer = serializers.PostSerializer(post, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        custom_data = {post["id"]: post for post in serializer.data}
+        return Response(custom_data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
         serializer = serializers.PostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    # def perform_create(self, serializer):
-    #     serializer.save(author=self.request.user)
 
 
 class PostDetail(APIView):
@@ -44,10 +42,6 @@ class PostDetail(APIView):
         post = self.get_post(pk)
         serializer = serializers.PostSerializer(post)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-        # print(serializer.data["id"])
-        # response_data = { serializer.data["id"]: serializer.data }
-        # return Response(response_data, status=status.HTTP_200_OK)
         
 
     def patch(self, request, pk, format=None):
