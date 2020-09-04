@@ -69,8 +69,8 @@ export async function thunkReceiveTags(error: string, dispatch: Function) {
 
 		// Success
 		if (response.status < 400) {
-			dispatch(receiveTags(response.data));
 			if (error !== "") dispatch(clearErrors());
+			dispatch(receiveTags(response.data));
 		}
 		// Failure
 		else {
@@ -88,8 +88,8 @@ export async function thunkReceiveTag(id: number, error: string, dispatch: Funct
 
 		// Success
 		if (response.status < 400) {
-			dispatch(receiveTag(response.data));
 			if (error !== "") dispatch(clearErrors());
+			dispatch(receiveTag(response.data));
 		}
 		// Failure
 		else {
@@ -107,8 +107,8 @@ export async function thunkCreateTag(data: Tag, error: string, dispatch: Functio
 
 		// Success
 		if (response.status < 400) {
-			dispatch(createTag(response.data));
 			if (error !== "") dispatch(clearErrors());
+			dispatch(createTag(response.data));
 		}
 		// Failure
 		else {
@@ -131,8 +131,8 @@ export async function thunkUpdateTag(
 
 		// Success
 		if (response.status < 400) {
-			dispatch(updateTag(response.data));
 			if (error !== "") dispatch(clearErrors());
+			dispatch(updateTag(response.data));
 		}
 		// Failure
 		else {
@@ -150,8 +150,8 @@ export async function thunkDeleteTag(id: number, error: string, dispatch: Functi
 
 		// Success
 		if (response.status < 400) {
-			dispatch(deleteTag);
 			if (error !== "") dispatch(clearErrors());
+			dispatch(deleteTag());
 		}
 		// Failure
 		else {

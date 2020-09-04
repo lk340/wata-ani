@@ -74,10 +74,10 @@ function deletePost() {
 	};
 }
 
-function postErrors(error: string) {
+function postErrors(errors: string) {
 	return {
 		type: POST_ERRORS,
-		error,
+		errors,
 	};
 }
 
@@ -85,14 +85,14 @@ function postErrors(error: string) {
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // ============================= //
 
-export async function thunkReceivePosts(error: string, dispatch: Function) {
+export async function thunkReceivePosts(errors: string, dispatch: Function) {
 	try {
 		const response = await axios.get("/api/posts/", { validateStatus });
 
 		// Success
 		if (response.status < 400) {
+			if (errors !== "") dispatch(clearErrors());
 			dispatch(receivePosts(response.data));
-			if (error !== "") dispatch(clearErrors());
 		}
 		// Failure
 		else {
@@ -104,18 +104,21 @@ export async function thunkReceivePosts(error: string, dispatch: Function) {
 	}
 }
 
-export async function thunkReceivePost(id: number, error: string, dispatch: Function) {
+export async function thunkReceivePost(id: number, errors: string, dispatch: Function) {
 	try {
 		const response = await axios.get(`/api/posts/${id}/`, { validateStatus });
 
 		// Success
 		if (response.status < 400) {
+			if (errors !== "") dispatch(clearErrors());
 			dispatch(receivePost(response.data));
-			if (error !== "") dispatch(clearErrors());
 		}
 		// Failure
 		else {
-			dispatch(postErrors(response.data.detail));
+			console.log(response);
+
+			// dispatch(postErrors(response.data.detail));
+			dispatch(postErrors(response.data));
 		}
 	} catch (error) {
 		// Dev debug log
@@ -123,17 +126,22 @@ export async function thunkReceivePost(id: number, error: string, dispatch: Func
 	}
 }
 
-export async function thunkCreatePost(data: CreateData, dispatch: Function) {
+export async function thunkCreatePost(
+	data: CreateData,
+	errors: string,
+	dispatch: Function,
+) {
 	try {
 		const response = await axios.post("/api/posts/", data, { validateStatus });
 
 		// Success
 		if (response.status < 400) {
-			console.log("Data:", response.data);
+			if (errors !== "") dispatch(clearErrors());
+			dispatch(createPost(response.data));
 		}
 		// Failure
 		else {
-			console.log("Error:", response);
+			dispatch(postErrors(response.data));
 		}
 	} catch (error) {
 		// Dev debug log
@@ -144,6 +152,7 @@ export async function thunkCreatePost(data: CreateData, dispatch: Function) {
 export async function thunkUpdatePost(
 	id: number,
 	data: Partial<CreateData>,
+	errors: string,
 	dispatch: Function,
 ) {
 	try {
@@ -152,10 +161,15 @@ export async function thunkUpdatePost(
 		// Success
 		if (response.status < 400) {
 			console.log("Data:", response.data);
+
+			if (errors !== "") dispatch(clearErrors());
+			dispatch(updatePost(response.data));
 		}
 		// Failure
 		else {
 			console.log("Error:", response);
+
+			dispatch(postErrors(response.data));
 		}
 	} catch (error) {
 		// Dev debug log
@@ -163,17 +177,19 @@ export async function thunkUpdatePost(
 	}
 }
 
-export async function thunkDeletePost(id: number, dispatch: Function) {
+export async function thunkDeletePost(id: number, errors: string, dispatch: Function) {
 	try {
 		const response = await axios.delete(`/api/posts/${id}/`, { validateStatus });
 
 		// Success
 		if (response.status < 400) {
-			console.log("Data:", response.data);
+			dispatch(deletePost());
+
+			console.log("Data:", response);
 		}
 		// Failure
 		else {
-			console.log("Error:", response);
+			dispatch(postErrors(response.data));
 		}
 	} catch (error) {
 		// Dev debug log
