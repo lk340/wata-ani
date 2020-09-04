@@ -24,11 +24,13 @@ type Action = {
 	[key: string]: any;
 };
 
-type State = Actions.Posts.Post[] | Actions.Posts.Post;
+// type State = Actions.Posts.Post[] | Actions.Posts.Post;
+type State = Actions.Posts.Post[] | [];
 
-export function postsReducer(state: State = initialState, action: Action) {
+// export function postsReducer(state: State = initialState, action: Action) {
+export function postsReducer(state: State = [], action: Action) {
 	Object.freeze(state);
-	const stateCopy = Lodash.merge({}, state);
+	const stateCopy = Lodash.merge([], state);
 
 	switch (action.type) {
 		case Actions.Posts.RECEIVE_POSTS:
@@ -38,10 +40,12 @@ export function postsReducer(state: State = initialState, action: Action) {
 			return action.post;
 
 		case Actions.Posts.CREATE_POST:
-			return action.post;
+			stateCopy.push(action.post);
+			return stateCopy;
 
 		case Actions.Posts.UPDATE_POST:
-			return action.post;
+			stateCopy.push(action.post);
+			return stateCopy;
 
 		case Actions.Posts.DELETE_POST:
 			return initialState;

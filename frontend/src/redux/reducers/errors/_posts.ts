@@ -31,7 +31,7 @@ export function errorsReducer(state = [], action: Action) {
 			}
 
 		case Actions.Errors.CLEAR_ERRORS:
-			return "";
+			return [];
 
 		default:
 			return stateCopy;

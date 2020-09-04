@@ -91,8 +91,10 @@ export async function thunkReceivePosts(errors: string, dispatch: Function) {
 
 		// Success
 		if (response.status < 400) {
-			if (errors !== "") dispatch(clearErrors());
+			console.log("Response:", response.data);
+
 			dispatch(receivePosts(response.data));
+			if (errors.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
@@ -110,8 +112,8 @@ export async function thunkReceivePost(id: number, errors: string, dispatch: Fun
 
 		// Success
 		if (response.status < 400) {
-			if (errors !== "") dispatch(clearErrors());
 			dispatch(receivePost(response.data));
+			if (errors.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
@@ -136,8 +138,8 @@ export async function thunkCreatePost(
 
 		// Success
 		if (response.status < 400) {
-			if (errors !== "") dispatch(clearErrors());
 			dispatch(createPost(response.data));
+			if (errors.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
@@ -162,8 +164,8 @@ export async function thunkUpdatePost(
 		if (response.status < 400) {
 			console.log("Data:", response.data);
 
-			if (errors !== "") dispatch(clearErrors());
 			dispatch(updatePost(response.data));
+			if (errors.length > 0) dispatch(clearErrors());
 		}
 		// Failure
 		else {
