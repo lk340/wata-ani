@@ -12,9 +12,13 @@ type Action = {
 	[key: string]: any;
 };
 
+type StateCopy = {
+	[key: string]: Actions.Posts.Post;
+};
+
 export function postsReducer(state = {}, action: Action) {
 	Object.freeze(state);
-	const stateCopy = Lodash.merge({}, state);
+	const stateCopy: StateCopy = Lodash.merge({}, state);
 
 	switch (action.type) {
 		case Actions.Posts.RECEIVE_POSTS:

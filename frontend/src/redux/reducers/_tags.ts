@@ -1,6 +1,7 @@
 import * as Lodash from "lodash";
 
 import * as Actions from "@/redux/actions";
+import { AnyAction } from "redux";
 
 type Action = {
 	type:
@@ -12,9 +13,13 @@ type Action = {
 	[key: string]: any;
 };
 
+type StateCopy = {
+	[key: string]: Actions.Tags.Tag;
+};
+
 export function tagsReducer(state = {}, action: Action) {
 	Object.freeze(state);
-	const stateCopy = Lodash.merge({}, state);
+	const stateCopy: StateCopy = Lodash.merge({}, state);
 
 	switch (action.type) {
 		case Actions.Tags.RECEIVE_TAGS:

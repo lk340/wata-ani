@@ -20,15 +20,15 @@ const validateStatus = AxiosHelpers.validateStatus;
 // ======================= //
 
 export type Post = {
-	id: number | null;
-	title: string | null;
-	series_title: string | null;
-	text: string | null;
-	personal_rating: number | null;
-	user_rating: number | null;
-	date_created: string | null;
-	author: string | null;
-	tags: Tag[] | null;
+	id: number;
+	title: string;
+	series_title: string;
+	text: string;
+	personal_rating: number;
+	user_rating: number;
+	date_created: string;
+	author: string;
+	tags: Tag[];
 };
 
 type CreateData = {

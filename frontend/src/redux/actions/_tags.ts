@@ -16,7 +16,7 @@ const validateStatus = AxiosHelpers.validateStatus;
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // =========================---- //
 
-export type Tag = { title: string | null };
+export type Tag = { title: string };
 
 function receiveTags(tags: Tag[]) {
 	return {

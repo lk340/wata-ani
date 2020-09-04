@@ -64,8 +64,8 @@ export const Home = () => {
 				<div onClick={() => Actions.Tags.thunkReceiveTags(tagErrors,dispatch)}>Receive Tags</div>
 				<div onClick={() => Actions.Tags.thunkReceiveTag(1, tagErrors, dispatch)}>Receive Tag</div>
 				<div onClick={() => Actions.Tags.thunkCreateTag(tagPostData, tagErrors, dispatch)}>Create Tag</div>
-				<div onClick={() => Actions.Tags.thunkUpdateTag(2, tagPatchData, tagErrors, dispatch)}>Update Tag</div>
-				<div onClick={() => Actions.Tags.thunkDeleteTag(2, tagErrors, dispatch)}>Delete Tag</div>
+				<div onClick={() => Actions.Tags.thunkUpdateTag(3, tagPatchData, tagErrors, dispatch)}>Update Tag</div>
+				<div onClick={() => Actions.Tags.thunkDeleteTag(3, tagErrors, dispatch)}>Delete Tag</div>
 
 			</Styled.HomeComponents>
 			<Components.NavbarMobile />
