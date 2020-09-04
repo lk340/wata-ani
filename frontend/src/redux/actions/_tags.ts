@@ -63,13 +63,14 @@ function tagErrors(error: string) {
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // ============================= //
 
-export async function thunkReceiveTags(dispatch: Function) {
+export async function thunkReceiveTags(error: string, dispatch: Function) {
 	try {
 		const response = await axios.get("/api/tags/", { validateStatus });
 
 		// Success
 		if (response.status < 400) {
-			console.log("Success:", response);
+			dispatch(receiveTags(response.data));
+			if (error !== "") dispatch(clearErrors);
 		}
 		// Failure
 		else {
@@ -81,17 +82,18 @@ export async function thunkReceiveTags(dispatch: Function) {
 	}
 }
 
-export async function thunkReceiveTag(id: number, dispatch: Function) {
+export async function thunkReceiveTag(id: number, error: string, dispatch: Function) {
 	try {
 		const response = await axios.get(`/api/tags/${id}/`, { validateStatus });
 
 		// Success
 		if (response.status < 400) {
-			console.log("Success:", response);
+			dispatch(receiveTag(response.data));
+			if (error !== "") dispatch(clearErrors);
 		}
 		// Failure
 		else {
-			console.log("Error:", response);
+			dispatch(tagErrors(response.data.detail));
 		}
 	} catch (error) {
 		// Dev debug log
@@ -99,7 +101,7 @@ export async function thunkReceiveTag(id: number, dispatch: Function) {
 	}
 }
 
-export async function thunkCreateTag(data: Tag, dispatch: Function) {
+export async function thunkCreateTag(data: Tag, error: string, dispatch: Function) {
 	try {
 		const response = await axios.post("/api/tags/", data, { validateStatus });
 
@@ -117,7 +119,12 @@ export async function thunkCreateTag(data: Tag, dispatch: Function) {
 	}
 }
 
-export async function thunkUpdateTag(id: number, data: Partial<Tag>, dispatch: Function) {
+export async function thunkUpdateTag(
+	id: number,
+	data: Partial<Tag>,
+	error: string,
+	dispatch: Function,
+) {
 	try {
 		const response = await axios.patch(`/api/tags/${id}/`, data, { validateStatus });
 
@@ -135,7 +142,7 @@ export async function thunkUpdateTag(id: number, data: Partial<Tag>, dispatch: F
 	}
 }
 
-export async function thunkDeleteTag(id: number, dispatch: Function) {
+export async function thunkDeleteTag(id: number, error: string, dispatch: Function) {
 	try {
 		const response = await axios.delete(`/api/tags/${id}/`, { validateStatus });
 
