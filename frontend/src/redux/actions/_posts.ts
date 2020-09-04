@@ -92,7 +92,7 @@ export async function thunkReceivePosts(error: string, dispatch: Function) {
 		// Success
 		if (response.status < 400) {
 			dispatch(receivePosts(response.data));
-			if (error !== "") dispatch(clearErrors);
+			if (error !== "") dispatch(clearErrors());
 		}
 		// Failure
 		else {
@@ -111,7 +111,7 @@ export async function thunkReceivePost(id: number, error: string, dispatch: Func
 		// Success
 		if (response.status < 400) {
 			dispatch(receivePost(response.data));
-			if (error !== "") dispatch(clearErrors);
+			if (error !== "") dispatch(clearErrors());
 		}
 		// Failure
 		else {

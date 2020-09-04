@@ -11,10 +11,10 @@ const entitiesReducer = Redux.combineReducers({
 });
 
 const errorsReducer = Redux.combineReducers({
-	session: Errors.sessionErrors,
+	session: Errors.sessionErrorsReducer,
 	// user: Errors.userErrors,
-	posts: Errors.postsErrors,
-	tags: Errors.tagsErrors,
+	posts: Errors.postsErrorsReducer,
+	tags: Errors.tagsErrorsReducer,
 });
 
 export const rootReducer = Redux.combineReducers({
@@ -22,7 +22,3 @@ export const rootReducer = Redux.combineReducers({
 	session: sessionReducer,
 	errors: errorsReducer,
 });
-
-// export const rootReducer = () => ({
-// 	session: sessionReducer,
-// });
