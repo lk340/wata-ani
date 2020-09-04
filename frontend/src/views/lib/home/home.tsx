@@ -34,9 +34,9 @@ export const Home = () => {
 	}
 
 	const postPatchData = {
-		title: "Ash, the Chosen One",
+		title: "Ash, the Chosen Ten",
 		text: "Lest the world turns to ash.",
-		personal_rating: 6,
+		personal_rating: 6
 	}
 	
 	return (
