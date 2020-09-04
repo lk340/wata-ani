@@ -2,16 +2,25 @@ import * as Lodash from "lodash";
 
 import * as Actions from "@/redux/actions";
 
+type State = StateCopy | [];
+
+type StateCopy = string | Errors;
+
+type ActionErrors = {
+	[key: string]: any;
+};
+
 type Action = {
 	type: typeof Actions.Tags.TAG_ERRORS | typeof Actions.Errors.CLEAR_ERRORS;
-	error: string;
+	errors: ActionErrors;
 };
 
 type Errors = [string, string][];
+type Error = [string, [string]];
 
-export function tagsReducer(state = [], action: Action) {
+export function tagsReducer(state: State = [], action: Action) {
 	Object.freeze(state);
-	const stateCopy = Lodash.merge([], state);
+	const stateCopy: StateCopy = Lodash.merge([], state);
 
 	switch (action.type) {
 		case Actions.Tags.TAG_ERRORS:
@@ -20,7 +29,7 @@ export function tagsReducer(state = [], action: Action) {
 			} else {
 				const errorEntries = Object.entries(action.errors);
 				const errors: Errors = [];
-				errorEntries.forEach((error: any) => {
+				errorEntries.forEach((error: Error) => {
 					errors.push([error[0], error[1][0]]);
 				});
 				return errors;
@@ -30,6 +39,6 @@ export function tagsReducer(state = [], action: Action) {
 			return [];
 
 		default:
-			return state;
+			return stateCopy;
 	}
 }
