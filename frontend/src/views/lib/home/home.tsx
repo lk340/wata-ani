@@ -22,7 +22,7 @@ export const Home = () => {
 
 	// console.log("Current User:", currentUser)
 	
-	const postError = ReactRedux.useSelector(state => state.errors.posts);
+	const postErrors = ReactRedux.useSelector(state => state.errors.posts);
 	const dispatch = ReactRedux.useDispatch();
 
 	const postPostData = {
@@ -46,11 +46,11 @@ export const Home = () => {
 
 				<div>Home Components</div>
 				<br/>
-				<div onClick={() => Actions.Posts.thunkReceivePosts(postError,dispatch)}>Receive Posts</div>
-				<div onClick={() => Actions.Posts.thunkReceivePost(13, postError, dispatch)}>Receive Post</div>
-				<div onClick={() => Actions.Posts.thunkCreatePost(postPostData, postError, dispatch)}>Create Post</div>
-				<div onClick={() => Actions.Posts.thunkUpdatePost(11, postPatchData, postError, dispatch)}>Update Post</div>
-				<div onClick={() => Actions.Posts.thunkDeletePost(34, postError, dispatch)}>Delete Post</div>
+				<div onClick={() => Actions.Posts.thunkReceivePosts(postErrors,dispatch)}>Receive Posts</div>
+				<div onClick={() => Actions.Posts.thunkReceivePost(13, postErrors, dispatch)}>Receive Post</div>
+				<div onClick={() => Actions.Posts.thunkCreatePost(postPostData, postErrors, dispatch)}>Create Post</div>
+				<div onClick={() => Actions.Posts.thunkUpdatePost(14, postPatchData, postErrors, dispatch)}>Update Post</div>
+				<div onClick={() => Actions.Posts.thunkDeletePost(13, postErrors, dispatch)}>Delete Post</div>
 
 			</Styled.HomeComponents>
 			<Components.NavbarMobile />
