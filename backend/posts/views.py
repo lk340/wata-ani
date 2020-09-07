@@ -25,9 +25,6 @@ class PostList(APIView):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    # def perform_create(self, serializer):
-    #     serializer.save(author=self.request.user)
-
 
 class PostDetail(APIView):
     permission_classes = (
