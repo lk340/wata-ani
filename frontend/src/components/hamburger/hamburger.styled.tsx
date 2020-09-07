@@ -23,8 +23,9 @@ export const Hamburger = styled("div")`
 // ============= //
 
 export const HamburgerModal = styled(animated.div)`
-	${Snippets.absolute("0px", "0px", "0px", "0px")};
+	${Snippets.fixed("0px", "0px", "0px", "0px")};
 	background-color: ${Colors.PRIMARY_100};
+	height: 100vh;
 `;
 
 export const HamburgerModalMainContainer = styled(animated.div)`

@@ -6,6 +6,7 @@ import * as Components from "@/components";
 import * as Styled from "./home.styled";
 import * as Springs from "./home.springs";
 
+import { Reviews } from "./reviews";
 import { Description } from "./description";
 import { CTA } from "./CTA";
 
@@ -21,6 +22,7 @@ export const Home = () => {
 
 			{/* Sections */}
 			<Styled.HomeSections>
+				<Reviews />
 				<Description />
 			</Styled.HomeSections>
 
