@@ -1,4 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { animated } from "react-spring";
 import * as Gatsby from "gatsby";
 
@@ -15,11 +15,23 @@ import logo from "@/images/logo/japanese.svg";
 export const Footer = styled(animated.div)`
 	${Snippets.flexColumnCenter()};
 	height: ${Constants.size.components.footer.height}px;
+
+	@media (max-width: ${Constants.breakpoints.tablet}px) {
+		padding: 0px ${Constants.sidePaddings.tablet}px;
+	}
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		padding: 0px ${Constants.sidePaddings.mobile}px;
+	}
 `;
 
 export const FooterContent = styled("div")`
 	${Snippets.grid(1, "auto", 50, "center", "center")};
 `;
+
+// ============ //
+// ↓↓↓ Logo ↓↓↓ //
+// ============ //
 
 export const Logo = styled("img").attrs(() => ({
 	src: logo,
@@ -29,17 +41,29 @@ export const Logo = styled("img").attrs(() => ({
 	border-radius: ${Constants.borderRadius.components.footer.logo};
 `;
 
+// ============= //
+// ↓↓↓ Names ↓↓↓ //
+// ============= //
+
 export const Names = styled("div")`
 	${Snippets.grid(1, "auto", 10)};
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		${Snippets.grid(1, "auto", 20)};
+	}
 `;
 
-export const Name = styled("p")`
+export const NamesName = styled("p")`
 	${Snippets.clearSpacing()};
 	color: ${Colors.LIGHT.six};
 	font-size: ${Constants.fontSizes.components.footer.name};
 	font-weight: bold;
 	text-align: center;
 `;
+
+// ================== //
+// ↓↓↓ Navigation ↓↓↓ //
+// ================== //
 
 export const NavigationContainer = styled("div")`
 	${Snippets.grid(2, "auto", 60)};

@@ -14,13 +14,13 @@ export const Footer = () => {
 
 				{/* Names */}
 				<Styled.Names>
-					<Styled.Name>
+					<Styled.NamesName>
 						私はこのアニメを見たいのか？ 見たくわないのか？ どっちだ？！
-					</Styled.Name>
-					<Styled.Name>
+					</Styled.NamesName>
+					<Styled.NamesName>
 						Do I Want To Watch This Anime? Do I Not Want To Watch This Anime? Which One Is
 						It?!
-					</Styled.Name>
+					</Styled.NamesName>
 				</Styled.Names>
 
 				{/* Navigation */}
