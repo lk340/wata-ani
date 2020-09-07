@@ -13,3 +13,14 @@ export function block() {
 		config: { duration: 100 },
 	});
 }
+
+export function icon() {
+	return Spring.useSpring({
+		to: {
+			backgroundColor:
+				localStorage.mode === "light"
+					? Constants.theme.pages.home.description.block.iconBackground.light
+					: Constants.theme.pages.home.description.block.iconBackground.dark,
+		},
+	});
+}

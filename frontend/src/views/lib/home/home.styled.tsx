@@ -16,9 +16,9 @@ export const Home = styled(animated.div)`
 
 export const HomeSections = styled("div")`
 	flex: 1;
-	margin: 0px auto;
+	margin: 0px auto 140px;
 	width: 100%;
 	max-width: ${Constants.globals.maxWidth}px;
 
-	border: red solid 1px;
+	/* border: red solid 1px; */
 `;

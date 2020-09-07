@@ -69,6 +69,7 @@ export const theme = {
 			description: {
 				block: {
 					background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+					iconBackground: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
 				},
 			},
 			cta: { background: { light: Colors.LIGHT.three, dark: Colors.DARK.three } },
@@ -179,6 +180,11 @@ export const fontSizes = {
 	},
 	pages: {
 		home: {
+			description: {
+				title: "1.875rem",
+				body: "1rem",
+				link: "1rem",
+			},
 			cta: {
 				title: "2rem",
 				body: "1rem",
@@ -202,6 +208,7 @@ export const lineHeights = {
 	},
 	pages: {
 		home: {
+			description: 150,
 			cta: 150,
 		},
 	},
@@ -227,5 +234,10 @@ export const borderRadius = {
 			logo: "0.375rem",
 		},
 		ctaButton: "0.5rem",
+	},
+	pages: {
+		home: {
+			description: "1rem",
+		},
 	},
 };
