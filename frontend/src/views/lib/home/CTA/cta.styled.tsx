@@ -11,6 +11,14 @@ import * as Snippets from "@/utils/style/snippets";
 export const CTA = styled(animated.div)`
 	${Snippets.flexColumnCenter()};
 	height: ${Constants.size.pages.home.cta.height}px;
+
+	@media (max-width: ${Constants.breakpoints.tablet}px) {
+		padding: 0px ${Constants.sidePaddings.tablet}px;
+	}
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		padding: 0px ${Constants.sidePaddings.mobile}px;
+	}
 `;
 
 export const CTAContainer = styled("div")`

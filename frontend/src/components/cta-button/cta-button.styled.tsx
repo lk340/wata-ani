@@ -9,6 +9,10 @@ export const CTAButton = styled("div")`
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
 	border-radius: ${Constants.borderRadius.components.ctaButton};
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		width: 100%;
+	}
 `;
 
 export const CTAButtonText = styled(Gatsby.Link)`
@@ -16,5 +20,6 @@ export const CTAButtonText = styled(Gatsby.Link)`
 	padding: 20px 36px;
 	font-size: ${Constants.fontSizes.components.ctaButton};
 	font-weight: bold;
+	text-align: center;
 	line-height: ${Constants.lineHeights.components.ctaButton}%;
 `;
