@@ -6,17 +6,15 @@ import * as Animations from "@/utils/style/animations";
 import * as Constants from "@/utils/style/constants";
 
 import * as Styled from "./home.styled";
+import * as Springs from "./home.springs";
 
 export const Home = () => {
 	Context.Theme.useThemeContext();
 
-	const animateBackground = Animations.background(
-		Constants.theme.pages.home.background.light,
-		Constants.theme.pages.home.background.dark,
-	);
+	const animateHome = Springs.home();
 
 	return (
-		<Styled.Home style={animateBackground}>
+		<Styled.Home style={animateHome}>
 			<Components.Navbar />
 			<Styled.HomeComponents>
 				<div>Home Components</div>

@@ -19,7 +19,7 @@ export const HomeComponents = styled("div")`
 	margin: 0px auto;
 	width: 100%;
 	max-width: ${Constants.globals.maxWidth}px;
-	color: ${Constants.theme.text};
+	color: inherit;
 
-	/* border: red solid 1px; */
+	border: red solid 1px;
 `;
