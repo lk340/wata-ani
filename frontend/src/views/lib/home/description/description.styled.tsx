@@ -1,4 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { animated } from "react-spring";
 import * as Gatsby from "gatsby";
 
@@ -21,12 +21,29 @@ export const Description = styled("div")`
 export const DescriptionBlock = styled(animated.div)`
 	${Snippets.square("295px")};
 	position: relative;
-	padding: 30px;
+	padding: 60px 30px 30px;
 	color: inherit;
 	border-radius: ${Constants.borderRadius.pages.home.description};
 `;
 
-export const DescriptionBlockIcon = styled(animated.img)``;
+export const DescriptionBlockIconContainer = styled(animated.div)`
+	${Snippets.absolute("-65px", "-65px", "auto", "auto")};
+	${Snippets.flexRowCenter()};
+	${Snippets.square("130px")};
+	${Snippets.makeCircle()};
+`;
+
+type IconProps = {
+	src: string;
+	type: "star" | "search" | "pencil";
+};
+
+export const DescriptionBlockIcon = styled("img").attrs((props: IconProps) => ({
+	src: props.src,
+	alt: `home page description block ${props.type} icon`,
+}))<IconProps>`
+	${Snippets.square("50px")};
+`;
 
 export const DescriptionBlockCopy = styled("div")``;
 
@@ -46,10 +63,9 @@ type BlockLink = { display: string };
 
 export const DescriptionBlockLink = styled(Gatsby.Link)<BlockLink>`
 	${Snippets.clearAnchor()};
-	position: absolute;
-	bottom: 30px;
-	left: 30px;
+	${Snippets.absolute("auto", "auto", "30px", "30px")};
 	display: ${(props) => (props.display === "true" ? "block" : "none")};
 	color: ${Colors.PRIMARY_100};
 	font-size: ${Constants.fontSizes.pages.home.description.link};
+	font-weight: bold;
 `;

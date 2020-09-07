@@ -14,7 +14,7 @@ export function block() {
 	});
 }
 
-export function icon() {
+export function iconContainer() {
 	return Spring.useSpring({
 		to: {
 			backgroundColor:
@@ -22,5 +22,6 @@ export function icon() {
 					? Constants.theme.pages.home.description.block.iconBackground.light
 					: Constants.theme.pages.home.description.block.iconBackground.dark,
 		},
+		config: { duration: 100 },
 	});
 }
