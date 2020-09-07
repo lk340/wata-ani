@@ -12,6 +12,15 @@ import * as Colors from "@/utils/style/colors";
 
 export const Description = styled("div")`
 	${Snippets.grid(3, "auto", 60, "auto", "center")};
+
+	@media (max-width: 1260px) {
+		${Snippets.grid(1, "auto", 60, "auto", "center")};
+		padding: 0px ${Constants.sidePaddings.tablet}px;
+	}
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		padding: 0px ${Constants.sidePaddings.mobile}px;
+	}
 `;
 
 // ============= //
@@ -24,6 +33,11 @@ export const DescriptionBlock = styled(animated.div)`
 	padding: 60px 30px 30px;
 	color: inherit;
 	border-radius: ${Constants.borderRadius.pages.home.description};
+
+	@media (max-width: 1260px) {
+		${Snippets.size("100%", "auto")};
+		padding: 40px 30px 60px;
+	}
 `;
 
 export const DescriptionBlockIconContainer = styled(animated.div)`
@@ -31,6 +45,12 @@ export const DescriptionBlockIconContainer = styled(animated.div)`
 	${Snippets.flexRowCenter()};
 	${Snippets.square("130px")};
 	${Snippets.makeCircle()};
+
+	@media (max-width: 1260px) {
+		${Snippets.square("60px")};
+		position: static;
+		margin-bottom: 30px;
+	}
 `;
 
 type IconProps = {
@@ -43,6 +63,10 @@ export const DescriptionBlockIcon = styled("img").attrs((props: IconProps) => ({
 	alt: `home page description block ${props.type} icon`,
 }))<IconProps>`
 	${Snippets.square("50px")};
+
+	@media (max-width: 1260px) {
+		${Snippets.square("45%")};
+	}
 `;
 
 export const DescriptionBlockCopy = styled("div")``;
@@ -68,4 +92,9 @@ export const DescriptionBlockLink = styled(Gatsby.Link)<BlockLink>`
 	color: ${Colors.PRIMARY_100};
 	font-size: ${Constants.fontSizes.pages.home.description.link};
 	font-weight: bold;
+
+	@media (max-width: 1260px) {
+		position: static;
+		margin-top: 20px;
+	}
 `;

@@ -21,5 +21,9 @@ export const HomeSections = styled("div")`
 	width: 100%;
 	max-width: ${Constants.globals.maxWidth}px;
 
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		margin: 100px auto;
+	}
+
 	/* border: red solid 1px; */
 `;
