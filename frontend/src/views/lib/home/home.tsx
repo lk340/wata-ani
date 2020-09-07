@@ -18,10 +18,10 @@ export const Home = () => {
 			{/* Navbar */}
 			<Components.Navbar />
 
-			{/* Components (sections) */}
-			<Styled.HomeComponents>
+			{/* Sections */}
+			<Styled.HomeSections>
 				<Description />
-			</Styled.HomeComponents>
+			</Styled.HomeSections>
 
 			{/* CTA Section */}
 			<CTA />

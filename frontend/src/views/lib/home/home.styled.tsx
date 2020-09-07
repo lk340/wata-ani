@@ -14,7 +14,7 @@ export const Home = styled(animated.div)`
 	min-height: 100vh;
 `;
 
-export const HomeComponents = styled("div")`
+export const HomeSections = styled("div")`
 	flex: 1;
 	margin: 0px auto;
 	width: 100%;
