@@ -24,30 +24,39 @@ export const Footer = () => {
 				</Styled.FooterNames>
 
 				{/* Navigation */}
-				<Styled.FooterNavigationContainer>
-					{/* Navigation */}
-					<Styled.FooterNavigation>
-						<Styled.FooterNavigationTitle>Navigation</Styled.FooterNavigationTitle>
-						<Styled.FooterNavigationLink to="/">Home</Styled.FooterNavigationLink>
-						<Styled.FooterNavigationLink to="sign-in">
-							Sign In
-						</Styled.FooterNavigationLink>
-						<Styled.FooterNavigationLink to="registration">
-							Register
-						</Styled.FooterNavigationLink>
-					</Styled.FooterNavigation>
-
-					{/* Support */}
-					<Styled.FooterNavigation>
-						<Styled.FooterNavigationTitle>Support</Styled.FooterNavigationTitle>
-						<Styled.FooterNavigationLink to="faq">FAQ</Styled.FooterNavigationLink>
-						<Styled.FooterNavigationLink to="report-a-bug">
-							Report A Bug
-						</Styled.FooterNavigationLink>
-						<Styled.FooterNavigationLink to="donate">Donate</Styled.FooterNavigationLink>
-					</Styled.FooterNavigation>
-				</Styled.FooterNavigationContainer>
+				<Styled.FooterNavigation>
+					<Styled.FooterNavigationTitle>Navigation</Styled.FooterNavigationTitle>
+					<Styled.FooterNavigationLink to="/">Home</Styled.FooterNavigationLink>
+					<Styled.FooterNavigationLink to="/sign-in">Sign In</Styled.FooterNavigationLink>
+					<Styled.FooterNavigationLink to="/registration">
+						Register
+					</Styled.FooterNavigationLink>
+				</Styled.FooterNavigation>
 			</Styled.FooterContent>
 		</Styled.Footer>
 	);
+};
+
+const Navigation = () => {
+	<Styled.FooterNavigationContainer>
+		{/* Navigation */}
+		<Styled.FooterNavigation>
+			<Styled.FooterNavigationTitle>Navigation</Styled.FooterNavigationTitle>
+			<Styled.FooterNavigationLink to="/">Home</Styled.FooterNavigationLink>
+			<Styled.FooterNavigationLink to="/sign-in">Sign In</Styled.FooterNavigationLink>
+			<Styled.FooterNavigationLink to="/registration">
+				Register
+			</Styled.FooterNavigationLink>
+		</Styled.FooterNavigation>
+
+		{/* Support */}
+		<Styled.FooterNavigation>
+			<Styled.FooterNavigationTitle>Support</Styled.FooterNavigationTitle>
+			<Styled.FooterNavigationLink to="/faq">FAQ</Styled.FooterNavigationLink>
+			<Styled.FooterNavigationLink to="/report-a-bug">
+				Report A Bug
+			</Styled.FooterNavigationLink>
+			<Styled.FooterNavigationLink to="/donate">Donate</Styled.FooterNavigationLink>
+		</Styled.FooterNavigation>
+	</Styled.FooterNavigationContainer>;
 };

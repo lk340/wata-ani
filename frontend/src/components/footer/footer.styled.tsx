@@ -8,6 +8,13 @@ import * as Colors from "@/utils/style/colors";
 
 import logo from "@/images/logo/japanese.svg";
 
+/**
+ * Footer
+ * Logo
+ * Names
+ * Navigation
+ */
+
 // ============== //
 // ↓↓↓ Footer ↓↓↓ //
 // ============== //
@@ -71,6 +78,7 @@ export const FooterNavigationContainer = styled("div")`
 
 export const FooterNavigation = styled("div")`
 	${Snippets.grid(1, "auto", 10)};
+	text-align: center;
 `;
 
 export const FooterNavigationTitle = styled("h3")`
