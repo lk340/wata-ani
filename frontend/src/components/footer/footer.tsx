@@ -10,37 +10,43 @@ export const Footer = () => {
 		<Styled.Footer style={animateFooter}>
 			<Styled.FooterContent>
 				{/* Logo */}
-				<Styled.Logo />
+				<Styled.FooterLogo />
 
 				{/* Names */}
-				<Styled.Names>
-					<Styled.NamesName>
+				<Styled.FooterNames>
+					<Styled.FooterNamesName>
 						私はこのアニメを見たいのか？ 見たくわないのか？ どっちだ？！
-					</Styled.NamesName>
-					<Styled.NamesName>
+					</Styled.FooterNamesName>
+					<Styled.FooterNamesName>
 						Do I Want To Watch This Anime? Do I Not Want To Watch This Anime? Which One Is
 						It?!
-					</Styled.NamesName>
-				</Styled.Names>
+					</Styled.FooterNamesName>
+				</Styled.FooterNames>
 
 				{/* Navigation */}
-				<Styled.NavigationContainer>
+				<Styled.FooterNavigationContainer>
 					{/* Navigation */}
-					<Styled.Navigation>
-						<Styled.NavigationTitle>Navigation</Styled.NavigationTitle>
-						<Styled.NavigationLink to="/">Home</Styled.NavigationLink>
-						<Styled.NavigationLink to="sign-in">Sign In</Styled.NavigationLink>
-						<Styled.NavigationLink to="registration">Register</Styled.NavigationLink>
-					</Styled.Navigation>
+					<Styled.FooterNavigation>
+						<Styled.FooterNavigationTitle>Navigation</Styled.FooterNavigationTitle>
+						<Styled.FooterNavigationLink to="/">Home</Styled.FooterNavigationLink>
+						<Styled.FooterNavigationLink to="sign-in">
+							Sign In
+						</Styled.FooterNavigationLink>
+						<Styled.FooterNavigationLink to="registration">
+							Register
+						</Styled.FooterNavigationLink>
+					</Styled.FooterNavigation>
 
 					{/* Support */}
-					<Styled.Navigation>
-						<Styled.NavigationTitle>Support</Styled.NavigationTitle>
-						<Styled.NavigationLink to="faq">FAQ</Styled.NavigationLink>
-						<Styled.NavigationLink to="report-a-bug">Report A Bug</Styled.NavigationLink>
-						<Styled.NavigationLink to="donate">Donate</Styled.NavigationLink>
-					</Styled.Navigation>
-				</Styled.NavigationContainer>
+					<Styled.FooterNavigation>
+						<Styled.FooterNavigationTitle>Support</Styled.FooterNavigationTitle>
+						<Styled.FooterNavigationLink to="faq">FAQ</Styled.FooterNavigationLink>
+						<Styled.FooterNavigationLink to="report-a-bug">
+							Report A Bug
+						</Styled.FooterNavigationLink>
+						<Styled.FooterNavigationLink to="donate">Donate</Styled.FooterNavigationLink>
+					</Styled.FooterNavigation>
+				</Styled.FooterNavigationContainer>
 			</Styled.FooterContent>
 		</Styled.Footer>
 	);

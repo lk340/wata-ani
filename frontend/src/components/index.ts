@@ -9,3 +9,4 @@ export { NavbarModalPartial } from "./navbar-modal-partial/navbar-modal-partial"
 export { NavbarMobile } from "./navbar-mobile/navbar-mobile";
 export { ThemeButton } from "./theme-button/theme-button";
 export { Footer } from "./footer/footer";
+export { CTAButton } from "./cta-button/cta-button";

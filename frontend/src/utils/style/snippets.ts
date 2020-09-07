@@ -224,6 +224,7 @@ export function clearSpacing() {
 	return css`
 		margin: 0;
 		padding: 0;
+		color: inherit;
 	`;
 }
 

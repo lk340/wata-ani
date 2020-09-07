@@ -5,6 +5,7 @@ import * as Components from "@/components";
 
 import * as Styled from "./home.styled";
 import * as Springs from "./home.springs";
+import { CTA } from "./CTA";
 
 export const Home = () => {
 	Context.Theme.useThemeContext();
@@ -13,11 +14,19 @@ export const Home = () => {
 
 	return (
 		<Styled.Home style={animateHome}>
+			{/* Navbar */}
 			<Components.Navbar />
-			<Styled.HomeComponents>
-				<div>Home Components</div>
-			</Styled.HomeComponents>
+
+			{/* Components (sections) */}
+			<Styled.HomeComponents>Home Components</Styled.HomeComponents>
+
+			{/* CTA Section */}
+			<CTA />
+
+			{/* Footer */}
 			<Components.Footer />
+
+			{/* Navbar Mobile */}
 			<Components.NavbarMobile />
 		</Styled.Home>
 	);

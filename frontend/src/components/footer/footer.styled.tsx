@@ -33,7 +33,7 @@ export const FooterContent = styled("div")`
 // ↓↓↓ Logo ↓↓↓ //
 // ============ //
 
-export const Logo = styled("img").attrs(() => ({
+export const FooterLogo = styled("img").attrs(() => ({
 	src: logo,
 	alt: "footer component logo",
 }))`
@@ -45,7 +45,7 @@ export const Logo = styled("img").attrs(() => ({
 // ↓↓↓ Names ↓↓↓ //
 // ============= //
 
-export const Names = styled("div")`
+export const FooterNames = styled("div")`
 	${Snippets.grid(1, "auto", 10)};
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
@@ -53,7 +53,7 @@ export const Names = styled("div")`
 	}
 `;
 
-export const NamesName = styled("p")`
+export const FooterNamesName = styled("p")`
 	${Snippets.clearSpacing()};
 	color: ${Colors.LIGHT.six};
 	font-size: ${Constants.fontSizes.components.footer.name};
@@ -65,22 +65,22 @@ export const NamesName = styled("p")`
 // ↓↓↓ Navigation ↓↓↓ //
 // ================== //
 
-export const NavigationContainer = styled("div")`
+export const FooterNavigationContainer = styled("div")`
 	${Snippets.grid(2, "auto", 60)};
 `;
 
-export const Navigation = styled("div")`
+export const FooterNavigation = styled("div")`
 	${Snippets.grid(1, "auto", 10)};
 `;
 
-export const NavigationTitle = styled("h3")`
+export const FooterNavigationTitle = styled("h3")`
 	${Snippets.clearSpacing()};
 	color: ${Colors.PRIMARY_100};
 	font-size: ${Constants.fontSizes.components.footer.navigationTitle};
 	line-height: ${Constants.lineHeights.components.footer.navigationTitle}%;
 `;
 
-export const NavigationLink = styled(Gatsby.Link)`
+export const FooterNavigationLink = styled(Gatsby.Link)`
 	${Snippets.clearAnchor()};
 	font-size: ${Constants.fontSizes.components.footer.navigationLink};
 	line-height: ${Constants.lineHeights.components.footer.navigationLink}%;

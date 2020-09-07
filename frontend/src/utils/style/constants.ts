@@ -66,6 +66,9 @@ export const theme = {
 	pages: {
 		home: {
 			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
+			cta: {
+				background: { light: Colors.LIGHT.three, dark: Colors.DARK.three },
+			},
 		},
 	},
 };
@@ -128,6 +131,13 @@ export const size = {
 			height: 500,
 		},
 	},
+	pages: {
+		home: {
+			cta: {
+				height: 500,
+			},
+		},
+	},
 };
 
 // ================== //
@@ -162,6 +172,15 @@ export const fontSizes = {
 			navigationTitle: "1rem",
 			navigationLink: "0.75rem",
 		},
+		ctaButton: "1.375rem",
+	},
+	pages: {
+		home: {
+			cta: {
+				title: "2rem",
+				body: "1rem",
+			},
+		},
 	},
 };
 
@@ -175,6 +194,12 @@ export const lineHeights = {
 		footer: {
 			navigationTitle: 150,
 			navigationLink: 150,
+		},
+		ctaButton: 150,
+	},
+	pages: {
+		home: {
+			cta: 150,
 		},
 	},
 };
@@ -198,5 +223,6 @@ export const borderRadius = {
 		footer: {
 			logo: "0.375rem",
 		},
+		ctaButton: "0.5rem",
 	},
 };
