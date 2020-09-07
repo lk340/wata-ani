@@ -2,16 +2,10 @@ import * as Lodash from "lodash";
 
 import * as Actions from "@/redux/actions";
 
-const initialState: Actions.Posts.Post = {
-	id: null,
-	title: null,
-	series_title: null,
-	text: null,
-	personal_rating: null,
-	user_rating: null,
-	date_created: null,
-	author: null,
-	tags: null,
+type State = StateCopy | {};
+
+type StateCopy = {
+	[key: string]: Actions.Posts.Post;
 };
 
 type Action = {
@@ -24,27 +18,29 @@ type Action = {
 	[key: string]: any;
 };
 
-type State = Actions.Posts.Post[] | Actions.Posts.Post;
-
-export function postsReducer(state: State = initialState, action: Action) {
+export function postsReducer(state: State = {}, action: Action) {
 	Object.freeze(state);
-	const stateCopy = Lodash.merge({}, state);
+	const stateCopy: StateCopy = Lodash.merge({}, state);
 
 	switch (action.type) {
 		case Actions.Posts.RECEIVE_POSTS:
 			return action.posts;
 
 		case Actions.Posts.RECEIVE_POST:
-			return action.post;
+			stateCopy[action.post.id] = action.post;
+			return stateCopy;
 
 		case Actions.Posts.CREATE_POST:
-			return action.post;
+			stateCopy[action.post.id] = action.post;
+			return stateCopy;
 
 		case Actions.Posts.UPDATE_POST:
-			return action.post;
+			stateCopy[action.post.id] = action.post;
+			return stateCopy;
 
 		case Actions.Posts.DELETE_POST:
-			return initialState;
+			delete stateCopy[action.id];
+			return stateCopy;
 
 		default:
 			return stateCopy;

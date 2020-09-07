@@ -7,7 +7,6 @@ User = get_user_model()
 
 
 class PostSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = models.Post
         fields = (
