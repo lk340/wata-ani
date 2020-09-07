@@ -2,8 +2,6 @@ import * as React from "react";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
-import * as Animations from "@/utils/style/animations";
-import * as Constants from "@/utils/style/constants";
 
 import * as Styled from "./home.styled";
 import * as Springs from "./home.springs";
@@ -19,6 +17,7 @@ export const Home = () => {
 			<Styled.HomeComponents>
 				<div>Home Components</div>
 			</Styled.HomeComponents>
+			<Components.Footer />
 			<Components.NavbarMobile />
 		</Styled.Home>
 	);
