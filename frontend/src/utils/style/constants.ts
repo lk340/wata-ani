@@ -66,9 +66,12 @@ export const theme = {
 	pages: {
 		home: {
 			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
-			cta: {
-				background: { light: Colors.LIGHT.three, dark: Colors.DARK.three },
+			description: {
+				block: {
+					background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+				},
 			},
+			cta: { background: { light: Colors.LIGHT.three, dark: Colors.DARK.three } },
 		},
 	},
 };

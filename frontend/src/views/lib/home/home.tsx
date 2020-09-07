@@ -5,6 +5,7 @@ import * as Components from "@/components";
 
 import * as Styled from "./home.styled";
 import * as Springs from "./home.springs";
+import { Description } from "./description";
 import { CTA } from "./CTA";
 
 export const Home = () => {
@@ -18,7 +19,9 @@ export const Home = () => {
 			<Components.Navbar />
 
 			{/* Components (sections) */}
-			<Styled.HomeComponents>Home Components</Styled.HomeComponents>
+			<Styled.HomeComponents>
+				<Description />
+			</Styled.HomeComponents>
 
 			{/* CTA Section */}
 			<CTA />
