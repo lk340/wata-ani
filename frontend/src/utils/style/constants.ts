@@ -59,6 +59,9 @@ export const theme = {
 			headerText: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 			body: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
 		},
+		footer: {
+			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+		},
 	},
 	pages: {
 		home: {
@@ -121,6 +124,9 @@ export const size = {
 				close: 20,
 			},
 		},
+		footer: {
+			height: 500,
+		},
 	},
 };
 
@@ -151,6 +157,11 @@ export const fontSizes = {
 		navbarModalPartial: {
 			header: "1rem",
 		},
+		footer: {
+			name: "0.875rem",
+			navigationTitle: "1rem",
+			navigationLink: "0.75rem",
+		},
 	},
 };
 
@@ -160,6 +171,12 @@ export const fontSizes = {
 
 export const lineHeights = {
 	body: "150%",
+	components: {
+		footer: {
+			navigationTitle: 150,
+			navigationLink: 150,
+		},
+	},
 };
 
 // ===================== //
@@ -177,6 +194,9 @@ export const borderRadius = {
 		},
 		navbarModalPartial: {
 			container: "0.3125rem",
+		},
+		footer: {
+			logo: "0.375rem",
 		},
 	},
 };
