@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import * as Components from "@/components";
-
 import * as Styled from "./reviews.styled";
 import * as Springs from "./reviews.springs";
 
@@ -10,13 +8,17 @@ export const Reviews = () => {
 
 	return (
 		<Styled.Reviews>
+			{/* Images */}
 			<Styled.ReviewsImageContainer>
 				<Styled.ReviewsImageLight mode={localStorage.mode} />
 				<Styled.ReviewsImageDark mode={localStorage.mode} />
 			</Styled.ReviewsImageContainer>
 
+			{/* Copy */}
 			<Styled.ReviewsCopy>
+				{/* Title */}
 				<Styled.ReviewsCopyTitle>Reviews</Styled.ReviewsCopyTitle>
+				{/* Body */}
 				<Styled.ReviewsCopyBodyContainer>
 					<Styled.ReviewsCopyBody style={animateBody}>
 						WataAni’s one paragraph limit for reviews is largely inspired by the words of

@@ -1,4 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { animated } from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
@@ -41,6 +41,8 @@ export const Reviews = styled("div")`
 export const ReviewsImageContainer = styled("div")`
 	position: relative;
 	margin-right: 60px;
+	width: 100%;
+	max-width: 800px;
 
 	@media (max-width: 1115px) {
 		margin: 40px 0px 0px;
@@ -81,6 +83,7 @@ export const ReviewsCopy = styled("div")`
 
 export const ReviewsCopyTitle = styled("h2")`
 	${Snippets.clearSpacing()};
+	font-size: ${Constants.fontSizes.pages.home.reviews.title};
 `;
 
 export const ReviewsCopyBodyContainer = styled("div")`
@@ -89,5 +92,6 @@ export const ReviewsCopyBodyContainer = styled("div")`
 
 export const ReviewsCopyBody = styled(animated.p)`
 	${Snippets.clearSpacing()};
+	font-size: ${Constants.fontSizes.pages.home.reviews.body};
 	line-height: ${Constants.lineHeights.pages.home.review}%;
 `;

@@ -6,6 +6,7 @@ import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
 export const CTAButton = styled("div")`
+	display: inline-block;
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
 	border-radius: ${Constants.borderRadius.components.ctaButton};

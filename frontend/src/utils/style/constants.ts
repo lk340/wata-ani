@@ -66,6 +66,9 @@ export const theme = {
 	pages: {
 		home: {
 			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
+			atf: {
+				body: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
+			},
 			reviews: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 			description: {
 				block: {
@@ -181,6 +184,14 @@ export const fontSizes = {
 	},
 	pages: {
 		home: {
+			atf: {
+				title: "2.5rem",
+				body: "1rem",
+			},
+			reviews: {
+				title: "2rem",
+				body: "1rem",
+			},
 			description: {
 				title: "1.875rem",
 				body: "1rem",
