@@ -6,6 +6,12 @@ import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
+/**
+ * Description
+ * Block
+ * Copy
+ */
+
 // =================== //
 // ↓↓↓ Description ↓↓↓ //
 // =================== //
@@ -70,6 +76,10 @@ export const DescriptionBlockIcon = styled("img").attrs((props: IconProps) => ({
 		${Snippets.square("45%")};
 	}
 `;
+
+// ============ //
+// ↓↓↓ Copy ↓↓↓ //
+// ============ //
 
 export const DescriptionBlockCopy = styled("div")``;
 
