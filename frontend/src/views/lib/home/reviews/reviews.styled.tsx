@@ -27,7 +27,7 @@ export const Reviews = styled("div")`
 
 	@media (max-width: 1115px) {
 		${Snippets.flex("column-reverse", "center", "center")};
-		margin: 240px 0px;
+		margin: 240px 0px 140px;
 	}
 
 	@media (max-width: 685px) {
@@ -47,7 +47,6 @@ export const Reviews = styled("div")`
 export const ReviewsImageContainer = styled("div")`
 	position: relative;
 	margin-right: 60px;
-	width: 100%;
 	max-width: 800px;
 
 	@media (max-width: 1115px) {
@@ -78,18 +77,23 @@ export const ReviewsImageDark = styled("img").attrs(() => ({
 // ============ //
 
 export const ReviewsCopy = styled("div")`
-	${Snippets.grid(1, "auto", 40)};
+	${Snippets.flex("column")};
 	max-width: 520px;
 
 	@media (max-width: 1115px) {
-		${Snippets.grid(1, "auto", 40, "center", "center")};
+		${Snippets.flexColumnCenter()};
 		max-width: 800px;
 	}
 `;
 
 export const ReviewsCopyTitle = styled("h2")`
 	${Snippets.clearSpacing()};
+	margin-bottom: 40px;
 	font-size: ${Constants.fontSizes.pages.home.reviews.title};
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		align-self: flex-start;
+	}
 `;
 
 export const ReviewsCopyBodyContainer = styled("div")`

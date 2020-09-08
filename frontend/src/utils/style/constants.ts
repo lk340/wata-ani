@@ -186,6 +186,7 @@ export const fontSizes = {
 		home: {
 			atf: {
 				title: "2.5rem",
+				titleMobile: "1.875rem",
 				body: "1rem",
 			},
 			reviews: {

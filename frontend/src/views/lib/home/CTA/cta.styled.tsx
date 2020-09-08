@@ -36,6 +36,10 @@ export const CTACopy = styled("div")`
 	max-width: ${Constants.globals.maxWidth / 2}px;
 	color: inherit;
 	text-align: center;
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		text-align: start;
+	}
 `;
 
 export const CTACopyTitle = styled("h2")`

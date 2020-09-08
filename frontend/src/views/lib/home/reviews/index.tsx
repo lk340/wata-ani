@@ -19,8 +19,8 @@ export const Reviews = () => {
 			</Styled.ReviewsImageContainer>
 
 			{/* Copy */}
-			<Styled.ReviewsCopy>
-				<Components.RevealOnScroll yOffset={-10}>
+			<Components.RevealOnScroll yOffset={-10}>
+				<Styled.ReviewsCopy>
 					{/* Title */}
 					<Styled.ReviewsCopyTitle>Reviews</Styled.ReviewsCopyTitle>
 					{/* Body */}
@@ -35,8 +35,8 @@ export const Reviews = () => {
 							they can make reviews as succinctly as they can.
 						</Styled.ReviewsCopyBody>
 					</Styled.ReviewsCopyBodyContainer>
-				</Components.RevealOnScroll>
-			</Styled.ReviewsCopy>
+				</Styled.ReviewsCopy>
+			</Components.RevealOnScroll>
 		</Styled.Reviews>
 	);
 };

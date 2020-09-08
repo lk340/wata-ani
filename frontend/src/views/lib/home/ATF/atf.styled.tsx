@@ -61,6 +61,10 @@ export const ATFCopyTitle = styled("h1")`
 	@media (max-width: 685px) {
 		width: 100%;
 	}
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		font-size: ${Constants.fontSizes.pages.home.atf.titleMobile};
+	}
 `;
 
 export const ATFCopyBodyContainer = styled("div")`
