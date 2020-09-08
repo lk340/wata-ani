@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as Components from "@/components";
+
 import * as Styled from "./description.styled";
 import * as Springs from "./description.springs";
 import * as Copies from "./copies";
@@ -11,29 +13,35 @@ import pencil from "@/icons/home/description/pencil.svg";
 export const Description = () => {
 	return (
 		<Styled.Description>
-			<DescriptionBlock
-				src={star}
-				type="star"
-				title={Copies.blockOneTitle}
-				body={Copies.blockOneBody}
-				link={false}
-			/>
+			<Components.RevealOnScroll yOffset={-10}>
+				<DescriptionBlock
+					src={star}
+					type="star"
+					title={Copies.blockOneTitle}
+					body={Copies.blockOneBody}
+					link={false}
+				/>
+			</Components.RevealOnScroll>
 
-			<DescriptionBlock
-				src={search}
-				type="search"
-				title={Copies.blockTwoTitle}
-				body={Copies.blockTwoBody}
-				link={false}
-			/>
+			<Components.RevealOnScroll yOffset={-10} delay={150}>
+				<DescriptionBlock
+					src={search}
+					type="search"
+					title={Copies.blockTwoTitle}
+					body={Copies.blockTwoBody}
+					link={false}
+				/>
+			</Components.RevealOnScroll>
 
-			<DescriptionBlock
-				src={pencil}
-				type="pencil"
-				title={Copies.blockThreeTitle}
-				body={Copies.blockThreeBody}
-				link={true}
-			/>
+			<Components.RevealOnScroll yOffset={-10} delay={300}>
+				<DescriptionBlock
+					src={pencil}
+					type="pencil"
+					title={Copies.blockThreeTitle}
+					body={Copies.blockThreeBody}
+					link={true}
+				/>
+			</Components.RevealOnScroll>
 		</Styled.Description>
 	);
 };
