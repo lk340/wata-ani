@@ -43,7 +43,7 @@ export const ATF = styled("div")`
 // ↓↓↓ Copy ↓↓↓ //
 // ============ //
 
-export const ATFCopy = styled("div")`
+export const ATFCopy = styled(animated.div)`
 	${Snippets.grid(1, "auto", 40, "start", "start")};
 	margin-right: 80px;
 
@@ -112,7 +112,7 @@ export const ATFImagesLight = styled("div")<Image>`
 	display: ${(props) => (props.mode === "light" ? "flex" : "none")};
 `;
 
-export const ATFImagesLightFormDummy = styled("img").attrs(() => ({
+export const ATFImagesLightFormDummy = styled(animated.img).attrs(() => ({
 	src: formLightDummy,
 	alt: "home page above the fold light form dummy",
 }))`
@@ -120,7 +120,7 @@ export const ATFImagesLightFormDummy = styled("img").attrs(() => ({
 	box-shadow: ${Shadows.light.two};
 `;
 
-export const ATFImagesLightProfileDummy = styled("img").attrs(() => ({
+export const ATFImagesLightProfileDummy = styled(animated.img).attrs(() => ({
 	src: userProfileLight,
 	alt: "home page above the fold light profile dummy",
 }))`
@@ -134,7 +134,7 @@ export const ATFImagesDark = styled("div")<Image>`
 	display: ${(props) => (props.mode === "light" ? "none" : "flex")};
 `;
 
-export const ATFImagesDarkFormDummy = styled("img").attrs(() => ({
+export const ATFImagesDarkFormDummy = styled(animated.img).attrs(() => ({
 	src: formDarkDummy,
 	alt: "home page above the fold dark form dummy",
 }))`
@@ -142,7 +142,7 @@ export const ATFImagesDarkFormDummy = styled("img").attrs(() => ({
 	box-shadow: ${Shadows.dark.two};
 `;
 
-export const ATFImagesDarkProfileDummy = styled("img").attrs(() => ({
+export const ATFImagesDarkProfileDummy = styled(animated.img).attrs(() => ({
 	src: userProfileDark,
 	alt: "home page above the fold dark profile dummy",
 }))`
