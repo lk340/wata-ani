@@ -37,7 +37,16 @@ export const ATF = () => {
 			</Styled.ATFCopy>
 
 			{/* Images */}
-			<Styled.ATFImagesContainer>Images</Styled.ATFImagesContainer>
+			<Styled.ATFImagesContainer>
+				<Styled.ATFImagesLight mode={localStorage.mode}>
+					<Styled.ATFImagesLightFormDummy />
+					<Styled.ATFImagesLightProfileDummy />
+				</Styled.ATFImagesLight>
+				<Styled.ATFImagesDark mode={localStorage.mode}>
+					<Styled.ATFImagesDarkFormDummy />
+					<Styled.ATFImagesDarkProfileDummy />
+				</Styled.ATFImagesDark>
+			</Styled.ATFImagesContainer>
 		</Styled.ATF>
 	);
 };

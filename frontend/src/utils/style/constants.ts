@@ -250,6 +250,7 @@ export const borderRadius = {
 	},
 	pages: {
 		home: {
+			atf: "0.625rem",
 			description: "1rem",
 		},
 	},

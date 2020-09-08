@@ -41,6 +41,7 @@ export const Reviews = styled("div")`
 export const ReviewsImageContainer = styled("div")`
 	position: relative;
 	margin-right: 60px;
+	margin-top: 340px;
 	width: 100%;
 	max-width: 800px;
 
