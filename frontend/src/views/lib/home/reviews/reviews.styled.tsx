@@ -19,7 +19,7 @@ import reviewImageDark from "@/images/home/review-card-dark.svg";
 
 export const Reviews = styled("div")`
 	${Snippets.flex("row", "center", "center")};
-	margin: 140px 0px;
+	margin: 340px 0px 140px;
 
 	@media (max-width: 1260px) {
 		padding: 0px ${Constants.sidePaddings.tablet}px;
@@ -41,7 +41,6 @@ export const Reviews = styled("div")`
 export const ReviewsImageContainer = styled("div")`
 	position: relative;
 	margin-right: 60px;
-	margin-top: 340px;
 	width: 100%;
 	max-width: 800px;
 
