@@ -31,17 +31,23 @@ export const ATF = () => {
 						Like, one paragraph quickly.
 					</Styled.ATFCopyBody>
 				</Styled.ATFCopyBodyContainer>
-
 				{/* CTA Button */}
-				<Components.CTAButton to="/registration" text="Get Started" />
+				<Components.CTAButton
+					to="/registration"
+					text="Get Started"
+					customMedia={685}
+					customMediaWidth="100%"
+				/>
 			</Styled.ATFCopy>
 
 			{/* Images */}
 			<Styled.ATFImagesContainer>
+				{/* Light */}
 				<Styled.ATFImagesLight mode={localStorage.mode}>
 					<Styled.ATFImagesLightFormDummy />
 					<Styled.ATFImagesLightProfileDummy />
 				</Styled.ATFImagesLight>
+				{/* Dark */}
 				<Styled.ATFImagesDark mode={localStorage.mode}>
 					<Styled.ATFImagesDarkFormDummy />
 					<Styled.ATFImagesDarkProfileDummy />

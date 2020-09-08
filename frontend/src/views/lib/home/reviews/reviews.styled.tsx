@@ -27,9 +27,15 @@ export const Reviews = styled("div")`
 
 	@media (max-width: 1115px) {
 		${Snippets.flex("column-reverse", "center", "center")};
+		margin: 240px 0px;
+	}
+
+	@media (max-width: 685px) {
+		margin: 140px 0px;
 	}
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		margin: 100px 0px;
 		padding: 0px ${Constants.sidePaddings.mobile}px;
 	}
 `;

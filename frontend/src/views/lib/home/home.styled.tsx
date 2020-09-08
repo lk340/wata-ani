@@ -16,13 +16,13 @@ export const Home = styled(animated.div)`
 
 export const HomeSections = styled("div")`
 	flex: 1;
-	/* margin: 0px auto 140px; */
-	margin: 140px auto;
+	margin: 0px auto 140px;
+	/* margin: 140px auto; */
 	width: 100%;
 	max-width: ${Constants.globals.maxWidth}px;
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
-		margin: 100px auto;
+		margin: 0px auto 100px;
 	}
 
 	/* border: red solid 1px; */

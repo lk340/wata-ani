@@ -5,11 +5,19 @@ import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
-export const CTAButton = styled("div")`
-	display: inline-block;
+type ButtonProps = {
+	customMedia?: number;
+	customMediaWidth?: string;
+};
+
+export const CTAButton = styled("div")<ButtonProps>`
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
 	border-radius: ${Constants.borderRadius.components.ctaButton};
+
+	@media (max-width: ${(props) => `${props.customMedia}px`}) {
+		width: ${(props) => props.customMediaWidth};
+	}
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		width: 100%;

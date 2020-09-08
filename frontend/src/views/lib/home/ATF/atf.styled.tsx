@@ -24,6 +24,19 @@ import userProfileDark from "@/images/home/user-profile-dark.svg";
 
 export const ATF = styled("div")`
 	display: flex;
+	margin-top: 100px;
+
+	@media (max-width: 1260px) {
+		padding: 0px ${Constants.sidePaddings.tablet}px;
+	}
+
+	@media (max-width: 575px) {
+		margin-top: 50px;
+	}
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		padding: 0px ${Constants.sidePaddings.mobile}px;
+	}
 `;
 
 // ============ //
@@ -32,19 +45,31 @@ export const ATF = styled("div")`
 
 export const ATFCopy = styled("div")`
 	${Snippets.grid(1, "auto", 40, "start", "start")};
-	width: 510px;
 	margin-right: 80px;
+
+	@media (max-width: 685px) {
+		${Snippets.grid(1, "auto", 40)};
+		margin: 0px;
+	}
 `;
 
 export const ATFCopyTitle = styled("h1")`
 	${Snippets.clearSpacing()};
 	width: 510px;
 	font-size: ${Constants.fontSizes.pages.home.atf.title};
+
+	@media (max-width: 685px) {
+		width: 100%;
+	}
 `;
 
 export const ATFCopyBodyContainer = styled("div")`
 	${Snippets.grid(1, "auto", 30)};
 	width: 510px;
+
+	@media (max-width: 685px) {
+		width: 100%;
+	}
 `;
 
 export const ATFCopyBody = styled(animated.p)`
@@ -62,7 +87,11 @@ export const ATFCopyBodyWataAni = styled("span")`
 // ↓↓↓ Images ↓↓↓ //
 // ============== //
 
-export const ATFImagesContainer = styled("div")``;
+export const ATFImagesContainer = styled("div")`
+	@media (max-width: 685px) {
+		display: none;
+	}
+`;
 
 type Image = { mode: "light" | "dark" };
 
