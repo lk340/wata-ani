@@ -66,6 +66,7 @@ export const theme = {
 	pages: {
 		home: {
 			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
+			reviews: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 			description: {
 				block: {
 					background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
@@ -208,6 +209,7 @@ export const lineHeights = {
 	},
 	pages: {
 		home: {
+			review: 150,
 			description: 150,
 			cta: 150,
 		},

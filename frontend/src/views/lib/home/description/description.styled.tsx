@@ -12,9 +12,11 @@ import * as Colors from "@/utils/style/colors";
 
 export const Description = styled("div")`
 	${Snippets.grid(3, "auto", 60, "auto", "center")};
+	margin-top: 65px;
 
 	@media (max-width: 1260px) {
 		${Snippets.grid(1, "auto", 60, "auto", "center")};
+		margin-top: 0px;
 		padding: 0px ${Constants.sidePaddings.tablet}px;
 	}
 
