@@ -10,7 +10,6 @@ import * as Snippets from "@/utils/style/snippets";
 
 type Navbar = {
 	display: string;
-	isCurrentUser: string;
 };
 
 export const NavbarMobile = styled(animated.div).attrs(() => ({
@@ -27,8 +26,9 @@ export const NavbarMobile = styled(animated.div).attrs(() => ({
 
 	@media (max-width: 575px) {
 		display: ${(props) => {
-			const { display, isCurrentUser } = props;
-			if (display === "true" && isCurrentUser === "true") return "flex";
+			const { display } = props;
+			const { isCurrentUser } = props.theme;
+			if (display === "true" && isCurrentUser) return "flex";
 			else return "none";
 		}};
 	}

@@ -21,15 +21,18 @@ export const Home = () => {
 			{/* Navbar */}
 			<Components.Navbar />
 
-			{/* Sections */}
-			<Styled.HomeSections>
-				<ATF />
-				<Reviews />
-				<Description />
-			</Styled.HomeSections>
+			{/* Sections (when user ISN'T logged in) */}
+			<Styled.HomeSectionsNotAuthed>
+				<Styled.HomeSections>
+					<ATF />
+					<Reviews />
+					<Description />
+				</Styled.HomeSections>
+				<CTA />
+			</Styled.HomeSectionsNotAuthed>
 
-			{/* CTA Section */}
-			<CTA />
+			{/* Sections (when user IS logged in) */}
+			<Styled.HomeSectionsAuthed>Authed!</Styled.HomeSectionsAuthed>
 
 			{/* Footer */}
 			<Components.Footer />
