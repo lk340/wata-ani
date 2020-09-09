@@ -3,7 +3,6 @@ import * as React from "react";
 import * as Colors from "@/utils/style/colors";
 
 import * as Styled from "./pagination.styled";
-import * as Springs from "./pagination.springs";
 
 import { Arrow } from "@/icons/pagination/arrow";
 

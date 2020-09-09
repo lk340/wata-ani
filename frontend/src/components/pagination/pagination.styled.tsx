@@ -1,5 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
-import { animated } from "react-spring";
+import styled from "styled-components";
 
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
@@ -16,6 +15,10 @@ export const Pagination = styled("div")`
 		margin: 30px 0px;
 	}
 `;
+
+// ============= //
+// ↓↓↓ Arrow ↓↓↓ //
+// ============= //
 
 type ArrowProps = { flip: string };
 

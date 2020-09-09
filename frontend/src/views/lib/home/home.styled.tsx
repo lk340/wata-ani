@@ -47,7 +47,7 @@ export const HomeAuthed = styled("div")`
 	${Snippets.flex("column")};
 	flex: 1;
 	display: ${(props) => {
-		return props.theme.isCurrentUser.toString() === "true" ? "block" : "none";
+		return props.theme.isCurrentUser.toString() === "true" ? "flex" : "none";
 	}};
 
 	border: red solid 1px;
