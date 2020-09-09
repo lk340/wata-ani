@@ -10,13 +10,9 @@ import * as Snippets from "@/utils/style/snippets";
 
 export const Home = styled(animated.div)`
 	${Snippets.flex("column")};
+	${Snippets.navbarMargins()};
 	position: relative;
 	min-height: 100vh;
-	margin-top: ${Constants.size.components.navbar.height}px;
-
-	@media (max-width: 575px) {
-		margin-top: ${Constants.size.components.navbar.height / 2}px;
-	}
 `;
 
 export const HomeSections = styled("div")`
@@ -28,6 +24,4 @@ export const HomeSections = styled("div")`
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		margin: 0px auto 100px;
 	}
-
-	/* border: red solid 1px; */
 `;

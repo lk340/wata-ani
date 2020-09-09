@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
@@ -22,10 +23,17 @@ export const NavbarMobile = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { theme } = Context.Theme.useThemeContext();
 
+	const currentUserId = ReactRedux.useSelector((state) => state.session.id);
+	const isCurrentUser = !!currentUserId;
+
 	const animateNavbarMobile = Springs.navbarMobile();
 
 	return (
-		<Styled.NavbarMobile display={true.toString()} style={animateNavbarMobile}>
+		<Styled.NavbarMobile
+			display={true.toString()}
+			isCurrentUser={isCurrentUser.toString()}
+			style={animateNavbarMobile}
+		>
 			{/* Home */}
 			<OptionLink
 				to="/"

@@ -8,11 +8,15 @@ import * as Snippets from "@/utils/style/snippets";
 // ↓↓↓ Navbar Mobile ↓↓↓ //
 // ===================== //
 
-type Navbar = { display: string };
+type Navbar = {
+	display: string;
+	isCurrentUser: string;
+};
 
 export const NavbarMobile = styled(animated.div).attrs(() => ({
 	"data-testid": "navbar mobile component",
 }))<Navbar>`
+	${Snippets.fixed("auto", "0px", "0px", "0px", 10)};
 	${Snippets.flex("row", "space-between", "center")};
 	display: none;
 	height: ${Constants.size.components.navbarMobile.height}px;
@@ -22,6 +26,10 @@ export const NavbarMobile = styled(animated.div).attrs(() => ({
 	border-top: ${Constants.theme.components.navbarMobile.borderTop} solid 1px;
 
 	@media (max-width: 575px) {
-		display: ${(props) => (props.display === "true" ? "flex" : "none")};
+		display: ${(props) => {
+			const { display, isCurrentUser } = props;
+			if (display === "true" && isCurrentUser === "true") return "flex";
+			else return "none";
+		}};
 	}
 `;

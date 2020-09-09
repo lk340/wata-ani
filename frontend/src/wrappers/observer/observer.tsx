@@ -184,8 +184,12 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ↓↓↓ Provider Theme ↓↓↓ //
 	// ====================== //
 
+	const currentUserId = ReactRedux.useSelector((state) => state.session.id);
+	const isCurrentUser = !!currentUserId;
+
 	const providerTheme = {
 		mode: localStorage.mode,
+		isCurrentUser,
 	};
 
 	return (

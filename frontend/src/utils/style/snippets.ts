@@ -1,7 +1,7 @@
 import { WEBGL } from "./webgl-check";
 import { css } from "styled-components";
 
-import * as Context from "@/context";
+import * as Constants from "@/utils/style/constants";
 
 /**
  * Checks
@@ -256,6 +256,22 @@ export function fixSafariMinHeight() {
 export function theme(light: string, dark: string) {
 	return css`
 		${(props) => (props.theme.mode === "light" ? light : dark)}
+	`;
+}
+
+export function navbarMargins() {
+	return css`
+		margin-top: ${Constants.size.components.navbar.height}px;
+
+		@media (max-width: 575px) {
+			margin-top: ${Constants.size.components.navbar.height / 2}px;
+
+			margin-bottom: ${(props) => {
+				const { isCurrentUser } = props.theme;
+				if (isCurrentUser) return `${Constants.size.components.navbarMobile.height}px`;
+				else return "0px";
+			}};
+		}
 	`;
 }
 
