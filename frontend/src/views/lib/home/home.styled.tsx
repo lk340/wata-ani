@@ -49,13 +49,11 @@ export const HomeAuthed = styled("div")`
 	display: ${(props) => {
 		return props.theme.isCurrentUser.toString() === "true" ? "flex" : "none";
 	}};
-
-	border: red solid 1px;
 `;
 
 export const HomeAuthedSections = styled("div")`
 	flex: 1;
-	margin: 0px auto;
+	margin: 20px auto 0px;
 	width: 100%;
 	max-width: ${Constants.globals.maxWidth}px;
 
@@ -63,9 +61,8 @@ export const HomeAuthedSections = styled("div")`
 		padding: 0px ${Constants.sidePaddings.tablet}px;
 	}
 
-	@media (max-width: 575px) {
+	@media (max-width: 625px) {
+		margin-top: 50px;
 		padding: 0px ${Constants.sidePaddings.mobile}px;
 	}
-
-	border: blue solid 1px;
 `;
