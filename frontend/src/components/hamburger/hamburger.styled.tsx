@@ -13,7 +13,7 @@ export const Hamburger = styled("div")`
 	${Snippets.square("20px")};
 	display: none;
 
-	@media (max-width: 575px) {
+	@media (max-width: 625px) {
 		display: flex;
 	}
 `;

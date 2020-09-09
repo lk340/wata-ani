@@ -55,6 +55,17 @@ export const HomeAuthed = styled("div")`
 
 export const HomeAuthedSections = styled("div")`
 	flex: 1;
+	margin: 0px auto;
+	width: 100%;
+	max-width: ${Constants.globals.maxWidth}px;
+
+	@media (max-width: 1260px) {
+		padding: 0px ${Constants.sidePaddings.tablet}px;
+	}
+
+	@media (max-width: 575px) {
+		padding: 0px ${Constants.sidePaddings.mobile}px;
+	}
 
 	border: blue solid 1px;
 `;

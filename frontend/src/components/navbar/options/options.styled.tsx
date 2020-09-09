@@ -18,7 +18,7 @@ import * as Snippets from "@/utils/style/snippets";
 export const Options = styled("div")`
 	${Snippets.flex()};
 
-	@media (max-width: 575px) {
+	@media (max-width: 625px) {
 		display: none;
 	}
 `;

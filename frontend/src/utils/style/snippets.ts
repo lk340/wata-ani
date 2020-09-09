@@ -263,7 +263,7 @@ export function navbarMargins() {
 	return css`
 		margin-top: ${Constants.size.components.navbar.height}px;
 
-		@media (max-width: 575px) {
+		@media (max-width: 625px) {
 			margin-top: ${Constants.size.components.navbar.height / 2}px;
 
 			margin-bottom: ${(props) => {

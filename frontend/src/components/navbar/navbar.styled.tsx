@@ -28,7 +28,7 @@ export const Navbar = styled(animated.div).attrs(() => ({
 		padding: 0px ${Constants.sidePaddings.tablet}px;
 	}
 
-	@media (max-width: 575px) {
+	@media (max-width: 625px) {
 		height: 50px;
 		padding: 0px ${Constants.sidePaddings.mobile}px;
 	}
@@ -57,14 +57,6 @@ export const NavbarGlobalStyles = createGlobalStyle`
 // =============== //
 // ↓↓↓ Options ↓↓↓ //
 // =============== //
-
-export const NavbarOptions = styled("div")`
-	${Snippets.flex()};
-
-	@media (max-width: 575px) {
-		display: none;
-	}
-`;
 
 export const NavbarOption = styled(Gatsby.Link)`
 	${Snippets.flexRowCenter()};
@@ -108,7 +100,7 @@ export const NavbarLogoIcon = styled("img").attrs(() => ({
 	display: block;
 	border-radius: ${Constants.borderRadius.components.authForm.logo};
 
-	@media (max-width: 575px) {
+	@media (max-width: 625px) {
 		${Snippets.square("20px")};
 		border-radius: 0.1875rem;
 	}
