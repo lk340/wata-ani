@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { animated } from "react-spring";
 import * as Gatsby from "gatsby";
 
@@ -9,6 +9,7 @@ import logoJapanese from "@/images/logo/japanese.svg";
 
 /**
  * Navbar
+ * Global
  * Options
  * Navbar Logo Icon
  */
@@ -20,6 +21,7 @@ import logoJapanese from "@/images/logo/japanese.svg";
 export const Navbar = styled(animated.div).attrs(() => ({
 	"data-testid": "navbar component",
 }))`
+	${Snippets.fixed("0", "0", "auto", "0", 10)};
 	height: ${Constants.size.components.navbar.height}px;
 
 	@media (max-width: 1260px) {
@@ -38,6 +40,18 @@ export const NavbarMaxWidth = styled("div")`
 	margin: 0px auto;
 	max-width: ${Constants.globals.maxWidth}px;
 	font-size: ${Constants.fontSizes.components.navbar.link};
+`;
+
+// ============== //
+// ↓↓↓ Global ↓↓↓ //
+// ============== //
+
+type GlobalProps = { mode: string };
+
+export const NavbarGlobalStyles = createGlobalStyle`
+	body {
+		overflow-y: ${(props: GlobalProps) => (props.mode === "true" ? "hidden" : "auto")};
+	}
 `;
 
 // =============== //

@@ -82,7 +82,7 @@ export const ReviewsCopy = styled("div")`
 
 	@media (max-width: 1115px) {
 		${Snippets.flexColumnCenter()};
-		max-width: 800px;
+		max-width: 700px;
 	}
 `;
 

@@ -28,6 +28,8 @@ export const Navbar = () => {
 
 	return (
 		<Styled.Navbar style={animateNavbar}>
+			<Styled.NavbarGlobalStyles mode={navbar.state.hamburgerOpen.toString()} />
+
 			<Styled.NavbarMaxWidth>
 				{/* Logo Link */}
 				<Styled.NavbarOption to="/" onClick={navbar.setters.setHomeOn}>

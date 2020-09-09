@@ -1,7 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 import * as Constants from "@/utils/style/constants";
-import * as Colors from "@/utils/style/colors";
 
 import muliVariable from "@/fonts/muli-variable.ttf";
 
