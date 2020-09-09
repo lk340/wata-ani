@@ -24,7 +24,7 @@ export const NavbarMobile = styled(animated.div).attrs(() => ({
 	background-color: ${Constants.theme.background};
 	border-top: ${Constants.theme.components.navbarMobile.borderTop} solid 1px;
 
-	@media (max-width: 575px) {
+	@media (max-width: 625px) {
 		display: ${(props) => {
 			const { display } = props;
 			const { isCurrentUser } = props.theme;

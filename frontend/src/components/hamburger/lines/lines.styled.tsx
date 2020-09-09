@@ -13,7 +13,7 @@ export const Lines = styled("div").attrs(() => ({
 }))`
 	${Snippets.fillContainer()};
 	position: relative;
-	z-index: 3;
+	z-index: 21;
 	cursor: pointer;
 `;
 

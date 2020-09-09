@@ -21,7 +21,7 @@ import logoJapanese from "@/images/logo/japanese.svg";
 export const Navbar = styled(animated.div).attrs(() => ({
 	"data-testid": "navbar component",
 }))`
-	${Snippets.fixed("0", "0", "auto", "0", 10)};
+	${Snippets.fixed("0", "0", "auto", "0", 22)};
 	height: ${Constants.size.components.navbar.height}px;
 
 	@media (max-width: 1260px) {

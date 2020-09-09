@@ -23,7 +23,7 @@ export const Hamburger = styled("div")`
 // ============= //
 
 export const HamburgerModal = styled(animated.div)`
-	${Snippets.fixed("0px", "0px", "0px", "0px")};
+	${Snippets.fixed("0px", "0px", "0px", "0px", 20)};
 	background-color: ${Colors.PRIMARY_100};
 	height: 100vh;
 `;
@@ -38,5 +38,5 @@ export const HamburgerModalMain = styled(animated.div)`
 `;
 
 export const HamburgerModalThemeButton = styled("div")`
-	${Snippets.absolute("auto", "0px", "30px", "auto", 3)};
+	${Snippets.absolute("auto", "0px", "30px", "auto", 21)};
 `;
