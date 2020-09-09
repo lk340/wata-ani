@@ -4,6 +4,13 @@ import { animated } from "react-spring";
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 
+/**
+ * Home
+ * Sections
+ * 	-	Not Authed
+ * 	-	Authed
+ */
+
 // ============ //
 // ↓↓↓ Home ↓↓↓ //
 // ============ //
@@ -15,14 +22,29 @@ export const Home = styled(animated.div)`
 	min-height: 100vh;
 `;
 
-export const HomeSectionsNotAuthed = styled("div")`
+// ================ //
+// ↓↓↓ Sections ↓↓↓ //
+// ================ //
+
+// --- Not Authed --- //
+
+export const HomeNotAuthed = styled("div")`
 	flex: 1;
 	display: ${(props) => {
 		return props.theme.isCurrentUser.toString() === "true" ? "none" : "block";
 	}};
 `;
 
-export const HomeSectionsAuthed = styled("div")`
+export const HomeNotAuthedSections = styled("div")`
+	margin: 0px auto;
+	width: 100%;
+	max-width: ${Constants.globals.maxWidth}px;
+`;
+
+// --- Authed --- //
+
+export const HomeAuthed = styled("div")`
+	${Snippets.flex("column")};
 	flex: 1;
 	display: ${(props) => {
 		return props.theme.isCurrentUser.toString() === "true" ? "block" : "none";
@@ -31,8 +53,8 @@ export const HomeSectionsAuthed = styled("div")`
 	border: red solid 1px;
 `;
 
-export const HomeSections = styled("div")`
-	margin: 0px auto;
-	width: 100%;
-	max-width: ${Constants.globals.maxWidth}px;
+export const HomeAuthedSections = styled("div")`
+	flex: 1;
+
+	border: blue solid 1px;
 `;

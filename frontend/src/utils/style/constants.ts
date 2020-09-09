@@ -181,6 +181,7 @@ export const fontSizes = {
 			navigationLink: "0.75rem",
 		},
 		ctaButton: "1.375rem",
+		pagination: "0.875rem",
 	},
 	pages: {
 		home: {

@@ -22,17 +22,10 @@ export const Home = () => {
 			<Components.Navbar />
 
 			{/* Sections (when user ISN'T logged in) */}
-			<Styled.HomeSectionsNotAuthed>
-				<Styled.HomeSections>
-					<ATF />
-					<Reviews />
-					<Description />
-				</Styled.HomeSections>
-				<CTA />
-			</Styled.HomeSectionsNotAuthed>
+			<NotAuthed />
 
 			{/* Sections (when user IS logged in) */}
-			<Styled.HomeSectionsAuthed>Authed!</Styled.HomeSectionsAuthed>
+			<Authed />
 
 			{/* Footer */}
 			<Components.Footer />
@@ -40,5 +33,35 @@ export const Home = () => {
 			{/* Navbar Mobile */}
 			<Components.NavbarMobile />
 		</Styled.Home>
+	);
+};
+
+// ================== //
+// ↓↓↓ Not Authed ↓↓↓ //
+// ================== //
+
+const NotAuthed = () => {
+	return (
+		<Styled.HomeNotAuthed>
+			<Styled.HomeNotAuthedSections>
+				<ATF />
+				<Reviews />
+				<Description />
+			</Styled.HomeNotAuthedSections>
+			<CTA />
+		</Styled.HomeNotAuthed>
+	);
+};
+
+// ============== //
+// ↓↓↓ Authed ↓↓↓ //
+// ============== //
+
+const Authed = () => {
+	return (
+		<Styled.HomeAuthed>
+			<Styled.HomeAuthedSections>Authed!</Styled.HomeAuthedSections>
+			<Components.Pagination />
+		</Styled.HomeAuthed>
 	);
 };
