@@ -32,11 +32,7 @@ export const HomeSectionsAuthed = styled("div")`
 `;
 
 export const HomeSections = styled("div")`
-	margin: 0px auto 140px;
+	margin: 0px auto;
 	width: 100%;
 	max-width: ${Constants.globals.maxWidth}px;
-
-	@media (max-width: ${Constants.breakpoints.mobile}px) {
-		margin: 0px auto 100px;
-	}
 `;
