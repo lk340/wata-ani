@@ -65,6 +65,7 @@ export const theme = {
 		reviewCard: {
 			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+			cardDate: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 		},
 	},
 	pages: {
@@ -186,6 +187,13 @@ export const fontSizes = {
 		},
 		ctaButton: "1.375rem",
 		pagination: "0.875rem",
+		reviewCard: {
+			username: "0.875rem",
+			seriesName: "1rem",
+			cardTitle: "0.875rem",
+			cardDate: "0.875rem",
+			cardContent: "0.75rem",
+		},
 	},
 	pages: {
 		home: {

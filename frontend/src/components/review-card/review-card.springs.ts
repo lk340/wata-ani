@@ -14,5 +14,18 @@ export function reviewCard() {
 					? `${Constants.theme.components.reviewCard.border.light} solid 2px`
 					: `${Constants.theme.components.reviewCard.border.dark} solid 2px`,
 		},
+		config: { duration: 100 },
+	});
+}
+
+export function cardDate() {
+	return Spring.useSpring({
+		to: {
+			color:
+				localStorage.mode === "light"
+					? Constants.theme.components.reviewCard.cardDate.light
+					: Constants.theme.components.reviewCard.cardDate.light,
+		},
+		config: { duration: 100 },
 	});
 }
