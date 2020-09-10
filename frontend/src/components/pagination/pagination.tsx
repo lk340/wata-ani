@@ -12,33 +12,27 @@ export const Pagination = () => {
 	const { currentPage, lastPage } = pagination.state;
 
 	React.useEffect(() => {
-		if (Number(localStorage.currentPage) > Number(localStorage.lastPage)) {
+		if (currentPage > lastPage) {
 			pagination.setters.incrementLastPage();
-		} else if (
-			Number(localStorage.currentPage) < Number(localStorage.lastPage) - 4 &&
-			Number(localStorage.lastPage) - 5 > 0
-		) {
+		} else if (currentPage < firstPage && lastPage - 5 > 0) {
 			pagination.setters.decrementLastPage();
 		}
-	}, [localStorage.currentPage]);
+	}, [currentPage]);
 
-	console.log("Current Page:", pagination.state.currentPage);
-	console.log("Last Page:", pagination.state.lastPage);
+	const firstPage = lastPage - 4;
+	const secondPage = lastPage - 3;
+	const thirdPage = lastPage - 2;
+	const fourthPage = lastPage - 1;
+
+	const isFirstPage = currentPage === firstPage;
+	const isSecondPage = currentPage === secondPage;
+	const isThirdPage = currentPage === thirdPage;
+	const isFourthPage = currentPage === fourthPage;
+	const isLastPage = currentPage === lastPage;
 
 	let arrowIconFill: string;
 	if (localStorage.mode === "light") arrowIconFill = Colors.LIGHT.five;
 	else arrowIconFill = Colors.DARK.five;
-
-	const firstPage = Number(localStorage.lastPage) - 4;
-	const secondPage = Number(localStorage.lastPage) - 3;
-	const thirdPage = Number(localStorage.lastPage) - 2;
-	const fourthPage = Number(localStorage.lastPage) - 1;
-
-	const isFirstPage = Number(localStorage.currentPage) === firstPage;
-	const isSecondPage = Number(localStorage.currentPage) === secondPage;
-	const isThirdPage = Number(localStorage.currentPage) === thirdPage;
-	const isFourthPage = Number(localStorage.currentPage) === fourthPage;
-	const isLastPage = Number(localStorage.currentPage) === Number(localStorage.lastPage);
 
 	return (
 		<Styled.Pagination>

@@ -29,44 +29,27 @@ export const usePaginationContext = Helpers.createUseContext(() => {
 
 	function incrementLastPage(): void {
 		setPagination({ lastPage: lastPage + 5 });
-		localStorage.lastPage = lastPage;
 	}
 
 	function decrementLastPage(): void {
 		setPagination({ lastPage: lastPage - 5 });
-		localStorage.lastPage = lastPage;
 	}
 
 	function incrementCurrentPage(): void {
 		setPagination({ currentPage: currentPage + 1 });
-		localStorage.currentPage = currentPage;
 	}
 
 	function decrementCurrentPage(): void {
 		setPagination({ currentPage: currentPage - 1 < 1 ? 1 : currentPage - 1 });
-		localStorage.currentPage = currentPage;
 	}
 
 	function setCurrentPage(currentPage: number): void {
 		setPagination({ currentPage });
-		localStorage.currentPage = currentPage;
 	}
 
 	// =============== //
 	// ↓↓↓ Handlers ↓↓↓ //
 	// =============== //
-
-	React.useEffect(() => {
-		if (!localStorage.lastPage && !localStorage.currentPage) {
-			localStorage.lastPage = lastPage;
-			localStorage.currentPage = currentPage;
-		} else {
-			setPagination({
-				currentPage: Number(localStorage.currentPage),
-				lastPage: Number(localStorage.lastPage),
-			});
-		}
-	}, []);
 
 	// =============== //
 	// ↓↓↓ API ↓↓↓ //
