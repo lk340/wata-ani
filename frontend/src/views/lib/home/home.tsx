@@ -60,7 +60,9 @@ const NotAuthed = () => {
 const Authed = () => {
 	return (
 		<Styled.HomeAuthed>
-			<Styled.HomeAuthedSections>Authed!</Styled.HomeAuthedSections>
+			<Styled.HomeAuthedSections>
+				<Components.ReviewCard />
+			</Styled.HomeAuthedSections>
 			<Components.Pagination />
 		</Styled.HomeAuthed>
 	);

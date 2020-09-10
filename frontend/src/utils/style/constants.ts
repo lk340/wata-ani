@@ -62,6 +62,10 @@ export const theme = {
 		footer: {
 			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 		},
+		reviewCard: {
+			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+		},
 	},
 	pages: {
 		home: {
@@ -249,6 +253,7 @@ export const borderRadius = {
 			logo: "0.375rem",
 		},
 		ctaButton: "0.5rem",
+		reviewCard: "0.3125rem",
 	},
 	pages: {
 		home: {
