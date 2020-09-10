@@ -41,6 +41,7 @@ export const PaginationPages = styled("div")`
 type PagesNumberProps = { isCurrentPage: string };
 
 export const PaginationPagesNumber = styled("span")<PagesNumberProps>`
+	${Snippets.noTextHighlight()};
 	display: block;
 	color: ${(props) => (props.isCurrentPage === "true" ? Colors.PRIMARY_100 : "inherit")};
 	font-size: ${Constants.fontSizes.components.pagination};
