@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
+import * as Colors from "@/utils/style/colors";
 
 // ================== //
 // ↓↓↓ Pagination ↓↓↓ //
@@ -37,8 +38,11 @@ export const PaginationPages = styled("div")`
 	margin: 0px 30px;
 `;
 
-export const PaginationPagesNumber = styled("span")`
+type PagesNumberProps = { isCurrentPage: string };
+
+export const PaginationPagesNumber = styled("span")<PagesNumberProps>`
 	display: block;
+	color: ${(props) => (props.isCurrentPage === "true" ? Colors.PRIMARY_100 : "inherit")};
 	font-size: ${Constants.fontSizes.components.pagination};
 	font-weight: bold;
 	cursor: pointer;

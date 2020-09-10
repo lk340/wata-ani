@@ -12,7 +12,11 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({ children })
 							<Context.Location.Provider>
 								<Context.UserAgent.Provider>
 									<Context.AuthForm.Provider>
-										<Context.Navbar.Provider>{children}</Context.Navbar.Provider>
+										<Context.Navbar.Provider>
+											<Context.Pagination.Provider>
+												{children}
+											</Context.Pagination.Provider>
+										</Context.Navbar.Provider>
 									</Context.AuthForm.Provider>
 								</Context.UserAgent.Provider>
 							</Context.Location.Provider>

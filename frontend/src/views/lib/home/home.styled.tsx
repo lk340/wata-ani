@@ -57,6 +57,8 @@ export const HomeAuthedSections = styled("div")`
 	width: 100%;
 	max-width: ${Constants.globals.maxWidth}px;
 
+	border: red solid 1px;
+
 	@media (max-width: 1260px) {
 		padding: 0px ${Constants.sidePaddings.tablet}px;
 	}
