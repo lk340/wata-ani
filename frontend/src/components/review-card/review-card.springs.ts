@@ -29,3 +29,10 @@ export function cardDate() {
 		config: { duration: 100 },
 	});
 }
+
+export function icon(selected: boolean) {
+	return Spring.useSpring({
+		from: { transform: "scale(0)" },
+		to: { transform: selected ? "scale(1)" : "scale(0)" },
+	});
+}

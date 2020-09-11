@@ -40,6 +40,18 @@ export const Home = () => {
 // ↓↓↓ Not Authed ↓↓↓ //
 // ================== //
 
+const username = "WataAni";
+const seriesName = "Neon Genesis Evangelion";
+const cardTitle = `"Timeless classic" is an understatement.`;
+const cardDate = "August 3, 2020";
+const cardText = `People refer to this piece as a timeless classic, but that description alone
+fails to accurately portray why it has withstood the test of time. Not only are
+its animation and character designs fluid and bold, but also, it experiments
+with the human psyche - how we react to our surroundings as people, not as a
+hyperbolic fictional character. It is this realism that allows us to see
+ourselves in the characters' shoes. Evangelion has set the standard for its
+descendants.`;
+
 const NotAuthed = () => {
 	return (
 		<Styled.HomeNotAuthed>
@@ -61,7 +73,13 @@ const Authed = () => {
 	return (
 		<Styled.HomeAuthed>
 			<Styled.HomeAuthedSections>
-				<Components.ReviewCard />
+				<Components.ReviewCard
+					username={username}
+					seriesName={seriesName}
+					title={cardTitle}
+					date={cardDate}
+					text={cardText}
+				/>
 			</Styled.HomeAuthedSections>
 			<Components.Pagination />
 		</Styled.HomeAuthed>
