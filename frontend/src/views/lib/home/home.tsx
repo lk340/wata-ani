@@ -18,20 +18,11 @@ export const Home = () => {
 
 	return (
 		<Styled.Home style={animateHome}>
-			{/* Navbar */}
 			<Components.Navbar />
-
-			{/* Sections (when user ISN'T logged in) */}
-			<NotAuthed />
-
-			{/* Sections (when user IS logged in) */}
-			<Authed />
-
-			{/* Footer */}
-			<Components.Footer />
-
-			{/* Navbar Mobile */}
 			<Components.NavbarMobile />
+			<NotAuthed />
+			<Authed />
+			<Components.Footer />
 		</Styled.Home>
 	);
 };
@@ -40,19 +31,9 @@ export const Home = () => {
 // ↓↓↓ Not Authed ↓↓↓ //
 // ================== //
 
-const username = "WataAni";
-const seriesName = "Neon Genesis Evangelion";
-const cardTitle = `"Timeless classic" is an understatement.`;
-const cardDate = "August 3, 2020";
-const cardText = `People refer to this piece as a timeless classic, but that description alone
-fails to accurately portray why it has withstood the test of time. Not only are
-its animation and character designs fluid and bold, but also, it experiments
-with the human psyche - how we react to our surroundings as people, not as a
-hyperbolic fictional character. It is this realism that allows us to see
-ourselves in the characters' shoes. Evangelion has set the standard for its
-descendants.`;
-
 const NotAuthed = () => {
+	// Sections (when user ISN'T logged in)
+
 	return (
 		<Styled.HomeNotAuthed>
 			<Styled.HomeNotAuthedSections>
@@ -69,7 +50,21 @@ const NotAuthed = () => {
 // ↓↓↓ Authed ↓↓↓ //
 // ============== //
 
+const username = "WataAni";
+const seriesName = "Neon Genesis Evangelion";
+const cardTitle = `"Timeless classic" is an understatement.`;
+const cardDate = "August 3, 2020";
+const cardText = `People refer to this piece as a timeless classic, but that description alone
+fails to accurately portray why it has withstood the test of time. Not only are
+its animation and character designs fluid and bold, but also, it experiments
+with the human psyche - how we react to our surroundings as people, not as a
+hyperbolic fictional character. It is this realism that allows us to see
+ourselves in the characters' shoes. Evangelion has set the standard for its
+descendants.`;
+
 const Authed = () => {
+	// Sections (when user IS logged in)
+
 	return (
 		<Styled.HomeAuthed>
 			<Styled.HomeAuthedSections>

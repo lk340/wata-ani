@@ -39,6 +39,9 @@ export const ReviewCard = (props: Props) => {
 				<Rating />
 				<Likes />
 			</Styled.ReviewCardRatingLikesContainer>
+
+			{/* Rating Modal */}
+			<RatingModal />
 		</Styled.ReviewCard>
 	);
 };
@@ -82,5 +85,19 @@ const Likes = () => {
 			</Styled.ReviewCardIconContainer>
 			<Styled.ReviewCardCount>123</Styled.ReviewCardCount>
 		</Styled.ReviewCardLikesContainer>
+	);
+};
+
+// ==================== //
+// ↓↓↓ Rating Modal ↓↓↓ //
+// ==================== //
+
+const RatingModal = () => {
+	const animateRatingModal = Springs.ratingModal();
+
+	return (
+		<Styled.ReviewCardRatingModal style={animateRatingModal}>
+			Modal
+		</Styled.ReviewCardRatingModal>
 	);
 };

@@ -15,8 +15,9 @@ import likesFilled from "@/icons/home/authed/likes-filled.svg";
  * Header
  * Content
  * Rating & Likes
- * 	- Rating
- * 	- Likes
+ * Rating
+ * Likes
+ * Rating Modal
  */
 
 // =================== //
@@ -24,6 +25,7 @@ import likesFilled from "@/icons/home/authed/likes-filled.svg";
 // =================== //
 
 export const ReviewCard = styled(animated.div)`
+	position: relative;
 	padding: 20px;
 	border-radius: ${Constants.borderRadius.components.reviewCard};
 `;
@@ -106,7 +108,9 @@ const iconStyles = css`
 	cursor: pointer;
 `;
 
-// --- Rating --- //
+// ============== //
+// ↓↓↓ Rating ↓↓↓ //
+// ============== //
 
 export const ReviewCardRatingContainer = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
@@ -128,11 +132,13 @@ export const ReviewCardRatingIconFilled = styled(animated.img).attrs(() => ({
 	position: absolute;
 `;
 
+// ============= //
+// ↓↓↓ Likes ↓↓↓ //
+// ============= //
+
 export const ReviewCardLikesContainer = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
 `;
-
-// --- Likes  --- //
 
 export const ReviewCardLikesIconHollow = styled("img").attrs(() => ({
 	src: likesHollow,
@@ -147,4 +153,14 @@ export const ReviewCardLikesIconFilled = styled(animated.img).attrs(() => ({
 }))`
 	${iconStyles};
 	position: absolute;
+`;
+
+// ==================== //
+// ↓↓↓ Rating Modal ↓↓↓ //
+// ==================== //
+
+export const ReviewCardRatingModal = styled(animated.div)`
+	${Snippets.absolute("0", "0", "0", "0", 2)};
+
+	border: green solid 1px;
 `;
