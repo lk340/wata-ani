@@ -193,7 +193,9 @@ export const fontSizes = {
 			cardTitle: "0.875rem",
 			cardDate: "0.875rem",
 			cardText: "0.75rem",
-			rating: "0.75rem",
+			ratingValue: "1.125rem",
+			ratingFraction: "0.75rem",
+			ratingUserCount: "0.625rem",
 		},
 	},
 	pages: {

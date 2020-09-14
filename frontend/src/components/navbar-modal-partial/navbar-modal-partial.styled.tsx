@@ -4,7 +4,7 @@ import { animated } from "react-spring";
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 
-import close from "@/icons/navbar-modal-partial/close.svg";
+import close from "@/icons/close.svg";
 
 // ============================ //
 // ↓↓↓ Navbar Modal Partial ↓↓↓ //

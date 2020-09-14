@@ -119,7 +119,7 @@ export const PASSWORDSTRENGTH = {
 export const MODAL = {
 	overlay: {
 		light: "rgba(39,39,39, 0.7)",
-		dark: "rgba(rgb(10,23,58, 0.7))",
+		dark: "rgba(10,23,58, 0.7)",
 	},
 };
 
