@@ -1,19 +1,13 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { animated } from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
-import likesHollow from "@/icons/home/authed/likes-hollow.svg";
-import likesFilled from "@/icons/home/authed/likes-filled.svg";
-
 /**
  * Review Card
  * Header
- * Rating & Likes
- * Rating
- * Likes
  * Content
  */
 
@@ -23,7 +17,7 @@ import likesFilled from "@/icons/home/authed/likes-filled.svg";
 
 export const ReviewCard = styled(animated.div)`
 	position: relative;
-	border-radius: ${Constants.borderRadius.components.reviewCard};
+	border-radius: ${Constants.borderRadius.components.reviewCard.card};
 	height: ${Constants.size.components.reviewCard.height}px;
 `;
 
@@ -48,79 +42,6 @@ export const ReviewCardProfilePicture = styled("img").attrs(() => ({
 
 export const ReviewCardUsername = styled("p")`
 	${Snippets.clearSpacing()};
-	font-weight: bold;
-`;
-
-// ======================= //
-// ↓↓↓ Rating & Likes ↓↓↓ //
-// ======================= //
-
-export const ReviewCardRatingAndLikes = styled(animated.div)`
-	${Snippets.flex("row", "space-between", "center")};
-	padding: 10px 20px;
-`;
-
-// --- Rating --- //
-
-export const ReviewCardRatingContainer = styled("div")`
-	${Snippets.flex("column")};
-`;
-
-export const ReviewCardRating = styled("div")`
-	${Snippets.grid(3, "auto", 4, "auto", "center")};
-`;
-
-export const ReviewCardRatingValue = styled("h2")`
-	${Snippets.clearSpacing()};
-	color: ${Colors.PRIMARY_100};
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingValue};
-	font-weight: bold;
-`;
-
-export const ReviewCardRatingFraction = styled("span")`
-	display: block;
-	color: ${Colors.LIGHT.five};
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingFraction};
-	font-weight: bold;
-`;
-
-export const ReviewCardRatingCount = styled("span")`
-	display: block;
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingCount};
-`;
-
-// --- Likes --- //
-
-export const ReviewCardLikes = styled("div")`
-	${Snippets.flexRowCenter()};
-`;
-
-export const ReviewCardLikesIconContainer = styled("div")`
-	${Snippets.flexRowCenter()};
-	position: relative;
-`;
-
-export const ReviewCardLikesIconHollow = styled("img").attrs(() => ({
-	src: likesHollow,
-	alt: "review card component likes icon hollow",
-}))`
-	${Snippets.square("16px")};
-	cursor: pointer;
-`;
-
-export const ReviewCardLikesIconFilled = styled("img").attrs(() => ({
-	src: likesFilled,
-	alt: "review card component likes icon filled",
-}))`
-	${Snippets.square("16px")};
-	position: absolute;
-	cursor: pointer;
-`;
-
-export const ReviewCardLikesCount = styled("span")`
-	display: block;
-	margin-left: 10px;
-	font-size: ${Constants.fontSizes.components.reviewCard.likesCount};
 	font-weight: bold;
 `;
 

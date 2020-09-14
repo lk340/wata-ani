@@ -65,7 +65,13 @@ export const theme = {
 		reviewCard: {
 			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
-			ratingAndLike: { light: Colors.LIGHT.one, dark: Colors.DARK.three },
+			ratingAndLike: {
+				background: { light: Colors.LIGHT.one, dark: Colors.DARK.three },
+				likes: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
+				border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+				form: { light: Colors.LIGHT.three, dark: Colors.DARK.two },
+				input: { light: Colors.LIGHT.two, dark: Colors.DARK.five },
+			},
 			date: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 		},
 	},
@@ -145,7 +151,7 @@ export const size = {
 			height: 500,
 		},
 		reviewCard: {
-			height: 418,
+			height: 430,
 		},
 	},
 	pages: {
@@ -200,6 +206,9 @@ export const fontSizes = {
 			ratingValue: "1.125rem",
 			ratingFraction: "0.75rem",
 			ratingCount: "0.625rem",
+			ratingInput: "0.875rem",
+			ratingInputText: "0.625rem",
+			ratingSubmit: "0.5rem",
 			likesCount: "0.75rem",
 		},
 	},
@@ -269,7 +278,11 @@ export const borderRadius = {
 			logo: "0.375rem",
 		},
 		ctaButton: "0.5rem",
-		reviewCard: "0.3125rem",
+		reviewCard: {
+			card: "0.3125rem",
+			ratingInput: "0.3125rem",
+			ratingSubmit: "0.1875rem",
+		},
 	},
 	pages: {
 		home: {
