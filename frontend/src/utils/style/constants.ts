@@ -65,7 +65,8 @@ export const theme = {
 		reviewCard: {
 			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
-			cardDate: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
+			ratingAndLike: { light: Colors.LIGHT.one, dark: Colors.DARK.three },
+			date: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 		},
 	},
 	pages: {
@@ -143,6 +144,9 @@ export const size = {
 		footer: {
 			height: 500,
 		},
+		reviewCard: {
+			height: 418,
+		},
 	},
 	pages: {
 		home: {
@@ -195,7 +199,8 @@ export const fontSizes = {
 			cardText: "0.75rem",
 			ratingValue: "1.125rem",
 			ratingFraction: "0.75rem",
-			ratingUserCount: "0.625rem",
+			ratingCount: "0.625rem",
+			likesCount: "0.75rem",
 		},
 	},
 	pages: {

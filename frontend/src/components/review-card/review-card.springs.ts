@@ -19,13 +19,24 @@ export function reviewCard() {
 	});
 }
 
+export function ratingAndLikes() {
+	return Spring.useSpring({
+		to: {
+			backgroundColor:
+				localStorage.mode === "light"
+					? Constants.theme.components.reviewCard.ratingAndLike.light
+					: Constants.theme.components.reviewCard.ratingAndLike.dark,
+		},
+	});
+}
+
 export function cardDate() {
 	return Spring.useSpring({
 		to: {
 			color:
 				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.cardDate.light
-					: Constants.theme.components.reviewCard.cardDate.light,
+					? Constants.theme.components.reviewCard.date.light
+					: Constants.theme.components.reviewCard.date.light,
 		},
 		config: { duration: 100 },
 	});
@@ -46,5 +57,6 @@ export function ratingModal() {
 					? Colors.MODAL.overlay.light
 					: Colors.MODAL.overlay.dark,
 		},
+		config: { duration: 100 },
 	});
 }

@@ -21,8 +21,12 @@ export const ReviewCard = (props: Props) => {
 		<Styled.ReviewCard style={animateReviewCard}>
 			{/* Header */}
 			<Styled.ReviewCardHeader>
+				<Styled.ReviewCardProfilePicture />
 				<Styled.ReviewCardUsername>{username}</Styled.ReviewCardUsername>
 			</Styled.ReviewCardHeader>
+
+			{/* Rating & Likes */}
+			<RatingAndLikes />
 
 			{/* Series Name */}
 			<Styled.ReviewCardSeriesName>{seriesName}</Styled.ReviewCardSeriesName>
@@ -33,8 +37,34 @@ export const ReviewCard = (props: Props) => {
 				<Styled.ReviewCardDate style={animateCardDate}>{date}</Styled.ReviewCardDate>
 				<Styled.ReviewCardText>{text}</Styled.ReviewCardText>
 			</Styled.ReviewCardTitleDateText>
-
-			{/* Rating & Likes */}
 		</Styled.ReviewCard>
+	);
+};
+
+// ====================== //
+// ↓↓↓ Rating & Likes ↓↓↓ //
+// ====================== //
+
+const RatingAndLikes = () => {
+	const animateRatingAndLikes = Springs.ratingAndLikes();
+
+	return (
+		<Styled.ReviewCardRatingAndLikes style={animateRatingAndLikes}>
+			<Styled.ReviewCardRatingContainer>
+				<Styled.ReviewCardRating>
+					<Styled.ReviewCardRatingValue>8.2</Styled.ReviewCardRatingValue>
+					<Styled.ReviewCardRatingFraction>/</Styled.ReviewCardRatingFraction>
+					<Styled.ReviewCardRatingFraction>10</Styled.ReviewCardRatingFraction>
+				</Styled.ReviewCardRating>
+				<Styled.ReviewCardRatingCount>83 Users</Styled.ReviewCardRatingCount>
+			</Styled.ReviewCardRatingContainer>
+			<Styled.ReviewCardLikes>
+				<Styled.ReviewCardLikesIconContainer>
+					<Styled.ReviewCardLikesIconHollow />
+					<Styled.ReviewCardLikesIconFilled />
+				</Styled.ReviewCardLikesIconContainer>
+				<Styled.ReviewCardLikesCount>123</Styled.ReviewCardLikesCount>
+			</Styled.ReviewCardLikes>
+		</Styled.ReviewCardRatingAndLikes>
 	);
 };
