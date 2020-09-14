@@ -9,16 +9,6 @@ export const RatingAndLikes = () => {
 	const [rating, setRating] = React.useState("");
 	const [error, setError] = React.useState("");
 
-	function handleRatingChange(event: FormTypes.Input): void {
-		const userInput = event.currentTarget.value;
-		setRating(userInput);
-	}
-
-	function handleSubmit(event: FormTypes.Submit): void {
-		event.preventDefault();
-		console.log("Rating:", rating);
-	}
-
 	function handleErrorChange(
 		type: "too small" | "too big" | "not valid" | "clear",
 	): void {
@@ -32,7 +22,7 @@ export const RatingAndLikes = () => {
 				break;
 
 			case "not valid":
-				setError("Use a number between 1 and 10!");
+				setError("Enter a number between 1 and 10!");
 				break;
 
 			default:
@@ -41,18 +31,28 @@ export const RatingAndLikes = () => {
 		}
 	}
 
-	React.useEffect(() => {
-		if (Number(rating) < 1) handleErrorChange("too small");
+	function handleRatingChange(event: FormTypes.Input): void {
+		const userInput = event.currentTarget.value;
+		setRating(userInput);
+	}
+
+	function handleSubmit(event: FormTypes.Submit): void {
+		event.preventDefault();
+
+		if (rating === "") handleErrorChange("not valid");
+		else if (Number(rating) < 1) handleErrorChange("too small");
 		else if (Number(rating) > 10) handleErrorChange("too big");
 		else if (!Number(rating)) handleErrorChange("not valid");
 		else handleErrorChange("clear");
-	}, [rating]);
+
+		console.log("Rating:", rating);
+		console.log("Error:", error);
+	}
 
 	const animateRatingAndLikes = Springs.ratingAndLikes();
 	const animateLikesCount = Springs.likesCount();
 	const animateRatingForm = Springs.ratingForm();
 	const animateRatingInput = Springs.ratingInput();
-	const animateRatingSubmit = Springs.ratingSubmit();
 
 	return (
 		<Styled.RatingAndLikes style={animateRatingAndLikes}>
@@ -78,9 +78,7 @@ export const RatingAndLikes = () => {
 						<Styled.RatingFormInputText margin={"true"}>/</Styled.RatingFormInputText>
 						<Styled.RatingFormInputText margin={"false"}>10</Styled.RatingFormInputText>
 					</Styled.RatingFormInputGroup>
-					<Styled.RatingFormSubmitButton style={animateRatingSubmit}>
-						Rate
-					</Styled.RatingFormSubmitButton>
+					<Styled.RatingFormSubmitButton>Rate</Styled.RatingFormSubmitButton>
 				</Styled.RatingForm>
 			</Styled.Rating>
 

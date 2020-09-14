@@ -22,6 +22,7 @@ import likesFilled from "@/icons/home/authed/likes-filled.svg";
 export const RatingAndLikes = styled(animated.div)`
 	${Snippets.flex("row", "space-between", "center")};
 	padding: 0px 20px;
+	border-radius: ${Constants.borderRadius.components.reviewCard.ratingAndLikes};
 `;
 
 export const Rating = styled("div")`
@@ -79,16 +80,20 @@ export const RatingFormInput = styled(animated.input).attrs(() => ({
 	placeholder: "8",
 }))`
 	${Snippets.flexRowCenter()};
-	${Snippets.square("24px")};
+	${Snippets.square("28px")};
 	margin-right: 6px;
+	color: inherit;
 	border: none;
 	border-radius: ${Constants.borderRadius.components.reviewCard.ratingInput};
 	font-size: ${Constants.fontSizes.components.reviewCard.ratingInput};
 	font-weight: bold;
+	text-align: center;
 	outline: none;
 
 	::placeholder {
 		color: ${Colors.LIGHT.five};
+
+		border: red solid 1px;
 	}
 `;
 
@@ -101,9 +106,9 @@ export const RatingFormInputText = styled("span")<InputText>`
 	font-weight: bold;
 `;
 
-export const RatingFormSubmitButton = styled(animated.button)`
-	padding: 5px 8px;
-
+export const RatingFormSubmitButton = styled("button")`
+	padding: 6px 10px;
+	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
 	border: none;
 	border-radius: ${Constants.borderRadius.components.reviewCard.ratingSubmit};

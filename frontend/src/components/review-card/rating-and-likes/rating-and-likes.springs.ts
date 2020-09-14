@@ -9,11 +9,7 @@ export function ratingAndLikes() {
 				localStorage.mode === "light"
 					? Constants.theme.components.reviewCard.ratingAndLike.background.light
 					: Constants.theme.components.reviewCard.ratingAndLike.background.dark,
-			borderTop:
-				localStorage.mode === "light"
-					? `${Constants.theme.components.reviewCard.ratingAndLike.border.light} solid 1px`
-					: `${Constants.theme.components.reviewCard.ratingAndLike.border.dark} solid 1px`,
-			borderBottom:
+			border:
 				localStorage.mode === "light"
 					? `${Constants.theme.components.reviewCard.ratingAndLike.border.light} solid 1px`
 					: `${Constants.theme.components.reviewCard.ratingAndLike.border.dark} solid 1px`,
@@ -41,18 +37,6 @@ export function ratingInput() {
 				localStorage.mode === "light"
 					? Constants.theme.components.reviewCard.ratingAndLike.input.light
 					: Constants.theme.components.reviewCard.ratingAndLike.input.dark,
-		},
-		config: { duration: 100 },
-	});
-}
-
-export function ratingSubmit() {
-	return Spring.useSpring({
-		to: {
-			color:
-				localStorage.mode === "light"
-					? Constants.theme.text.dark
-					: Constants.theme.text.light,
 		},
 		config: { duration: 100 },
 	});
