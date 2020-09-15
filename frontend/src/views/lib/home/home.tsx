@@ -1,7 +1,10 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
+import * as Actions from "@/redux/actions";
+import * as Types from "@/utils/types";
 
 import * as Styled from "./home.styled";
 import * as Springs from "./home.springs";
@@ -65,18 +68,73 @@ descendants.`;
 const Authed = () => {
 	// Sections (when user IS logged in)
 
+	const dispatch = ReactRedux.useDispatch();
+	const currentUserId = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.session.id,
+	);
+	const isCurrentUser = !!currentUserId;
+
+	const posts = ReactRedux.useSelector((state: Types.ReduxState) => state.entities.posts);
+	const postErrors = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.errors.posts,
+	);
+
+	React.useEffect(() => {
+		if (isCurrentUser) Actions.Posts.thunkReceivePosts(postErrors, dispatch);
+	}, [currentUserId]);
+
+	console.log(Object.values(posts));
+
+	const reviewCards = Object.values(posts).map((post: any) => {
+		const {
+			id,
+			title,
+			series_title,
+			text,
+			personal_rating,
+			user_rating,
+			author,
+			tags,
+		} = post;
+
+		return (
+			<React.Fragment key={id}>
+				<Components.ReviewCard
+					username={"WataAni"}
+					seriesName={series_title}
+					title={title}
+					date={""}
+					text={text}
+				/>
+			</React.Fragment>
+		);
+	});
+
 	return (
 		<Styled.HomeAuthed>
 			<Styled.HomeAuthedSections>
-				<Components.ReviewCard
+				{reviewCards}
+
+				{/* <Components.ReviewCard
 					username={username}
 					seriesName={seriesName}
 					title={cardTitle}
 					date={cardDate}
 					text={cardText}
-				/>
+				/> */}
 			</Styled.HomeAuthedSections>
 			<Components.Pagination />
 		</Styled.HomeAuthed>
 	);
 };
+
+// '14': {
+// 	id: 14,
+// 	title: 'Ash, the Chosen One',
+// 	series_title: 'LAAAAAAA',
+// 	text: 'Lest the world turns to ash.',
+// 	personal_rating: 6,
+// 	user_rating: 10,
+// 	author: 2,
+// 	tags: null
+// },

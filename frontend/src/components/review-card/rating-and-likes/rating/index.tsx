@@ -11,8 +11,6 @@ export const Rating = () => {
 	const animateForm = Springs.formDesktop();
 	const animateInput = Springs.input();
 
-	console.log(reviewCard.state.mobileFormOpen);
-
 	return (
 		<Styled.Rating>
 			{/* User Rating */}
