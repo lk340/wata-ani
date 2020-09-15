@@ -1,4 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled, { css } from "styled-components";
 import { animated } from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
@@ -7,11 +7,20 @@ import * as Colors from "@/utils/style/colors";
 
 import close from "@/icons/close.svg";
 
+/**
+ * Rating
+ * User Rating
+ * Form
+ * Mobile Modal Form Toggle Button
+ * Modal Form (mobile)
+ */
+
 // ============== //
 // ↓↓↓ Rating ↓↓↓ //
 // ============== //
 
 export const Rating = styled("div")`
+	position: relative;
 	display: flex;
 `;
 
@@ -48,11 +57,11 @@ export const UserRatingCount = styled("span")`
 	font-size: ${Constants.fontSizes.components.reviewCard.ratingCount};
 `;
 
-// =================== //
-// ↓↓↓ Rating Form ↓↓↓ //
-// =================== //
+// ============ //
+// ↓↓↓ Form ↓↓↓ //
+// ============ //
 
-export const RatingForm = styled(animated.form)`
+export const RatingFormDesktop = styled(animated.form)`
 	${Snippets.flex("row", "center", "center")};
 	margin: 5px 0px;
 	padding: 14px 20px;
@@ -61,13 +70,6 @@ export const RatingForm = styled(animated.form)`
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		display: none;
 	}
-`;
-
-type MobileOverlay = { isOpen: string };
-
-export const RatingFormMobileOverlay = styled(animated.div)<MobileOverlay>`
-	${Snippets.fixed("0", "0", "0", "0")};
-	display: ${(props) => (props.isOpen === "true" ? "block" : "none")};
 `;
 
 export const RatingFormInputGroup = styled("div")`
@@ -103,9 +105,7 @@ export const RatingFormInputText = styled("span")<InputText>`
 	font-weight: bold;
 `;
 
-export const RatingFormSubmitButton = styled("button").attrs(() => ({
-	type: "submit",
-}))`
+const buttonStyles = css`
 	padding: 6px 10px;
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
@@ -114,4 +114,57 @@ export const RatingFormSubmitButton = styled("button").attrs(() => ({
 	font-size: ${Constants.fontSizes.components.reviewCard.ratingSubmit};
 	font-weight: bold;
 	cursor: pointer;
+`;
+
+export const RatingFormSubmitButton = styled("button").attrs(() => ({
+	type: "submit",
+}))`
+	${buttonStyles};
+`;
+
+// ======================================= //
+// ↓↓↓ Mobile Modal Form Toggle Button ↓↓↓ //
+// ======================================= //
+
+export const RatingFormMobileButtonContainer = styled("div")`
+	${Snippets.flexRowCenter()};
+`;
+
+type OpenMobile = { open: string };
+
+export const RatingFormMobileButton = styled("div")<OpenMobile>`
+	${buttonStyles};
+	display: none;
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		display: block;
+	}
+`;
+
+export const RatingFormMobileClose = styled("img").attrs(() => ({
+	src: close,
+	alt: "review card component rating form mobile modal close button",
+}))`
+	${Snippets.square("16px")};
+	cursor: pointer;
+`;
+
+// =========================== //
+// ↓↓↓ Modal Form (mobile) ↓↓↓ //
+// =========================== //
+
+export const RatingFormMobile = styled(animated.form)`
+	${Snippets.absolute("100%", "auto", "auto", "-20px")};
+	transform: translateY(10px);
+	display: none;
+	padding: 10px 20px;
+	border-radius: ${Constants.borderRadius.components.reviewCard.ratingFormMobile};
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		${Snippets.grid(2, "auto", 30, "center", "center")};
+	}
+`;
+
+export const RatingFormMobileInputSubmit = styled("div")`
+	display: flex;
 `;

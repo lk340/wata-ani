@@ -17,14 +17,3 @@ export function ratingAndLikes() {
 		config: { duration: 100 },
 	});
 }
-
-export function mobileOverlay() {
-	return Spring.useSpring({
-		to: {
-			backgroundColor:
-				localStorage.mode === "light"
-					? Constants.theme.overlay.light
-					: Constants.theme.overlay.dark,
-		},
-	});
-}

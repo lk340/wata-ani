@@ -7,13 +7,13 @@ import * as FormTypes from "@/utils/types";
 type State = {
 	rating: string;
 	error: string;
-	mobileModalOpen: boolean;
+	mobileFormOpen: boolean;
 };
 
 const initialState = Object.freeze<State>({
 	rating: "",
 	error: "",
-	mobileModalOpen: false,
+	mobileFormOpen: false,
 });
 
 export const useReviewCardContext = Helpers.createUseContext(() => {
@@ -30,8 +30,8 @@ export const useReviewCardContext = Helpers.createUseContext(() => {
 	const setReviewCard = (state: Partial<State>): void =>
 		_setReviewCard({ ...reviewCard, ...state });
 
-	function toggleMobileModalOpen(): void {
-		setReviewCard({ mobileModalOpen: !reviewCard.mobileModalOpen });
+	function toggleMobileFormOpen(): void {
+		setReviewCard({ mobileFormOpen: !reviewCard.mobileFormOpen });
 	}
 
 	// ================ //
@@ -92,7 +92,7 @@ export const useReviewCardContext = Helpers.createUseContext(() => {
 
 	const setters = {
 		setReviewCard,
-		toggleMobileModalOpen,
+		toggleMobileFormOpen,
 	};
 
 	const handlers = {

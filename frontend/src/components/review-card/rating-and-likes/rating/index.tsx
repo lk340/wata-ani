@@ -8,8 +8,10 @@ import * as Springs from "./rating.springs";
 export const Rating = () => {
 	const { reviewCard } = Context.ReviewCard.useReviewCardContext();
 
-	const animateRatingForm = Springs.ratingForm();
-	const animateRatingInput = Springs.ratingInput();
+	const animateForm = Springs.formDesktop();
+	const animateInput = Springs.input();
+
+	console.log(reviewCard.state.mobileFormOpen);
 
 	return (
 		<Styled.Rating>
@@ -24,20 +26,66 @@ export const Rating = () => {
 			</Styled.UserRatingContainer>
 
 			{/* Rating Form */}
-			<Styled.RatingForm
+			<Styled.RatingFormDesktop
 				onSubmit={reviewCard.handlers.handleSubmit}
-				style={animateRatingForm}
+				style={animateForm}
 			>
 				<Styled.RatingFormInputGroup>
 					<Styled.RatingFormInput
 						onChange={reviewCard.handlers.handleRatingChange}
-						style={animateRatingInput}
+						style={animateInput}
 					/>
 					<Styled.RatingFormInputText margin={"true"}>/</Styled.RatingFormInputText>
 					<Styled.RatingFormInputText margin={"false"}>10</Styled.RatingFormInputText>
 				</Styled.RatingFormInputGroup>
 				<Styled.RatingFormSubmitButton>Rate</Styled.RatingFormSubmitButton>
-			</Styled.RatingForm>
+			</Styled.RatingFormDesktop>
+
+			{/* Mobile Toggle Form Button */}
+			<Styled.RatingFormMobileButtonContainer>
+				<Styled.RatingFormMobileButton
+					onClick={reviewCard.setters.toggleMobileFormOpen}
+					open={reviewCard.state.mobileFormOpen.toString()}
+				>
+					Rate
+				</Styled.RatingFormMobileButton>
+			</Styled.RatingFormMobileButtonContainer>
+
+			{/* Rating Form Mobile */}
+			<RatingFormMobile />
 		</Styled.Rating>
+	);
+};
+
+// ========================== //
+// ↓↓↓ Rating Form Mobile ↓↓↓ //
+// ========================== //
+
+const RatingFormMobile = () => {
+	const { reviewCard } = Context.ReviewCard.useReviewCardContext();
+
+	const animateFormMobile = Springs.formMobile(reviewCard.state.mobileFormOpen);
+	const animateInput = Springs.input();
+
+	return (
+		<Styled.RatingFormMobile
+			onSubmit={reviewCard.handlers.handleSubmit}
+			style={animateFormMobile}
+		>
+			<Styled.RatingFormMobileInputSubmit>
+				<Styled.RatingFormInputGroup>
+					<Styled.RatingFormInput
+						onChange={reviewCard.handlers.handleRatingChange}
+						style={animateInput}
+					/>
+					<Styled.RatingFormInputText margin={"true"}>/</Styled.RatingFormInputText>
+					<Styled.RatingFormInputText margin={"false"}>10</Styled.RatingFormInputText>
+				</Styled.RatingFormInputGroup>
+
+				<Styled.RatingFormSubmitButton>Submit</Styled.RatingFormSubmitButton>
+			</Styled.RatingFormMobileInputSubmit>
+
+			<Styled.RatingFormMobileClose onClick={reviewCard.setters.toggleMobileFormOpen} />
+		</Styled.RatingFormMobile>
 	);
 };

@@ -35,7 +35,7 @@ export const theme = {
 	background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 	text: { light: Colors.TEXT.black, dark: Colors.TEXT.white },
 	overlay: { light: Colors.MODAL.overlay.light, dark: Colors.MODAL.overlay.dark },
-	shadowOneLight: { light: Shadows.light.one, dark: Shadows.dark.one },
+	shadowOne: { light: Shadows.light.one, dark: Shadows.dark.one },
 	shadowTwo: { light: Shadows.light.two, dark: Shadows.dark.two },
 	shadowThree: { light: Shadows.light.three, dark: Shadows.dark.three },
 	components: {
@@ -70,8 +70,12 @@ export const theme = {
 				background: { light: Colors.LIGHT.one, dark: Colors.DARK.three },
 				likes: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 				border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
-				form: { light: Colors.LIGHT.three, dark: Colors.DARK.two },
+				formDesktop: { light: Colors.LIGHT.three, dark: Colors.DARK.two },
 				input: { light: Colors.LIGHT.two, dark: Colors.DARK.five },
+				formMobile: {
+					border: { light: Colors.LIGHT.six, dark: Colors.DARK.four },
+					background: { light: Colors.LIGHT.three, dark: Colors.DARK.two },
+				},
 			},
 			date: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 		},
@@ -285,6 +289,7 @@ export const borderRadius = {
 			ratingForm: "0.3125rem",
 			ratingInput: "0.3125rem",
 			ratingSubmit: "0.1875rem",
+			ratingFormMobile: "0.3125rem",
 		},
 	},
 	pages: {
