@@ -34,7 +34,7 @@ export const Rating = styled("div")`
 // =================== //
 
 export const UserRatingContainer = styled("div")`
-	${Snippets.flex("column")};
+	${Snippets.flex("column", "center", "auto")};
 	margin-right: 20px;
 	padding: 10px 0px;
 `;
@@ -68,7 +68,9 @@ export const UserRatingCount = styled("span")`
 
 export const RatingForm = styled(animated.form)`
 	${Snippets.flex("row", "center", "center")};
-	padding: 10px 20px;
+	margin: 5px 0px;
+	padding: 14px 20px;
+	border-radius: ${Constants.borderRadius.components.reviewCard.ratingForm};
 `;
 
 export const RatingFormInputGroup = styled("div")`

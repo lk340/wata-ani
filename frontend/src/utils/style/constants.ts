@@ -281,6 +281,7 @@ export const borderRadius = {
 		reviewCard: {
 			card: "0.3125rem",
 			ratingAndLikes: "0.3125rem",
+			ratingForm: "0.3125rem",
 			ratingInput: "0.3125rem",
 			ratingSubmit: "0.1875rem",
 		},
