@@ -155,14 +155,9 @@ export const RatingFormMobileClose = styled("img").attrs(() => ({
 
 export const RatingFormMobile = styled(animated.form)`
 	${Snippets.absolute("100%", "auto", "auto", "-20px")};
-	transform: translateY(10px);
-	display: none;
+	${Snippets.grid(2, "auto", 30, "center", "center")};
 	padding: 10px 20px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.ratingFormMobile};
-
-	@media (max-width: ${Constants.breakpoints.mobile}px) {
-		${Snippets.grid(2, "auto", 30, "center", "center")};
-	}
 `;
 
 export const RatingFormMobileInputSubmit = styled("div")`

@@ -28,11 +28,11 @@ export function input() {
 
 export function formMobile(isOpen: boolean) {
 	return Spring.useSpring({
-		from: { transform: "translateY(20px)", opacity: 0, zIndex: -1 },
 		to: {
 			transform: isOpen ? "translateY(10px)" : "translateY(20px)",
-			opacity: 1,
-			zIndex: 1,
+			opacity: isOpen ? "1" : "0",
+			pointerEvents: isOpen ? "auto" : "none",
+			userSelect: isOpen ? "auto" : "none",
 			border:
 				localStorage.mode === "light"
 					? `${Constants.theme.components.reviewCard.ratingAndLike.formMobile.border.light} solid 1px`
@@ -48,6 +48,6 @@ export function formMobile(isOpen: boolean) {
 					? Constants.theme.shadowOne.light
 					: Constants.theme.shadowOne.dark,
 		},
-		config: { duration: 100 },
+		config: { duration: isOpen ? 180 : 100 },
 	});
 }
