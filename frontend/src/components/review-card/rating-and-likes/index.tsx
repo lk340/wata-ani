@@ -1,95 +1,18 @@
 import * as React from "react";
 
-import * as FormTypes from "@/utils/types/_form";
-
 import * as Styled from "./rating-and-likes.styled";
 import * as Springs from "./rating-and-likes.springs";
 
+import { Rating } from "./rating";
+import { Likes } from "./likes";
+
 export const RatingAndLikes = () => {
-	const [rating, setRating] = React.useState("");
-	const [error, setError] = React.useState("");
-
-	function handleErrorChange(
-		type: "too small" | "too big" | "not valid" | "clear",
-	): void {
-		switch (type) {
-			case "too small":
-				setError("Too small!");
-				break;
-
-			case "too big":
-				setError("Too big!");
-				break;
-
-			case "not valid":
-				setError("Enter a number between 1 and 10!");
-				break;
-
-			default:
-				setError("");
-				break;
-		}
-	}
-
-	function handleRatingChange(event: FormTypes.Input): void {
-		const userInput = event.currentTarget.value;
-		setRating(userInput);
-	}
-
-	function handleSubmit(event: FormTypes.Submit): void {
-		event.preventDefault();
-
-		if (rating === "") handleErrorChange("not valid");
-		else if (Number(rating) < 1) handleErrorChange("too small");
-		else if (Number(rating) > 10) handleErrorChange("too big");
-		else if (!Number(rating)) handleErrorChange("not valid");
-		else handleErrorChange("clear");
-
-		console.log("Rating:", rating);
-		console.log("Error:", error);
-	}
-
 	const animateRatingAndLikes = Springs.ratingAndLikes();
-	const animateLikesCount = Springs.likesCount();
-	const animateRatingForm = Springs.ratingForm();
-	const animateRatingInput = Springs.ratingInput();
 
 	return (
 		<Styled.RatingAndLikes style={animateRatingAndLikes}>
-			{/* Rating */}
-			<Styled.Rating>
-				{/* User Rating */}
-				<Styled.UserRatingContainer>
-					<Styled.UserRating>
-						<Styled.UserRatingValue>8.2</Styled.UserRatingValue>
-						<Styled.UserRatingFraction>/</Styled.UserRatingFraction>
-						<Styled.UserRatingFraction>10</Styled.UserRatingFraction>
-					</Styled.UserRating>
-					<Styled.UserRatingCount>83 Users</Styled.UserRatingCount>
-				</Styled.UserRatingContainer>
-
-				{/* Rating Form */}
-				<Styled.RatingForm onSubmit={handleSubmit} style={animateRatingForm}>
-					<Styled.RatingFormInputGroup>
-						<Styled.RatingFormInput
-							onChange={handleRatingChange}
-							style={animateRatingInput}
-						/>
-						<Styled.RatingFormInputText margin={"true"}>/</Styled.RatingFormInputText>
-						<Styled.RatingFormInputText margin={"false"}>10</Styled.RatingFormInputText>
-					</Styled.RatingFormInputGroup>
-					<Styled.RatingFormSubmitButton>Rate</Styled.RatingFormSubmitButton>
-				</Styled.RatingForm>
-			</Styled.Rating>
-
-			{/* Likes */}
-			<Styled.Likes>
-				<Styled.LikesIconContainer>
-					<Styled.LikesIconHollow />
-					<Styled.LikesIconFilled />
-				</Styled.LikesIconContainer>
-				<Styled.LikesCount style={animateLikesCount}>123</Styled.LikesCount>
-			</Styled.Likes>
+			<Rating />
+			<Likes />
 		</Styled.RatingAndLikes>
 	);
 };

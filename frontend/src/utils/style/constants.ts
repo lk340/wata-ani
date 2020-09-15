@@ -34,6 +34,7 @@ export const globals = {
 export const theme = {
 	background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 	text: { light: Colors.TEXT.black, dark: Colors.TEXT.white },
+	overlay: { light: Colors.MODAL.overlay.light, dark: Colors.MODAL.overlay.dark },
 	shadowOneLight: { light: Shadows.light.one, dark: Shadows.dark.one },
 	shadowTwo: { light: Shadows.light.two, dark: Shadows.dark.two },
 	shadowThree: { light: Shadows.light.three, dark: Shadows.dark.three },

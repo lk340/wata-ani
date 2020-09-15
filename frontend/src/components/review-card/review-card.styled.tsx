@@ -20,6 +20,10 @@ export const ReviewCard = styled(animated.div)`
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
 	height: ${Constants.size.components.reviewCard.height}px;
 	padding: 20px;
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		height: 475px;
+	}
 `;
 
 // ============== //

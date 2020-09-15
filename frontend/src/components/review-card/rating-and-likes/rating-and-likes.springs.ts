@@ -18,38 +18,13 @@ export function ratingAndLikes() {
 	});
 }
 
-export function ratingForm() {
+export function mobileOverlay() {
 	return Spring.useSpring({
 		to: {
 			backgroundColor:
 				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.ratingAndLike.form.light
-					: Constants.theme.components.reviewCard.ratingAndLike.form.dark,
+					? Constants.theme.overlay.light
+					: Constants.theme.overlay.dark,
 		},
-		config: { duration: 100 },
-	});
-}
-
-export function ratingInput() {
-	return Spring.useSpring({
-		to: {
-			backgroundColor:
-				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.ratingAndLike.input.light
-					: Constants.theme.components.reviewCard.ratingAndLike.input.dark,
-		},
-		config: { duration: 100 },
-	});
-}
-
-export function likesCount() {
-	return Spring.useSpring({
-		to: {
-			color:
-				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.ratingAndLike.likes.light
-					: Constants.theme.components.reviewCard.ratingAndLike.likes.dark,
-		},
-		config: { duration: 100 },
 	});
 }

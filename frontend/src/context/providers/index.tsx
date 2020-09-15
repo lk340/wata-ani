@@ -14,7 +14,9 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({ children })
 									<Context.AuthForm.Provider>
 										<Context.Navbar.Provider>
 											<Context.Pagination.Provider>
-												{children}
+												<Context.ReviewCard.Provider>
+													{children}
+												</Context.ReviewCard.Provider>
 											</Context.Pagination.Provider>
 										</Context.Navbar.Provider>
 									</Context.AuthForm.Provider>
