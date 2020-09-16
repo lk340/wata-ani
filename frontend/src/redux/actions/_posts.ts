@@ -1,14 +1,15 @@
 import axios from "axios";
 
 import * as Context from "@/context";
+import * as Types from "@/utils/types";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
 import * as ReducerTypes from "@/redux/reducers/__types";
 import { clearErrors } from "./_clear_errors";
 import { Tag } from "./_tags";
 
-export const RECEIVE_POSTS = "RECEIVE_POSTS";
-export const RECEIVE_POST = "RECEIVE_POST";
+export const GET_POSTS = "GET_POSTS";
+export const GET_POST = "GET_POST";
 export const CREATE_POST = "CREATE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
@@ -43,42 +44,42 @@ type CreateData = {
 	tags?: Tag | Tag[];
 };
 
-function receivePosts(posts: Post[]) {
+function receivePosts(posts: Post[]): Types.POJO {
 	return {
-		type: RECEIVE_POSTS,
+		type: GET_POSTS,
 		posts,
 	};
 }
 
-function receivePost(post: Post) {
+function receivePost(post: Post): Types.POJO {
 	return {
-		type: RECEIVE_POST,
+		type: GET_POST,
 		post,
 	};
 }
 
-function createPost(post: Post) {
+function createPost(post: Post): Types.POJO {
 	return {
 		type: CREATE_POST,
 		post,
 	};
 }
 
-function updatePost(post: Partial<Post>) {
+function updatePost(post: Partial<Post>): Types.POJO {
 	return {
 		type: UPDATE_POST,
 		post,
 	};
 }
 
-function deletePost(id: number) {
+function deletePost(id: number): Types.POJO {
 	return {
 		type: DELETE_POST,
 		id,
 	};
 }
 
-function postErrors(errors: Errors) {
+function postErrors(errors: Errors): Types.POJO {
 	return {
 		type: POST_ERRORS,
 		errors,

@@ -10,8 +10,8 @@ type StateCopy = {
 
 type Action = {
 	type:
-		| typeof Actions.Tags.RECEIVE_TAGS
-		| typeof Actions.Tags.RECEIVE_TAG
+		| typeof Actions.Tags.GET_TAGS
+		| typeof Actions.Tags.GET_TAG
 		| typeof Actions.Tags.CREATE_TAG
 		| typeof Actions.Tags.UPDATE_TAG
 		| typeof Actions.Tags.DELETE_TAG;
@@ -23,10 +23,10 @@ export function tagsReducer(state: State = {}, action: Action) {
 	const stateCopy: StateCopy = Lodash.merge({}, state);
 
 	switch (action.type) {
-		case Actions.Tags.RECEIVE_TAGS:
+		case Actions.Tags.GET_TAGS:
 			return action.tags;
 
-		case Actions.Tags.RECEIVE_TAG:
+		case Actions.Tags.GET_TAG:
 			stateCopy[action.tag.id] = action.tag;
 			return stateCopy;
 

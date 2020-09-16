@@ -1,12 +1,13 @@
 import axios from "axios";
 
+import * as Types from "@/utils/types";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
 import * as ReducerTypes from "@/redux/reducers/__types";
 import { clearErrors } from "./_clear_errors";
 
-export const RECEIVE_TAGS = "RECEIVE_TAGS";
-export const RECEIVE_TAG = "RECEIVE_TAG";
+export const GET_TAGS = "GET_TAGS";
+export const GET_TAG = "GET_TAG";
 export const CREATE_TAG = "CREATE_TAG";
 export const UPDATE_TAG = "UPDATE_TAG";
 export const DELETE_TAG = "DELETE_TAG";
@@ -22,42 +23,42 @@ const validateStatus = AxiosHelpers.validateStatus;
 
 export type Tag = { title: string };
 
-function receiveTags(tags: Tag[]) {
+function receiveTags(tags: Tag[]): Types.POJO {
 	return {
-		type: RECEIVE_TAGS,
+		type: GET_TAGS,
 		tags,
 	};
 }
 
-function receiveTag(tag: Tag) {
+function receiveTag(tag: Tag): Types.POJO {
 	return {
-		type: RECEIVE_TAG,
+		type: GET_TAG,
 		tag,
 	};
 }
 
-function createTag(tag: Tag) {
+function createTag(tag: Tag): Types.POJO {
 	return {
 		type: CREATE_TAG,
 		tag,
 	};
 }
 
-function updateTag(tag: Partial<Tag>) {
+function updateTag(tag: Partial<Tag>): Types.POJO {
 	return {
 		type: UPDATE_TAG,
 		tag,
 	};
 }
 
-function deleteTag(id: number) {
+function deleteTag(id: number): Types.POJO {
 	return {
 		type: DELETE_TAG,
 		id,
 	};
 }
 
-function tagErrors(errors: Errors) {
+function tagErrors(errors: Errors): Types.POJO {
 	return {
 		type: TAG_ERRORS,
 		errors,

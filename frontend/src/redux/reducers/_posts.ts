@@ -10,8 +10,8 @@ type StateCopy = {
 
 type Action = {
 	type:
-		| typeof Actions.Posts.RECEIVE_POSTS
-		| typeof Actions.Posts.RECEIVE_POST
+		| typeof Actions.Posts.GET_POSTS
+		| typeof Actions.Posts.GET_POST
 		| typeof Actions.Posts.CREATE_POST
 		| typeof Actions.Posts.UPDATE_POST
 		| typeof Actions.Posts.DELETE_POST;
@@ -23,10 +23,10 @@ export function postsReducer(state: State = {}, action: Action) {
 	const stateCopy: StateCopy = Lodash.merge({}, state);
 
 	switch (action.type) {
-		case Actions.Posts.RECEIVE_POSTS:
+		case Actions.Posts.GET_POSTS:
 			return action.posts;
 
-		case Actions.Posts.RECEIVE_POST:
+		case Actions.Posts.GET_POST:
 			stateCopy[action.post.id] = action.post;
 			return stateCopy;
 

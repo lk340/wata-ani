@@ -1,6 +1,7 @@
 import * as Gatsby from "gatsby";
 import axios from "axios";
 
+import * as Types from "@/utils/types";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
 import { clearErrors } from "./_clear_errors";
@@ -27,7 +28,7 @@ export type CurrentUser = {
 };
 
 // --- Used for both registration and sign in logic. --- //
-export function receiveCurrentUser(currentUser: CurrentUser) {
+export function receiveCurrentUser(currentUser: CurrentUser): Types.POJO {
 	return {
 		type: RECEIVE_CURRENT_USER,
 		currentUser,
@@ -38,7 +39,7 @@ export function receiveCurrentUser(currentUser: CurrentUser) {
 // ↓↓↓ Sign Out ↓↓↓ //
 // ================ //
 
-function signOutCurrentUser() {
+function signOutCurrentUser(): Types.POJO {
 	return {
 		type: SIGN_OUT_CURRENT_USER,
 	};
@@ -48,7 +49,7 @@ function signOutCurrentUser() {
 // ↓↓↓ Errors ↓↓↓ //
 // ============== //
 
-export function sessionErrors(errors: string[]) {
+export function sessionErrors(errors: string[]): Types.POJO {
 	return {
 		type: SESSION_ERRORS,
 		errors,

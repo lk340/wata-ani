@@ -19,3 +19,8 @@ export type ReduxState = {
 		tags: any;
 	};
 };
+
+export type POJO = {
+	type: string;
+	[key: string]: any;
+};
