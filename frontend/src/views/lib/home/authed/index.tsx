@@ -10,31 +10,35 @@ import * as Styled from "./authed.styled";
 
 export const Authed = () => {
 	const dispatch = ReactRedux.useDispatch();
+
+	// --- Checking if user is signed in or not --- //
 	const currentUserId = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.session.id,
 	);
-	const isCurrentUser = !!currentUserId;
+	const userIsSignedIn = !!currentUserId;
 
-	const posts = ReactRedux.useSelector((state: Types.ReduxState) => state.entities.posts);
-	const postErrors = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.errors.posts,
-	);
-
+	// --- Users --- //
 	const users = ReactRedux.useSelector((state: Types.ReduxState) => state.entities.users);
 	const userErrors = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.errors.users,
 	);
 
-	console.log("Users:", users);
+	// --- Posts --- //
+	const posts = ReactRedux.useSelector((state: Types.ReduxState) => state.entities.posts);
+	const postErrors = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.errors.posts,
+	);
 
 	React.useEffect(() => {
-		if (isCurrentUser) {
-			Actions.Posts.thunkGetPosts(dispatch, postErrors);
+		if (userIsSignedIn) {
 			Actions.Users.thunkGetUsers(dispatch, userErrors);
+			Actions.Posts.thunkGetPosts(dispatch, postErrors);
 		}
 	}, [currentUserId]);
 
-	const reviewCards = Object.values(posts).map((post: any) => {
+	const postValues: Actions.Posts.Post[] = Object.values(posts);
+
+	const reviewCards = postValues.map((post: Actions.Posts.Post) => {
 		const {
 			id,
 			title,
@@ -45,9 +49,6 @@ export const Authed = () => {
 			author,
 			tags,
 		} = post;
-
-		console.log("Author:", author);
-		if (users[author]) console.log("Author Username:", users[author].username);
 
 		return (
 			<React.Fragment key={id}>

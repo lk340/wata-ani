@@ -1,5 +1,7 @@
-import styled, { css, createGlobalStyle } from "styled-components";
-import { animated } from "react-spring";
+import styled from "styled-components";
+
+import * as Constants from "@/utils/style/constants";
+import * as Snippets from "@/utils/style/snippets";
 
 export const Authed = styled("div")`
 	${Snippets.flex("column")};

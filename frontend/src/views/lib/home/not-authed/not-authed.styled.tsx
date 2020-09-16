@@ -1,5 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
-import { animated } from "react-spring";
+import styled from "styled-components";
 
 import * as Constants from "@/utils/style/constants";
 
