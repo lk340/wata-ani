@@ -15,6 +15,8 @@ export function handleResponse(
 	}
 	// Failure
 	else {
+		console.log(response);
+
 		dispatch(errorActionCreator(response.data));
 	}
 }

@@ -79,9 +79,12 @@ const Authed = () => {
 		(state: Types.ReduxState) => state.errors.posts,
 	);
 
+	const users = ReactRedux.useSelector((state: Types.ReduxState) => state.entities.users);
 	const userErrors = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.errors.users,
 	);
+
+	console.log("Users:", users);
 
 	React.useEffect(() => {
 		if (isCurrentUser) {
@@ -89,8 +92,6 @@ const Authed = () => {
 			Actions.Users.thunkGetUsers(dispatch, userErrors);
 		}
 	}, [currentUserId]);
-
-	console.log(Object.values(posts));
 
 	const reviewCards = Object.values(posts).map((post: any) => {
 		const {
@@ -104,10 +105,13 @@ const Authed = () => {
 			tags,
 		} = post;
 
+		console.log("Author:", author);
+		if (users[author]) console.log("Author Username:", users[author].username);
+
 		return (
 			<React.Fragment key={id}>
 				<Components.ReviewCard
-					username={"WataAni"}
+					username={users[author] ? users[author].username : ""}
 					seriesName={series_title}
 					title={title}
 					date={""}

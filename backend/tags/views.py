@@ -14,7 +14,7 @@ class TagList(APIView):
     def get(self, request, format=None):
         tags = models.Tag.objects.all()
         serializer = serializers.TagSerializer(tags, many=True)
-        custom_data = {tag["id"]: tag for tag in serializer.data}
+        custom_data = { tag["id"]: tag for tag in serializer.data }
         return Response(custom_data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
