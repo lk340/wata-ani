@@ -3,7 +3,11 @@ import * as React from "react";
 import * as Styled from "./likes.styled";
 import * as Springs from "./likes.springs";
 
-export const Likes = () => {
+type Props = { likes: number };
+
+export const Likes = (props: Props) => {
+	const { likes } = props;
+
 	const animateLikesCount = Springs.likesCount();
 
 	return (
@@ -12,7 +16,7 @@ export const Likes = () => {
 				<Styled.LikesIconHollow />
 				<Styled.LikesIconFilled />
 			</Styled.LikesIconContainer>
-			<Styled.LikesCount style={animateLikesCount}>123</Styled.LikesCount>
+			<Styled.LikesCount style={animateLikesCount}>{likes}</Styled.LikesCount>
 		</Styled.Likes>
 	);
 };

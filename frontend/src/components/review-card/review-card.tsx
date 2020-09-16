@@ -7,6 +7,9 @@ import { RatingAndLikes } from "./rating-and-likes";
 
 type Props = {
 	username: string;
+	rating: number | "N/A";
+	ratingUserCount: number;
+	likes: number;
 	seriesName: string;
 	title: string;
 	date: string;
@@ -14,7 +17,16 @@ type Props = {
 };
 
 export const ReviewCard = (props: Props) => {
-	const { username, seriesName, title, date, text } = props;
+	const {
+		username,
+		rating,
+		ratingUserCount,
+		likes,
+		seriesName,
+		title,
+		date,
+		text,
+	} = props;
 
 	const animateReviewCard = Springs.reviewCard();
 	const animateCardDate = Springs.cardDate();
@@ -28,7 +40,7 @@ export const ReviewCard = (props: Props) => {
 			</Styled.ReviewCardHeader>
 
 			{/* Rating & Likes */}
-			<RatingAndLikes />
+			<RatingAndLikes rating={rating} ratingUserCount={ratingUserCount} likes={likes} />
 
 			{/* Series Name */}
 			<Styled.ReviewCardSeriesName>{seriesName}</Styled.ReviewCardSeriesName>

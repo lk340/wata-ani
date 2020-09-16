@@ -5,7 +5,14 @@ import * as Context from "@/context";
 import * as Styled from "./rating.styled";
 import * as Springs from "./rating.springs";
 
-export const Rating = () => {
+type Props = {
+	rating: number | "N/A";
+	ratingUserCount: number;
+};
+
+export const Rating = (props: Props) => {
+	const { rating, ratingUserCount } = props;
+
 	const { reviewCard } = Context.ReviewCard.useReviewCardContext();
 
 	const animateForm = Springs.formDesktop();
@@ -16,11 +23,11 @@ export const Rating = () => {
 			{/* User Rating */}
 			<Styled.UserRatingContainer>
 				<Styled.UserRating>
-					<Styled.UserRatingValue>8.2</Styled.UserRatingValue>
+					<Styled.UserRatingValue>{rating}</Styled.UserRatingValue>
 					<Styled.UserRatingFraction>/</Styled.UserRatingFraction>
 					<Styled.UserRatingFraction>10</Styled.UserRatingFraction>
 				</Styled.UserRating>
-				<Styled.UserRatingCount>83 Users</Styled.UserRatingCount>
+				<Styled.UserRatingCount>{ratingUserCount} Users</Styled.UserRatingCount>
 			</Styled.UserRatingContainer>
 
 			{/* Rating Form */}
