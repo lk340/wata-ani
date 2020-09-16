@@ -80,7 +80,7 @@ const Authed = () => {
 	);
 
 	React.useEffect(() => {
-		if (isCurrentUser) Actions.Posts.thunkReceivePosts(postErrors, dispatch);
+		if (isCurrentUser) Actions.Posts.thunkGetPosts(postErrors, dispatch);
 	}, [currentUserId]);
 
 	console.log(Object.values(posts));

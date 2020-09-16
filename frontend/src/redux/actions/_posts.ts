@@ -3,9 +3,8 @@ import axios from "axios";
 import * as Context from "@/context";
 import * as Types from "@/utils/types";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
+import * as Functions from "@/utils/functions";
 
-import * as ReducerTypes from "@/redux/reducers/__types";
-import { clearErrors } from "./_clear_errors";
 import { Tag } from "./_tags";
 
 export const GET_POSTS = "GET_POSTS";
@@ -14,8 +13,6 @@ export const CREATE_POST = "CREATE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 export const POST_ERRORS = "POST_ERRORS";
-
-type Errors = string | ReducerTypes.Errors;
 
 const validateStatus = AxiosHelpers.validateStatus;
 
@@ -44,14 +41,14 @@ type CreateData = {
 	tags?: Tag | Tag[];
 };
 
-function receivePosts(posts: Post[]): Types.POJO {
+function getPosts(posts: Post[]): Types.POJO {
 	return {
 		type: GET_POSTS,
 		posts,
 	};
 }
 
-function receivePost(post: Post): Types.POJO {
+function getPost(post: Post): Types.POJO {
 	return {
 		type: GET_POST,
 		post,
@@ -79,7 +76,7 @@ function deletePost(id: number): Types.POJO {
 	};
 }
 
-function postErrors(errors: Errors): Types.POJO {
+function postErrors(errors: Types.ActionCreatorErrors): Types.POJO {
 	return {
 		type: POST_ERRORS,
 		errors,
@@ -90,37 +87,44 @@ function postErrors(errors: Errors): Types.POJO {
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // ============================= //
 
-function handleResponse(
-	dispatch: Function,
-	response: any,
-	actionCreator: Function,
-	errors: Errors,
-) {
-	// Success
-	if (response.status < 400) {
-		dispatch(actionCreator(response.data));
-		if (errors.length > 0) dispatch(clearErrors());
-	}
-	// Failure
-	else {
-		dispatch(postErrors(response.data));
-	}
-}
+// function handleResponse(
+// 	dispatch: Function,
+// 	response: any,
+// 	actionCreator: Function,
+// 	errors: Types.ActionCreatorErrors,
+// ) {
+// 	// Success
+// 	if (response.status < 400) {
+// 		dispatch(actionCreator(response.data));
+// 		if (errors.length > 0) dispatch(clearErrors());
+// 	}
+// 	// Failure
+// 	else {
+// 		dispatch(postErrors(response.data));
+// 	}
+// }
 
-export async function thunkReceivePosts(errors: Errors, dispatch: Function) {
+export async function thunkGetPosts(
+	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
+) {
 	try {
 		const response = await axios.get("/api/posts/", { validateStatus });
-		handleResponse(dispatch, response, receivePosts, errors);
+		Functions.handleResponse(dispatch, response, getPosts, postErrors, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
 	}
 }
 
-export async function thunkReceivePost(id: number, errors: Errors, dispatch: Function) {
+export async function thunkGetPost(
+	id: number,
+	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
+) {
 	try {
 		const response = await axios.get(`/api/posts/${id}/`, { validateStatus });
-		handleResponse(dispatch, response, receivePost, errors);
+		Functions.handleResponse(dispatch, response, getPost, postErrors, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
@@ -129,12 +133,12 @@ export async function thunkReceivePost(id: number, errors: Errors, dispatch: Fun
 
 export async function thunkCreatePost(
 	data: CreateData,
-	errors: Errors,
 	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
 ) {
 	try {
 		const response = await axios.post("/api/posts/", data, { validateStatus });
-		handleResponse(dispatch, response, createPost, errors);
+		Functions.handleResponse(dispatch, response, createPost, postErrors, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
@@ -144,12 +148,12 @@ export async function thunkCreatePost(
 export async function thunkUpdatePost(
 	id: number,
 	data: Partial<CreateData>,
-	errors: Errors,
 	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
 ) {
 	try {
 		const response = await axios.patch(`/api/posts/${id}/`, data, { validateStatus });
-		handleResponse(dispatch, response, updatePost, errors);
+		Functions.handleResponse(dispatch, response, updatePost, postErrors, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);

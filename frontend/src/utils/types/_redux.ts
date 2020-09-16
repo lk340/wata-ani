@@ -20,7 +20,29 @@ export type ReduxState = {
 	};
 };
 
+// ============== //
+// ↓↓↓ Action ↓↓↓ //
+// ============== //
+
 export type POJO = {
 	type: string;
 	[key: string]: any;
 };
+
+export type ActionCreatorErrors = string | ReducerErrors;
+
+// =============== //
+// ↓↓↓ Reducer ↓↓↓ //
+// =============== //
+
+export type State = StateCopy | [];
+
+export type StateCopy = string | ReducerErrors;
+
+export type ActionErrors = {
+	[key: string]: any;
+};
+
+export type ReducerErrors = [string, string][];
+
+export type ReducerError = [string, [string]];

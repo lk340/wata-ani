@@ -2,9 +2,7 @@ import axios from "axios";
 
 import * as Types from "@/utils/types";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
-
-import * as ReducerTypes from "@/redux/reducers/__types";
-import { clearErrors } from "./_clear_errors";
+import * as Functions from "@/utils/functions";
 
 export const GET_TAGS = "GET_TAGS";
 export const GET_TAG = "GET_TAG";
@@ -12,8 +10,6 @@ export const CREATE_TAG = "CREATE_TAG";
 export const UPDATE_TAG = "UPDATE_TAG";
 export const DELETE_TAG = "DELETE_TAG";
 export const TAG_ERRORS = "TAG_ERRORS";
-
-type Errors = string | ReducerTypes.Errors;
 
 const validateStatus = AxiosHelpers.validateStatus;
 
@@ -23,14 +19,14 @@ const validateStatus = AxiosHelpers.validateStatus;
 
 export type Tag = { title: string };
 
-function receiveTags(tags: Tag[]): Types.POJO {
+function getTags(tags: Tag[]): Types.POJO {
 	return {
 		type: GET_TAGS,
 		tags,
 	};
 }
 
-function receiveTag(tag: Tag): Types.POJO {
+function getTag(tag: Tag): Types.POJO {
 	return {
 		type: GET_TAG,
 		tag,
@@ -58,7 +54,7 @@ function deleteTag(id: number): Types.POJO {
 	};
 }
 
-function tagErrors(errors: Errors): Types.POJO {
+function tagErrors(errors: Types.ActionCreatorErrors): Types.POJO {
 	return {
 		type: TAG_ERRORS,
 		errors,
@@ -69,47 +65,58 @@ function tagErrors(errors: Errors): Types.POJO {
 // ↓↓↓ Thunk Action Creators ↓↓↓ //
 // ============================= //
 
-function handleResponse(
-	dispatch: Function,
-	response: any,
-	actionCreator: Function,
-	errors: Errors,
-) {
-	// Success
-	if (response.status < 400) {
-		dispatch(actionCreator(response.data));
-		if (errors.length > 0) dispatch(clearErrors());
-	}
-	// Failure
-	else {
-		dispatch(tagErrors(response.data));
-	}
-}
+// function handleResponse(
+// 	dispatch: Function,
+// 	response: any,
+// 	actionCreator: Function,
+// 	errors: Types.ActionCreatorErrors,
+// ) {
+// 	// Success
+// 	if (response.status < 400) {
+// 		dispatch(actionCreator(response.data));
+// 		if (errors.length > 0) dispatch(clearErrors());
+// 	}
+// 	// Failure
+// 	else {
+// 		dispatch(tagErrors(response.data));
+// 	}
+// }
 
-export async function thunkReceiveTags(errors: Errors, dispatch: Function) {
+export async function thunkGetTags(
+	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
+) {
 	try {
 		const response = await axios.get("/api/tags/", { validateStatus });
-		handleResponse(dispatch, response, receiveTags, errors);
+		Functions.handleResponse(dispatch, response, getTags, tagErrors, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
 	}
 }
 
-export async function thunkReceiveTag(id: number, errors: Errors, dispatch: Function) {
+export async function thunkGetTag(
+	id: number,
+	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
+) {
 	try {
 		const response = await axios.get(`/api/tags/${id}/`, { validateStatus });
-		handleResponse(dispatch, response, receiveTag, errors);
+		Functions.handleResponse(dispatch, response, getTag, tagErrors, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
 	}
 }
 
-export async function thunkCreateTag(data: Tag, errors: Errors, dispatch: Function) {
+export async function thunkCreateTag(
+	data: Tag,
+	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
+) {
 	try {
 		const response = await axios.post("/api/tags/", data, { validateStatus });
-		handleResponse(dispatch, response, createTag, errors);
+		Functions.handleResponse(dispatch, response, createTag, tagErrors, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
@@ -119,12 +126,12 @@ export async function thunkCreateTag(data: Tag, errors: Errors, dispatch: Functi
 export async function thunkUpdateTag(
 	id: number,
 	data: Partial<Tag>,
-	errors: Errors,
 	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
 ) {
 	try {
 		const response = await axios.patch(`/api/tags/${id}/`, data, { validateStatus });
-		handleResponse(dispatch, response, updateTag, errors);
+		Functions.handleResponse(dispatch, response, updateTag, tagErrors, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);

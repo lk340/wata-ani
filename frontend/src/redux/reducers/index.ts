@@ -20,5 +20,5 @@ const errorsReducer = Redux.combineReducers({
 export const rootReducer = Redux.combineReducers({
 	entities: entitiesReducer,
 	session: sessionReducer,
-	errors: errorsReducer,
+	errors: Types.ActionCreatorErrorsReducer,
 });
