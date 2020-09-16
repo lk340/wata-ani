@@ -11,7 +11,7 @@ export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
-export const USER_ERROR = "USER_ERROR";
+export const USER_ERRORS = "USER_ERRORS";
 
 type User = Context.AuthForm.CurrentUser;
 type Users = User[];
@@ -50,7 +50,7 @@ function deleteUser(id: number): Types.POJO {
 
 function userErrors(errors: Types.ActionCreatorErrors): Types.POJO {
 	return {
-		type: USER_ERROR,
+		type: USER_ERRORS,
 		errors,
 	};
 }

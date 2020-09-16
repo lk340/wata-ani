@@ -79,8 +79,15 @@ const Authed = () => {
 		(state: Types.ReduxState) => state.errors.posts,
 	);
 
+	const userErrors = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.errors.users,
+	);
+
 	React.useEffect(() => {
-		if (isCurrentUser) Actions.Posts.thunkGetPosts(postErrors, dispatch);
+		if (isCurrentUser) {
+			Actions.Posts.thunkGetPosts(dispatch, postErrors);
+			Actions.Users.thunkGetUsers(dispatch, userErrors);
+		}
 	}, [currentUserId]);
 
 	console.log(Object.values(posts));

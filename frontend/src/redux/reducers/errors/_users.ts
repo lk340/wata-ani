@@ -4,16 +4,16 @@ import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
 
 type Action = {
-	type: typeof Actions.Posts.POST_ERRORS | typeof Actions.Errors.CLEAR_ERRORS;
+	type: typeof Actions.Users.USER_ERRORS | typeof Actions.Errors.CLEAR_ERRORS;
 	errors: Types.ActionErrors;
 };
 
-export function errorsReducer(state: Types.StateErrors = [], action: Action) {
+export function errorsReducer(state: Types.StateErrors, action: Action) {
 	Object.freeze(state);
 	const stateCopy: Types.StateCopyErrors = Lodash.merge([], state);
 
 	switch (action.type) {
-		case Actions.Posts.POST_ERRORS:
+		case Actions.Users.USER_ERRORS:
 			if (action.errors.detail) {
 				return action.errors.detail;
 			} else {

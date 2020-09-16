@@ -1,16 +1,16 @@
 import * as Lodash from "lodash";
 
 import * as Actions from "@/redux/actions";
-import * as Types from "../__types";
+import * as Types from "@/utils/types";
 
 type Action = {
 	type: typeof Actions.Tags.TAG_ERRORS | typeof Actions.Errors.CLEAR_ERRORS;
 	errors: Types.ActionErrors;
 };
 
-export function tagsReducer(state: Types.State = [], action: Action) {
+export function tagsReducer(state: Types.StateErrors = [], action: Action) {
 	Object.freeze(state);
-	const stateCopy: Types.StateCopy = Lodash.merge([], state);
+	const stateCopy: Types.StateCopyErrors = Lodash.merge([], state);
 
 	switch (action.type) {
 		case Actions.Tags.TAG_ERRORS:
@@ -18,8 +18,8 @@ export function tagsReducer(state: Types.State = [], action: Action) {
 				return action.errors.detail;
 			} else {
 				const errorEntries = Object.entries(action.errors);
-				const errors: Types.Errors = [];
-				errorEntries.forEach((error: Types.Error) => {
+				const errors: Types.ReducerErrors = [];
+				errorEntries.forEach((error: Types.ReducerError) => {
 					errors.push([error[0], error[1][0]]);
 				});
 				return errors;

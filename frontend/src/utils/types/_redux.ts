@@ -1,5 +1,6 @@
 export type ReduxState = {
 	entities: {
+		users: any;
 		posts: any;
 		tags: any;
 	};
@@ -15,6 +16,7 @@ export type ReduxState = {
 	};
 	errors: {
 		session: any;
+		users: any;
 		posts: any;
 		tags: any;
 	};
@@ -35,14 +37,14 @@ export type ActionCreatorErrors = string | ReducerErrors;
 // ↓↓↓ Reducer ↓↓↓ //
 // =============== //
 
-export type State = StateCopy | [];
+export type StateErrors = StateCopyErrors | [];
 
-export type StateCopy = string | ReducerErrors;
+export type StateCopyErrors = string | ReducerErrors;
 
 export type ActionErrors = {
 	[key: string]: any;
 };
 
-export type ReducerErrors = [string, string][];
-
 export type ReducerError = [string, [string]];
+
+export type ReducerErrors = [string, string][];
