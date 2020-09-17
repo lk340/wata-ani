@@ -9,7 +9,7 @@ User = get_user_model()
 
 
 class Post(models.Model):
-    title = models.CharField(verbose_name=_("Post Title"), max_length=20, blank=True)
+    title = models.CharField(verbose_name=_("Post Title"), max_length=50, blank=True)
     series_title = models.CharField(verbose_name=_("Series Title"), max_length=100, blank=True)
     text = models.TextField(verbose_name=_("Post Text"), max_length=500, blank=True)
     personal_rating = models.IntegerField(verbose_name=_("Personal Rating"), blank=True)

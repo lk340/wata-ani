@@ -14,6 +14,7 @@ type Props = {
 	title: string;
 	date: string;
 	text: string;
+	personalRating: number;
 };
 
 export const ReviewCard = (props: Props) => {
@@ -26,6 +27,7 @@ export const ReviewCard = (props: Props) => {
 		title,
 		date,
 		text,
+		personalRating,
 	} = props;
 
 	const animateReviewCard = Springs.reviewCard();
@@ -51,6 +53,16 @@ export const ReviewCard = (props: Props) => {
 				<Styled.ReviewCardDate style={animateCardDate}>{date}</Styled.ReviewCardDate>
 				<Styled.ReviewCardText>{text}</Styled.ReviewCardText>
 			</Styled.ReviewCardTitleDateText>
+
+			{/* Author Rating */}
+			<Styled.ReviewCardAuthorRating>
+				<Styled.ReviewCardAuthorRatingText>
+					I give this series a rating of:&nbsp;
+				</Styled.ReviewCardAuthorRatingText>
+				<Styled.ReviewCardAuthorRatingValue>
+					{personalRating}/10
+				</Styled.ReviewCardAuthorRatingValue>
+			</Styled.ReviewCardAuthorRating>
 		</Styled.ReviewCard>
 	);
 };

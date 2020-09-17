@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
+import moment from "moment";
 
 import * as Components from "@/components";
 
@@ -46,9 +47,13 @@ export const Authed = () => {
 			text,
 			personal_rating,
 			user_rating,
+			date_created,
 			author,
 			tags,
 		} = post;
+
+		const dateParsed = new Date(date_created.slice(0, 10)).toString().slice(4, 15);
+		const dateCreated = dateParsed.slice(0, 6) + ", " + dateParsed.slice(6);
 
 		return (
 			<React.Fragment key={id}>
@@ -59,8 +64,9 @@ export const Authed = () => {
 					likes={123}
 					seriesName={series_title}
 					title={title}
-					date={""}
+					date={dateCreated}
 					text={text}
+					personalRating={personal_rating}
 				/>
 			</React.Fragment>
 		);

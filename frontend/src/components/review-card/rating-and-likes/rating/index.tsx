@@ -27,7 +27,7 @@ export const Rating = (props: Props) => {
 					<Styled.UserRatingFraction>/</Styled.UserRatingFraction>
 					<Styled.UserRatingFraction>10</Styled.UserRatingFraction>
 				</Styled.UserRating>
-				<Styled.UserRatingCount>{ratingUserCount} Users</Styled.UserRatingCount>
+				<Styled.UserRatingCount>{ratingUserCount} Ratings</Styled.UserRatingCount>
 			</Styled.UserRatingContainer>
 
 			{/* Rating Form */}

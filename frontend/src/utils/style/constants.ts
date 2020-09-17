@@ -156,7 +156,8 @@ export const size = {
 			height: 500,
 		},
 		reviewCard: {
-			height: 430,
+			height: 470,
+			maxWidth: (globals.maxWidth - 40) / 3,
 		},
 	},
 	pages: {
@@ -215,6 +216,10 @@ export const fontSizes = {
 			ratingInputText: "0.75rem",
 			ratingSubmit: "0.75rem",
 			likesCount: "0.75rem",
+			authorRating: {
+				text: "0.75rem",
+				value: "0.875rem",
+			},
 		},
 	},
 	pages: {
