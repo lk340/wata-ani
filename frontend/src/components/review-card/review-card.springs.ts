@@ -29,3 +29,14 @@ export function cardDate() {
 		config: { duration: 100 },
 	});
 }
+
+export function tag() {
+	return Spring.useSpring({
+		to: {
+			backgroundColor:
+				localStorage.mode === "light"
+					? Constants.theme.components.reviewCard.tag.light
+					: Constants.theme.components.reviewCard.tag.dark,
+		},
+	});
+}

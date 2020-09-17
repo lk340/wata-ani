@@ -78,6 +78,7 @@ export const theme = {
 				},
 			},
 			date: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
+			tag: { light: Colors.LIGHT.three, dark: Colors.DARK.four },
 		},
 	},
 	pages: {
@@ -220,6 +221,7 @@ export const fontSizes = {
 				text: "0.875rem",
 				value: "0.875rem",
 			},
+			tag: "0.75rem",
 		},
 	},
 	pages: {
@@ -295,6 +297,7 @@ export const borderRadius = {
 			ratingInput: "0.3125rem",
 			ratingSubmit: "0.1875rem",
 			ratingFormMobile: "0.3125rem",
+			tag: "0.25rem",
 		},
 	},
 	pages: {

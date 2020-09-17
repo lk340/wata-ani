@@ -11,6 +11,7 @@ import * as Colors from "@/utils/style/colors";
  * Series Name
  * Title & Date & Text
  * Author Rating
+ * Tags
  */
 
 // =================== //
@@ -97,7 +98,7 @@ export const ReviewCardText = styled("p")`
 
 export const ReviewCardAuthorRating = styled("div")`
 	display: flex;
-	margin-top: 10px;
+	margin: 10px 0px 18px;
 `;
 
 export const ReviewCardAuthorRatingText = styled("span")`
@@ -110,4 +111,24 @@ export const ReviewCardAuthorRatingValue = styled("span")`
 	color: ${Colors.PRIMARY_100};
 	font-size: ${Constants.fontSizes.components.reviewCard.authorRating.value};
 	font-weight: bold;
+`;
+
+// ============ //
+// ↓↓↓ Tags ↓↓↓ //
+// ============ //
+
+type Tag = { length: number };
+
+export const ReviewCardTagContainer = styled("div")<Tag>`
+	${Snippets.hideScrollbar()};
+	display: grid;
+	grid-template-columns: ${(props) => `repeat(${props.length}, auto)`};
+	grid-gap: 10px;
+	overflow-y: auto;
+`;
+
+export const ReviewCardTag = styled(animated.div)`
+	padding: 10px 14px;
+	border-radius: ${Constants.borderRadius.components.reviewCard.tag};
+	font-size: ${Constants.fontSizes.components.reviewCard.tag};
 `;

@@ -32,6 +32,7 @@ export const ReviewCard = (props: Props) => {
 
 	const animateReviewCard = Springs.reviewCard();
 	const animateCardDate = Springs.cardDate();
+	const animateTag = Springs.tag();
 
 	return (
 		<Styled.ReviewCard style={animateReviewCard}>
@@ -63,6 +64,17 @@ export const ReviewCard = (props: Props) => {
 					{personalRating}/10
 				</Styled.ReviewCardAuthorRatingValue>
 			</Styled.ReviewCardAuthorRating>
+
+			{/* Tags */}
+			<Styled.ReviewCardTagContainer length={7}>
+				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
+				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
+				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
+				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
+				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
+				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
+				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
+			</Styled.ReviewCardTagContainer>
 		</Styled.ReviewCard>
 	);
 };
