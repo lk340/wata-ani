@@ -23,7 +23,7 @@ export const ReviewCard = styled(animated.div)`
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
 	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
 	/* height: ${Constants.size.components.reviewCard.height}px; */
-	padding: 20px;
+	padding: 20px 0px;
 
 	/* @media (max-width: ${Constants.breakpoints.mobile}px) {
 		height: 475px;
@@ -36,7 +36,8 @@ export const ReviewCard = styled(animated.div)`
 
 export const ReviewCardHeader = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
-	height: 80px;
+	margin-bottom: 20px;
+	padding: 0px 20px;
 `;
 
 export const ReviewCardProfilePicture = styled("img").attrs(() => ({
@@ -59,7 +60,7 @@ export const ReviewCardUsername = styled("p")`
 
 export const ReviewCardSeriesName = styled("p")`
 	${Snippets.clearSpacing()};
-	padding: 20px 0px 10px;
+	padding: 20px 20px 10px;
 	color: ${Colors.PRIMARY_100};
 	font-size: ${Constants.fontSizes.components.reviewCard.seriesName};
 	font-weight: bold;
@@ -72,6 +73,7 @@ export const ReviewCardSeriesName = styled("p")`
 
 export const ReviewCardTitleDateText = styled("div")`
 	${Snippets.grid(1, "auto", 6)};
+	padding: 0px 20px;
 `;
 
 export const ReviewCardTitle = styled("p")`
@@ -98,7 +100,8 @@ export const ReviewCardText = styled("p")`
 
 export const ReviewCardAuthorRating = styled("div")`
 	display: flex;
-	margin: 10px 0px 18px;
+	margin: 10px 0px 26px;
+	padding: 0px 20px;
 `;
 
 export const ReviewCardAuthorRatingText = styled("span")`
@@ -125,6 +128,7 @@ export const ReviewCardTagContainer = styled("div")<Tag>`
 	grid-template-columns: ${(props) => `repeat(${props.length}, auto)`};
 	grid-gap: 10px;
 	overflow-y: auto;
+	padding-left: 20px;
 `;
 
 export const ReviewCardTag = styled(animated.div)`

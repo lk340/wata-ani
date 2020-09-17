@@ -10,6 +10,7 @@ import * as Snippets from "@/utils/style/snippets";
 
 export const RatingAndLikes = styled(animated.div)`
 	${Snippets.flex("row", "space-between", "center")};
+	margin: 0px 20px;
 	padding: 0px 20px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.ratingAndLikes};
 `;
