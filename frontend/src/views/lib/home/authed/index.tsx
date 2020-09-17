@@ -30,10 +30,17 @@ export const Authed = () => {
 		(state: Types.ReduxState) => state.errors.posts,
 	);
 
+	// --- Tags --- //
+	const tags = ReactRedux.useSelector((state: Types.ReduxState) => state.entities.tags);
+	const tagErrors = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.errors.tags,
+	);
+
 	React.useEffect(() => {
 		if (userIsSignedIn) {
 			Actions.Users.thunkGetUsers(dispatch, userErrors);
 			Actions.Posts.thunkGetPosts(dispatch, postErrors);
+			Actions.Tags.thunkGetTags(dispatch, tagErrors);
 		}
 	}, [currentUserId]);
 
@@ -51,6 +58,8 @@ export const Authed = () => {
 			author,
 			tags,
 		} = post;
+
+		console.log(tags);
 
 		const dateParsed = new Date(date_created.slice(0, 10)).toString().slice(4, 15);
 		const dateCreated = dateParsed.slice(0, 6) + ", " + dateParsed.slice(6);
