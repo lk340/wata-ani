@@ -96,8 +96,8 @@ export const ReviewCardText = styled("p")`
 // ===================== //
 
 export const ReviewCardAuthorRating = styled("div")`
-	${Snippets.flex("row", "auto", "center")};
-	margin-top: 20px;
+	display: flex;
+	margin-top: 10px;
 `;
 
 export const ReviewCardAuthorRatingText = styled("span")`

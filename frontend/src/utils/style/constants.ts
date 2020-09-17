@@ -208,7 +208,7 @@ export const fontSizes = {
 			seriesName: "1rem",
 			cardTitle: "0.875rem",
 			cardDate: "0.875rem",
-			cardText: "0.75rem",
+			cardText: "0.875rem",
 			ratingValue: "1.125rem",
 			ratingFraction: "0.75rem",
 			ratingCount: "0.625rem",
@@ -217,7 +217,7 @@ export const fontSizes = {
 			ratingSubmit: "0.75rem",
 			likesCount: "0.75rem",
 			authorRating: {
-				text: "0.75rem",
+				text: "0.875rem",
 				value: "0.875rem",
 			},
 		},
