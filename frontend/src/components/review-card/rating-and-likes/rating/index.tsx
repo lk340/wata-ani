@@ -6,12 +6,12 @@ import * as Styled from "./rating.styled";
 import * as Springs from "./rating.springs";
 
 type Props = {
-	rating: number | "N/A";
-	ratingUserCount: number;
+	userRating: number | "N/A";
+	userRatingCount: number;
 };
 
 export const Rating = (props: Props) => {
-	const { rating, ratingUserCount } = props;
+	const { userRating, userRatingCount } = props;
 
 	const { reviewCard } = Context.ReviewCard.useReviewCardContext();
 
@@ -23,11 +23,11 @@ export const Rating = (props: Props) => {
 			{/* User Rating */}
 			<Styled.UserRatingContainer>
 				<Styled.UserRating>
-					<Styled.UserRatingValue>{rating}</Styled.UserRatingValue>
+					<Styled.UserRatingValue>{userRating}</Styled.UserRatingValue>
 					<Styled.UserRatingFraction>/</Styled.UserRatingFraction>
 					<Styled.UserRatingFraction>10</Styled.UserRatingFraction>
 				</Styled.UserRating>
-				<Styled.UserRatingCount>{ratingUserCount} Ratings</Styled.UserRatingCount>
+				<Styled.UserRatingCount>{userRatingCount} Ratings</Styled.UserRatingCount>
 			</Styled.UserRatingContainer>
 
 			{/* Rating Form */}

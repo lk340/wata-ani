@@ -7,19 +7,19 @@ import { Rating } from "./rating";
 import { Likes } from "./likes";
 
 type Props = {
-	rating: number | "N/A";
-	ratingUserCount: number;
+	userRating: number | "N/A";
+	userRatingCount: number;
 	likes: number;
 };
 
 export const RatingAndLikes = (props: Props) => {
-	const { rating, ratingUserCount, likes } = props;
+	const { userRating, userRatingCount, likes } = props;
 
 	const animateRatingAndLikes = Springs.ratingAndLikes();
 
 	return (
 		<Styled.RatingAndLikes style={animateRatingAndLikes}>
-			<Rating rating={rating} ratingUserCount={ratingUserCount} />
+			<Rating userRating={userRating} userRatingCount={userRatingCount} />
 			<Likes likes={likes} />
 		</Styled.RatingAndLikes>
 	);

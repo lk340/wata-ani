@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as Actions from "@/redux/actions";
+
 import * as Styled from "./review-card.styled";
 import * as Springs from "./review-card.springs";
 
@@ -7,32 +9,49 @@ import { RatingAndLikes } from "./rating-and-likes";
 
 type Props = {
 	username: string;
-	rating: number | "N/A";
-	ratingUserCount: number;
+	userRating: number | "N/A";
+	userRatingCount: number;
 	likes: number;
 	seriesName: string;
 	title: string;
 	date: string;
 	text: string;
 	personalRating: number;
+	tags: Actions.Tags.Tag[] | [];
 };
 
 export const ReviewCard = (props: Props) => {
 	const {
 		username,
-		rating,
-		ratingUserCount,
+		userRating,
+		userRatingCount,
 		likes,
 		seriesName,
 		title,
 		date,
 		text,
 		personalRating,
+		tags,
 	} = props;
 
 	const animateReviewCard = Springs.reviewCard();
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
+
+	const tagCount = tags.length;
+
+	let reviewCardTags;
+	if (tags.length > 0) {
+		reviewCardTags = tags.map((tag: Actions.Tags.Tag) => {
+			return (
+				<React.Fragment key={tag.id}>
+					<Styled.ReviewCardTag style={animateTag}>{tag.title}</Styled.ReviewCardTag>
+				</React.Fragment>
+			);
+		});
+	} else {
+		reviewCardTags = "";
+	}
 
 	return (
 		<Styled.ReviewCard style={animateReviewCard}>
@@ -43,7 +62,11 @@ export const ReviewCard = (props: Props) => {
 			</Styled.ReviewCardHeader>
 
 			{/* Rating & Likes */}
-			<RatingAndLikes rating={rating} ratingUserCount={ratingUserCount} likes={likes} />
+			<RatingAndLikes
+				userRating={userRating}
+				userRatingCount={userRatingCount}
+				likes={likes}
+			/>
 
 			{/* Series Name */}
 			<Styled.ReviewCardSeriesName>{seriesName}</Styled.ReviewCardSeriesName>
@@ -56,7 +79,7 @@ export const ReviewCard = (props: Props) => {
 			</Styled.ReviewCardTitleDateText>
 
 			{/* Author Rating */}
-			<Styled.ReviewCardAuthorRating>
+			<Styled.ReviewCardAuthorRating tagLength={tagCount}>
 				<Styled.ReviewCardAuthorRatingText>
 					I give this series a rating of:&nbsp;
 				</Styled.ReviewCardAuthorRatingText>
@@ -66,14 +89,8 @@ export const ReviewCard = (props: Props) => {
 			</Styled.ReviewCardAuthorRating>
 
 			{/* Tags */}
-			<Styled.ReviewCardTagContainer length={7}>
-				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
-				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
-				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
-				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
-				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
-				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
-				<Styled.ReviewCardTag style={animateTag}>Mecha</Styled.ReviewCardTag>
+			<Styled.ReviewCardTagContainer length={tagCount}>
+				{reviewCardTags}
 			</Styled.ReviewCardTagContainer>
 		</Styled.ReviewCard>
 	);

@@ -17,7 +17,10 @@ const validateStatus = AxiosHelpers.validateStatus;
 // ↓↓↓ Action Creators ↓↓↓ //
 // ======================= //
 
-export type Tag = { title: string };
+export type Tag = {
+	id: number;
+	title: string;
+};
 
 function getTags(tags: Tag[]): Types.POJO {
 	return {

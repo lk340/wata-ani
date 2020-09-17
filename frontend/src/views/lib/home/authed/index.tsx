@@ -59,14 +59,15 @@ export const Authed = () => {
 			<React.Fragment key={id}>
 				<Components.ReviewCard
 					username={users[author] ? users[author].username : ""}
-					rating={user_rating ? user_rating : "N/A"}
-					ratingUserCount={432}
+					userRating={user_rating ? user_rating : "N/A"}
+					userRatingCount={432}
 					likes={123}
 					seriesName={series_title}
 					title={title}
 					date={dateCreated}
 					text={text}
 					personalRating={personal_rating}
+					tags={tags ? tags : []}
 				/>
 			</React.Fragment>
 		);

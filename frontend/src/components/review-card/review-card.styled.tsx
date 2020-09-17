@@ -98,9 +98,11 @@ export const ReviewCardText = styled("p")`
 // ↓↓↓ Author Rating ↓↓↓ //
 // ===================== //
 
-export const ReviewCardAuthorRating = styled("div")`
+type AuthorRating = { tagLength: number };
+
+export const ReviewCardAuthorRating = styled("div")<AuthorRating>`
 	display: flex;
-	margin: 10px 0px 26px;
+	margin: ${(props) => (props.tagLength > 0 ? "10px 0px 26px" : "10px 0px 0px")};
 	padding: 0px 20px;
 `;
 
@@ -124,7 +126,7 @@ type Tag = { length: number };
 
 export const ReviewCardTagContainer = styled("div")<Tag>`
 	${Snippets.hideScrollbar()};
-	display: grid;
+	display: ${(props) => (props.length > 0 ? "grid" : "none")};
 	grid-template-columns: ${(props) => `repeat(${props.length}, auto)`};
 	grid-gap: 10px;
 	overflow-y: auto;
