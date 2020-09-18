@@ -1,6 +1,7 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 
-import * as Actions from "@/redux/actions";
+import * as Types from "@/utils/types";
 
 import * as Styled from "./review-card.styled";
 import * as Springs from "./review-card.springs";
@@ -17,7 +18,7 @@ type Props = {
 	date: string;
 	text: string;
 	personalRating: number;
-	tags: Actions.Tags.Tag[] | [];
+	tags: number[];
 };
 
 export const ReviewCard = (props: Props) => {
@@ -34,24 +35,36 @@ export const ReviewCard = (props: Props) => {
 		tags,
 	} = props;
 
+	const tagsRedux = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.entities.tags,
+	);
+
 	const animateReviewCard = Springs.reviewCard();
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
 
 	const tagCount = tags.length;
+	const _postHasTags = tagCount > 0;
+	const _tagsReduxLoaded = Object.keys(tagsRedux).length > 0;
 
 	let reviewCardTags;
-	if (tags.length > 0) {
-		reviewCardTags = tags.map((tag: Actions.Tags.Tag) => {
+	if (_postHasTags && _tagsReduxLoaded) {
+		reviewCardTags = tags.map((id: number) => {
 			return (
-				<React.Fragment key={tag.id}>
-					<Styled.ReviewCardTag style={animateTag}>{tag.title}</Styled.ReviewCardTag>
+				<React.Fragment key={id}>
+					<Styled.ReviewCardTag style={animateTag}>
+						{tagsRedux[id].title}
+					</Styled.ReviewCardTag>
 				</React.Fragment>
 			);
 		});
 	} else {
 		reviewCardTags = "";
 	}
+
+	console.log("Tags Redux:", tagsRedux);
+	console.log("Review Card Tags:", reviewCardTags);
+	console.log("Tags Length:", tags.length);
 
 	return (
 		<Styled.ReviewCard style={animateReviewCard}>

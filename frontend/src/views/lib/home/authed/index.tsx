@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
-import moment from "moment";
 
 import * as Components from "@/components";
 
@@ -19,32 +18,37 @@ export const Authed = () => {
 	const userIsSignedIn = !!currentUserId;
 
 	// --- Users --- //
-	const users = ReactRedux.useSelector((state: Types.ReduxState) => state.entities.users);
-	const userErrors = ReactRedux.useSelector(
+	const usersRedux = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.entities.users,
+	);
+
+	const userErrorsRedux = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.errors.users,
 	);
 
 	// --- Posts --- //
-	const posts = ReactRedux.useSelector((state: Types.ReduxState) => state.entities.posts);
-	const postErrors = ReactRedux.useSelector(
+	const postsRedux = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.entities.posts,
+	);
+
+	const postErrorsRedux = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.errors.posts,
 	);
 
 	// --- Tags --- //
-	const tags = ReactRedux.useSelector((state: Types.ReduxState) => state.entities.tags);
-	const tagErrors = ReactRedux.useSelector(
+	const tagErrorsRedux = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.errors.tags,
 	);
 
 	React.useEffect(() => {
 		if (userIsSignedIn) {
-			Actions.Users.thunkGetUsers(dispatch, userErrors);
-			Actions.Posts.thunkGetPosts(dispatch, postErrors);
-			Actions.Tags.thunkGetTags(dispatch, tagErrors);
+			Actions.Users.thunkGetUsers(dispatch, userErrorsRedux);
+			Actions.Posts.thunkGetPosts(dispatch, postErrorsRedux);
+			Actions.Tags.thunkGetTags(dispatch, tagErrorsRedux);
 		}
 	}, [currentUserId]);
 
-	const postValues: Actions.Posts.Post[] = Object.values(posts);
+	const postValues: Actions.Posts.Post[] = Object.values(postsRedux);
 
 	const reviewCards = postValues.map((post: Actions.Posts.Post) => {
 		const {
@@ -65,7 +69,7 @@ export const Authed = () => {
 		return (
 			<React.Fragment key={id}>
 				<Components.ReviewCard
-					username={users[author] ? users[author].username : ""}
+					username={usersRedux[author] ? usersRedux[author].username : ""}
 					userRating={user_rating ? user_rating : "N/A"}
 					userRatingCount={432}
 					likes={123}

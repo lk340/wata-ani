@@ -125,16 +125,17 @@ export const ReviewCardAuthorRatingValue = styled("span")`
 type Tag = { length: number };
 
 export const ReviewCardTagContainer = styled("div")<Tag>`
+	${Snippets.flex("row", "auto", "center")};
 	${Snippets.hideScrollbar()};
-	display: ${(props) => (props.length > 0 ? "grid" : "none")};
-	grid-template-columns: ${(props) => `repeat(${props.length}, auto)`};
-	grid-gap: 10px;
+	display: ${(props) => (props.length > 0 ? "flex" : "none")};
 	overflow-y: auto;
 	padding-left: 20px;
 `;
 
 export const ReviewCardTag = styled(animated.div)`
+	margin-right: 10px;
 	padding: 10px 14px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.tag};
 	font-size: ${Constants.fontSizes.components.reviewCard.tag};
+	cursor: pointer;
 `;
