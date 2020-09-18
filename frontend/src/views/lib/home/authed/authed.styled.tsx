@@ -12,7 +12,7 @@ export const Authed = styled("div")`
 `;
 
 export const AuthedSections = styled("div")`
-	${Snippets.grid(3, "1fr", 20, "center", "center")};
+	${Snippets.grid(3, "1fr", 20, "center", "start")};
 	flex: 1;
 	margin: 20px auto 0px;
 	width: 100%;
