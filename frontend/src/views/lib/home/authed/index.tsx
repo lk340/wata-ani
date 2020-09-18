@@ -59,8 +59,6 @@ export const Authed = () => {
 			tags,
 		} = post;
 
-		console.log(tags);
-
 		const dateParsed = new Date(date_created.slice(0, 10)).toString().slice(4, 15);
 		const dateCreated = dateParsed.slice(0, 6) + ", " + dateParsed.slice(6);
 

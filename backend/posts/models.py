@@ -16,8 +16,7 @@ class Post(models.Model):
     user_rating = models.IntegerField(verbose_name=_("User Rating"), null=True, blank=True)
     date_created = models.DateTimeField(_("Date Created"), default=timezone.now)
     author = models.ForeignKey(User, verbose_name=_("Post Author"), on_delete=models.CASCADE, blank=True)
-    # tags = models.ForeignKey(Tag, verbose_name=_("Post Tag"), on_delete=models.CASCADE, null=True, blank=True)
-    tags = models.ManyToManyField(Tag, verbose_name=_("Post Tags"), blank=True)
+    tags = models.ManyToManyField(Tag, verbose_name=_("Post Tags"), related_name="posts", blank=True)
 
     def __str__(self):
         return f"{self.author.username}'s Post: {self.title}"
