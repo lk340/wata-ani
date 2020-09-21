@@ -38,5 +38,6 @@ export function tag() {
 					? Constants.theme.components.reviewCard.tag.light
 					: Constants.theme.components.reviewCard.tag.dark,
 		},
+		config: { duration: 100 },
 	});
 }
