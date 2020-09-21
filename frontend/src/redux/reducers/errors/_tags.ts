@@ -8,7 +8,7 @@ type Action = {
 	errors: Types.ActionErrors;
 };
 
-export function tagsReducer(state: Types.StateErrors = [], action: Action) {
+export function errorsReducer(state: Types.StateErrors = [], action: Action) {
 	Object.freeze(state);
 	const stateCopy: Types.StateCopyErrors = Lodash.merge([], state);
 

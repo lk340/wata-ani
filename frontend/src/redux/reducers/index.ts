@@ -19,6 +19,7 @@ const errorsReducer = Redux.combineReducers({
 	users: Errors.usersErrorsReducer,
 	posts: Errors.postsErrorsReducer,
 	tags: Errors.tagsErrorsReducer,
+	ratings: Errors.ratingsErrorsReducer,
 });
 
 export const rootReducer = Redux.combineReducers({
