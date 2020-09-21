@@ -51,7 +51,8 @@ INSTALLED_APPS = [
 
     "users.apps.UsersConfig",
     "posts.apps.PostsConfig",
-    "tags.apps.TagsConfig"
+    "tags.apps.TagsConfig",
+    "ratings.apps.RatingsConfig"
 ]
 
 # ====================== #

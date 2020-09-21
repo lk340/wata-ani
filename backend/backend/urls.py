@@ -34,7 +34,10 @@ urlpatterns = [
     path("api/posts/", include("posts.urls")),
 
     # Tags
-    path("api/tags/", include("tags.urls"))
+    path("api/tags/", include("tags.urls")),
+
+    # Ratings
+    path("api/ratings/", include("ratings.urls"))
 ]
 
 if settings.DEBUG:
