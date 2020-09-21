@@ -26,8 +26,11 @@ export type Post = {
 	user_rating: number;
 	date_created: string;
 	author: string;
-	tags: Tag[];
-	ratings: Rating[];
+	tags: number[];
+	ratings: number[];
+
+	// tags: Tag[];
+	// ratings: Rating[];
 };
 
 type CreateData = {

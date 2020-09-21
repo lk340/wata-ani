@@ -1,8 +1,28 @@
+import * as Context from "@/context";
+import * as Actions from "@/redux/actions";
+
+type Users = {
+	[key: string]: Context.AuthForm.CurrentUser;
+};
+
+type Posts = {
+	[key: string]: Actions.Posts.Post;
+};
+
+type Tags = {
+	[key: string]: Actions.Tags.Tag;
+};
+
+type Ratings = {
+	[key: string]: Actions.Ratings.Rating;
+};
+
 export type ReduxState = {
 	entities: {
-		users: any;
-		posts: any;
-		tags: any;
+		users: Users;
+		posts: Posts;
+		tags: Tags;
+		ratings: Ratings;
 	};
 	session: {
 		id: number | null;
@@ -19,6 +39,7 @@ export type ReduxState = {
 		users: any;
 		posts: any;
 		tags: any;
+		ratings: any;
 	};
 };
 

@@ -40,11 +40,21 @@ export const Authed = () => {
 		(state: Types.ReduxState) => state.errors.tags,
 	);
 
+	// --- Ratings --- //
+	const ratingsRedux = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.entities.ratings,
+	);
+
+	const ratingErrorsRedux = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.errors.ratings,
+	);
+
 	React.useEffect(() => {
 		if (userIsSignedIn) {
 			Actions.Users.thunkGetUsers(dispatch, userErrorsRedux);
 			Actions.Posts.thunkGetPosts(dispatch, postErrorsRedux);
 			Actions.Tags.thunkGetTags(dispatch, tagErrorsRedux);
+			Actions.Ratings.thunkGetRatings(dispatch, ratingErrorsRedux);
 		}
 	}, [currentUserId]);
 
@@ -57,22 +67,34 @@ export const Authed = () => {
 			series_title,
 			text,
 			personal_rating,
-			user_rating,
 			date_created,
 			author,
 			tags,
 			ratings,
 		} = post;
 
-		const dateParsed = new Date(date_created.slice(0, 10)).toString().slice(4, 15);
-		const dateCreated = dateParsed.slice(0, 6) + ", " + dateParsed.slice(6);
+		const _parsedDate = new Date(date_created.slice(0, 10)).toString().slice(4, 15);
+		const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
+
+		console.log("Ratings:", ratingsRedux);
+
+		const userRatingCount = ratings.length;
+
+		let _userRatingsSum = 0;
+		if (Object.values(ratingsRedux).length > 0) {
+			ratings.forEach((rating: number) => {
+				_userRatingsSum += ratingsRedux[rating].rating;
+			});
+		}
+
+		const userRating = Number((_userRatingsSum / userRatingCount).toFixed(1));
 
 		return (
 			<React.Fragment key={id}>
 				<Components.ReviewCard
 					username={usersRedux[author] ? usersRedux[author].username : ""}
-					userRating={user_rating ? user_rating : "N/A"}
-					userRatingCount={432}
+					userRating={userRating > 0 ? userRating : "N/A"}
+					userRatingCount={userRatingCount}
 					likes={123}
 					seriesName={series_title}
 					title={title}

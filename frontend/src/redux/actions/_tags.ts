@@ -13,14 +13,14 @@ export const UPDATE_TAG = "UPDATE_TAG";
 export const DELETE_TAG = "DELETE_TAG";
 export const TAG_ERRORS = "TAG_ERRORS";
 
-// ======================= //
-// ↓↓↓ Action Creators ↓↓↓ //
-// ======================= //
-
 export type Tag = {
 	id: number;
 	title: string;
 };
+
+// ======================= //
+// ↓↓↓ Action Creators ↓↓↓ //
+// ======================= //
 
 function getTags(tags: Tag[]): Types.POJO {
 	return {
