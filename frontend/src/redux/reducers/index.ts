@@ -4,12 +4,14 @@ import { sessionReducer } from "./_session";
 import { usersReducer } from "./_users";
 import { postsReducer } from "./_posts";
 import { tagsReducer } from "./_tags";
+import { ratingsReducer } from "./_ratings";
 import * as Errors from "./errors";
 
 const entitiesReducer = Redux.combineReducers({
 	users: usersReducer,
 	posts: postsReducer,
 	tags: tagsReducer,
+	ratings: ratingsReducer,
 });
 
 const errorsReducer = Redux.combineReducers({
