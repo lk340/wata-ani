@@ -61,6 +61,7 @@ export const Authed = () => {
 			date_created,
 			author,
 			tags,
+			ratings,
 		} = post;
 
 		const dateParsed = new Date(date_created.slice(0, 10)).toString().slice(4, 15);

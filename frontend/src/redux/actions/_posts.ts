@@ -1,11 +1,14 @@
 import axios from "axios";
 
 import * as Context from "@/context";
-import * as Types from "@/utils/types";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Functions from "@/utils/functions";
+import * as Types from "@/utils/types";
 
-import { Tag } from "./_tags";
+import { Tag } from "@/redux/actions/_tags";
+import { Rating } from "@/redux/actions/_ratings";
+
+const validateStatus = AxiosHelpers.validateStatus;
 
 export const GET_POSTS = "GET_POSTS";
 export const GET_POST = "GET_POST";
@@ -13,12 +16,6 @@ export const CREATE_POST = "CREATE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 export const POST_ERRORS = "POST_ERRORS";
-
-const validateStatus = AxiosHelpers.validateStatus;
-
-// ======================= //
-// ↓↓↓ Action Creators ↓↓↓ //
-// ======================= //
 
 export type Post = {
 	id: number;
@@ -30,6 +27,7 @@ export type Post = {
 	date_created: string;
 	author: string;
 	tags: Tag[];
+	ratings: Rating[];
 };
 
 type CreateData = {
@@ -40,6 +38,10 @@ type CreateData = {
 	author: Context.AuthForm.CurrentUser;
 	tags?: Tag | Tag[];
 };
+
+// ======================= //
+// ↓↓↓ Action Creators ↓↓↓ //
+// ======================= //
 
 function getPosts(posts: Post[]): Types.POJO {
 	return {
@@ -107,7 +109,7 @@ function postErrors(errors: Types.ActionCreatorErrors): Types.POJO {
 export async function thunkGetPosts(
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.get("/api/posts/", { validateStatus });
 		Functions.handleResponse(dispatch, response, getPosts, postErrors, errors);
@@ -121,7 +123,7 @@ export async function thunkGetPost(
 	id: number,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.get(`/api/posts/${id}/`, { validateStatus });
 		Functions.handleResponse(dispatch, response, getPost, postErrors, errors);
@@ -135,7 +137,7 @@ export async function thunkCreatePost(
 	data: CreateData,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.post("/api/posts/", data, { validateStatus });
 		Functions.handleResponse(dispatch, response, createPost, postErrors, errors);
@@ -150,7 +152,7 @@ export async function thunkUpdatePost(
 	data: Partial<CreateData>,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.patch(`/api/posts/${id}/`, data, { validateStatus });
 		Functions.handleResponse(dispatch, response, updatePost, postErrors, errors);
@@ -160,7 +162,7 @@ export async function thunkUpdatePost(
 	}
 }
 
-export async function thunkDeletePost(id: number, dispatch: Function) {
+export async function thunkDeletePost(id: number, dispatch: Function): Promise<void> {
 	try {
 		const response = await axios.delete(`/api/posts/${id}/`, { validateStatus });
 

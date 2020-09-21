@@ -4,14 +4,14 @@ import * as Types from "@/utils/types";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Functions from "@/utils/functions";
 
+const validateStatus = AxiosHelpers.validateStatus;
+
 export const GET_TAGS = "GET_TAGS";
 export const GET_TAG = "GET_TAG";
 export const CREATE_TAG = "CREATE_TAG";
 export const UPDATE_TAG = "UPDATE_TAG";
 export const DELETE_TAG = "DELETE_TAG";
 export const TAG_ERRORS = "TAG_ERRORS";
-
-const validateStatus = AxiosHelpers.validateStatus;
 
 // ======================= //
 // ↓↓↓ Action Creators ↓↓↓ //
@@ -88,7 +88,7 @@ function tagErrors(errors: Types.ActionCreatorErrors): Types.POJO {
 export async function thunkGetTags(
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.get("/api/tags/", { validateStatus });
 		Functions.handleResponse(dispatch, response, getTags, tagErrors, errors);
@@ -102,7 +102,7 @@ export async function thunkGetTag(
 	id: number,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.get(`/api/tags/${id}/`, { validateStatus });
 		Functions.handleResponse(dispatch, response, getTag, tagErrors, errors);
@@ -116,7 +116,7 @@ export async function thunkCreateTag(
 	data: Tag,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.post("/api/tags/", data, { validateStatus });
 		Functions.handleResponse(dispatch, response, createTag, tagErrors, errors);
@@ -131,7 +131,7 @@ export async function thunkUpdateTag(
 	data: Partial<Tag>,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.patch(`/api/tags/${id}/`, data, { validateStatus });
 		Functions.handleResponse(dispatch, response, updateTag, tagErrors, errors);
@@ -141,7 +141,7 @@ export async function thunkUpdateTag(
 	}
 }
 
-export async function thunkDeleteTag(id: number, dispatch: Function) {
+export async function thunkDeleteTag(id: number, dispatch: Function): Promise<void> {
 	try {
 		const response = await axios.delete(`/api/tags/${id}/`, { validateStatus });
 

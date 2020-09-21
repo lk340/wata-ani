@@ -62,7 +62,7 @@ function userErrors(errors: Types.ActionCreatorErrors): Types.POJO {
 export async function thunkGetUsers(
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.get("/api/users/", { validateStatus });
 		Functions.handleResponse(dispatch, response, getUsers, userErrors, errors);
@@ -76,7 +76,7 @@ export async function thunkGetUser(
 	id: number,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.get(`/api/users/${id}/`, { validateStatus });
 		Functions.handleResponse(dispatch, response, getUser, userErrors, errors);
@@ -91,7 +91,7 @@ export async function thunkUpdateUser(
 	data: Partial<Context.AuthForm.CurrentUser>,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
-) {
+): Promise<void> {
 	try {
 		const response = await axios.patch(`/api/users/${id}/`, data, { validateStatus });
 		Functions.handleResponse(dispatch, response, updateUser, userErrors, errors);
@@ -101,7 +101,7 @@ export async function thunkUpdateUser(
 	}
 }
 
-export async function thunkDeleteUser(id: number, dispatch: Function) {
+export async function thunkDeleteUser(id: number, dispatch: Function): Promise<void> {
 	try {
 		const response = await axios.delete(`/api/users/${id}/`, { validateStatus });
 		console.log(response.data);
