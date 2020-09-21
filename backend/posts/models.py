@@ -13,7 +13,6 @@ class Post(models.Model):
     series_title = models.CharField(verbose_name=_("Series Title"), max_length=100, blank=True)
     text = models.TextField(verbose_name=_("Post Text"), max_length=500, blank=True)
     personal_rating = models.IntegerField(verbose_name=_("Personal Rating"), blank=True)
-    # user_rating = models.IntegerField(verbose_name=_("User Rating"), null=True, blank=True)
     date_created = models.DateTimeField(_("Date Created"), default=timezone.now)
     author = models.ForeignKey(User, verbose_name=_("Post Author"), on_delete=models.CASCADE, blank=True)
     tags = models.ManyToManyField(Tag, verbose_name=_("Post Tags"), related_name="posts", blank=True)
