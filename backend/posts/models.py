@@ -14,7 +14,7 @@ class Post(models.Model):
     text = models.TextField(verbose_name=_("Post Text"), max_length=500, blank=True)
     personal_rating = models.IntegerField(verbose_name=_("Personal Rating"), blank=True)
     date_created = models.DateTimeField(_("Date Created"), default=timezone.now)
-    author = models.ForeignKey(User, verbose_name=_("Post Author"), on_delete=models.CASCADE, blank=True)
+    author = models.ForeignKey(User, verbose_name=_("Post Author"), related_name="posts", on_delete=models.CASCADE, blank=True)
     tags = models.ManyToManyField(Tag, verbose_name=_("Post Tags"), related_name="posts", blank=True)
 
     def __str__(self):

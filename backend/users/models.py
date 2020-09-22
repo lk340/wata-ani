@@ -12,7 +12,7 @@ from . import managers
 
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(_("email address"), unique=True)
-    username = models.CharField(_("username"), max_length=20, unique=True)
+    username = models.CharField(_("username"), max_length=15, unique=True)
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
     last_login = models.DateTimeField(_("last login"), auto_now=True)
     is_active = models.BooleanField(default=True)
