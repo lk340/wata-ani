@@ -21,7 +21,7 @@ export type Post = {
 	id: number;
 	title: string;
 	series_title: string;
-	text: string;
+	review: string;
 	personal_rating: number;
 	user_rating: number;
 	date_created: string;
@@ -36,7 +36,7 @@ export type Post = {
 type CreateData = {
 	title: string;
 	series_title: string;
-	text: string;
+	review: string;
 	personal_rating: number;
 	author: Context.AuthForm.CurrentUser;
 	tags?: Tag | Tag[];

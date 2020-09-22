@@ -135,6 +135,8 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 			const response = await axios.get(endpoint, { validateStatus });
 			const currentUser = response.data;
 
+			console.log("Current User FLAMFLAM:", currentUser);
+
 			// Success
 			if (response.status < 400) {
 				console.log("Observer Response Success:", response);

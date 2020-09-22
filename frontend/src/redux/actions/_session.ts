@@ -1,6 +1,7 @@
 import * as Gatsby from "gatsby";
 import axios from "axios";
 
+import * as Context from "@/context";
 import * as Types from "@/utils/types";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
@@ -16,19 +17,21 @@ const validateStatus = AxiosHelpers.validateStatus;
 // ↓↓↓ Register / Sign In ↓↓↓ //
 // ========================== //
 
-export type CurrentUser = {
-	id: number | null;
-	username: string | null;
-	email: string | null;
-	date_joined: string | null;
-	last_login: string | null;
-	first_name: string | null;
-	last_name: string | null;
-	profile_picture: string | null;
-};
+// export type CurrentUser = {
+// 	id: number | null;
+// 	username: string | null;
+// 	email: string | null;
+// 	date_joined: string | null;
+// 	last_login: string | null;
+// 	first_name: string | null;
+// 	last_name: string | null;
+// 	profile_picture: string | null;
+// };
 
 // --- Used for both registration and sign in logic. --- //
-export function receiveCurrentUser(currentUser: CurrentUser): Types.POJO {
+export function receiveCurrentUser(
+	currentUser: Context.AuthForm.CurrentUser,
+): Types.POJO {
 	return {
 		type: RECEIVE_CURRENT_USER,
 		currentUser,

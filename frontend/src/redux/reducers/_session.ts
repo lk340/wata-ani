@@ -1,8 +1,22 @@
 import * as Lodash from "lodash";
 
+import * as Context from "@/context";
 import * as Actions from "@/redux/actions";
 
-const initialState: Actions.Session.CurrentUser = {
+export type InitialState = {
+	id: null;
+	username: null;
+	email: null;
+	date_joined: null;
+	last_login: null;
+	first_name: null;
+	last_name: null;
+	profile_picture: null;
+	posts: null;
+	ratings: null;
+};
+
+const initialState: InitialState = {
 	id: null,
 	username: null,
 	email: null,
@@ -11,7 +25,11 @@ const initialState: Actions.Session.CurrentUser = {
 	first_name: null,
 	last_name: null,
 	profile_picture: null,
+	posts: null,
+	ratings: null,
 };
+
+type State = InitialState | Context.AuthForm.CurrentUser;
 
 type Action = {
 	type:
@@ -20,25 +38,13 @@ type Action = {
 	[key: string]: any;
 };
 
-export function sessionReducer(
-	state: Actions.Session.CurrentUser = initialState,
-	action: Action,
-) {
+export function sessionReducer(state: State = initialState, action: Action) {
 	Object.freeze(state);
 	const stateCopy = Lodash.merge({}, state);
 
 	switch (action.type) {
 		case Actions.Session.RECEIVE_CURRENT_USER:
-			return {
-				id: action.currentUser.id,
-				username: action.currentUser.username,
-				email: action.currentUser.email,
-				date_joined: action.currentUser.date_joined,
-				last_login: action.currentUser.last_login,
-				first_name: action.currentUser.first_name,
-				last_name: action.currentUser.last_name,
-				profile_picture: action.currentUser.profile_picture,
-			};
+			return action.currentUser;
 
 		case Actions.Session.SIGN_OUT_CURRENT_USER:
 			return initialState;

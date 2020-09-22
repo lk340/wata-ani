@@ -17,7 +17,7 @@ export const Authed = () => {
 	);
 	const userIsSignedIn = !!currentUserId;
 
-	// --- Users --- //
+	// --- Users Redux --- //
 	const usersRedux = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.entities.users,
 	);
@@ -26,7 +26,7 @@ export const Authed = () => {
 		(state: Types.ReduxState) => state.errors.users,
 	);
 
-	// --- Posts --- //
+	// --- Posts Redux --- //
 	const postsRedux = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.entities.posts,
 	);
@@ -35,12 +35,12 @@ export const Authed = () => {
 		(state: Types.ReduxState) => state.errors.posts,
 	);
 
-	// --- Tags --- //
+	// --- Tags Redux --- //
 	const tagErrorsRedux = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.errors.tags,
 	);
 
-	// --- Ratings --- //
+	// --- Ratings Redux --- //
 	const ratingsRedux = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.entities.ratings,
 	);
@@ -65,7 +65,7 @@ export const Authed = () => {
 			id,
 			title,
 			series_title,
-			text,
+			review,
 			personal_rating,
 			date_created,
 			author,
@@ -99,9 +99,10 @@ export const Authed = () => {
 					seriesName={series_title}
 					title={title}
 					date={dateCreated}
-					text={text}
+					review={review}
 					personalRating={personal_rating}
 					tags={tags ? tags : []}
+					ratings={ratings ? ratings : []}
 				/>
 			</React.Fragment>
 		);

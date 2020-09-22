@@ -1,5 +1,6 @@
 import * as Context from "@/context";
 import * as Actions from "@/redux/actions";
+import { InitialState } from "@/redux/reducers/_session";
 
 type Users = {
 	[key: string]: Context.AuthForm.CurrentUser;
@@ -24,16 +25,7 @@ export type ReduxState = {
 		tags: Tags;
 		ratings: Ratings;
 	};
-	session: {
-		id: number | null;
-		username: string | null;
-		email: string | null;
-		date_joined: string | null;
-		last_login: string | null;
-		first_name: string | null;
-		last_name: string | null;
-		profile_picture: string | null;
-	};
+	session: InitialState | Context.AuthForm.CurrentUser;
 	errors: {
 		session: any;
 		users: any;

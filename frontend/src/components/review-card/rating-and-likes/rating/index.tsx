@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
 
@@ -8,15 +9,22 @@ import * as Springs from "./rating.springs";
 type Props = {
 	userRating: number | "N/A";
 	userRatingCount: number;
+	currentUserRating: number | "";
 };
 
 export const Rating = (props: Props) => {
-	const { userRating, userRatingCount } = props;
+	const { userRating, userRatingCount, currentUserRating } = props;
 
 	const { reviewCard } = Context.ReviewCard.useReviewCardContext();
 
 	const animateForm = Springs.formDesktop();
 	const animateInput = Springs.input();
+
+	React.useEffect(() => {
+		if (currentUserRating !== "") {
+			reviewCard.setters.setReviewCard({ rating: String(currentUserRating) });
+		}
+	}, [currentUserRating]);
 
 	return (
 		<Styled.Rating>
@@ -40,6 +48,7 @@ export const Rating = (props: Props) => {
 				<Styled.RatingFormInputGroup>
 					<Styled.RatingFormInput
 						onChange={reviewCard.handlers.handleRatingChange}
+						value={reviewCard.state.rating}
 						style={animateInput}
 					/>
 					<Styled.RatingFormInputText margin={"true"}>/</Styled.RatingFormInputText>

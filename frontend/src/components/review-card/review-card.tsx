@@ -16,9 +16,10 @@ type Props = {
 	seriesName: string;
 	title: string;
 	date: string;
-	text: string;
+	review: string;
 	personalRating: number;
 	tags: number[];
+	ratings: number[];
 };
 
 export const ReviewCard = (props: Props) => {
@@ -30,19 +31,30 @@ export const ReviewCard = (props: Props) => {
 		seriesName,
 		title,
 		date,
-		text,
+		review,
 		personalRating,
 		tags,
+		ratings,
 	} = props;
-
-	const tagsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.entities.tags,
-	);
 
 	const animateReviewCard = Springs.reviewCard();
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
 
+	// --- Tags Redux --- //
+	const tagsRedux = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.entities.tags,
+	);
+
+	// --- Ratings Redux --- //
+	const ratingsRedux = ReactRedux.useSelector(
+		(state: Types.ReduxState) => state.entities.ratings,
+	);
+
+	// --- Current User Redux --- //
+	const currentUser = ReactRedux.useSelector((state: Types.ReduxState) => state.session);
+
+	// Logic for rendering review card tags.
 	const tagCount = tags.length;
 	const _postHasTags = tagCount > 0;
 	const _tagsReduxLoaded = Object.keys(tagsRedux).length > 0;
@@ -62,9 +74,20 @@ export const ReviewCard = (props: Props) => {
 		reviewCardTags = "";
 	}
 
-	console.log("Tags Redux:", tagsRedux);
-	console.log("Review Card Tags:", reviewCardTags);
-	console.log("Tags Length:", tags.length);
+	// If user has made a rating, display it in the form and make the request a PATCH request
+	//	instead of a POST request.
+	const userRatings = currentUser.ratings;
+
+	let currentUserRating: number | "" = "";
+	if (Object.keys(ratingsRedux).length > 0 && userRatings) {
+		ratings.forEach((postRating: number) => {
+			if (userRatings.includes(postRating)) {
+				currentUserRating = ratingsRedux[postRating].rating;
+			} else {
+				currentUserRating = "";
+			}
+		});
+	}
 
 	return (
 		<Styled.ReviewCard style={animateReviewCard}>
@@ -78,6 +101,7 @@ export const ReviewCard = (props: Props) => {
 			<RatingAndLikes
 				userRating={userRating}
 				userRatingCount={userRatingCount}
+				currentUserRating={currentUserRating}
 				likes={likes}
 			/>
 
@@ -88,7 +112,7 @@ export const ReviewCard = (props: Props) => {
 			<Styled.ReviewCardTitleDateText>
 				<Styled.ReviewCardTitle>{title}</Styled.ReviewCardTitle>
 				<Styled.ReviewCardDate style={animateCardDate}>{date}</Styled.ReviewCardDate>
-				<Styled.ReviewCardText>{text}</Styled.ReviewCardText>
+				<Styled.ReviewCardText>{review}</Styled.ReviewCardText>
 			</Styled.ReviewCardTitleDateText>
 
 			{/* Author Rating */}
