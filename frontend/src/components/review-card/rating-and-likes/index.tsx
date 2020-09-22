@@ -9,7 +9,7 @@ import { Likes } from "./likes";
 type Props = {
 	userRating: number | "N/A";
 	userRatingCount: number;
-	currentUserRating: number | "";
+	currentUserRating: number;
 	likes: number;
 };
 

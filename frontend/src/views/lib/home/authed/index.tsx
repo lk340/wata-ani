@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactRedux from "react-redux";
 
 import * as Components from "@/components";
-
 import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
 
@@ -58,6 +57,8 @@ export const Authed = () => {
 		}
 	}, [currentUserId]);
 
+	// --- Review Card Logic --- //
+
 	const postValues: Actions.Posts.Post[] = Object.values(postsRedux);
 
 	const reviewCards = postValues.map((post: Actions.Posts.Post) => {
@@ -75,8 +76,6 @@ export const Authed = () => {
 
 		const _parsedDate = new Date(date_created.slice(0, 10)).toString().slice(4, 15);
 		const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
-
-		console.log("Ratings:", ratingsRedux);
 
 		const userRatingCount = ratings.length;
 
@@ -96,9 +95,9 @@ export const Authed = () => {
 					userRating={userRating > 0 ? userRating : "N/A"}
 					userRatingCount={userRatingCount}
 					likes={123}
-					seriesName={series_title}
+					seriesTitle={series_title}
 					title={title}
-					date={dateCreated}
+					dateCreated={dateCreated}
 					review={review}
 					personalRating={personal_rating}
 					tags={tags ? tags : []}

@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
 
@@ -9,7 +8,7 @@ import * as Springs from "./rating.springs";
 type Props = {
 	userRating: number | "N/A";
 	userRatingCount: number;
-	currentUserRating: number | "";
+	currentUserRating: number;
 };
 
 export const Rating = (props: Props) => {
@@ -21,7 +20,7 @@ export const Rating = (props: Props) => {
 	const animateInput = Springs.input();
 
 	React.useEffect(() => {
-		if (currentUserRating !== "") {
+		if (currentUserRating !== 0) {
 			reviewCard.setters.setReviewCard({ rating: String(currentUserRating) });
 		}
 	}, [currentUserRating]);
@@ -36,7 +35,8 @@ export const Rating = (props: Props) => {
 					<Styled.UserRatingFraction>10</Styled.UserRatingFraction>
 				</Styled.UserRating>
 				<Styled.UserRatingCount>
-					{userRatingCount} {userRatingCount > 1 ? "ratings" : "rating"}
+					{userRatingCount}{" "}
+					{userRatingCount > 1 || userRatingCount === 0 ? "ratings" : "rating"}
 				</Styled.UserRatingCount>
 			</Styled.UserRatingContainer>
 

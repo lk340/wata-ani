@@ -8,7 +8,7 @@ import * as Colors from "@/utils/style/colors";
 /**
  * Review Card
  * Header
- * Series Name
+ * Series Title
  * Title & Date & Text
  * Author Rating
  * Tags
@@ -54,11 +54,11 @@ export const ReviewCardUsername = styled("p")`
 	font-weight: bold;
 `;
 
-// =================== //
-// ↓↓↓ Series Name ↓↓↓ //
-// =================== //
+// ==================== //
+// ↓↓↓ Series Title ↓↓↓ //
+// ==================== //
 
-export const ReviewCardSeriesName = styled("p")`
+export const ReviewCardSeriesTitle= styled("p")`
 	${Snippets.clearSpacing()};
 	padding: 20px 20px 10px;
 	color: ${Colors.PRIMARY_100};

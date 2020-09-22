@@ -13,9 +13,9 @@ type Props = {
 	userRating: number | "N/A";
 	userRatingCount: number;
 	likes: number;
-	seriesName: string;
+	seriesTitle: string;
 	title: string;
-	date: string;
+	dateCreated: string;
 	review: string;
 	personalRating: number;
 	tags: number[];
@@ -28,9 +28,9 @@ export const ReviewCard = (props: Props) => {
 		userRating,
 		userRatingCount,
 		likes,
-		seriesName,
+		seriesTitle,
 		title,
-		date,
+		dateCreated,
 		review,
 		personalRating,
 		tags,
@@ -54,7 +54,7 @@ export const ReviewCard = (props: Props) => {
 	// --- Current User Redux --- //
 	const currentUser = ReactRedux.useSelector((state: Types.ReduxState) => state.session);
 
-	// Logic for rendering review card tags.
+	// Review Card Tag Components
 	const tagCount = tags.length;
 	const _postHasTags = tagCount > 0;
 	const _tagsReduxLoaded = Object.keys(tagsRedux).length > 0;
@@ -62,11 +62,10 @@ export const ReviewCard = (props: Props) => {
 	let reviewCardTags;
 	if (_postHasTags && _tagsReduxLoaded) {
 		reviewCardTags = tags.map((id: number) => {
+			const tagTitle = tagsRedux[id].title.toLowerCase();
 			return (
 				<React.Fragment key={id}>
-					<Styled.ReviewCardTag style={animateTag}>
-						{tagsRedux[id].title}
-					</Styled.ReviewCardTag>
+					<Styled.ReviewCardTag style={animateTag}>{tagTitle}</Styled.ReviewCardTag>
 				</React.Fragment>
 			);
 		});
@@ -75,16 +74,16 @@ export const ReviewCard = (props: Props) => {
 	}
 
 	// If user has made a rating, display it in the form and make the request a PATCH request
-	//	instead of a POST request.
+	// 	instead of a POST request.
 	const userRatings = currentUser.ratings;
 
-	let currentUserRating: number | "" = "";
+	let currentUserRating: number = 0;
 	if (Object.keys(ratingsRedux).length > 0 && userRatings) {
 		ratings.forEach((postRating: number) => {
 			if (userRatings.includes(postRating)) {
 				currentUserRating = ratingsRedux[postRating].rating;
 			} else {
-				currentUserRating = "";
+				currentUserRating = 0;
 			}
 		});
 	}
@@ -106,12 +105,14 @@ export const ReviewCard = (props: Props) => {
 			/>
 
 			{/* Series Name */}
-			<Styled.ReviewCardSeriesName>{seriesName}</Styled.ReviewCardSeriesName>
+			<Styled.ReviewCardSeriesTitle>{seriesTitle}</Styled.ReviewCardSeriesTitle>
 
 			{/* Title & Date & Text */}
 			<Styled.ReviewCardTitleDateText>
 				<Styled.ReviewCardTitle>{title}</Styled.ReviewCardTitle>
-				<Styled.ReviewCardDate style={animateCardDate}>{date}</Styled.ReviewCardDate>
+				<Styled.ReviewCardDate style={animateCardDate}>
+					{dateCreated}
+				</Styled.ReviewCardDate>
 				<Styled.ReviewCardText>{review}</Styled.ReviewCardText>
 			</Styled.ReviewCardTitleDateText>
 
