@@ -5,6 +5,8 @@ import * as Context from "@/context";
 import * as Styled from "./rating.styled";
 import * as Springs from "./rating.springs";
 
+import { UserRating } from "./user-rating";
+
 type Props = {
 	userRating: number | "N/A";
 	userRatingCount: number;
@@ -15,6 +17,10 @@ export const Rating = (props: Props) => {
 	const { userRating, userRatingCount, currentUserRating } = props;
 
 	const { reviewCard } = Context.ReviewCard.useReviewCardContext();
+
+	const [rating, setRating] = React.useState("");
+	const [error, setError] = React.useState("");
+	const [mobileFormOpen, setMobileFormOpen] = React.useState(false);
 
 	const animateForm = Springs.formDesktop();
 	const animateInput = Springs.input();
@@ -27,18 +33,7 @@ export const Rating = (props: Props) => {
 
 	return (
 		<Styled.Rating>
-			{/* User Rating */}
-			<Styled.UserRatingContainer>
-				<Styled.UserRating>
-					<Styled.UserRatingValue>{userRating}</Styled.UserRatingValue>
-					<Styled.UserRatingFraction>/</Styled.UserRatingFraction>
-					<Styled.UserRatingFraction>10</Styled.UserRatingFraction>
-				</Styled.UserRating>
-				<Styled.UserRatingCount>
-					{userRatingCount}{" "}
-					{userRatingCount > 1 || userRatingCount === 0 ? "ratings" : "rating"}
-				</Styled.UserRatingCount>
-			</Styled.UserRatingContainer>
+			<UserRating userRating={userRating} userRatingCount={userRatingCount} />
 
 			{/* Rating Form */}
 			<Styled.RatingFormDesktop

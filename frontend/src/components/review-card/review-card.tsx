@@ -1,9 +1,7 @@
 import * as React from "react";
-import * as ReactRedux from "react-redux";
 
 import * as Components from "@/components";
 import * as Functions from "@/utils/functions";
-import * as Types from "@/utils/types";
 
 import * as Styled from "./review-card.styled";
 import * as Springs from "./review-card.springs";
