@@ -4,6 +4,10 @@ import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
+// =================== //
+// ↓↓↓ User Rating ↓↓↓ //
+// =================== //
+
 export const UserRating = styled("div")`
 	${Snippets.flex("column", "center", "auto")};
 	margin-right: 20px;

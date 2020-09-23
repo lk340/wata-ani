@@ -2,31 +2,7 @@ import * as Spring from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
 
-export function formDesktop() {
-	return Spring.useSpring({
-		to: {
-			backgroundColor:
-				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.ratingAndLike.formDesktop.light
-					: Constants.theme.components.reviewCard.ratingAndLike.formDesktop.dark,
-		},
-		config: { duration: 100 },
-	});
-}
-
-export function input() {
-	return Spring.useSpring({
-		to: {
-			backgroundColor:
-				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.ratingAndLike.input.light
-					: Constants.theme.components.reviewCard.ratingAndLike.input.dark,
-		},
-		config: { duration: 100 },
-	});
-}
-
-export function formMobile(isOpen: boolean) {
+export function form(isOpen: boolean) {
 	return Spring.useSpring({
 		to: {
 			transform: isOpen ? "translateY(10px)" : "translateY(20px)",
@@ -49,5 +25,17 @@ export function formMobile(isOpen: boolean) {
 					: Constants.theme.shadowOne.dark,
 		},
 		config: { duration: isOpen ? 180 : 100 },
+	});
+}
+
+export function input() {
+	return Spring.useSpring({
+		to: {
+			backgroundColor:
+				localStorage.mode === "light"
+					? Constants.theme.components.reviewCard.ratingAndLike.input.light
+					: Constants.theme.components.reviewCard.ratingAndLike.input.dark,
+		},
+		config: { duration: 100 },
 	});
 }
