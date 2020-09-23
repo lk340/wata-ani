@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
 
+import * as Components from "@/components";
 import * as Types from "@/utils/types";
 
 import * as Styled from "./review-card.styled";
@@ -92,8 +93,17 @@ export const ReviewCard = (props: Props) => {
 		<Styled.ReviewCard style={animateReviewCard}>
 			{/* Header */}
 			<Styled.ReviewCardHeader>
-				<Styled.ReviewCardProfilePicture />
-				<Styled.ReviewCardUsername>{username}</Styled.ReviewCardUsername>
+				<Styled.ReviewCardProfilePicture_Username>
+					<Styled.ReviewCardProfilePicture />
+					<Styled.ReviewCardUsername>{username}</Styled.ReviewCardUsername>
+				</Styled.ReviewCardProfilePicture_Username>
+				<Styled.ReviewCardModalButton>
+					<Styled.ReviewCardModalButtonDot />
+					<Components.Spacer height={"2px"} />
+					<Styled.ReviewCardModalButtonDot />
+					<Components.Spacer height={"2px"} />
+					<Styled.ReviewCardModalButtonDot />
+				</Styled.ReviewCardModalButton>
 			</Styled.ReviewCardHeader>
 
 			{/* Rating & Likes */}

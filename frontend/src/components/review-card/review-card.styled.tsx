@@ -8,6 +8,7 @@ import * as Colors from "@/utils/style/colors";
 /**
  * Review Card
  * Header
+ * Modal Button
  * Series Title
  * Title & Date & Text
  * Author Rating
@@ -35,9 +36,13 @@ export const ReviewCard = styled(animated.div)`
 // ============== //
 
 export const ReviewCardHeader = styled("div")`
-	${Snippets.flex("row", "auto", "center")};
+	${Snippets.flex("row", "space-between", "center")};
 	margin-bottom: 20px;
 	padding: 0px 20px;
+`;
+
+export const ReviewCardProfilePicture_Username = styled("div")`
+	${Snippets.flex("row", "auto", "center")};
 `;
 
 export const ReviewCardProfilePicture = styled("img").attrs(() => ({
@@ -55,10 +60,25 @@ export const ReviewCardUsername = styled("p")`
 `;
 
 // ==================== //
+// ↓↓↓ Modal Button ↓↓↓ //
+// ==================== //
+
+export const ReviewCardModalButton = styled("div")`
+	${Snippets.flex("column")};
+	cursor: pointer;
+`;
+
+export const ReviewCardModalButtonDot = styled("div")`
+	${Snippets.square("4px")};
+	${Snippets.makeCircle()};
+	background-color: ${Colors.LIGHT.five};
+`;
+
+// ==================== //
 // ↓↓↓ Series Title ↓↓↓ //
 // ==================== //
 
-export const ReviewCardSeriesTitle= styled("p")`
+export const ReviewCardSeriesTitle = styled("p")`
 	${Snippets.clearSpacing()};
 	padding: 20px 20px 10px;
 	color: ${Colors.PRIMARY_100};
@@ -137,5 +157,4 @@ export const ReviewCardTag = styled(animated.div)`
 	padding: 10px 14px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.tag};
 	font-size: ${Constants.fontSizes.components.reviewCard.tag};
-	cursor: pointer;
 `;
