@@ -21,6 +21,7 @@ type Props = {
 	personalRating: number;
 	tags: number[];
 	ratings: number[];
+	belongsToCurrentUser: boolean;
 };
 
 export const ReviewCard = (props: Props) => {
@@ -36,6 +37,7 @@ export const ReviewCard = (props: Props) => {
 		personalRating,
 		tags,
 		ratings,
+		belongsToCurrentUser,
 	} = props;
 
 	const animateReviewCard = Springs.reviewCard();
@@ -93,10 +95,12 @@ export const ReviewCard = (props: Props) => {
 		<Styled.ReviewCard style={animateReviewCard}>
 			{/* Header */}
 			<Styled.ReviewCardHeader>
+				{/* Profile Picture & Username */}
 				<Styled.ReviewCardProfilePicture_Username>
 					<Styled.ReviewCardProfilePicture />
 					<Styled.ReviewCardUsername>{username}</Styled.ReviewCardUsername>
 				</Styled.ReviewCardProfilePicture_Username>
+				{/* Modal Button (ellipses) */}
 				<Styled.ReviewCardModalButton>
 					<Styled.ReviewCardModalButtonDot />
 					<Components.Spacer height={"2px"} />
@@ -112,10 +116,13 @@ export const ReviewCard = (props: Props) => {
 				userRatingCount={userRatingCount}
 				currentUserRating={currentUserRating}
 				likes={likes}
+				belongsToCurrentUser={belongsToCurrentUser}
 			/>
 
 			{/* Series Name */}
-			<Styled.ReviewCardSeriesTitle>{seriesTitle}</Styled.ReviewCardSeriesTitle>
+			<Styled.ReviewCardSeriesTitle belongs_to_current_user={belongsToCurrentUser.toString()}>
+				{seriesTitle}
+			</Styled.ReviewCardSeriesTitle>
 
 			{/* Title & Date & Text */}
 			<Styled.ReviewCardTitleDateText>

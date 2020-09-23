@@ -11,15 +11,25 @@ type Props = {
 	userRatingCount: number;
 	currentUserRating: number;
 	likes: number;
+	belongsToCurrentUser: boolean;
 };
 
 export const RatingAndLikes = (props: Props) => {
-	const { userRating, userRatingCount, currentUserRating, likes } = props;
+	const {
+		userRating,
+		userRatingCount,
+		currentUserRating,
+		likes,
+		belongsToCurrentUser,
+	} = props;
 
 	const animateRatingAndLikes = Springs.ratingAndLikes();
 
 	return (
-		<Styled.RatingAndLikes style={animateRatingAndLikes}>
+		<Styled.RatingAndLikes
+			belongs_to_current_user={belongsToCurrentUser.toString()}
+			style={animateRatingAndLikes}
+		>
 			<Rating
 				userRating={userRating}
 				userRatingCount={userRatingCount}

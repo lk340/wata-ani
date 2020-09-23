@@ -78,9 +78,15 @@ export const ReviewCardModalButtonDot = styled("div")`
 // ↓↓↓ Series Title ↓↓↓ //
 // ==================== //
 
-export const ReviewCardSeriesTitle = styled("p")`
+type SeriesTitleProps = { belongs_to_current_user: string };
+
+export const ReviewCardSeriesTitle = styled("p")<SeriesTitleProps>`
 	${Snippets.clearSpacing()};
-	padding: 20px 20px 10px;
+	padding: ${(props) => {
+		const { belongs_to_current_user } = props;
+		if (belongs_to_current_user === "true") return "10px 20px";
+		else return "20px 20px 10px";
+	}};
 	color: ${Colors.PRIMARY_100};
 	font-size: ${Constants.fontSizes.components.reviewCard.seriesName};
 	font-weight: bold;

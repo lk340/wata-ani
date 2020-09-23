@@ -14,6 +14,7 @@ export const Authed = () => {
 	const currentUserId = ReactRedux.useSelector(
 		(state: Types.ReduxState) => state.session.id,
 	);
+
 	const userIsSignedIn = !!currentUserId;
 
 	// --- Users Redux --- //
@@ -102,6 +103,7 @@ export const Authed = () => {
 					personalRating={personal_rating}
 					tags={tags ? tags : []}
 					ratings={ratings ? ratings : []}
+					belongsToCurrentUser={Number(author) === currentUserId}
 				/>
 			</React.Fragment>
 		);
