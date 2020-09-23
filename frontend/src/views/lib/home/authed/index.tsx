@@ -3,6 +3,7 @@ import * as ReactRedux from "react-redux";
 
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
+import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
 import * as Styled from "./authed.styled";
@@ -11,43 +12,16 @@ export const Authed = () => {
 	const dispatch = ReactRedux.useDispatch();
 
 	// --- Checking if user is signed in or not --- //
-	const currentUserId = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.session.id,
-	);
-
+	const currentUserId = Functions.getSession().id;
 	const userIsSignedIn = !!currentUserId;
 
-	// --- Users Redux --- //
-	const usersRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.entities.users,
-	);
-
-	const userErrorsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.errors.users,
-	);
-
-	// --- Posts Redux --- //
-	const postsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.entities.posts,
-	);
-
-	const postErrorsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.errors.posts,
-	);
-
-	// --- Tags Redux --- //
-	const tagErrorsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.errors.tags,
-	);
-
-	// --- Ratings Redux --- //
-	const ratingsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.entities.ratings,
-	);
-
-	const ratingErrorsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.errors.ratings,
-	);
+	const usersRedux = Functions.getUsers();
+	const userErrorsRedux = Functions.getUsersErrors();
+	const postsRedux = Functions.getPosts();
+	const postErrorsRedux = Functions.getPostsErrors();
+	const tagErrorsRedux = Functions.getTagsErrors();
+	const ratingsRedux = Functions.getRatings();
+	const ratingErrorsRedux = Functions.getRatingsErrors();
 
 	React.useEffect(() => {
 		if (userIsSignedIn) {
