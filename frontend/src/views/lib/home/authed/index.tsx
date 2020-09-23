@@ -60,7 +60,8 @@ export const Authed = () => {
 
 	// --- Review Card Logic --- //
 
-	const postValues: Actions.Posts.Post[] = Object.values(postsRedux);
+	// Reversing here to make sure that the posts are being displayed in descending order.
+	const postValues: Actions.Posts.Post[] = Object.values(postsRedux).reverse();
 
 	const reviewCards = postValues.map((post: Actions.Posts.Post) => {
 		const {

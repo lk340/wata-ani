@@ -63,8 +63,15 @@ export const ReviewCardUsername = styled("p")`
 // ↓↓↓ Modal Button ↓↓↓ //
 // ==================== //
 
-export const ReviewCardModalButton = styled("div")`
+type ModalButtonProps = { belongs_to_current_user: string };
+
+export const ReviewCardModalButton = styled("div")<ModalButtonProps>`
 	${Snippets.flex("column")};
+	display: ${(props) => {
+		const { belongs_to_current_user } = props;
+		if (belongs_to_current_user === "true") return "flex";
+		else return "none";
+	}};
 	cursor: pointer;
 `;
 
