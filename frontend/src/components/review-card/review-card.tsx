@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactRedux from "react-redux";
 
 import * as Components from "@/components";
+import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
 import * as Styled from "./review-card.styled";
@@ -44,18 +45,9 @@ export const ReviewCard = (props: Props) => {
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
 
-	// --- Tags Redux --- //
-	const tagsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.entities.tags,
-	);
-
-	// --- Ratings Redux --- //
-	const ratingsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.entities.ratings,
-	);
-
-	// --- Current User Redux --- //
-	const currentUser = ReactRedux.useSelector((state: Types.ReduxState) => state.session);
+	const currentUser = Functions.getSession();
+	const tagsRedux = Functions.getTags();
+	const ratingsRedux = Functions.getRatings();
 
 	// Review Card Tag Components
 	const tagCount = tags.length;

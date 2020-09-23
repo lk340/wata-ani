@@ -4,7 +4,6 @@ import * as ReactRedux from "react-redux";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
 import * as Functions from "@/utils/functions";
-import * as Types from "@/utils/types";
 
 import * as Styled from "./authed.styled";
 
