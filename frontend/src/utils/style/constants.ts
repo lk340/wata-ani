@@ -66,6 +66,9 @@ export const theme = {
 		reviewCard: {
 			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+			modalForm: {
+				background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+			},
 			ratingAndLike: {
 				background: { light: Colors.LIGHT.one, dark: Colors.DARK.three },
 				likes: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },

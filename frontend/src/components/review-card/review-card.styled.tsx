@@ -23,6 +23,7 @@ export const ReviewCard = styled(animated.div)`
 	position: relative;
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
 	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
+	width: 100%;
 	/* height: ${Constants.size.components.reviewCard.height}px; */
 	padding: 20px 0px;
 

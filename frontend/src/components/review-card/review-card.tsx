@@ -8,6 +8,7 @@ import * as Springs from "./review-card.springs";
 import * as ReviewCardTypes from "./_types";
 
 import { RatingAndLikes } from "./rating-and-likes";
+import { ModalForm } from "./modal-form";
 
 type Props = {
 	postId: number;
@@ -21,6 +22,12 @@ type Props = {
 	ReviewCardTypes.LikesProps;
 
 export const ReviewCard = (props: Props) => {
+	const [modalOpen, setModalOpen] = React.useState(false);
+
+	function toggleModalOpen(): void {
+		setModalOpen(!modalOpen);
+	}
+
 	const animateReviewCard = Springs.reviewCard();
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
@@ -63,10 +70,10 @@ export const ReviewCard = (props: Props) => {
 		});
 	}
 
-	console.log("Current User Rating Flamberg:", props.currentUserRating);
-
 	return (
 		<Styled.ReviewCard style={animateReviewCard}>
+			<ModalForm isOpen={modalOpen} toggleModalOpen={toggleModalOpen} />
+
 			{/* Header */}
 			<Styled.ReviewCardHeader>
 				{/* Profile Picture & Username */}
@@ -76,6 +83,7 @@ export const ReviewCard = (props: Props) => {
 				</Styled.ReviewCardProfilePicture_Username>
 				{/* Modal Button (ellipses) */}
 				<Styled.ReviewCardModalButton
+					onClick={toggleModalOpen}
 					belongs_to_current_user={props.belongsToCurrentUser.toString()}
 				>
 					<Styled.ReviewCardModalButtonDot />
