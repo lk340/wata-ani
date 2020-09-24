@@ -5,46 +5,22 @@ import * as Functions from "@/utils/functions";
 
 import * as Styled from "./review-card.styled";
 import * as Springs from "./review-card.springs";
+import * as ReviewCardTypes from "./_types";
 
 import { RatingAndLikes } from "./rating-and-likes";
 
 type Props = {
 	postId: number;
-	username: string;
 	userRating: number | "N/A";
 	userRatingCount: number;
-	likes: number;
-	seriesTitle: string;
-	title: string;
-	dateCreated: string;
-	review: string;
-	personalRating: number;
-	tags: number[];
-	ratings: number[];
-	belongsToCurrentUser: boolean;
 	userHasRated: boolean;
 	ratingId: number;
-};
+} & ReviewCardTypes.Post &
+	ReviewCardTypes.ReviewCardProps &
+	ReviewCardTypes.RatingAndLikesProps &
+	ReviewCardTypes.LikesProps;
 
 export const ReviewCard = (props: Props) => {
-	const {
-		postId,
-		username,
-		userRating,
-		userRatingCount,
-		likes,
-		seriesTitle,
-		title,
-		dateCreated,
-		review,
-		personalRating,
-		tags,
-		ratings,
-		belongsToCurrentUser,
-		userHasRated,
-		ratingId,
-	} = props;
-
 	const animateReviewCard = Springs.reviewCard();
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
@@ -54,13 +30,13 @@ export const ReviewCard = (props: Props) => {
 	const ratingsRedux = Functions.getRatings();
 
 	// Review Card Tag Components
-	const tagCount = tags.length;
+	const tagCount = props.tags.length;
 	const _postHasTags = tagCount > 0;
 	const _tagsReduxLoaded = Object.keys(tagsRedux).length > 0;
 
 	let reviewCardTags;
 	if (_postHasTags && _tagsReduxLoaded) {
-		reviewCardTags = tags.map((id: number) => {
+		reviewCardTags = props.tags.map((id: number) => {
 			const tagTitle = tagsRedux[id].title.toLowerCase();
 			return (
 				<React.Fragment key={id}>
@@ -78,7 +54,7 @@ export const ReviewCard = (props: Props) => {
 
 	let currentUserRating: number = 0;
 	if (Object.keys(ratingsRedux).length > 0 && userRatings) {
-		ratings.forEach((postRating: number) => {
+		props.ratings.forEach((postRating: number) => {
 			if (userRatings.includes(postRating)) {
 				currentUserRating = ratingsRedux[postRating].rating;
 			} else {
@@ -87,6 +63,8 @@ export const ReviewCard = (props: Props) => {
 		});
 	}
 
+	console.log("Current User Rating Flamberg:", props.currentUserRating);
+
 	return (
 		<Styled.ReviewCard style={animateReviewCard}>
 			{/* Header */}
@@ -94,11 +72,11 @@ export const ReviewCard = (props: Props) => {
 				{/* Profile Picture & Username */}
 				<Styled.ReviewCardProfilePicture_Username>
 					<Styled.ReviewCardProfilePicture />
-					<Styled.ReviewCardUsername>{username}</Styled.ReviewCardUsername>
+					<Styled.ReviewCardUsername>{props.username}</Styled.ReviewCardUsername>
 				</Styled.ReviewCardProfilePicture_Username>
 				{/* Modal Button (ellipses) */}
 				<Styled.ReviewCardModalButton
-					belongs_to_current_user={belongsToCurrentUser.toString()}
+					belongs_to_current_user={props.belongsToCurrentUser.toString()}
 				>
 					<Styled.ReviewCardModalButtonDot />
 					<Components.Spacer height={"2px"} />
@@ -110,30 +88,30 @@ export const ReviewCard = (props: Props) => {
 
 			{/* Rating & Likes */}
 			<RatingAndLikes
-				postId={postId}
-				userRating={userRating}
-				userRatingCount={userRatingCount}
+				postId={props.postId}
+				userRating={props.userRating}
+				userRatingCount={props.userRatingCount}
 				currentUserRating={currentUserRating}
-				likes={likes}
-				belongsToCurrentUser={belongsToCurrentUser}
-				userHasRated={userHasRated}
-				ratingId={ratingId}
+				likes={props.likes}
+				belongsToCurrentUser={props.belongsToCurrentUser}
+				userHasRated={props.userHasRated}
+				ratingId={props.ratingId}
 			/>
 
 			{/* Series Name */}
 			<Styled.ReviewCardSeriesTitle
-				belongs_to_current_user={belongsToCurrentUser.toString()}
+				belongs_to_current_user={props.belongsToCurrentUser.toString()}
 			>
-				{seriesTitle}
+				{props.seriesTitle}
 			</Styled.ReviewCardSeriesTitle>
 
 			{/* Title & Date & Text */}
 			<Styled.ReviewCardTitleDateText>
-				<Styled.ReviewCardTitle>{title}</Styled.ReviewCardTitle>
+				<Styled.ReviewCardTitle>{props.title}</Styled.ReviewCardTitle>
 				<Styled.ReviewCardDate style={animateCardDate}>
-					{dateCreated}
+					{props.dateCreated}
 				</Styled.ReviewCardDate>
-				<Styled.ReviewCardText>{review}</Styled.ReviewCardText>
+				<Styled.ReviewCardText>{props.review}</Styled.ReviewCardText>
 			</Styled.ReviewCardTitleDateText>
 
 			{/* Author Rating */}
@@ -142,7 +120,7 @@ export const ReviewCard = (props: Props) => {
 					I give this series a rating of:&nbsp;
 				</Styled.ReviewCardAuthorRatingText>
 				<Styled.ReviewCardAuthorRatingValue>
-					{personalRating}/10
+					{props.personalRating}/10
 				</Styled.ReviewCardAuthorRatingValue>
 			</Styled.ReviewCardAuthorRating>
 

@@ -37,26 +37,14 @@ export const Authed = () => {
 	const postValues: Actions.Posts.Post[] = Object.values(postsRedux).reverse();
 
 	const reviewCards = postValues.map((post: Actions.Posts.Post) => {
-		const {
-			id,
-			title,
-			series_title,
-			review,
-			personal_rating,
-			date_created,
-			author,
-			tags,
-			ratings,
-		} = post;
-
-		const _parsedDate = new Date(date_created.slice(0, 10)).toString().slice(4, 15);
+		const _parsedDate = new Date(post.date_created.slice(0, 10)).toString().slice(4, 15);
 		const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
 
-		const userRatingCount = ratings.length;
+		const userRatingCount = post.ratings.length;
 
 		let _userRatingsSum = 0;
 		if (Object.values(ratingsRedux).length > 0) {
-			ratings.forEach((rating: number) => {
+			post.ratings.forEach((rating: number) => {
 				_userRatingsSum += ratingsRedux[rating].rating;
 			});
 		}
@@ -65,7 +53,7 @@ export const Authed = () => {
 
 		let userHasRated = false;
 		let userRatingRatedId = 0;
-		ratings.forEach((ratingId: number) => {
+		post.ratings.forEach((ratingId: number) => {
 			if (currentUser.ratings.includes(ratingId)) {
 				userHasRated = true;
 				userRatingRatedId = ratingId;
@@ -75,21 +63,21 @@ export const Authed = () => {
 		});
 
 		return (
-			<React.Fragment key={id}>
+			<React.Fragment key={post.id}>
 				<Components.ReviewCard
-					postId={id}
-					username={usersRedux[author] ? usersRedux[author].username : ""}
+					postId={post.id}
+					username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
 					userRating={userRating > 0 ? userRating : "N/A"}
 					userRatingCount={userRatingCount}
 					likes={123}
-					seriesTitle={series_title}
-					title={title}
+					seriesTitle={post.series_title}
+					title={post.title}
 					dateCreated={dateCreated}
-					review={review}
-					personalRating={personal_rating}
-					tags={tags ? tags : []}
-					ratings={ratings ? ratings : []}
-					belongsToCurrentUser={Number(author) === currentUser.id}
+					review={post.review}
+					personalRating={post.personal_rating}
+					tags={post.tags ? post.tags : []}
+					ratings={post.ratings ? post.ratings : []}
+					belongsToCurrentUser={Number(post.author) === currentUser.id}
 					userHasRated={userHasRated}
 					ratingId={userRatingRatedId}
 				/>

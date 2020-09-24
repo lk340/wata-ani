@@ -2,47 +2,30 @@ import * as React from "react";
 
 import * as Styled from "./rating-and-likes.styled";
 import * as Springs from "./rating-and-likes.springs";
+import * as ReviewCardTypes from "../_types";
 
 import { Rating } from "./rating";
 import { Likes } from "./likes";
 
-type Props = {
-	postId: number;
-	userRating: number | "N/A";
-	userRatingCount: number;
-	currentUserRating: number;
-	likes: number;
-	belongsToCurrentUser: boolean;
-	userHasRated: boolean;
-	ratingId: number;
-};
+type Props = ReviewCardTypes.RatingAndLikesProps &
+	ReviewCardTypes.RatingProps &
+	ReviewCardTypes.LikesProps;
 
 export const RatingAndLikes = (props: Props) => {
-	const {
-		postId,
-		userRating,
-		userRatingCount,
-		currentUserRating,
-		likes,
-		belongsToCurrentUser,
-		userHasRated,
-		ratingId,
-	} = props;
-
 	const animateRatingAndLikes = Springs.ratingAndLikes();
 
 	return (
 		<Styled.RatingAndLikes
-			belongs_to_current_user={belongsToCurrentUser.toString()}
+			belongs_to_current_user={props.belongsToCurrentUser.toString()}
 			style={animateRatingAndLikes}
 		>
 			<Rating
-				postId={postId}
-				userRating={userRating}
-				userRatingCount={userRatingCount}
-				currentUserRating={currentUserRating}
-				userHasRated={userHasRated}
-				ratingId={ratingId}
+				postId={props.postId}
+				userRating={props.userRating}
+				userRatingCount={props.userRatingCount}
+				currentUserRating={props.currentUserRating}
+				userHasRated={props.userHasRated}
+				ratingId={props.ratingId}
 			/>
 			{/* <Likes likes={likes} /> */}
 		</Styled.RatingAndLikes>

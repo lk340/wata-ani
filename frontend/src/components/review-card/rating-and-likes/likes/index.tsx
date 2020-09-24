@@ -2,10 +2,9 @@ import * as React from "react";
 
 import * as Styled from "./likes.styled";
 import * as Springs from "./likes.springs";
+import * as ReviewCardTypes from "../../_types";
 
-type Props = { likes: number };
-
-export const Likes = (props: Props) => {
+export const Likes = (props: ReviewCardTypes.LikesProps) => {
 	const { likes } = props;
 
 	const animateLikesCount = Springs.likesCount();

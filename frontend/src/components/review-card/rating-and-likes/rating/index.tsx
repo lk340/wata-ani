@@ -6,29 +6,14 @@ import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
 import * as Styled from "./rating.styled";
+import * as ReviewCardTypes from "../../_types";
 
 import { UserRating } from "./user-rating";
 import { RatingFormDesktop } from "./rating-form-desktop";
 import { RatingFormMobile } from "./rating-form-mobile";
 
-type Props = {
-	postId: number;
-	userRating: number | "N/A";
-	userRatingCount: number;
-	currentUserRating: number;
-	userHasRated: boolean;
-	ratingId: number;
-};
-
-export const Rating = (props: Props) => {
-	const {
-		postId,
-		userRating,
-		userRatingCount,
-		currentUserRating,
-		userHasRated,
-		ratingId,
-	} = props;
+export const Rating = (props: ReviewCardTypes.RatingProps) => {
+	const { ratingId } = props;
 
 	const [rating, setRating] = React.useState("");
 	const [error, setError] = React.useState("");
@@ -55,10 +40,10 @@ export const Rating = (props: Props) => {
 
 		if (error === "") {
 			const owner = currentUser.id;
-			const post = postId;
+			const post = props.postId;
 			const data = { rating: Number(rating), owner, post };
 
-			if (userHasRated) {
+			if (props.userHasRated) {
 				Actions.Ratings.thunkUpdateRating(ratingId, data, dispatch, ratingsErrorsRedux);
 			} else {
 				Actions.Ratings.thunkCreateRating(data, dispatch, ratingsErrorsRedux);
@@ -73,14 +58,14 @@ export const Rating = (props: Props) => {
 	}
 
 	React.useEffect((): void => {
-		if (currentUserRating !== 0) setRating(String(currentUserRating));
-	}, [currentUserRating]);
+		if (props.currentUserRating !== 0) setRating(String(props.currentUserRating));
+	}, [props.currentUserRating]);
 
 	React.useEffect((): void => handleError(), [rating]);
 
 	return (
 		<Styled.Rating>
-			<UserRating userRating={userRating} userRatingCount={userRatingCount} />
+			<UserRating userRating={props.userRating} userRatingCount={props.userRatingCount} />
 
 			<RatingFormDesktop
 				rating={rating}
