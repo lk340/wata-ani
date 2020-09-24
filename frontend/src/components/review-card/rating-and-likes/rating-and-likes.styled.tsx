@@ -20,4 +20,6 @@ export const RatingAndLikes = styled(animated.div)<RatingAndLikesProps>`
 	margin: 0px 20px;
 	padding: 0px 20px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.ratingAndLikes};
+
+	border: red solid 1px !important;
 `;

@@ -11,9 +11,10 @@ type Props = {
 	userRating: number | "N/A";
 	userRatingCount: number;
 	currentUserRating: number;
-	postRatings: number[];
 	likes: number;
 	belongsToCurrentUser: boolean;
+	userHasRated: boolean;
+	ratingId: number;
 };
 
 export const RatingAndLikes = (props: Props) => {
@@ -22,9 +23,10 @@ export const RatingAndLikes = (props: Props) => {
 		userRating,
 		userRatingCount,
 		currentUserRating,
-		postRatings,
 		likes,
 		belongsToCurrentUser,
+		userHasRated,
+		ratingId,
 	} = props;
 
 	const animateRatingAndLikes = Springs.ratingAndLikes();
@@ -38,10 +40,11 @@ export const RatingAndLikes = (props: Props) => {
 				postId={postId}
 				userRating={userRating}
 				userRatingCount={userRatingCount}
-				postRatings={postRatings}
 				currentUserRating={currentUserRating}
+				userHasRated={userHasRated}
+				ratingId={ratingId}
 			/>
-			<Likes likes={likes} />
+			{/* <Likes likes={likes} /> */}
 		</Styled.RatingAndLikes>
 	);
 };

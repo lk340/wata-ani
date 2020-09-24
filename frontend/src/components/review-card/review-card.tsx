@@ -22,6 +22,8 @@ type Props = {
 	tags: number[];
 	ratings: number[];
 	belongsToCurrentUser: boolean;
+	userHasRated: boolean;
+	ratingId: number;
 };
 
 export const ReviewCard = (props: Props) => {
@@ -39,6 +41,8 @@ export const ReviewCard = (props: Props) => {
 		tags,
 		ratings,
 		belongsToCurrentUser,
+		userHasRated,
+		ratingId,
 	} = props;
 
 	const animateReviewCard = Springs.reviewCard();
@@ -106,13 +110,14 @@ export const ReviewCard = (props: Props) => {
 
 			{/* Rating & Likes */}
 			<RatingAndLikes
-			postId={postId}
+				postId={postId}
 				userRating={userRating}
 				userRatingCount={userRatingCount}
 				currentUserRating={currentUserRating}
-				postRatings={ratings}
 				likes={likes}
 				belongsToCurrentUser={belongsToCurrentUser}
+				userHasRated={userHasRated}
+				ratingId={ratingId}
 			/>
 
 			{/* Series Name */}

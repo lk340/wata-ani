@@ -15,12 +15,20 @@ type Props = {
 	postId: number;
 	userRating: number | "N/A";
 	userRatingCount: number;
-	postRatings: number[];
 	currentUserRating: number;
+	userHasRated: boolean;
+	ratingId: number;
 };
 
 export const Rating = (props: Props) => {
-	const { postId, userRating, userRatingCount, postRatings, currentUserRating } = props;
+	const {
+		postId,
+		userRating,
+		userRatingCount,
+		currentUserRating,
+		userHasRated,
+		ratingId,
+	} = props;
 
 	const [rating, setRating] = React.useState("");
 	const [error, setError] = React.useState("");
@@ -28,7 +36,6 @@ export const Rating = (props: Props) => {
 
 	const dispatch = ReactRedux.useDispatch();
 	const currentUser = Functions.getSession();
-	const postRedux = Functions.getPosts()[postId];
 	const ratingsErrorsRedux = Functions.getRatingsErrors();
 
 	function handleError(): void {
@@ -43,31 +50,22 @@ export const Rating = (props: Props) => {
 		setRating(event.currentTarget.value);
 	}
 
-	function handleSubmit(event: Types.Submit): void {
+	async function handleSubmit(event: Types.Submit): Promise<void> {
 		event.preventDefault();
 
 		if (error === "") {
-			currentUser.ratings.forEach((ratingId: number) => {
-				// User has already rated.
-				if (postRedux.ratings.includes(ratingId)) {
-					console.log("User has already rated.");
-					const data = { rating: Number(rating) };
-					Actions.Ratings.thunkUpdateRating(ratingId, data, dispatch, ratingsErrorsRedux);
-				}
-				// User has not rated, yet.
-				else {
-					console.log("User has not rated, yet.");
-					const owner = currentUser;
-					const post = postRedux;
-					const data = { rating: Number(rating), owner, post };
-					Actions.Ratings.thunkCreateRating(data, dispatch, ratingsErrorsRedux);
-				}
-			});
+			const owner = currentUser.id;
+			const post = postId;
+			const data = { rating: Number(rating), owner, post };
+
+			if (userHasRated) {
+				Actions.Ratings.thunkUpdateRating(ratingId, data, dispatch, ratingsErrorsRedux);
+			} else {
+				Actions.Ratings.thunkCreateRating(data, dispatch, ratingsErrorsRedux);
+			}
 		}
 
-		console.log("Rating:", rating);
-		console.log("Error:", error);
-		console.log("Post Id:", postId);
+		console.log(error);
 	}
 
 	function toggleMobileFormOpen(): void {

@@ -11,8 +11,8 @@ export const Authed = () => {
 	const dispatch = ReactRedux.useDispatch();
 
 	// --- Checking if user is signed in or not --- //
-	const currentUserId = Functions.getSession().id;
-	const userIsSignedIn = !!currentUserId;
+	const currentUser = Functions.getSession();
+	const userIsSignedIn = !!currentUser.id;
 
 	const usersRedux = Functions.getUsers();
 	const userErrorsRedux = Functions.getUsersErrors();
@@ -29,7 +29,7 @@ export const Authed = () => {
 			Actions.Tags.thunkGetTags(dispatch, tagErrorsRedux);
 			Actions.Ratings.thunkGetRatings(dispatch, ratingErrorsRedux);
 		}
-	}, [currentUserId]);
+	}, [userIsSignedIn]);
 
 	// --- Review Card Logic --- //
 
@@ -63,6 +63,17 @@ export const Authed = () => {
 
 		const userRating = Number((_userRatingsSum / userRatingCount).toFixed(1));
 
+		let userHasRated = false;
+		let userRatingRatedId = 0;
+		ratings.forEach((ratingId: number) => {
+			if (currentUser.ratings.includes(ratingId)) {
+				userHasRated = true;
+				userRatingRatedId = ratingId;
+			} else {
+				userHasRated = false;
+			}
+		});
+
 		return (
 			<React.Fragment key={id}>
 				<Components.ReviewCard
@@ -78,7 +89,9 @@ export const Authed = () => {
 					personalRating={personal_rating}
 					tags={tags ? tags : []}
 					ratings={ratings ? ratings : []}
-					belongsToCurrentUser={Number(author) === currentUserId}
+					belongsToCurrentUser={Number(author) === currentUser.id}
+					userHasRated={userHasRated}
+					ratingId={userRatingRatedId}
 				/>
 			</React.Fragment>
 		);

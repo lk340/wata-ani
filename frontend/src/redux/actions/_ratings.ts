@@ -25,10 +25,10 @@ export type Rating = {
 
 type CreateData = {
 	rating: number;
-	owner: Context.AuthForm.CurrentUser;
-	post: Post;
-	// owner: number;
-	// post: number;
+	// owner: Context.AuthForm.CurrentUser;
+	// post: Post;
+	owner: number;
+	post: number;
 };
 
 // ======================= //
@@ -86,7 +86,7 @@ export async function thunkGetRatings(
 	errors: Types.ActionCreatorErrors,
 ): Promise<void> {
 	try {
-		const response = await axios.get("/api/ratings", { validateStatus });
+		const response = await axios.get("/api/ratings/", { validateStatus });
 		Functions.handleResponse(dispatch, response, getRatings, ratingErrors, errors);
 	} catch (error) {
 		// Dev debug log
@@ -100,7 +100,7 @@ export async function thunkGetRating(
 	errors: Types.ActionCreatorErrors,
 ): Promise<void> {
 	try {
-		const response = await axios.get(`/api/ratings/${id}`, { validateStatus });
+		const response = await axios.get(`/api/ratings/${id}/`, { validateStatus });
 		Functions.handleResponse(dispatch, response, getRating, ratingErrors, errors);
 	} catch (error) {
 		// Dev debug log
@@ -114,7 +114,7 @@ export async function thunkCreateRating(
 	errors: Types.ActionCreatorErrors,
 ): Promise<void> {
 	try {
-		const response = await axios.post("/api/ratings", data, { validateStatus });
+		const response = await axios.post("/api/ratings/", data, { validateStatus });
 		Functions.handleResponse(dispatch, response, createRating, ratingErrors, errors);
 	} catch (error) {
 		// Dev debug log
@@ -124,12 +124,12 @@ export async function thunkCreateRating(
 
 export async function thunkUpdateRating(
 	id: number,
-	data: Partial<CreateData>,
+	data: CreateData,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
 ): Promise<void> {
 	try {
-		const response = await axios.patch(`/api/ratings/${id}`, data, { validateStatus });
+		const response = await axios.patch(`/api/ratings/${id}/`, data, { validateStatus });
 		Functions.handleResponse(dispatch, response, updateRating, ratingErrors, errors);
 	} catch (error) {
 		// Dev debug log
@@ -139,7 +139,7 @@ export async function thunkUpdateRating(
 
 export async function thunkDeleteRating(id: number, dispatch: Function): Promise<void> {
 	try {
-		const response = await axios.delete(`/api/ratings/${id}`, { validateStatus });
+		const response = await axios.delete(`/api/ratings/${id}/`, { validateStatus });
 
 		// Success
 		if (response.status < 400) dispatch(deleteRating(id));
