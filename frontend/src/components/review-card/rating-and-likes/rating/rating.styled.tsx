@@ -14,8 +14,10 @@ import * as Colors from "@/utils/style/colors";
 // ============== //
 
 export const Rating = styled("div")`
+	${Snippets.flex("row", "space-between", "center")};
 	position: relative;
-	display: flex;
+	/* display: flex; */
+	width: 100%;
 `;
 
 // ======================================= //
@@ -24,10 +26,14 @@ export const Rating = styled("div")`
 
 export const RatingToggleMobileFormButtonContainer = styled("div")`
 	${Snippets.flexRowCenter()};
+	display: none;
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		display: flex;
+	}
 `;
 
 export const RatingToggleMobileFormButton = styled("div")`
-	display: none;
 	padding: 6px 10px;
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
@@ -36,8 +42,4 @@ export const RatingToggleMobileFormButton = styled("div")`
 	font-size: ${Constants.fontSizes.components.reviewCard.ratingSubmit};
 	font-weight: bold;
 	cursor: pointer;
-
-	@media (max-width: ${Constants.breakpoints.mobile}px) {
-		display: block;
-	}
 `;
