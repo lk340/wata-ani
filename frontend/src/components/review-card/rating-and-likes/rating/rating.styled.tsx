@@ -4,8 +4,6 @@ import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
-import close from "@/icons/close.svg";
-
 /**
  * Rating
  * Mobile Modal Form Toggle Button
@@ -28,9 +26,9 @@ export const RatingToggleMobileFormButtonContainer = styled("div")`
 	${Snippets.flexRowCenter()};
 `;
 
-type OpenMobile = { open: string };
+type ToggleButton = { open: string };
 
-export const RatingToggleMobileFormButton = styled("div")<OpenMobile>`
+export const RatingToggleMobileFormButton = styled("div")<ToggleButton>`
 	display: none;
 	padding: 6px 10px;
 	color: ${Colors.NEUTRALS.white_100};

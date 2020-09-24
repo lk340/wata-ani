@@ -1,9 +1,11 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { animated } from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
+
+import close from "@/icons/close.svg";
 
 /**
  * Rating Form

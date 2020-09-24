@@ -20,7 +20,7 @@ export const UserRating = (props: Props) => {
 
 			{/* Count */}
 			<Styled.UserRatingCount>
-				{userRatingCount} &nbsp;
+				{userRatingCount}&nbsp;
 				{userRatingCount > 1 || userRatingCount === 0 ? "ratings" : "rating"}
 			</Styled.UserRatingCount>
 		</Styled.UserRating>
