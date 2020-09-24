@@ -21,11 +21,12 @@ import * as Colors from "@/utils/style/colors";
 
 export const ReviewCard = styled(animated.div)`
 	position: relative;
-	border-radius: ${Constants.borderRadius.components.reviewCard.card};
+	padding: 20px 0px;
 	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
 	width: 100%;
 	/* height: ${Constants.size.components.reviewCard.height}px; */
-	padding: 20px 0px;
+	border-radius: ${Constants.borderRadius.components.reviewCard.card};
+	overflow-x: hidden;
 
 	/* @media (max-width: ${Constants.breakpoints.mobile}px) {
 		height: 475px;

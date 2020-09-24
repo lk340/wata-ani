@@ -20,7 +20,7 @@ export const ModalFormContainerOverlay = styled("div")`
 	background-color: ${Colors.MODAL.overlay.light};
 `;
 
-export const ModalForm = styled(animated.div)`
+export const ModalForm = styled(animated.form)`
 	${Snippets.absolute("0px", "0px", "0px", "40px", 2)};
 	padding: 20px;
 `;
