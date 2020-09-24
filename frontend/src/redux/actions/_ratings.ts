@@ -27,6 +27,8 @@ type CreateData = {
 	rating: number;
 	owner: Context.AuthForm.CurrentUser;
 	post: Post;
+	// owner: number;
+	// post: number;
 };
 
 // ======================= //
@@ -122,7 +124,7 @@ export async function thunkCreateRating(
 
 export async function thunkUpdateRating(
 	id: number,
-	data: Partial<Rating>,
+	data: Partial<CreateData>,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
 ): Promise<void> {

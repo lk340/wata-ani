@@ -7,18 +7,22 @@ import { Rating } from "./rating";
 import { Likes } from "./likes";
 
 type Props = {
+	postId: number;
 	userRating: number | "N/A";
 	userRatingCount: number;
 	currentUserRating: number;
+	postRatings: number[];
 	likes: number;
 	belongsToCurrentUser: boolean;
 };
 
 export const RatingAndLikes = (props: Props) => {
 	const {
+		postId,
 		userRating,
 		userRatingCount,
 		currentUserRating,
+		postRatings,
 		likes,
 		belongsToCurrentUser,
 	} = props;
@@ -31,8 +35,10 @@ export const RatingAndLikes = (props: Props) => {
 			style={animateRatingAndLikes}
 		>
 			<Rating
+				postId={postId}
 				userRating={userRating}
 				userRatingCount={userRatingCount}
+				postRatings={postRatings}
 				currentUserRating={currentUserRating}
 			/>
 			<Likes likes={likes} />

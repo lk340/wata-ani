@@ -9,6 +9,7 @@ import * as Springs from "./review-card.springs";
 import { RatingAndLikes } from "./rating-and-likes";
 
 type Props = {
+	postId: number;
 	username: string;
 	userRating: number | "N/A";
 	userRatingCount: number;
@@ -25,6 +26,7 @@ type Props = {
 
 export const ReviewCard = (props: Props) => {
 	const {
+		postId,
 		username,
 		userRating,
 		userRatingCount,
@@ -104,9 +106,11 @@ export const ReviewCard = (props: Props) => {
 
 			{/* Rating & Likes */}
 			<RatingAndLikes
+			postId={postId}
 				userRating={userRating}
 				userRatingCount={userRatingCount}
 				currentUserRating={currentUserRating}
+				postRatings={ratings}
 				likes={likes}
 				belongsToCurrentUser={belongsToCurrentUser}
 			/>

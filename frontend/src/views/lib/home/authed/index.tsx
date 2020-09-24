@@ -66,6 +66,7 @@ export const Authed = () => {
 		return (
 			<React.Fragment key={id}>
 				<Components.ReviewCard
+					postId={id}
 					username={usersRedux[author] ? usersRedux[author].username : ""}
 					userRating={userRating > 0 ? userRating : "N/A"}
 					userRatingCount={userRatingCount}
@@ -85,7 +86,7 @@ export const Authed = () => {
 
 	return (
 		<Styled.Authed>
-			<Styled.AuthedSections>{reviewCards}</Styled.AuthedSections>
+			<Styled.AuthedReviewCards>{reviewCards}</Styled.AuthedReviewCards>
 			<Components.Pagination />
 		</Styled.Authed>
 	);

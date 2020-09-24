@@ -25,7 +25,8 @@ export type ReduxState = {
 		tags: Tags;
 		ratings: Ratings;
 	};
-	session: InitialState | Context.AuthForm.CurrentUser;
+	// session: InitialState | Context.AuthForm.CurrentUser;
+	session: Context.AuthForm.CurrentUser;
 	errors: {
 		session: any;
 		users: any;
