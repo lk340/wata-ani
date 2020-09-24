@@ -26,9 +26,7 @@ export const RatingToggleMobileFormButtonContainer = styled("div")`
 	${Snippets.flexRowCenter()};
 `;
 
-type ToggleButton = { open: string };
-
-export const RatingToggleMobileFormButton = styled("div")<ToggleButton>`
+export const RatingToggleMobileFormButton = styled("div")`
 	display: none;
 	padding: 6px 10px;
 	color: ${Colors.NEUTRALS.white_100};

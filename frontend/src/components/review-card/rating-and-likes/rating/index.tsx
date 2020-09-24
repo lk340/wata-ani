@@ -27,16 +27,15 @@ export const Rating = (props: Props) => {
 	const [mobileFormOpen, setMobileFormOpen] = React.useState(false);
 
 	const dispatch = ReactRedux.useDispatch();
-	const sessionRedux = Functions.getSession();
+	const currentUser = Functions.getSession();
 	const postRedux = Functions.getPosts()[postId];
 	const ratingsErrorsRedux = Functions.getRatingsErrors();
 
-	type ErrorType = "too small" | "too big" | "not valid" | "clear";
-
-	function handleErrorChange(errorType: ErrorType): void {
-		if (errorType === "too small") setError("Too small!");
-		else if (errorType === "too big") setError("Too big!");
-		else if (errorType === "not valid") setError("Enter a number between 1 and 10!");
+	function handleError(): void {
+		if (rating === "") setError("Enter a number between 1 and 10!");
+		else if (Number(rating) < 1) setError("Too small!");
+		else if (Number(rating) > 10) setError("Too big!");
+		else if (!Number(rating)) setError("Enter a number between 1 and 10!");
 		else setError("");
 	}
 
@@ -47,31 +46,20 @@ export const Rating = (props: Props) => {
 	function handleSubmit(event: Types.Submit): void {
 		event.preventDefault();
 
-		if (rating === "") handleErrorChange("not valid");
-		else if (Number(rating) < 1) handleErrorChange("too small");
-		else if (Number(rating) > 10) handleErrorChange("too big");
-		else if (!Number(rating)) handleErrorChange("not valid");
-		else handleErrorChange("clear");
-
 		if (error === "") {
-			sessionRedux.ratings.forEach((ratingId: number) => {
-				// User has already rated post.
-				if (postRatings.includes(ratingId)) {
-					console.log("User has already rated this post!");
-
+			currentUser.ratings.forEach((ratingId: number) => {
+				// User has already rated.
+				if (postRedux.ratings.includes(ratingId)) {
+					console.log("User has already rated.");
 					const data = { rating: Number(rating) };
 					Actions.Ratings.thunkUpdateRating(ratingId, data, dispatch, ratingsErrorsRedux);
 				}
-				// User hasn't rated post, yet.
+				// User has not rated, yet.
 				else {
-					console.log("User has yet to rate this post!");
-
-					const data = {
-						rating: Number(rating),
-						owner: sessionRedux,
-						post: postRedux,
-					};
-
+					console.log("User has not rated, yet.");
+					const owner = currentUser;
+					const post = postRedux;
+					const data = { rating: Number(rating), owner, post };
 					Actions.Ratings.thunkCreateRating(data, dispatch, ratingsErrorsRedux);
 				}
 			});
@@ -79,6 +67,7 @@ export const Rating = (props: Props) => {
 
 		console.log("Rating:", rating);
 		console.log("Error:", error);
+		console.log("Post Id:", postId);
 	}
 
 	function toggleMobileFormOpen(): void {
@@ -88,6 +77,8 @@ export const Rating = (props: Props) => {
 	React.useEffect((): void => {
 		if (currentUserRating !== 0) setRating(String(currentUserRating));
 	}, [currentUserRating]);
+
+	React.useEffect((): void => handleError(), [rating]);
 
 	return (
 		<Styled.Rating>
@@ -99,10 +90,7 @@ export const Rating = (props: Props) => {
 				handleSubmit={handleSubmit}
 			/>
 
-			<ToggleFormButton
-				mobileFormOpen={mobileFormOpen}
-				toggleMobileFormOpen={toggleMobileFormOpen}
-			/>
+			<ToggleFormButton toggleMobileFormOpen={toggleMobileFormOpen} />
 
 			<RatingFormMobile
 				mobileFormOpen={mobileFormOpen}
@@ -119,19 +107,15 @@ export const Rating = (props: Props) => {
 // ============================ //
 
 type ToggleButtonProps = {
-	mobileFormOpen: boolean;
 	toggleMobileFormOpen: React.MouseEventHandler;
 };
 
 const ToggleFormButton = (props: ToggleButtonProps) => {
-	const { mobileFormOpen, toggleMobileFormOpen } = props;
+	const { toggleMobileFormOpen } = props;
 
 	return (
 		<Styled.RatingToggleMobileFormButtonContainer>
-			<Styled.RatingToggleMobileFormButton
-				onClick={toggleMobileFormOpen}
-				open={mobileFormOpen.toString()}
-			>
+			<Styled.RatingToggleMobileFormButton onClick={toggleMobileFormOpen}>
 				Rate
 			</Styled.RatingToggleMobileFormButton>
 		</Styled.RatingToggleMobileFormButtonContainer>
