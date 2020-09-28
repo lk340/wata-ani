@@ -1,12 +1,23 @@
 import styled, { css, createGlobalStyle } from "styled-components";
 import { animated } from "react-spring";
 
+import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
-// ================= //
-// ↓↓↓ ModalForm ↓↓↓ //
-// ================= //
+import close from "@/icons/close.svg";
+
+/**
+ * Modal Form
+ * Close
+ * Input
+ * Form Rating Input
+ * Submit
+ */
+
+// ================== //
+// ↓↓↓ Modal Form ↓↓↓ //
+// ================== //
 
 type ContainerProps = { is_open: string };
 
@@ -22,6 +33,7 @@ export const ModalFormContainerOverlay = styled("div")`
 
 export const ModalForm = styled(animated.form)`
 	${Snippets.absolute("0px", "0px", "0px", "40px", 2)};
+	${Snippets.flex("column")};
 	padding: 20px;
 `;
 
@@ -29,23 +41,63 @@ export const ModalForm = styled(animated.form)`
 // ↓↓↓ Close ↓↓↓ //
 // ============= //
 
-export const ModalFormClose = styled("img")``;
+export const ModalFormCloseContainer = styled("div")`
+	${Snippets.flex("row", "space-between", "center")};
+`;
+
+export const ModalFormClose = styled("img").attrs(() => ({
+	src: close,
+	alt: "review card modal form close icon",
+}))`
+	${Snippets.square("16px")};
+	cursor: pointer;
+`;
 
 // ============= //
 // ↓↓↓ Input ↓↓↓ //
 // ============= //
 
-export const ModalFormInput = styled("div")``;
+export const ModalFormInput = styled("div")`
+	margin-bottom: 30px;
+`;
 
-export const ModalFormInputTitle = styled("h3")``;
+export const ModalFormInputTitle = styled("h3")`
+	${Snippets.clearSpacing()};
+	margin-bottom: 10px;
+	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	font-weight: bold;
+`;
 
-export const ModalFormInputField = styled(animated.input)``;
+export const ModalFormInputField = styled(animated.input)`
+	${Snippets.size("100%", `${Constants.size.components.reviewCard.input.height}px`)};
+	padding: 0px 20px;
+	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
+	color: inherit;
+	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	outline: none;
+`;
 
-export const ModalFormRating = styled("div")``;
+// ========================= //
+// ↓↓↓ Form Rating Input ↓↓↓ //
+// ========================= //
 
-export const ModalFormRatingText = styled("p")``;
+export const ModalFormRating = styled("div")`
+	${Snippets.flex("row", "auto", "center")};
+	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+`;
 
-export const ModalFormRatingInput = styled(animated.input)``;
+export const ModalFormRatingText = styled("p")`
+	${Snippets.clearSpacing()};
+	margin-right: 10px;
+	color: ${Colors.LIGHT.five};
+	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+`;
+
+export const ModalFormRatingInput = styled(animated.input)`
+	color: inherit;
+	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	outline: none;
+`;
 
 // ============== //
 // ↓↓↓ Submit ↓↓↓ //

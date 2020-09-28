@@ -68,6 +68,8 @@ export const theme = {
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 			modalForm: {
 				background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+				inputBorder: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+				inputBackground: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.three },
 			},
 			ratingAndLike: {
 				background: { light: Colors.LIGHT.one, dark: Colors.DARK.three },
@@ -162,6 +164,7 @@ export const size = {
 		reviewCard: {
 			height: 470,
 			maxWidth: (globals.maxWidth - 40) / 3,
+			input: { height: 50 },
 		},
 	},
 	pages: {
@@ -225,6 +228,7 @@ export const fontSizes = {
 				value: "0.875rem",
 			},
 			tag: "0.75rem",
+			modal: "0.875rem",
 		},
 	},
 	pages: {
@@ -301,6 +305,7 @@ export const borderRadius = {
 			ratingSubmit: "0.1875rem",
 			ratingFormMobile: "0.3125rem",
 			tag: "0.25rem",
+			modal: "0.3125rem",
 		},
 	},
 	pages: {

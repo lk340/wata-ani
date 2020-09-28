@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import * as Components from "@/components";
 import * as Types from "@/utils/types";
 
 import * as Styled from "./modal-form.styled";
@@ -24,12 +25,27 @@ export const ModalForm = (props: Props) => {
 
 	function handleSubmit(event: Types.Submit): void {
 		event.preventDefault();
+
+		console.log("Submitted!");
 	}
 
 	return (
 		<Styled.ModalFormContainer is_open={isOpen.toString()}>
 			<Styled.ModalFormContainerOverlay onClick={toggleModalOpen} />
-			<Styled.ModalForm style={animateForm}>Modal Form</Styled.ModalForm>
+			{/* Form */}
+			<Styled.ModalForm onSubmit={handleSubmit} style={animateForm}>
+				{/* Close */}
+				<Styled.ModalFormCloseContainer>
+					<Components.Spacer height="1px" />
+					<Styled.ModalFormClose onClick={toggleModalOpen} />
+				</Styled.ModalFormCloseContainer>
+
+				{/* Series Title */}
+				<InputGroup title="Series Title" value="Neon Genesis Evangelion" />
+
+				{/* Submit Button */}
+				<Styled.ModalFormSubmit>Finish Editing</Styled.ModalFormSubmit>
+			</Styled.ModalForm>
 		</Styled.ModalFormContainer>
 	);
 };
@@ -46,10 +62,16 @@ type InputGroupProps = {
 const InputGroup = (props: InputGroupProps) => {
 	const { title, value } = props;
 
+	const animateInput = Springs.input();
+
 	return (
 		<Styled.ModalFormInput>
 			<Styled.ModalFormInputTitle>{title}</Styled.ModalFormInputTitle>
-			<Styled.ModalFormInputField />
+			<Styled.ModalFormInputField value={value} style={animateInput} />
 		</Styled.ModalFormInput>
 	);
 };
+
+// =================== //
+// ↓↓↓ Form Rating ↓↓↓ //
+// =================== //
