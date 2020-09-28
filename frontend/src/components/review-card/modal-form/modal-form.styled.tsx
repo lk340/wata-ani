@@ -74,14 +74,26 @@ export const ModalFormInputTitle = styled("h3")`
 	font-weight: bold;
 `;
 
-export const ModalFormInputField = styled(animated.input)`
+const inputStyles = css`
 	width: 100%;
+	height: auto;
 	min-height: ${Constants.size.components.reviewCard.input.height}px;
-	padding: 0px 20px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
 	color: inherit;
 	font-size: ${Constants.fontSizes.components.reviewCard.modal};
 	outline: none;
+`;
+
+export const ModalFormInputField = styled(animated.input)`
+	${inputStyles};
+	padding: 0px 20px;
+`;
+
+export const ModalFormTextareaField = styled(animated.textarea)`
+	${inputStyles};
+	padding: 20px;
+	line-height: 150%;
+	resize: vertical;
 `;
 
 // ============================ //

@@ -46,13 +46,17 @@ export const ModalForm = (props: Props) => {
 					</Styled.ModalFormCloseContainer>
 
 					{/* Series Title */}
-					<InputGroup title="Series Title" text="Neon Genesis Evangelion" />
+					<InputGroup title="Series Title" text="Neon Genesis Evangelion" type="input" />
 
 					{/* Post Title */}
-					<InputGroup title="Post Title" text="Neon Genesis Evangelion" />
+					<InputGroup title="Post Title" text="Neon Genesis Evangelion" type="input" />
 
 					{/* Post Content */}
-					<InputGroup title="Post Content" text="Neon Genesis Evangelion" />
+					<InputGroup
+						title="Post Content"
+						text="People refer to this piece as a timeless classic, but that description alone fails to accurately portray why it has withstood the test of time. Not only are its animation and character designs fluid and bold, but also, it experiments with the human psyche - how we react to our surroundings as people, not as a hyperbolic fictional character. It is this realism that allows us to see ourselves in the characters' shoes. Evangelion has set the standard for its descendants."
+						type="textarea"
+					/>
 
 					{/* Personal Rating */}
 					<PersonalRating rating={8} />
@@ -74,17 +78,27 @@ export const ModalForm = (props: Props) => {
 type InputGroupProps = {
 	title: string;
 	text: string;
+	type: "input" | "textarea";
 };
 
 const InputGroup = (props: InputGroupProps) => {
-	const { title, text } = props;
+	const { title, text, type } = props;
 
 	const animateInput = Springs.input();
+
+	const typeOutput =
+		type === "input" ? (
+			<Styled.ModalFormInputField value={text} style={animateInput} />
+		) : (
+			<Styled.ModalFormTextareaField style={animateInput}>
+				{text}
+			</Styled.ModalFormTextareaField>
+		);
 
 	return (
 		<Styled.ModalFormInput>
 			<Styled.ModalFormInputTitle>{title}</Styled.ModalFormInputTitle>
-			<Styled.ModalFormInputField value={text} style={animateInput} />
+			{typeOutput}
 		</Styled.ModalFormInput>
 	);
 };

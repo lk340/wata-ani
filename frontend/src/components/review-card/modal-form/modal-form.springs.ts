@@ -9,6 +9,10 @@ export function form() {
 				localStorage.mode === "light"
 					? Constants.theme.components.reviewCard.modalForm.background.light
 					: Constants.theme.components.reviewCard.modalForm.background.dark,
+			borderLeft:
+				localStorage.mode === "light"
+					? `${Constants.theme.components.reviewCard.modalForm.borderLeft.light} solid 1px`
+					: `${Constants.theme.components.reviewCard.modalForm.borderLeft.dark} solid 1px`,
 		},
 		config: { duration: 100 },
 	});

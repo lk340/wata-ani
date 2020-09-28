@@ -68,7 +68,8 @@ export const theme = {
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 			modalForm: {
 				background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
-				inputBorder: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+				borderLeft: { light: Colors.LIGHT.three, dark: Colors.DARK.five },
+				inputBorder: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.five },
 				inputBackground: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.three },
 			},
 			ratingAndLike: {
