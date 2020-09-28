@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Types from "@/utils/types";
 
@@ -13,6 +14,9 @@ type Props = {
 
 export const ModalForm = (props: Props) => {
 	const { isOpen, toggleModalOpen } = props;
+
+	const { userAgent } = Context.UserAgent.useUserAgentContext();
+	const isMobile = userAgent.state.isMobile.toString();
 
 	const [seriesTitle, setSeriesTitle] = React.useState("");
 	const [postTitle, setPostTitle] = React.useState("");
@@ -44,7 +48,9 @@ export const ModalForm = (props: Props) => {
 				<InputGroup title="Series Title" value="Neon Genesis Evangelion" />
 
 				{/* Submit Button */}
-				<Styled.ModalFormSubmit>Finish Editing</Styled.ModalFormSubmit>
+				<Styled.ModalFormSubmit is_mobile={isMobile}>
+					Finish Editing
+				</Styled.ModalFormSubmit>
 			</Styled.ModalForm>
 		</Styled.ModalFormContainer>
 	);

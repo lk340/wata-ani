@@ -4,6 +4,7 @@ import { animated } from "react-spring";
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
+import * as Types from "@/utils/types";
 
 import close from "@/icons/close.svg";
 
@@ -35,6 +36,7 @@ export const ModalForm = styled(animated.form)`
 	${Snippets.absolute("0px", "0px", "0px", "40px", 2)};
 	${Snippets.flex("column")};
 	padding: 20px;
+	overflow-y: auto;
 `;
 
 // ============= //
@@ -105,4 +107,22 @@ export const ModalFormRatingInput = styled(animated.input)`
 
 export const ModalFormSubmit = styled("button").attrs(() => ({
 	type: "submit",
-}))``;
+}))<Types.Mobile>`
+	height: ${Constants.size.components.reviewCard.input.height}px;
+	color: ${Colors.NEUTRALS.white_100};
+	background-color: ${Colors.PRIMARY_100};
+	border: none;
+	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
+	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	font-weight: bold;
+	text-align: center;
+	outline: none;
+	transition: 0.1s ease-out;
+	cursor: pointer;
+
+	:hover {
+		background-color: ${(props) => {
+			return props.is_mobile === "true" ? Colors.PRIMARY_100 : Colors.PRIMARY_80;
+		}};
+	}
+`;
