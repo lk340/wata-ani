@@ -5,11 +5,11 @@ import * as Helpers from "@/context/helpers";
 type Tag = { [key: string]: string };
 
 type State = {
-	tags: Tag[];
+	tags: Tag;
 };
 
 const initialState = Object.freeze<State>({
-	tags: [],
+	tags: {},
 });
 
 export const useReviewCardTagsContext = Helpers.createUseContext(() => {
@@ -31,8 +31,6 @@ export const useReviewCardTagsContext = Helpers.createUseContext(() => {
 		_setReviewCardTags({ ...reviewCardTags, ...state });
 
 	function addTag(tag: string): void {
-		console.log("Tag:", tag);
-
 		const newTags = reviewCardTags.tags;
 		newTags[tag] = tag;
 		setReviewCardTags({ tags: newTags });

@@ -19,6 +19,8 @@ export const Tag = (props: Props) => {
 		reviewCardTags.getters.isTagSelected(props.title),
 	);
 
+	console.log(`${props.title}'s selected is ${selected}`);
+
 	React.useEffect(() => {
 		if (reviewCardTags.getters.isTagSelected(props.title)) {
 			setSelected(true);
