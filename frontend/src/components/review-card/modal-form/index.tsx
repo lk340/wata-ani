@@ -37,30 +37,32 @@ export const ModalForm = (props: Props) => {
 		<Styled.ModalFormContainer is_open={isOpen.toString()}>
 			<Styled.ModalFormContainerOverlay onClick={toggleModalOpen} />
 			{/* Form */}
-			<Styled.ModalForm onSubmit={handleSubmit} style={animateForm}>
-				{/* Close */}
-				<Styled.ModalFormCloseContainer>
-					<Components.Spacer height="1px" />
-					<Styled.ModalFormClose onClick={toggleModalOpen} />
-				</Styled.ModalFormCloseContainer>
+			<Styled.ModalFormWrapper>
+				<Styled.ModalForm onSubmit={handleSubmit} style={animateForm}>
+					{/* Close */}
+					<Styled.ModalFormCloseContainer>
+						<Components.Spacer height="1px" />
+						<Styled.ModalFormClose onClick={toggleModalOpen} />
+					</Styled.ModalFormCloseContainer>
 
-				{/* Series Title */}
-				<InputGroup title="Series Title" text="Neon Genesis Evangelion" />
+					{/* Series Title */}
+					<InputGroup title="Series Title" text="Neon Genesis Evangelion" />
 
-				{/* Post Title */}
-				<InputGroup title="Post Title" text="Neon Genesis Evangelion" />
+					{/* Post Title */}
+					<InputGroup title="Post Title" text="Neon Genesis Evangelion" />
 
-				{/* Post Content */}
-				<InputGroup title="Post Content" text="Neon Genesis Evangelion" />
+					{/* Post Content */}
+					<InputGroup title="Post Content" text="Neon Genesis Evangelion" />
 
-				{/* Personal Rating */}
-				<PersonalRating rating={8} />
+					{/* Personal Rating */}
+					<PersonalRating rating={8} />
 
-				{/* Submit Button */}
-				<Styled.ModalFormSubmit is_mobile={isMobile}>
-					Finish Editing
-				</Styled.ModalFormSubmit>
-			</Styled.ModalForm>
+					{/* Submit Button */}
+					<Styled.ModalFormSubmit is_mobile={isMobile}>
+						Finish Editing
+					</Styled.ModalFormSubmit>
+				</Styled.ModalForm>
+			</Styled.ModalFormWrapper>
 		</Styled.ModalFormContainer>
 	);
 };

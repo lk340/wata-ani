@@ -32,13 +32,15 @@ export const ModalFormContainerOverlay = styled("div")`
 	background-color: ${Colors.MODAL.overlay.light};
 `;
 
-export const ModalForm = styled(animated.form)`
+export const ModalFormWrapper = styled("div")`
 	${Snippets.absolute("0px", "0px", "0px", "40px", 2)};
 	${Snippets.flex("column")};
-	padding: 20px;
-	overflow-y: auto;
+	overflow-y: scroll;
+`;
 
-	border: red solid 1px;
+export const ModalForm = styled(animated.form)`
+	${Snippets.flex("column")};
+	padding: 20px;
 `;
 
 // ============= //
