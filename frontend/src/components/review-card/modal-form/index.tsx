@@ -45,7 +45,16 @@ export const ModalForm = (props: Props) => {
 				</Styled.ModalFormCloseContainer>
 
 				{/* Series Title */}
-				<InputGroup title="Series Title" value="Neon Genesis Evangelion" />
+				<InputGroup title="Series Title" text="Neon Genesis Evangelion" />
+
+				{/* Post Title */}
+				<InputGroup title="Post Title" text="Neon Genesis Evangelion" />
+
+				{/* Post Content */}
+				<InputGroup title="Post Content" text="Neon Genesis Evangelion" />
+
+				{/* Personal Rating */}
+				<PersonalRating rating={8} />
 
 				{/* Submit Button */}
 				<Styled.ModalFormSubmit is_mobile={isMobile}>
@@ -62,22 +71,39 @@ export const ModalForm = (props: Props) => {
 
 type InputGroupProps = {
 	title: string;
-	value: string;
+	text: string;
 };
 
 const InputGroup = (props: InputGroupProps) => {
-	const { title, value } = props;
+	const { title, text } = props;
 
 	const animateInput = Springs.input();
 
 	return (
 		<Styled.ModalFormInput>
 			<Styled.ModalFormInputTitle>{title}</Styled.ModalFormInputTitle>
-			<Styled.ModalFormInputField value={value} style={animateInput} />
+			<Styled.ModalFormInputField value={text} style={animateInput} />
 		</Styled.ModalFormInput>
 	);
 };
 
-// =================== //
-// ↓↓↓ Form Rating ↓↓↓ //
-// =================== //
+// ======================= //
+// ↓↓↓ Personal Rating ↓↓↓ //
+// ======================= //
+
+type PersonalRatingProps = { rating: number };
+
+const PersonalRating = (props: PersonalRatingProps) => {
+	const { rating } = props;
+
+	const animateInput = Springs.input();
+
+	return (
+		<Styled.ModalFormInput>
+			<Styled.ModalFormInputTitle>Personal Rating</Styled.ModalFormInputTitle>
+			<Styled.ModalFormPersonalRating>
+				<Styled.ModalFormPersonalRatingInput style={animateInput} value={rating} />
+			</Styled.ModalFormPersonalRating>
+		</Styled.ModalFormInput>
+	);
+};

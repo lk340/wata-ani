@@ -12,7 +12,7 @@ import close from "@/icons/close.svg";
  * Modal Form
  * Close
  * Input
- * Form Rating Input
+ * Form Personal Rating
  * Submit
  */
 
@@ -37,6 +37,8 @@ export const ModalForm = styled(animated.form)`
 	${Snippets.flex("column")};
 	padding: 20px;
 	overflow-y: auto;
+
+	border: red solid 1px;
 `;
 
 // ============= //
@@ -71,7 +73,8 @@ export const ModalFormInputTitle = styled("h3")`
 `;
 
 export const ModalFormInputField = styled(animated.input)`
-	${Snippets.size("100%", `${Constants.size.components.reviewCard.input.height}px`)};
+	width: 100%;
+	min-height: ${Constants.size.components.reviewCard.input.height}px;
 	padding: 0px 20px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
 	color: inherit;
@@ -79,25 +82,21 @@ export const ModalFormInputField = styled(animated.input)`
 	outline: none;
 `;
 
-// ========================= //
-// ↓↓↓ Form Rating Input ↓↓↓ //
-// ========================= //
+// ============================ //
+// ↓↓↓ Form Personal Rating ↓↓↓ //
+// ============================ //
 
-export const ModalFormRating = styled("div")`
+export const ModalFormPersonalRating = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
 	font-size: ${Constants.fontSizes.components.reviewCard.modal};
 `;
 
-export const ModalFormRatingText = styled("p")`
-	${Snippets.clearSpacing()};
-	margin-right: 10px;
-	color: ${Colors.LIGHT.five};
-	font-size: ${Constants.fontSizes.components.reviewCard.modal};
-`;
-
-export const ModalFormRatingInput = styled(animated.input)`
+export const ModalFormPersonalRatingInput = styled(animated.input)`
+	${Snippets.square("50px")};
 	color: inherit;
+	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
 	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	text-align: center;
 	outline: none;
 `;
 
@@ -108,6 +107,7 @@ export const ModalFormRatingInput = styled(animated.input)`
 export const ModalFormSubmit = styled("button").attrs(() => ({
 	type: "submit",
 }))<Types.Mobile>`
+	flex-shrink: 0;
 	height: ${Constants.size.components.reviewCard.input.height}px;
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
