@@ -10,4 +10,4 @@ User = get_user_model()
 class Rating(models.Model):
     rating = models.IntegerField(_("Rating"))
     owner = models.ForeignKey(User, verbose_name=_("Rating Owner"), related_name="ratings", on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, verbose_name=_("Rating Post"), related_name="ratings", on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, verbose_name=_("Rating Post"), related_name="ratings", on_delete=models.CASCADE, blank=True)

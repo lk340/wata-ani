@@ -75,6 +75,7 @@ export const ReviewCard = (props: Props) => {
 			<ModalForm
 				isOpen={modalOpen}
 				toggleModalOpen={toggleModalOpen}
+				postId={props.postId}
 				postSeries={props.seriesTitle}
 				postTitle={props.title}
 				postReview={props.review}

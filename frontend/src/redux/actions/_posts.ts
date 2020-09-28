@@ -38,8 +38,10 @@ type CreateData = {
 	series_title: string;
 	review: string;
 	personal_rating: number;
-	author: Context.AuthForm.CurrentUser;
+	// author: Context.AuthForm.CurrentUser;
+	author: number;
 	tags?: Tag | Tag[];
+	ratings?: number[];
 };
 
 // ======================= //
