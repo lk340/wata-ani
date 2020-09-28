@@ -1,0 +1,289 @@
+[
+  {
+    "model": "tags.tag",
+    "pk": 1,
+    "fields": {
+      "title": "Shounen"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 2,
+    "fields": {
+      "title": "Shoujo"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 3,
+    "fields": {
+      "title": "Seinen"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 4,
+    "fields": {
+      "title": "Action"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 5,
+    "fields": {
+      "title": "Adventure"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 6,
+    "fields": {
+      "title": "Comedy"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 7,
+    "fields": {
+      "title": "Drama"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 8,
+    "fields": {
+      "title": "Slice Of Life"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 9,
+    "fields": {
+      "title": "Fantasy"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 10,
+    "fields": {
+      "title": "Magic"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 11,
+    "fields": {
+      "title": "Supernatural"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 12,
+    "fields": {
+      "title": "Horror"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 13,
+    "fields": {
+      "title": "Mystery"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 14,
+    "fields": {
+      "title": "Psychological"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 15,
+    "fields": {
+      "title": "Romance"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 16,
+    "fields": {
+      "title": "Sci-Fi"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 17,
+    "fields": {
+      "title": "Cyberpunk"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 18,
+    "fields": {
+      "title": "Game"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 19,
+    "fields": {
+      "title": "Ecchi"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 20,
+    "fields": {
+      "title": "Demons"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 21,
+    "fields": {
+      "title": "Harem"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 22,
+    "fields": {
+      "title": "Josei"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 23,
+    "fields": {
+      "title": "Martial Arts"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 24,
+    "fields": {
+      "title": "Kids"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 25,
+    "fields": {
+      "title": "Historical"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 26,
+    "fields": {
+      "title": "Isekai"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 27,
+    "fields": {
+      "title": "Military"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 28,
+    "fields": {
+      "title": "Mecha"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 29,
+    "fields": {
+      "title": "Music"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 30,
+    "fields": {
+      "title": "Parody"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 31,
+    "fields": {
+      "title": "Police"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 32,
+    "fields": {
+      "title": "Post Apocalyptic"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 33,
+    "fields": {
+      "title": "Reverse Harem"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 34,
+    "fields": {
+      "title": "School"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 35,
+    "fields": {
+      "title": "Yuri"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 36,
+    "fields": {
+      "title": "Yaoi"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 37,
+    "fields": {
+      "title": "Sports"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 38,
+    "fields": {
+      "title": "Space"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 39,
+    "fields": {
+      "title": "Super Power"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 40,
+    "fields": {
+      "title": "Tragedy"
+    }
+  },
+  {
+    "model": "tags.tag",
+    "pk": 41,
+    "fields": {
+      "title": "Vampire"
+    }
+  }
+]
