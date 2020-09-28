@@ -8,6 +8,7 @@ import axios from "axios";
 import * as Context from "@/context";
 import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
+import * as Functions from "@/utils/functions";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as JWT from "@/utils/api/jwt";
 
@@ -190,14 +191,15 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ↓↓↓ Provider Theme ↓↓↓ //
 	// ====================== //
 
-	const currentUserId = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.session.id,
-	);
+	const currentUserId = Functions.getSession().id;
 	const isCurrentUser = !!currentUserId;
+
+	const isMobile = userAgent.state.isMobile;
 
 	const providerTheme = {
 		mode: localStorage.mode,
 		isCurrentUser,
+		isMobile,
 	};
 
 	return (

@@ -119,7 +119,7 @@ export const ModalFormPersonalRatingInput = styled(animated.input)`
 
 export const ModalFormSubmit = styled("button").attrs(() => ({
 	type: "submit",
-}))<Types.Mobile>`
+}))`
 	flex-shrink: 0;
 	height: ${Constants.size.components.reviewCard.input.height}px;
 	color: ${Colors.NEUTRALS.white_100};
@@ -135,7 +135,7 @@ export const ModalFormSubmit = styled("button").attrs(() => ({
 
 	:hover {
 		background-color: ${(props) => {
-			return props.is_mobile === "true" ? Colors.PRIMARY_100 : Colors.PRIMARY_80;
+			return props.theme.isMobile ? Colors.PRIMARY_100 : Colors.PRIMARY_80;
 		}};
 	}
 `;

@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
 
-import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
+import * as Functions from "@/utils/functions";
 
 import * as Styled from "./modal-form.styled";
 import * as Springs from "./modal-form.springs";
@@ -20,23 +20,13 @@ type Props = {
 };
 
 export const ModalForm = (props: Props) => {
-	const { userAgent } = Context.UserAgent.useUserAgentContext();
-	const isMobile = userAgent.state.isMobile.toString();
-
 	const animateForm = Springs.form();
 	const animateInput = Springs.input();
 
 	const dispatch = ReactRedux.useDispatch();
-
-	const author = ReactRedux.useSelector((state: Types.ReduxState) => state.session.id);
-
-	const postRatingsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.entities.posts[props.postId].ratings,
-	);
-
-	const postErrorsRedux = ReactRedux.useSelector(
-		(state: Types.ReduxState) => state.errors.posts,
-	);
+	const author = Functions.getSession().id;
+	const postRatingsRedux = Functions.getPosts()[props.postId].ratings;
+	const postErrorsRedux = Functions.getPostsErrors();
 
 	const [series_title, setSeries] = React.useState("");
 	const [title, setTitle] = React.useState("");
@@ -158,7 +148,7 @@ export const ModalForm = (props: Props) => {
 					</Styled.ModalFormInput>
 
 					{/* Submit Button */}
-					<Styled.ModalFormSubmit is_mobile={isMobile}>Edit</Styled.ModalFormSubmit>
+					<Styled.ModalFormSubmit>Edit</Styled.ModalFormSubmit>
 				</Styled.ModalForm>
 			</Styled.ModalFormWrapper>
 		</Styled.ModalFormContainer>
