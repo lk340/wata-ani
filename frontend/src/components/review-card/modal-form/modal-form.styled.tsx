@@ -76,8 +76,6 @@ export const ModalFormInputTitle = styled("h3")`
 
 const inputStyles = css`
 	width: 100%;
-	height: auto;
-	min-height: ${Constants.size.components.reviewCard.input.height}px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
 	color: inherit;
 	font-size: ${Constants.fontSizes.components.reviewCard.modal};
@@ -86,6 +84,7 @@ const inputStyles = css`
 
 export const ModalFormInputField = styled(animated.input)`
 	${inputStyles};
+	min-height: ${Constants.size.components.reviewCard.input.height}px;
 	padding: 0px 20px;
 `;
 

@@ -10,22 +10,52 @@ import * as Springs from "./modal-form.springs";
 type Props = {
 	isOpen: boolean;
 	toggleModalOpen: React.MouseEventHandler;
+	postSeries: string;
+	postTitle: string;
+	postReview: string;
+	personalRating: number;
 };
 
 export const ModalForm = (props: Props) => {
-	const { isOpen, toggleModalOpen } = props;
-
 	const { userAgent } = Context.UserAgent.useUserAgentContext();
 	const isMobile = userAgent.state.isMobile.toString();
 
-	const [seriesTitle, setSeriesTitle] = React.useState("");
-	const [postTitle, setPostTitle] = React.useState("");
+	const [series, setSeries] = React.useState("");
+	const [title, setTitle] = React.useState("");
 	const [review, setReview] = React.useState("");
-	const [personalRating, setPersonalRating] = React.useState(0);
+	const [rating, setRating] = React.useState(0);
+
+	React.useEffect(() => {
+		setSeries(props.postSeries);
+		setTitle(props.postTitle);
+		setReview(props.postReview);
+		setRating(props.personalRating);
+	}, []);
 
 	const animateForm = Springs.form();
+	const animateInput = Springs.input();
 
-	function handleChange(event: Types.Input): void {}
+	type InputType = "series title" | "post title" | "review" | "rating";
+
+	function handleChange(event: Types.Input | Types.Textarea, inputType: InputType): void {
+		switch (inputType) {
+			case "series title":
+				setSeries(event.currentTarget.value);
+				break;
+
+			case "post title":
+				setTitle(event.currentTarget.value);
+				break;
+
+			case "review":
+				setReview(event.currentTarget.value);
+				break;
+
+			default:
+				setRating(Number(event.currentTarget.value));
+				break;
+		}
+	}
 
 	function handleSubmit(event: Types.Submit): void {
 		event.preventDefault();
@@ -33,93 +63,67 @@ export const ModalForm = (props: Props) => {
 		console.log("Submitted!");
 	}
 
+	console.log("Post Review:", props.postReview);
+	console.log("Review:", review);
+
 	return (
-		<Styled.ModalFormContainer is_open={isOpen.toString()}>
-			<Styled.ModalFormContainerOverlay onClick={toggleModalOpen} />
+		<Styled.ModalFormContainer is_open={props.isOpen.toString()}>
+			<Styled.ModalFormContainerOverlay onClick={props.toggleModalOpen} />
 			{/* Form */}
 			<Styled.ModalFormWrapper>
 				<Styled.ModalForm onSubmit={handleSubmit} style={animateForm}>
-					{/* Close */}
+					{/* Close Icon */}
 					<Styled.ModalFormCloseContainer>
 						<Components.Spacer height="1px" />
-						<Styled.ModalFormClose onClick={toggleModalOpen} />
+						<Styled.ModalFormClose onClick={props.toggleModalOpen} />
 					</Styled.ModalFormCloseContainer>
 
 					{/* Series Title */}
-					<InputGroup title="Series Title" text="Neon Genesis Evangelion" type="input" />
+					<Styled.ModalFormInput>
+						<Styled.ModalFormInputTitle>Series Title</Styled.ModalFormInputTitle>
+						<Styled.ModalFormInputField
+							onChange={(event: Types.Input) => handleChange(event, "series title")}
+							value={series}
+							style={animateInput}
+						/>
+					</Styled.ModalFormInput>
 
 					{/* Post Title */}
-					<InputGroup title="Post Title" text="Neon Genesis Evangelion" type="input" />
+					<Styled.ModalFormInput>
+						<Styled.ModalFormInputTitle>Post Title</Styled.ModalFormInputTitle>
+						<Styled.ModalFormInputField
+							onChange={(event: Types.Input) => handleChange(event, "post title")}
+							value={title}
+							style={animateInput}
+						/>
+					</Styled.ModalFormInput>
 
-					{/* Post Content */}
-					<InputGroup
-						title="Post Content"
-						text="People refer to this piece as a timeless classic, but that description alone fails to accurately portray why it has withstood the test of time. Not only are its animation and character designs fluid and bold, but also, it experiments with the human psyche - how we react to our surroundings as people, not as a hyperbolic fictional character. It is this realism that allows us to see ourselves in the characters' shoes. Evangelion has set the standard for its descendants."
-						type="textarea"
-					/>
+					{/* Review */}
+					<Styled.ModalFormInput>
+						<Styled.ModalFormInputTitle>Review</Styled.ModalFormInputTitle>
+						<Styled.ModalFormTextareaField
+							onChange={(event: Types.Textarea) => handleChange(event, "review")}
+							value={review}
+							style={animateInput}
+						/>
+					</Styled.ModalFormInput>
 
 					{/* Personal Rating */}
-					<PersonalRating rating={8} />
+					<Styled.ModalFormInput>
+						<Styled.ModalFormInputTitle>Personal Rating</Styled.ModalFormInputTitle>
+						<Styled.ModalFormPersonalRating>
+							<Styled.ModalFormPersonalRatingInput
+								onChange={(event: Types.Input) => handleChange(event, "rating")}
+								style={animateInput}
+								value={rating}
+							/>
+						</Styled.ModalFormPersonalRating>
+					</Styled.ModalFormInput>
 
 					{/* Submit Button */}
-					<Styled.ModalFormSubmit is_mobile={isMobile}>
-						Finish Editing
-					</Styled.ModalFormSubmit>
+					<Styled.ModalFormSubmit is_mobile={isMobile}>Edit</Styled.ModalFormSubmit>
 				</Styled.ModalForm>
 			</Styled.ModalFormWrapper>
 		</Styled.ModalFormContainer>
-	);
-};
-
-// =================== //
-// ↓↓↓ Input Group ↓↓↓ //
-// =================== //
-
-type InputGroupProps = {
-	title: string;
-	text: string;
-	type: "input" | "textarea";
-};
-
-const InputGroup = (props: InputGroupProps) => {
-	const { title, text, type } = props;
-
-	const animateInput = Springs.input();
-
-	const typeOutput =
-		type === "input" ? (
-			<Styled.ModalFormInputField value={text} style={animateInput} />
-		) : (
-			<Styled.ModalFormTextareaField style={animateInput}>
-				{text}
-			</Styled.ModalFormTextareaField>
-		);
-
-	return (
-		<Styled.ModalFormInput>
-			<Styled.ModalFormInputTitle>{title}</Styled.ModalFormInputTitle>
-			{typeOutput}
-		</Styled.ModalFormInput>
-	);
-};
-
-// ======================= //
-// ↓↓↓ Personal Rating ↓↓↓ //
-// ======================= //
-
-type PersonalRatingProps = { rating: number };
-
-const PersonalRating = (props: PersonalRatingProps) => {
-	const { rating } = props;
-
-	const animateInput = Springs.input();
-
-	return (
-		<Styled.ModalFormInput>
-			<Styled.ModalFormInputTitle>Personal Rating</Styled.ModalFormInputTitle>
-			<Styled.ModalFormPersonalRating>
-				<Styled.ModalFormPersonalRatingInput style={animateInput} value={rating} />
-			</Styled.ModalFormPersonalRating>
-		</Styled.ModalFormInput>
 	);
 };

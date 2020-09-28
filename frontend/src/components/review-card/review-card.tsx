@@ -72,7 +72,14 @@ export const ReviewCard = (props: Props) => {
 
 	return (
 		<Styled.ReviewCard style={animateReviewCard}>
-			<ModalForm isOpen={modalOpen} toggleModalOpen={toggleModalOpen} />
+			<ModalForm
+				isOpen={modalOpen}
+				toggleModalOpen={toggleModalOpen}
+				postSeries={props.seriesTitle}
+				postTitle={props.title}
+				postReview={props.review}
+				personalRating={props.personalRating}
+			/>
 
 			{/* Header */}
 			<Styled.ReviewCardHeader>
