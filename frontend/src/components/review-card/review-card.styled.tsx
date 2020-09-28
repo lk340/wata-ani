@@ -74,6 +74,7 @@ export const ReviewCardModalButton = styled("div")<ModalButtonProps>`
 		if (belongs_to_current_user === "true") return "flex";
 		else return "none";
 	}};
+	padding: 0px 2px;
 	cursor: pointer;
 `;
 

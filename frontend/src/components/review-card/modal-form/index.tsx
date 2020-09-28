@@ -11,6 +11,8 @@ import * as Functions from "@/utils/functions";
 import * as Styled from "./modal-form.styled";
 import * as Springs from "./modal-form.springs";
 
+import { Tag } from "./tag";
+
 type Props = {
 	isOpen: boolean;
 	toggleModalOpen: Function;
@@ -22,17 +24,6 @@ type Props = {
 };
 
 export const ModalForm = (props: Props) => {
-	const animateForm = Springs.form();
-	const animateInput = Springs.input();
-
-	const dispatch = ReactRedux.useDispatch();
-	const author = Functions.getSession().id;
-	const postRatingsRedux = Functions.getPosts()[props.postId].ratings;
-	const postErrorsRedux = Functions.getPostsErrors();
-
-	const tagsRedux = Functions.getTags();
-	const tagTitles = Object.values(Lodash.mapValues(tagsRedux, (tag) => tag.title));
-
 	const [series_title, setSeries] = React.useState("");
 	const [title, setTitle] = React.useState("");
 	const [review, setReview] = React.useState("");
@@ -49,6 +40,30 @@ export const ModalForm = (props: Props) => {
 	React.useEffect(() => {
 		handleRatingError();
 	}, [personal_rating]);
+
+	const animateForm = Springs.form();
+	const animateInput = Springs.input();
+
+	const dispatch = ReactRedux.useDispatch();
+	const author = Functions.getSession().id;
+	const postRatingsRedux = Functions.getPosts()[props.postId].ratings;
+	const postErrorsRedux = Functions.getPostsErrors();
+
+	const tagsRedux = Functions.getTags();
+	const tagTitles = Object.entries(Lodash.mapValues(tagsRedux, (tag) => tag.title));
+	const tagCount = tagTitles.length;
+	const lastTagId = tagCount + 1;
+	const tags = tagTitles.map((tag: [string, string]) => {
+		const id = tag[0];
+		const title = tag[1];
+		const isLastTag = Number(id) === lastTagId;
+
+		return (
+			<Styled.TagContainer key={id}>
+				<Tag title={title} margin={isLastTag ? false : true} />
+			</Styled.TagContainer>
+		);
+	});
 
 	function handleRatingError(): void {
 		if (personal_rating === "") setRatingError("");
@@ -111,38 +126,38 @@ export const ModalForm = (props: Props) => {
 					</Styled.ModalFormCloseContainer>
 
 					{/* Series Title */}
-					<Styled.ModalFormInput>
-						<Styled.ModalFormInputTitle>Series Title</Styled.ModalFormInputTitle>
+					<Styled.ModalFormGroup>
+						<Styled.ModalFormGrouptTitle>Series Title</Styled.ModalFormGrouptTitle>
 						<Styled.ModalFormInputField
 							onChange={(event: Types.Input) => handleChange(event, "series title")}
 							value={series_title}
 							style={animateInput}
 						/>
-					</Styled.ModalFormInput>
+					</Styled.ModalFormGroup>
 
 					{/* Post Title */}
-					<Styled.ModalFormInput>
-						<Styled.ModalFormInputTitle>Post Title</Styled.ModalFormInputTitle>
+					<Styled.ModalFormGroup>
+						<Styled.ModalFormGrouptTitle>Post Title</Styled.ModalFormGrouptTitle>
 						<Styled.ModalFormInputField
 							onChange={(event: Types.Input) => handleChange(event, "post title")}
 							value={title}
 							style={animateInput}
 						/>
-					</Styled.ModalFormInput>
+					</Styled.ModalFormGroup>
 
 					{/* Review */}
-					<Styled.ModalFormInput>
-						<Styled.ModalFormInputTitle>Review</Styled.ModalFormInputTitle>
+					<Styled.ModalFormGroup>
+						<Styled.ModalFormGrouptTitle>Review</Styled.ModalFormGrouptTitle>
 						<Styled.ModalFormTextareaField
 							onChange={(event: Types.Textarea) => handleChange(event, "review")}
 							value={review}
 							style={animateInput}
 						/>
-					</Styled.ModalFormInput>
+					</Styled.ModalFormGroup>
 
 					{/* Personal Rating */}
-					<Styled.ModalFormInput>
-						<Styled.ModalFormInputTitle>Personal Rating</Styled.ModalFormInputTitle>
+					<Styled.ModalFormGroup>
+						<Styled.ModalFormGrouptTitle>Personal Rating</Styled.ModalFormGrouptTitle>
 						<Styled.ModalFormPersonalRating>
 							<Styled.ModalFormPersonalRatingInput
 								onChange={(event: Types.Input) => handleChange(event, "rating")}
@@ -150,7 +165,13 @@ export const ModalForm = (props: Props) => {
 								value={personal_rating}
 							/>
 						</Styled.ModalFormPersonalRating>
-					</Styled.ModalFormInput>
+					</Styled.ModalFormGroup>
+
+					{/* Tags */}
+					<Styled.ModalFormGroup>
+						<Styled.ModalFormGrouptTitle>Tags</Styled.ModalFormGrouptTitle>
+						<Styled.Tags length={tagCount}>{tags}</Styled.Tags>
+					</Styled.ModalFormGroup>
 
 					{/* Submit Button */}
 					<Styled.ModalFormSubmit>Edit</Styled.ModalFormSubmit>

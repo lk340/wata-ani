@@ -69,8 +69,14 @@ export const theme = {
 			modalForm: {
 				background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 				borderLeft: { light: Colors.LIGHT.three, dark: Colors.DARK.five },
-				inputBorder: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.five },
+				inputBorder: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 				inputBackground: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.three },
+				tag: {
+					border: { light: Colors.LIGHT.five, dark: Colors.DARK.five },
+					backgroundSelected: { light: Colors.LIGHT.three, dark: Colors.DARK.four },
+					backgroundNotSelected: { light: Colors.LIGHT.two, dark: Colors.DARK.three },
+					textNotSelected: Colors.LIGHT.six,
+				},
 			},
 			ratingAndLike: {
 				background: { light: Colors.LIGHT.one, dark: Colors.DARK.three },

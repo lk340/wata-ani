@@ -4,15 +4,16 @@ import { animated } from "react-spring";
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
-import * as Types from "@/utils/types";
 
 import close from "@/icons/close.svg";
 
 /**
  * Modal Form
  * Close
+ * Group
  * Input
  * Form Personal Rating
+ * Tags
  * Submit
  */
 
@@ -36,6 +37,10 @@ export const ModalFormWrapper = styled("div")`
 	${Snippets.absolute("0px", "0px", "0px", "40px", 2)};
 	${Snippets.flex("column")};
 	overflow-y: scroll;
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		${Snippets.hideScrollbar()};
+	}
 `;
 
 export const ModalForm = styled(animated.form)`
@@ -60,19 +65,23 @@ export const ModalFormClose = styled("img").attrs(() => ({
 `;
 
 // ============= //
-// ↓↓↓ Input ↓↓↓ //
+// ↓↓↓ Group ↓↓↓ //
 // ============= //
 
-export const ModalFormInput = styled("div")`
+export const ModalFormGroup = styled("div")`
 	margin-bottom: 30px;
 `;
 
-export const ModalFormInputTitle = styled("h3")`
+export const ModalFormGrouptTitle = styled("h3")`
 	${Snippets.clearSpacing()};
 	margin-bottom: 10px;
 	font-size: ${Constants.fontSizes.components.reviewCard.modal};
 	font-weight: bold;
 `;
+
+// ============= //
+// ↓↓↓ Input ↓↓↓ //
+// ============= //
 
 const inputStyles = css`
 	width: 100%;
@@ -112,6 +121,20 @@ export const ModalFormPersonalRatingInput = styled(animated.input)`
 	text-align: center;
 	outline: none;
 `;
+
+// ============ //
+// ↓↓↓ Tags ↓↓↓ //
+// ============ //
+
+type TagsProps = { length: number };
+
+export const Tags = styled("div")<TagsProps>`
+	${Snippets.flex("row", "auto", "center")};
+	${Snippets.hideScrollbar()};
+	overflow-x: scroll;
+`;
+
+export const TagContainer = styled("div")``;
 
 // ============== //
 // ↓↓↓ Submit ↓↓↓ //
