@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
-
 import * as Lodash from "lodash";
 
 import * as Context from "@/context";
@@ -22,9 +21,14 @@ type Props = {
 	postTitle: string;
 	postReview: string;
 	personalRating: number;
+	postTags: number[];
 	currentUser: Context.AuthForm.CurrentUser;
 	tagsRedux: Types.Tags;
 	ratingsRedux: Types.Ratings;
+};
+
+export type SelectedTags = {
+	[key: string]: Actions.Tags.Tag;
 };
 
 export const ModalForm = (props: Props) => {
@@ -33,6 +37,34 @@ export const ModalForm = (props: Props) => {
 	const [review, setReview] = React.useState(props.postReview);
 	const [personalRating, setRating] = React.useState(props.personalRating.toString());
 	const [ratingError, setRatingError] = React.useState("");
+	const [selectedTags, setSelectedTags] = React.useState<SelectedTags>({});
+
+	function addToSelectedTags(tagId: string): void {
+		const newTags = selectedTags;
+		newTags[tagId] = props.tagsRedux[tagId];
+		setSelectedTags(newTags);
+	}
+
+	function removeFromSelectedTags(tagId: string): void {
+		const newTags = selectedTags;
+		delete newTags[tagId];
+		setSelectedTags(newTags);
+	}
+
+	function isTagSelected(tagId: string): boolean {
+		return !!selectedTags[tagId];
+	}
+
+	// --- Initializing selectedTags --- //
+	React.useEffect(() => {
+		if (Object.values(props.tagsRedux).length > 0) {
+			props.postTags.forEach((tagId: number) => {
+				const newTags = selectedTags;
+				newTags[tagId] = props.tagsRedux[tagId];
+				setSelectedTags(newTags);
+			});
+		}
+	}, [Object.values(props.tagsRedux).length]);
 
 	React.useEffect(() => handleRatingError(), [personalRating]);
 
@@ -47,8 +79,7 @@ export const ModalForm = (props: Props) => {
 	const postErrorsRedux = Functions.getPostsErrors();
 
 	// --- Setting Tag Components --- //
-	const tagsRedux = Functions.getTags();
-	const tagTitles = Object.entries(Lodash.mapValues(tagsRedux, (tag) => tag.title));
+	const tagTitles = Object.entries(Lodash.mapValues(props.tagsRedux, (tag) => tag.title));
 	const tagCount = tagTitles.length;
 	const tags = tagTitles.map((tag: [string, string]) => {
 		const id = tag[0];
@@ -57,11 +88,20 @@ export const ModalForm = (props: Props) => {
 
 		return (
 			<Styled.TagContainer key={id}>
-				<Tag title={title} margin={isLastTag ? false : true} />
+				<Tag
+					tagId={id}
+					title={title}
+					margin={isLastTag ? false : true}
+					selectedTags={selectedTags}
+					addToSelectedTags={addToSelectedTags}
+					removeFromSelectedTags={removeFromSelectedTags}
+					isTagSelected={isTagSelected}
+				/>
 			</Styled.TagContainer>
 		);
 	});
 
+	// --- Handlers --- //
 	function handleRatingError(): void {
 		if (personalRating === "") setRatingError("");
 		else if (!Number(personalRating)) setRatingError("Must be a number!");

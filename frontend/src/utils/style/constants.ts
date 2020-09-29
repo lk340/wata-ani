@@ -72,7 +72,8 @@ export const theme = {
 				inputBorder: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 				inputBackground: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.three },
 				tag: {
-					border: { light: Colors.LIGHT.five, dark: Colors.DARK.five },
+					borderSelected: { light: Colors.LIGHT.five, dark: Colors.DARK.five },
+					borderNotSelected: Colors.NEUTRALS.transparent,
 					backgroundSelected: { light: Colors.LIGHT.three, dark: Colors.DARK.four },
 					backgroundNotSelected: { light: Colors.LIGHT.two, dark: Colors.DARK.three },
 					textNotSelected: Colors.LIGHT.six,

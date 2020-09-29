@@ -130,8 +130,11 @@ type TagsProps = { length: number };
 
 export const Tags = styled("div")<TagsProps>`
 	${Snippets.flex("row", "auto", "center")};
-	${Snippets.hideScrollbar()};
 	overflow-x: scroll;
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		${Snippets.hideScrollbar()};
+	}
 `;
 
 export const TagContainer = styled("div")`

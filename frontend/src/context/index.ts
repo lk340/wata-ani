@@ -16,7 +16,6 @@ import * as Mouse from "@/context/utilities/mouse";
 import * as AuthForm from "@/context/data/auth-form";
 import * as Navbar from "@/context/data/navbar";
 import * as Pagination from "@/context/data/pagination";
-import * as ReviewCardTags from "@/context/data/review-card-tags";
 
 // =============== //
 // ↓↓↓ Exports ↓↓↓ //
@@ -32,5 +31,4 @@ export {
 	AuthForm,
 	Navbar,
 	Pagination,
-	ReviewCardTags,
 };

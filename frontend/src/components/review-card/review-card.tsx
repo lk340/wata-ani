@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Functions from "@/utils/functions";
 
@@ -23,8 +22,6 @@ type Props = {
 	ReviewCardTypes.LikesProps;
 
 export const ReviewCard = (props: Props) => {
-	const { reviewCardTags } = Context.ReviewCardTags.useReviewCardTagsContext();
-
 	const [modalOpen, setModalOpen] = React.useState(false);
 
 	function toggleModalOpen(): void {
@@ -41,21 +38,13 @@ export const ReviewCard = (props: Props) => {
 	const tagsRedux = Functions.getTags();
 	const ratingsRedux = Functions.getRatings();
 
-	React.useEffect(() => {
-		if (Object.values(tagsRedux).length > 0) {
-			props.tags.forEach((tagId: number) => {
-				reviewCardTags.setters.addTag(tagsRedux[tagId].title);
-			});
-		}
-	}, [tagsRedux]);
-
 	// --- Review Card Tag Components --- //
 	const tagCount = props.tags.length;
 	const _postHasTags = tagCount > 0;
-	const _tagsReduxLoaded = Object.keys(tagsRedux).length > 0;
+	const _tagsReduxHasLoaded = Object.keys(tagsRedux).length > 0;
 
 	let reviewCardTagComponents;
-	if (_postHasTags && _tagsReduxLoaded) {
+	if (_postHasTags && _tagsReduxHasLoaded) {
 		reviewCardTagComponents = props.tags.map((id: number) => {
 			const tagTitle = tagsRedux[id].title.toLowerCase();
 			return (
@@ -93,6 +82,7 @@ export const ReviewCard = (props: Props) => {
 				postTitle={props.title}
 				postReview={props.review}
 				personalRating={props.personalRating}
+				postTags={props.tags}
 				currentUser={currentUser}
 				tagsRedux={tagsRedux}
 				ratingsRedux={ratingsRedux}
