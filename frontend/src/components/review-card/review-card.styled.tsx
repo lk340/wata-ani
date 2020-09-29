@@ -162,10 +162,17 @@ type Tag = { length: number };
 
 export const ReviewCardTagContainer = styled("div")<Tag>`
 	${Snippets.flex("row", "auto", "center")};
-	${Snippets.hideScrollbar()};
 	display: ${(props) => (props.length > 0 ? "flex" : "none")};
 	overflow-y: auto;
 	padding-left: 20px;
+
+	@media (max-width: ${Constants.breakpoints.mobile}px) {
+		${Snippets.hideScrollbar()};
+	}
+`;
+
+export const ReviewCardTagKeyWrapper = styled("div")`
+	flex-shrink: 0;
 `;
 
 export const ReviewCardTag = styled(animated.div)`

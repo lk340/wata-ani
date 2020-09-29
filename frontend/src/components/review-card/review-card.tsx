@@ -48,9 +48,9 @@ export const ReviewCard = (props: Props) => {
 		reviewCardTagComponents = props.tags.map((id: number) => {
 			const tagTitle = tagsRedux[id].title.toLowerCase();
 			return (
-				<React.Fragment key={id}>
+				<Styled.ReviewCardTagKeyWrapper key={id}>
 					<Styled.ReviewCardTag style={animateTag}>{tagTitle}</Styled.ReviewCardTag>
-				</React.Fragment>
+				</Styled.ReviewCardTagKeyWrapper>
 			);
 		});
 	} else {
