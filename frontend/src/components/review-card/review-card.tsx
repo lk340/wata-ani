@@ -93,6 +93,9 @@ export const ReviewCard = (props: Props) => {
 				postTitle={props.title}
 				postReview={props.review}
 				personalRating={props.personalRating}
+				currentUser={currentUser}
+				tagsRedux={tagsRedux}
+				ratingsRedux={ratingsRedux}
 			/>
 
 			{/* Header */}

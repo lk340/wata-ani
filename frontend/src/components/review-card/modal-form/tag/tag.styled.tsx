@@ -10,13 +10,10 @@ import * as Constants from "@/utils/style/constants";
 type TagProps = { margin: string };
 
 export const Tag = styled(animated.div)<TagProps>`
-	min-width: 0;
 	margin-right: ${(props) => (props.margin === "true" ? "10px" : "0px")};
 	padding: 10px 14px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.tag};
 	font-size: ${Constants.fontSizes.components.reviewCard.tag};
 	font-weight: 400;
 	cursor: pointer;
-
-	border: red solid 1px;
 `;

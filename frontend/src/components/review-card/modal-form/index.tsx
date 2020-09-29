@@ -3,6 +3,7 @@ import * as ReactRedux from "react-redux";
 
 import * as Lodash from "lodash";
 
+import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
@@ -21,25 +22,19 @@ type Props = {
 	postTitle: string;
 	postReview: string;
 	personalRating: number;
+	currentUser: Context.AuthForm.CurrentUser;
+	tagsRedux: Types.Tags;
+	ratingsRedux: Types.Ratings;
 };
 
 export const ModalForm = (props: Props) => {
-	const [series_title, setSeries] = React.useState("");
-	const [title, setTitle] = React.useState("");
-	const [review, setReview] = React.useState("");
-	const [personal_rating, setRating] = React.useState("0");
+	const [seriesTitle, setSeries] = React.useState(props.postSeries);
+	const [title, setTitle] = React.useState(props.postTitle);
+	const [review, setReview] = React.useState(props.postReview);
+	const [personalRating, setRating] = React.useState(props.personalRating.toString());
 	const [ratingError, setRatingError] = React.useState("");
 
-	React.useEffect(() => {
-		setSeries(props.postSeries);
-		setTitle(props.postTitle);
-		setReview(props.postReview);
-		setRating(props.personalRating.toString());
-	}, []);
-
-	React.useEffect(() => {
-		handleRatingError();
-	}, [personal_rating]);
+	React.useEffect(() => handleRatingError(), [personalRating]);
 
 	// --- Animations --- //
 	const animateForm = Springs.form();
@@ -47,7 +42,7 @@ export const ModalForm = (props: Props) => {
 
 	// --- Fetching Redux State --- //
 	const dispatch = ReactRedux.useDispatch();
-	const author = Functions.getSession().id;
+	const author = props.currentUser.id;
 	const postRatingsRedux = Functions.getPosts()[props.postId].ratings;
 	const postErrorsRedux = Functions.getPostsErrors();
 
@@ -68,33 +63,20 @@ export const ModalForm = (props: Props) => {
 	});
 
 	function handleRatingError(): void {
-		if (personal_rating === "") setRatingError("");
-		else if (!Number(personal_rating)) setRatingError("Must be a number!");
-		else if (Number(personal_rating) < 1) setRatingError("Minimum rating is 1!");
-		else if (Number(personal_rating) > 10) setRatingError("Maximum rating is 10!");
+		if (personalRating === "") setRatingError("");
+		else if (!Number(personalRating)) setRatingError("Must be a number!");
+		else if (Number(personalRating) < 1) setRatingError("Minimum rating is 1!");
+		else if (Number(personalRating) > 10) setRatingError("Maximum rating is 10!");
 		else setRatingError("");
 	}
 
 	type InputType = "series title" | "post title" | "review" | "rating";
-
 	function handleChange(event: Types.Input | Types.Textarea, inputType: InputType): void {
-		switch (inputType) {
-			case "series title":
-				setSeries(event.currentTarget.value);
-				break;
-
-			case "post title":
-				setTitle(event.currentTarget.value);
-				break;
-
-			case "review":
-				setReview(event.currentTarget.value);
-				break;
-
-			default:
-				setRating(event.currentTarget.value);
-				break;
-		}
+		const userInput = event.currentTarget.value;
+		if (inputType === "series title") setSeries(userInput);
+		else if (inputType === "post title") setTitle(userInput);
+		else if (inputType === "review") setReview(userInput);
+		else setRating(userInput);
 	}
 
 	function handleSubmit(event: Types.Submit): void {
@@ -102,9 +84,9 @@ export const ModalForm = (props: Props) => {
 
 		const data = {
 			title,
-			series_title,
+			series_title: seriesTitle,
 			review,
-			personal_rating: Number(personal_rating),
+			personal_rating: Number(personalRating),
 			author,
 			ratings: postRatingsRedux,
 		};
@@ -132,7 +114,7 @@ export const ModalForm = (props: Props) => {
 						<Styled.ModalFormGrouptTitle>Series Title</Styled.ModalFormGrouptTitle>
 						<Styled.ModalFormInputField
 							onChange={(event: Types.Input) => handleChange(event, "series title")}
-							value={series_title}
+							value={seriesTitle}
 							style={animateInput}
 						/>
 					</Styled.ModalFormGroup>
@@ -164,7 +146,7 @@ export const ModalForm = (props: Props) => {
 							<Styled.ModalFormPersonalRatingInput
 								onChange={(event: Types.Input) => handleChange(event, "rating")}
 								style={animateInput}
-								value={personal_rating}
+								value={personalRating}
 							/>
 						</Styled.ModalFormPersonalRating>
 					</Styled.ModalFormGroup>

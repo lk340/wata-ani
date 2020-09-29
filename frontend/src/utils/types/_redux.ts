@@ -2,19 +2,19 @@ import * as Context from "@/context";
 import * as Actions from "@/redux/actions";
 import { InitialState } from "@/redux/reducers/_session";
 
-type Users = {
+export type Users = {
 	[key: string]: Context.AuthForm.CurrentUser;
 };
 
-type Posts = {
+export type Posts = {
 	[key: string]: Actions.Posts.Post;
 };
 
-type Tags = {
+export type Tags = {
 	[key: string]: Actions.Tags.Tag;
 };
 
-type Ratings = {
+export type Ratings = {
 	[key: string]: Actions.Ratings.Rating;
 };
 

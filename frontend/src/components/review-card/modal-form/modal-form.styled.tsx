@@ -134,7 +134,9 @@ export const Tags = styled("div")<TagsProps>`
 	overflow-x: scroll;
 `;
 
-export const TagContainer = styled("div")``;
+export const TagContainer = styled("div")`
+	flex-shrink: 0;
+`;
 
 // ============== //
 // ↓↓↓ Submit ↓↓↓ //
