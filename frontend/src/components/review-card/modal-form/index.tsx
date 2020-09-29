@@ -3,7 +3,6 @@ import * as ReactRedux from "react-redux";
 
 import * as Lodash from "lodash";
 
-import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
@@ -42,22 +41,24 @@ export const ModalForm = (props: Props) => {
 		handleRatingError();
 	}, [personal_rating]);
 
+	// --- Animations --- //
 	const animateForm = Springs.form();
 	const animateInput = Springs.input();
 
+	// --- Fetching Redux State --- //
 	const dispatch = ReactRedux.useDispatch();
 	const author = Functions.getSession().id;
 	const postRatingsRedux = Functions.getPosts()[props.postId].ratings;
 	const postErrorsRedux = Functions.getPostsErrors();
 
+	// --- Setting Tag Components --- //
 	const tagsRedux = Functions.getTags();
 	const tagTitles = Object.entries(Lodash.mapValues(tagsRedux, (tag) => tag.title));
 	const tagCount = tagTitles.length;
-	const lastTagId = tagCount + 1;
 	const tags = tagTitles.map((tag: [string, string]) => {
 		const id = tag[0];
 		const title = tag[1];
-		const isLastTag = Number(id) === lastTagId;
+		const isLastTag = Number(id) === tagCount;
 
 		return (
 			<Styled.TagContainer key={id}>

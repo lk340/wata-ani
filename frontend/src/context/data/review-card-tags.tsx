@@ -20,7 +20,13 @@ export const useReviewCardTagsContext = Helpers.createUseContext(() => {
 	// =============== //
 
 	function isTagSelected(tag: string): boolean {
+		// console.log("Whoa:", !!reviewCardTags.tags[tag]);
+
 		return !!reviewCardTags.tags[tag];
+	}
+
+	function getTags(): string[] {
+		return Object.values(reviewCardTags.tags);
 	}
 
 	// =============== //
@@ -58,6 +64,7 @@ export const useReviewCardTagsContext = Helpers.createUseContext(() => {
 
 	const getters = {
 		isTagSelected,
+		getTags,
 	};
 
 	const setters = {

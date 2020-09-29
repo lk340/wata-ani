@@ -13,20 +13,17 @@ type Props = {
 export const Tag = (props: Props) => {
 	const { reviewCardTags } = Context.ReviewCardTags.useReviewCardTagsContext();
 
-	console.log("Tags:", reviewCardTags.state.tags);
-
-	const [selected, setSelected] = React.useState(
-		reviewCardTags.getters.isTagSelected(props.title),
-	);
-
-	console.log(`${props.title}'s selected is ${selected}`);
+	const [selected, setSelected] = React.useState(false);
 
 	React.useEffect(() => {
-		if (reviewCardTags.getters.isTagSelected(props.title)) {
-			setSelected(true);
-		} else {
-			setSelected(false);
-		}
+		// console.log(props.title, ":", reviewCardTags.getters.isTagSelected(props.title));
+		console.log(props.title, ":", !!reviewCardTags.state.tags[props.title]);
+
+		// if (reviewCardTags.getters.isTagSelected(props.title)) {
+		// 	setSelected(true);
+		// } else {
+		// 	setSelected(false);
+		// }
 	}, [reviewCardTags.state.tags]);
 
 	function handleClick(): void {
@@ -35,6 +32,12 @@ export const Tag = (props: Props) => {
 	}
 
 	const animateTag = Springs.tag(selected);
+
+	// console.log("Title:", props.title);
+	console.log("Tags:", reviewCardTags.state.tags);
+	// console.log(`${props.title}'s selected is ${selected}`);
+	// console.log(`${props.title}: ${reviewCardTags.getters.isTagSelected(props.title)}`);
+	// console.log(`${props.title} Selected: ${selected}`);
 
 	return (
 		<Styled.Tag onClick={handleClick} margin={props.margin.toString()} style={animateTag}>

@@ -14,6 +14,7 @@ export const Authed = () => {
 	const currentUser = Functions.getSession();
 	const userIsSignedIn = !!currentUser.id;
 
+	// --- Fetching Redux State --- //
 	const usersRedux = Functions.getUsers();
 	const userErrorsRedux = Functions.getUsersErrors();
 	const postsRedux = Functions.getPosts();
@@ -31,7 +32,7 @@ export const Authed = () => {
 		}
 	}, [userIsSignedIn]);
 
-	// --- Review Card Logic --- //
+	// ↓↓↓ Review Card Logic ↓↓↓ //
 
 	// Reversing here to make sure that the posts are being displayed in descending order.
 	const postValues: Actions.Posts.Post[] = Object.values(postsRedux).reverse();

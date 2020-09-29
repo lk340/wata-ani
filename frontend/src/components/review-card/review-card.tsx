@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Functions from "@/utils/functions";
 
@@ -22,28 +23,40 @@ type Props = {
 	ReviewCardTypes.LikesProps;
 
 export const ReviewCard = (props: Props) => {
+	const { reviewCardTags } = Context.ReviewCardTags.useReviewCardTagsContext();
+
 	const [modalOpen, setModalOpen] = React.useState(false);
 
 	function toggleModalOpen(): void {
 		setModalOpen(!modalOpen);
 	}
 
+	// --- Animations --- //
 	const animateReviewCard = Springs.reviewCard();
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
 
+	// --- Fetching Redux State --- //
 	const currentUser = Functions.getSession();
 	const tagsRedux = Functions.getTags();
 	const ratingsRedux = Functions.getRatings();
 
-	// Review Card Tag Components
+	React.useEffect(() => {
+		if (Object.values(tagsRedux).length > 0) {
+			props.tags.forEach((tagId: number) => {
+				reviewCardTags.setters.addTag(tagsRedux[tagId].title);
+			});
+		}
+	}, [tagsRedux]);
+
+	// --- Review Card Tag Components --- //
 	const tagCount = props.tags.length;
 	const _postHasTags = tagCount > 0;
 	const _tagsReduxLoaded = Object.keys(tagsRedux).length > 0;
 
-	let reviewCardTags;
+	let reviewCardTagComponents;
 	if (_postHasTags && _tagsReduxLoaded) {
-		reviewCardTags = props.tags.map((id: number) => {
+		reviewCardTagComponents = props.tags.map((id: number) => {
 			const tagTitle = tagsRedux[id].title.toLowerCase();
 			return (
 				<React.Fragment key={id}>
@@ -52,7 +65,7 @@ export const ReviewCard = (props: Props) => {
 			);
 		});
 	} else {
-		reviewCardTags = "";
+		reviewCardTagComponents = "";
 	}
 
 	// If user has made a rating, display it in the form and make the request a PATCH request
@@ -142,7 +155,7 @@ export const ReviewCard = (props: Props) => {
 
 			{/* Tags */}
 			<Styled.ReviewCardTagContainer length={tagCount}>
-				{reviewCardTags}
+				{reviewCardTagComponents}
 			</Styled.ReviewCardTagContainer>
 		</Styled.ReviewCard>
 	);
