@@ -24,8 +24,6 @@ export const Tag = (props: Props) => {
 			if (selectedTagIds.includes(props.tagId)) setSelected(true);
 			else setSelected(false);
 		}
-
-		console.log("Tag Ids:", selectedTagIds);
 	}, [selectedTagIds.length]);
 
 	function handleClick(): void {

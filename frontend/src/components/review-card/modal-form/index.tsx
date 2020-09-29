@@ -39,6 +39,7 @@ export const ModalForm = (props: Props) => {
 	const [ratingError, setRatingError] = React.useState("");
 	const [selectedTags, setSelectedTags] = React.useState<SelectedTags>({});
 
+	// --- selectedTags Handlers --- //
 	function addToSelectedTags(tagId: string): void {
 		const newTags = selectedTags;
 		newTags[tagId] = props.tagsRedux[tagId];
@@ -129,6 +130,7 @@ export const ModalForm = (props: Props) => {
 			personal_rating: Number(personalRating),
 			author,
 			ratings: postRatingsRedux,
+			tags: Functions.convertKeysToIntegers(selectedTags),
 		};
 
 		if (ratingError === "") {

@@ -40,8 +40,9 @@ type CreateData = {
 	personal_rating: number;
 	// author: Context.AuthForm.CurrentUser;
 	author: number;
-	tags?: Tag | Tag[];
-	ratings?: number[];
+	// tags?: Tag | Tag[];
+	tags: number[];
+	ratings: number[];
 };
 
 // ======================= //

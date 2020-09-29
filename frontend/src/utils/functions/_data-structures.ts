@@ -11,3 +11,8 @@ export function capitalizeFirstLetter(wordOrPhrase: string): string {
 	const restOfWordOrPhrase = wordOrPhrase.slice(1);
 	return firstLetter + restOfWordOrPhrase;
 }
+
+export function convertKeysToIntegers<T>(object: T): number[] {
+	const stringKeys = Object.keys(object);
+	return stringKeys.map((key: string) => parseInt(key));
+}
