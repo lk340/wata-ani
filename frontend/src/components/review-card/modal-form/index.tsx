@@ -33,11 +33,14 @@ export type SelectedTags = {
 };
 
 export const ModalForm = (props: Props) => {
-	const [seriesTitle, setSeries] = React.useState(props.postSeries);
-	const [title, setTitle] = React.useState(props.postTitle);
+	const [seriesTitle, setSeriesTitle] = React.useState(props.postSeries);
+	const [reviewTitle, setReviewTitle] = React.useState(props.postTitle);
 	const [review, setReview] = React.useState(props.postReview);
 	const [personalRating, setRating] = React.useState(props.personalRating.toString());
-	const [ratingError, setRatingError] = React.useState("");
+	const [seriesTitleError, setSeriesTitleError] = React.useState("");
+	const [reviewTitleError, setReviewTitleError] = React.useState("");
+	const [reviewError, setReviewError] = React.useState("");
+	const [personalRatingError, setPersonalRatingError] = React.useState("");
 	const [selectedTags, setSelectedTags] = React.useState<SelectedTags>({});
 
 	// --- selectedTags Handlers --- //
@@ -68,11 +71,15 @@ export const ModalForm = (props: Props) => {
 		}
 	}, [Object.values(props.tagsRedux).length]);
 
-	React.useEffect(() => handleRatingError(), [personalRating]);
+	React.useEffect(() => handleSeriesTitleError(), [seriesTitle]);
+	React.useEffect(() => handleReviewTitleError(), [reviewTitle]);
+	React.useEffect(() => handleReviewError(), [review]);
+	React.useEffect(() => handlePersonalRatingError(), [personalRating]);
 
 	// --- Animations --- //
 	const animateForm = Springs.form();
 	const animateHeader = Springs.header();
+	const animateError = Springs.error();
 	const animateInput = Springs.input();
 
 	// --- Fetching Redux State --- //
@@ -103,19 +110,41 @@ export const ModalForm = (props: Props) => {
 	});
 
 	// --- Handlers --- //
-	function handleRatingError(): void {
-		if (personalRating === "") setRatingError("");
-		else if (!Number(personalRating)) setRatingError("Must be a number!");
-		else if (Number(personalRating) < 1) setRatingError("Minimum rating is 1!");
-		else if (Number(personalRating) > 10) setRatingError("Maximum rating is 10!");
-		else setRatingError("");
+	function handleSeriesTitleError(): void {
+		if (seriesTitle === "") setSeriesTitleError("");
+		else if (seriesTitle.length > 100) setSeriesTitleError("Max 100 characters!");
+		else if (seriesTitle.length < 100) setSeriesTitleError("");
+		else setSeriesTitleError("");
+	}
+
+	function handleReviewTitleError(): void {
+		if (reviewTitle === "") setReviewTitleError("");
+		else if (reviewTitle.length > 50) setReviewTitleError("Max 50 characters!");
+		else if (reviewTitle.length < 50) setReviewTitleError("");
+		else setReviewTitleError("");
+	}
+
+	function handleReviewError(): void {
+		if (review === "") setReviewError("");
+		else if (review.length > 500) setReviewError("Max 500 characters!");
+		else if (review.length < 500) setReviewError("");
+		else setReviewError("");
+	}
+
+	function handlePersonalRatingError(): void {
+		if (personalRating === "") setPersonalRatingError("");
+		else if (personalRating === "0") setPersonalRatingError("Minimum rating is 1!");
+		else if (Number(personalRating) < 1) setPersonalRatingError("Minimum rating is 1!");
+		else if (Number(personalRating) > 10) setPersonalRatingError("Maximum rating is 10!");
+		else if (!Number(personalRating)) setPersonalRatingError("Must be a number!");
+		else setPersonalRatingError("");
 	}
 
 	type InputType = "series title" | "post title" | "review" | "rating";
 	function handleChange(event: Types.Input | Types.Textarea, inputType: InputType): void {
 		const userInput = event.currentTarget.value;
-		if (inputType === "series title") setSeries(userInput);
-		else if (inputType === "post title") setTitle(userInput);
+		if (inputType === "series title") setSeriesTitle(userInput);
+		else if (inputType === "post title") setReviewTitle(userInput);
 		else if (inputType === "review") setReview(userInput);
 		else setRating(userInput);
 	}
@@ -124,7 +153,7 @@ export const ModalForm = (props: Props) => {
 		event.preventDefault();
 
 		const data = {
-			title,
+			title: reviewTitle,
 			series_title: seriesTitle,
 			review,
 			personal_rating: Number(personalRating),
@@ -133,7 +162,7 @@ export const ModalForm = (props: Props) => {
 			tags: Functions.convertKeysToIntegers(selectedTags),
 		};
 
-		if (ratingError === "") {
+		if (personalRatingError === "") {
 			Actions.Posts.thunkUpdatePost(
 				props.postId,
 				data,
@@ -159,7 +188,10 @@ export const ModalForm = (props: Props) => {
 
 					{/* Series Title */}
 					<Styled.ModalFormGroup>
-						<Styled.ModalFormGrouptTitle>Series Title</Styled.ModalFormGrouptTitle>
+						<Styled.ModalFormGroupTitle>Series Title</Styled.ModalFormGroupTitle>
+						<Styled.ModalFormGroupError style={animateError}>
+							{seriesTitleError}
+						</Styled.ModalFormGroupError>
 						<Styled.ModalFormInputField
 							onChange={(event: Types.Input) => handleChange(event, "series title")}
 							value={seriesTitle}
@@ -167,19 +199,25 @@ export const ModalForm = (props: Props) => {
 						/>
 					</Styled.ModalFormGroup>
 
-					{/* Post Title */}
+					{/* Review Title */}
 					<Styled.ModalFormGroup>
-						<Styled.ModalFormGrouptTitle>Post Title</Styled.ModalFormGrouptTitle>
+						<Styled.ModalFormGroupTitle>Review Title</Styled.ModalFormGroupTitle>
+						<Styled.ModalFormGroupError style={animateError}>
+							{reviewTitleError}
+						</Styled.ModalFormGroupError>
 						<Styled.ModalFormInputField
 							onChange={(event: Types.Input) => handleChange(event, "post title")}
-							value={title}
+							value={reviewTitle}
 							style={animateInput}
 						/>
 					</Styled.ModalFormGroup>
 
 					{/* Review */}
 					<Styled.ModalFormGroup>
-						<Styled.ModalFormGrouptTitle>Review</Styled.ModalFormGrouptTitle>
+						<Styled.ModalFormGroupTitle>Your Review</Styled.ModalFormGroupTitle>
+						<Styled.ModalFormGroupError style={animateError}>
+							{reviewError}
+						</Styled.ModalFormGroupError>
 						<Styled.ModalFormTextareaField
 							onChange={(event: Types.Textarea) => handleChange(event, "review")}
 							value={review}
@@ -189,7 +227,12 @@ export const ModalForm = (props: Props) => {
 
 					{/* Personal Rating */}
 					<Styled.ModalFormGroup>
-						<Styled.ModalFormGrouptTitle>Personal Rating</Styled.ModalFormGrouptTitle>
+						<Styled.ModalFormGroupTitle>
+							What do you rate this series?
+						</Styled.ModalFormGroupTitle>
+						<Styled.ModalFormGroupError style={animateError}>
+							{personalRatingError}
+						</Styled.ModalFormGroupError>
 						<Styled.ModalFormPersonalRating>
 							<Styled.ModalFormPersonalRatingInput
 								onChange={(event: Types.Input) => handleChange(event, "rating")}
@@ -201,7 +244,7 @@ export const ModalForm = (props: Props) => {
 
 					{/* Tags */}
 					<Styled.ModalFormGroup>
-						<Styled.ModalFormGrouptTitle>Tags</Styled.ModalFormGrouptTitle>
+						<Styled.ModalFormGroupTitle>Tags</Styled.ModalFormGroupTitle>
 						<Styled.Tags length={tagCount}>{tags}</Styled.Tags>
 					</Styled.ModalFormGroup>
 

@@ -69,6 +69,7 @@ export const theme = {
 			modalForm: {
 				header: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.six },
 				background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
+				error: { light: Colors.ALERTS.error.light, dark: Colors.ALERTS.error.dark },
 				inputBorder: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 				inputBackground: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.three },
 				tag: {

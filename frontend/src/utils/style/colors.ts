@@ -129,7 +129,7 @@ export const MODAL = {
 
 export const ALERTS = {
 	error: {
-		light: "#C32263",
-		dark: "#f79b9b",
+		light: "#FF0F00",
+		dark: "#FF7C74",
 	},
 };

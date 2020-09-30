@@ -72,11 +72,21 @@ export const ModalFormGroup = styled("div")`
 	margin-bottom: 30px;
 `;
 
-export const ModalFormGrouptTitle = styled("h3")`
+export const ModalFormGroupTitle = styled("h3")`
 	${Snippets.clearSpacing()};
 	margin-bottom: 10px;
 	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
 	font-weight: bold;
+`;
+
+type GroupError = { error: string };
+
+export const ModalFormGroupError = styled(animated.h3)`
+	${Snippets.clearSpacing()};
+	display: ${(props) => (props.error !== "" ? "block" : "none")};
+	margin-bottom: 10px;
+	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
+	font-weight: normal;
 `;
 
 // ============= //
