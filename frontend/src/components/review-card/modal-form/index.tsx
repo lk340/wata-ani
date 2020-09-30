@@ -71,6 +71,7 @@ export const ModalForm = (props: Props) => {
 
 	// --- Animations --- //
 	const animateForm = Springs.form();
+	const animateHeader = Springs.header();
 	const animateInput = Springs.input();
 
 	// --- Fetching Redux State --- //
@@ -146,8 +147,11 @@ export const ModalForm = (props: Props) => {
 				<Styled.ModalForm onSubmit={handleSubmit} style={animateForm}>
 					{/* Close Icon */}
 					<Styled.ModalFormCloseContainer>
-						<Components.Spacer height="1px" />
-						<Styled.ModalFormClose onClick={() => props.toggleModalOpen()} />
+						{/* <Components.Spacer height="1px" /> */}
+						<Styled.ModalFormCloseTitle style={animateHeader}>
+							Edit Post
+						</Styled.ModalFormCloseTitle>
+						<Styled.ModalFormCloseIcon onClick={() => props.toggleModalOpen()} />
 					</Styled.ModalFormCloseContainer>
 
 					{/* Series Title */}

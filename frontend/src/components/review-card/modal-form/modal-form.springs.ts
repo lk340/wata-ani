@@ -14,6 +14,18 @@ export function form() {
 	});
 }
 
+export function header() {
+	return Spring.useSpring({
+		to: {
+			color:
+				localStorage.mode == "light"
+					? Constants.theme.components.reviewCard.modalForm.header.light
+					: Constants.theme.components.reviewCard.modalForm.header.dark,
+		},
+		config: { duration: 100 },
+	});
+}
+
 export function input() {
 	return Spring.useSpring({
 		to: {

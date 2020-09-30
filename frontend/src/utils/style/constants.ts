@@ -67,6 +67,7 @@ export const theme = {
 			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 			modalForm: {
+				header: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.six },
 				background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
 				inputBorder: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 				inputBackground: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.three },
@@ -235,7 +236,10 @@ export const fontSizes = {
 				value: "0.875rem",
 			},
 			tag: "0.75rem",
-			modal: "0.875rem",
+			modal: {
+				header: "1.25rem",
+				text: "0.875rem",
+			},
 		},
 	},
 	pages: {

@@ -38,7 +38,7 @@ export const ReviewCard = styled(animated.div)`
 // ============== //
 
 export const ReviewCardHeader = styled("div")`
-	${Snippets.flex("row", "space-between")};
+	${Snippets.flex("row", "space-between", "center")};
 	margin-bottom: 20px;
 	padding: 0px 20px;
 `;

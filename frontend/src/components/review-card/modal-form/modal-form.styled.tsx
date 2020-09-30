@@ -46,9 +46,17 @@ export const ModalForm = styled(animated.form)`
 
 export const ModalFormCloseContainer = styled("div")`
 	${Snippets.flex("row", "space-between", "center")};
+	height: 40px;
+	margin-bottom: 20px;
 `;
 
-export const ModalFormClose = styled("img").attrs(() => ({
+export const ModalFormCloseTitle = styled(animated.h2)`
+	${Snippets.clearSpacing()};
+	font-size: ${Constants.fontSizes.components.reviewCard.modal.header};
+	font-weight: normal;
+`;
+
+export const ModalFormCloseIcon = styled("img").attrs(() => ({
 	src: close,
 	alt: "review card modal form close icon",
 }))`
@@ -67,7 +75,7 @@ export const ModalFormGroup = styled("div")`
 export const ModalFormGrouptTitle = styled("h3")`
 	${Snippets.clearSpacing()};
 	margin-bottom: 10px;
-	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
 	font-weight: bold;
 `;
 
@@ -79,7 +87,7 @@ const inputStyles = css`
 	width: 100%;
 	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
 	color: inherit;
-	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
 	outline: none;
 `;
 
@@ -103,14 +111,14 @@ export const ModalFormTextareaField = styled(animated.textarea)`
 
 export const ModalFormPersonalRating = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
-	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
 `;
 
 export const ModalFormPersonalRatingInput = styled(animated.input)`
 	${Snippets.square("50px")};
 	color: inherit;
 	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
-	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
 	text-align: center;
 	outline: none;
 `;
@@ -147,7 +155,7 @@ export const ModalFormSubmit = styled("button").attrs(() => ({
 	background-color: ${Colors.PRIMARY_100};
 	border: none;
 	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
-	font-size: ${Constants.fontSizes.components.reviewCard.modal};
+	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
 	font-weight: bold;
 	text-align: center;
 	outline: none;
