@@ -141,7 +141,6 @@ export const ModalForm = (props: Props) => {
 
 	return (
 		<Styled.ModalFormContainer is_open={props.isOpen.toString()}>
-			<Styled.ModalFormContainerOverlay onClick={() => props.toggleModalOpen()} />
 			{/* Form */}
 			<Styled.ModalFormWrapper>
 				<Styled.ModalForm onSubmit={handleSubmit} style={animateForm}>

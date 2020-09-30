@@ -38,7 +38,7 @@ export const ReviewCard = styled(animated.div)`
 // ============== //
 
 export const ReviewCardHeader = styled("div")`
-	${Snippets.flex("row", "space-between", "center")};
+	${Snippets.flex("row", "space-between")};
 	margin-bottom: 20px;
 	padding: 0px 20px;
 `;
@@ -67,14 +67,14 @@ export const ReviewCardUsername = styled("p")`
 
 type ModalButtonProps = { belongs_to_current_user: string };
 
-export const ReviewCardModalButton = styled("div")<ModalButtonProps>`
-	${Snippets.flex("column")};
+export const ReviewCardModalButtonDotContainer = styled("div")<ModalButtonProps>`
+	${Snippets.flexColumnCenter()};
+	${Snippets.square("16px")};
 	display: ${(props) => {
 		const { belongs_to_current_user } = props;
 		if (belongs_to_current_user === "true") return "flex";
 		else return "none";
 	}};
-	padding: 0px 2px;
 	cursor: pointer;
 `;
 

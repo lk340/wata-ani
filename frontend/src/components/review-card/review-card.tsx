@@ -96,7 +96,7 @@ export const ReviewCard = (props: Props) => {
 					<Styled.ReviewCardUsername>{props.username}</Styled.ReviewCardUsername>
 				</Styled.ReviewCardProfilePicture_Username>
 				{/* Modal Button (ellipses) */}
-				<Styled.ReviewCardModalButton
+				<Styled.ReviewCardModalButtonDotContainer
 					onClick={toggleModalOpen}
 					belongs_to_current_user={props.belongsToCurrentUser.toString()}
 				>
@@ -105,7 +105,7 @@ export const ReviewCard = (props: Props) => {
 					<Styled.ReviewCardModalButtonDot />
 					<Components.Spacer height={"2px"} />
 					<Styled.ReviewCardModalButtonDot />
-				</Styled.ReviewCardModalButton>
+				</Styled.ReviewCardModalButtonDotContainer>
 			</Styled.ReviewCardHeader>
 
 			{/* Rating & Likes */}

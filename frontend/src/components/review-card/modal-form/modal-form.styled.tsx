@@ -28,19 +28,11 @@ export const ModalFormContainer = styled("div")<ContainerProps>`
 	display: ${(props) => (props.is_open === "true" ? "block" : "none")};
 `;
 
-export const ModalFormContainerOverlay = styled("div")`
-	${Snippets.absolute("0px", "0px", "0px", "0px")};
-	background-color: ${Colors.MODAL.overlay.light};
-`;
-
 export const ModalFormWrapper = styled("div")`
-	${Snippets.absolute("0px", "0px", "0px", "40px", 2)};
+	${Snippets.absolute("0px", "0px", "0px", "0px", 2)};
 	${Snippets.flex("column")};
+	${Snippets.hideScrollbar()};
 	overflow-y: scroll;
-
-	@media (max-width: ${Constants.breakpoints.mobile}px) {
-		${Snippets.hideScrollbar()};
-	}
 `;
 
 export const ModalForm = styled(animated.form)`
@@ -99,6 +91,7 @@ export const ModalFormInputField = styled(animated.input)`
 
 export const ModalFormTextareaField = styled(animated.textarea)`
 	${inputStyles};
+	${Snippets.hideScrollbar()};
 	padding: 20px;
 	line-height: 150%;
 	resize: vertical;
