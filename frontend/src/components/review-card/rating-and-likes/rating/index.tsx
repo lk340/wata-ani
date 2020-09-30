@@ -6,13 +6,21 @@ import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
 import * as Styled from "./rating.styled";
-import * as ReviewCardTypes from "../../_types";
 
 import { UserRating } from "./user-rating";
 import { RatingFormDesktop } from "./rating-form-desktop";
 import { RatingFormMobile } from "./rating-form-mobile";
 
-export const Rating = (props: ReviewCardTypes.RatingProps) => {
+type Props = {
+	postId: number;
+	userRating: number | "N/A";
+	userRatingCount: number;
+	currentUserRating: number;
+	userHasRated: boolean;
+	ratingId: number;
+};
+
+export const Rating = (props: Props) => {
 	const { ratingId } = props;
 
 	const [rating, setRating] = React.useState("");

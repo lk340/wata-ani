@@ -1,9 +1,7 @@
 import * as React from "react";
-import * as ReactRedux from "react-redux";
 import * as Lodash from "lodash";
 
 import * as Context from "@/context";
-import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
 import * as Functions from "@/utils/functions";
@@ -22,9 +20,12 @@ type Props = {
 	postReview: string;
 	personalRating: number;
 	postTags: number[];
+	dispatch: Function;
 	currentUser: Context.AuthForm.CurrentUser;
 	tagsRedux: Types.Tags;
 	ratingsRedux: Types.Ratings;
+	postsRedux: Types.Posts;
+	postsErrorsRedux: any;
 };
 
 export type SelectedTags = {
@@ -75,10 +76,8 @@ export const ModalForm = (props: Props) => {
 	const animateInput = Springs.input();
 
 	// --- Fetching Redux State --- //
-	const dispatch = ReactRedux.useDispatch();
 	const author = props.currentUser.id;
-	const postRatingsRedux = Functions.getPosts()[props.postId].ratings;
-	const postErrorsRedux = Functions.getPostsErrors();
+	const postRatingsRedux = props.postsRedux[props.postId].ratings;
 
 	// --- Setting Tag Components --- //
 	const tagTitles = Object.entries(Lodash.mapValues(props.tagsRedux, (tag) => tag.title));
@@ -135,7 +134,12 @@ export const ModalForm = (props: Props) => {
 		};
 
 		if (ratingError === "") {
-			Actions.Posts.thunkUpdatePost(props.postId, data, dispatch, postErrorsRedux);
+			Actions.Posts.thunkUpdatePost(
+				props.postId,
+				data,
+				props.dispatch,
+				props.postsErrorsRedux,
+			);
 			props.toggleModalOpen();
 		}
 	}
@@ -147,7 +151,6 @@ export const ModalForm = (props: Props) => {
 				<Styled.ModalForm onSubmit={handleSubmit} style={animateForm}>
 					{/* Close Icon */}
 					<Styled.ModalFormCloseContainer>
-						{/* <Components.Spacer height="1px" /> */}
 						<Styled.ModalFormCloseTitle style={animateHeader}>
 							Edit Post
 						</Styled.ModalFormCloseTitle>

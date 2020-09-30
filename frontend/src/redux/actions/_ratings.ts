@@ -1,11 +1,8 @@
 import axios from "axios";
 
-import * as Context from "@/context";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
-
-import { Post } from "@/redux/actions/_posts";
 
 const validateStatus = AxiosHelpers.validateStatus;
 
@@ -25,8 +22,6 @@ export type Rating = {
 
 type CreateData = {
 	rating: number;
-	// owner: Context.AuthForm.CurrentUser;
-	// post: Post;
 	owner: number;
 	post: number;
 };

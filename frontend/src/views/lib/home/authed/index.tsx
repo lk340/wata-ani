@@ -18,16 +18,16 @@ export const Authed = () => {
 	const usersRedux = Functions.getUsers();
 	const userErrorsRedux = Functions.getUsersErrors();
 	const postsRedux = Functions.getPosts();
-	const postErrorsRedux = Functions.getPostsErrors();
-	const tagErrorsRedux = Functions.getTagsErrors();
+	const postsErrorsRedux = Functions.getPostsErrors();
+	const tagsErrorsRedux = Functions.getTagsErrors();
 	const ratingsRedux = Functions.getRatings();
 	const ratingErrorsRedux = Functions.getRatingsErrors();
 
 	React.useEffect(() => {
 		if (userIsSignedIn) {
 			Actions.Users.thunkGetUsers(dispatch, userErrorsRedux);
-			Actions.Posts.thunkGetPosts(dispatch, postErrorsRedux);
-			Actions.Tags.thunkGetTags(dispatch, tagErrorsRedux);
+			Actions.Posts.thunkGetPosts(dispatch, postsErrorsRedux);
+			Actions.Tags.thunkGetTags(dispatch, tagsErrorsRedux);
 			Actions.Ratings.thunkGetRatings(dispatch, ratingErrorsRedux);
 		}
 	}, [userIsSignedIn]);
@@ -68,9 +68,6 @@ export const Authed = () => {
 				<Components.ReviewCard
 					postId={post.id}
 					username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
-					userRating={userRating > 0 ? userRating : "N/A"}
-					userRatingCount={userRatingCount}
-					likes={123}
 					seriesTitle={post.series_title}
 					title={post.title}
 					dateCreated={dateCreated}
@@ -78,9 +75,17 @@ export const Authed = () => {
 					personalRating={post.personal_rating}
 					tags={post.tags ? post.tags : []}
 					ratings={post.ratings ? post.ratings : []}
-					belongsToCurrentUser={Number(post.author) === currentUser.id}
-					userHasRated={userHasRated}
+					likes={123}
 					ratingId={userRatingRatedId}
+					userRating={userRating > 0 ? userRating : "N/A"}
+					userRatingCount={userRatingCount}
+					userHasRated={userHasRated}
+					belongsToCurrentUser={Number(post.author) === currentUser.id}
+					dispatch={dispatch}
+					currentUser={currentUser}
+					postsRedux={postsRedux}
+					postsErrorsRedux={postsErrorsRedux}
+					ratingsRedux={ratingsRedux}
 				/>
 			</React.Fragment>
 		);

@@ -2,14 +2,20 @@ import * as React from "react";
 
 import * as Styled from "./rating-and-likes.styled";
 import * as Springs from "./rating-and-likes.springs";
-import * as ReviewCardTypes from "../_types";
 
 import { Rating } from "./rating";
 import { Likes } from "./likes";
 
-type Props = ReviewCardTypes.RatingAndLikesProps &
-	ReviewCardTypes.RatingProps &
-	ReviewCardTypes.LikesProps;
+type Props = {
+	postId: number;
+	userRating: number | "N/A";
+	userRatingCount: number;
+	currentUserRating: number;
+	userHasRated: boolean;
+	ratingId: number;
+	likes: number;
+	belongsToCurrentUser: boolean;
+};
 
 export const RatingAndLikes = (props: Props) => {
 	const animateRatingAndLikes = Springs.ratingAndLikes();

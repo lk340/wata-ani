@@ -1,25 +1,38 @@
 import * as React from "react";
 
+import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Functions from "@/utils/functions";
+import * as Types from "@/utils/types";
 
 import * as Styled from "./review-card.styled";
 import * as Springs from "./review-card.springs";
-import * as ReviewCardTypes from "./_types";
 
 import { RatingAndLikes } from "./rating-and-likes";
 import { ModalForm } from "./modal-form";
 
 type Props = {
 	postId: number;
+	username: string;
+	seriesTitle: string;
+	title: string;
+	dateCreated: string;
+	review: string;
+	personalRating: number;
+	tags: number[];
+	ratings: number[];
+	likes: number;
+	ratingId: number;
 	userRating: number | "N/A";
 	userRatingCount: number;
 	userHasRated: boolean;
-	ratingId: number;
-} & ReviewCardTypes.Post &
-	ReviewCardTypes.ReviewCardProps &
-	ReviewCardTypes.RatingAndLikesProps &
-	ReviewCardTypes.LikesProps;
+	belongsToCurrentUser: boolean;
+	dispatch: Function;
+	currentUser: Context.AuthForm.CurrentUser;
+	postsRedux: Types.Posts;
+	postsErrorsRedux: any;
+	ratingsRedux: Types.Ratings;
+};
 
 export const ReviewCard = (props: Props) => {
 	const [modalOpen, setModalOpen] = React.useState(false);
@@ -34,9 +47,7 @@ export const ReviewCard = (props: Props) => {
 	const animateTag = Springs.tag();
 
 	// --- Fetching Redux State --- //
-	const currentUser = Functions.getSession();
 	const tagsRedux = Functions.getTags();
-	const ratingsRedux = Functions.getRatings();
 
 	// --- Review Card Tag Components --- //
 	const tagCount = props.tags.length;
@@ -59,13 +70,13 @@ export const ReviewCard = (props: Props) => {
 
 	// If user has made a rating, display it in the form and make the request a PATCH request
 	// 	instead of a POST request.
-	const userRatings = currentUser.ratings;
+	const userRatings = props.currentUser.ratings;
 
 	let currentUserRating: number = 0;
-	if (Object.keys(ratingsRedux).length > 0 && userRatings) {
+	if (Object.keys(props.ratingsRedux).length > 0 && userRatings) {
 		props.ratings.forEach((postRating: number) => {
 			if (userRatings.includes(postRating)) {
-				currentUserRating = ratingsRedux[postRating].rating;
+				currentUserRating = props.ratingsRedux[postRating].rating;
 			} else {
 				currentUserRating = 0;
 			}
@@ -83,9 +94,12 @@ export const ReviewCard = (props: Props) => {
 				postReview={props.review}
 				personalRating={props.personalRating}
 				postTags={props.tags}
-				currentUser={currentUser}
+				dispatch={props.dispatch}
+				currentUser={props.currentUser}
 				tagsRedux={tagsRedux}
-				ratingsRedux={ratingsRedux}
+				ratingsRedux={props.ratingsRedux}
+				postsRedux={props.postsRedux}
+				postsErrorsRedux={props.postsErrorsRedux}
 			/>
 
 			{/* Header */}
