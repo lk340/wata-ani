@@ -32,6 +32,16 @@ export type SelectedTags = {
 	[key: string]: Actions.Tags.Tag;
 };
 
+/**
+ * selectedTags handlers
+ * Initializing selectedTags
+ * Animations
+ * Fetching Redux State
+ * Setting Tag Components
+ * Error Handlers
+ * Form Handlers
+ */
+
 export const ModalForm = (props: Props) => {
 	const [seriesTitle, setSeriesTitle] = React.useState(props.postSeries);
 	const [reviewTitle, setReviewTitle] = React.useState(props.postTitle);
@@ -109,7 +119,7 @@ export const ModalForm = (props: Props) => {
 		);
 	});
 
-	// --- Handlers --- //
+	// --- Error Handlers --- //
 	function handleSeriesTitleError(): void {
 		if (seriesTitle === "") setSeriesTitleError("");
 		else if (seriesTitle.length > 100) setSeriesTitleError("Max 100 characters!");
@@ -132,14 +142,17 @@ export const ModalForm = (props: Props) => {
 	}
 
 	function handlePersonalRatingError(): void {
-		if (personalRating === "") setPersonalRatingError("");
+		if (personalRating === "") setPersonalRatingError("You must set a rating!");
 		else if (personalRating === "0") setPersonalRatingError("Must be between 1 and 10!");
-		else if (Number(personalRating) < 1) setPersonalRatingError("Must be between 1 and 10!");
-		else if (Number(personalRating) > 10) setPersonalRatingError("Must be between 1 and 10!");
+		else if (Number(personalRating) < 1)
+			setPersonalRatingError("Must be between 1 and 10!");
+		else if (Number(personalRating) > 10)
+			setPersonalRatingError("Must be between 1 and 10!");
 		else if (!Number(personalRating)) setPersonalRatingError("Must be a number!");
 		else setPersonalRatingError("");
 	}
 
+	// --- Form Handlers --- //
 	type InputType = "series title" | "post title" | "review" | "rating";
 	function handleChange(event: Types.Input | Types.Textarea, inputType: InputType): void {
 		const userInput = event.currentTarget.value;

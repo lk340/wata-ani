@@ -34,6 +34,12 @@ type Props = {
 	ratingsRedux: Types.Ratings;
 };
 
+/**
+ * Animations
+ * Fetching Redux state
+ * Review Card Tag Components
+ */
+
 export const ReviewCard = (props: Props) => {
 	const [modalOpen, setModalOpen] = React.useState(false);
 
