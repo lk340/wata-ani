@@ -133,9 +133,9 @@ export const ModalForm = (props: Props) => {
 
 	function handlePersonalRatingError(): void {
 		if (personalRating === "") setPersonalRatingError("");
-		else if (personalRating === "0") setPersonalRatingError("Minimum rating is 1!");
-		else if (Number(personalRating) < 1) setPersonalRatingError("Minimum rating is 1!");
-		else if (Number(personalRating) > 10) setPersonalRatingError("Maximum rating is 10!");
+		else if (personalRating === "0") setPersonalRatingError("Must be between 1 and 10!");
+		else if (Number(personalRating) < 1) setPersonalRatingError("Must be between 1 and 10!");
+		else if (Number(personalRating) > 10) setPersonalRatingError("Must be between 1 and 10!");
 		else if (!Number(personalRating)) setPersonalRatingError("Must be a number!");
 		else setPersonalRatingError("");
 	}
@@ -249,7 +249,7 @@ export const ModalForm = (props: Props) => {
 					</Styled.ModalFormGroup>
 
 					{/* Submit Button */}
-					<Styled.ModalFormSubmit>Edit</Styled.ModalFormSubmit>
+					<Styled.ModalFormSubmit>Save</Styled.ModalFormSubmit>
 				</Styled.ModalForm>
 			</Styled.ModalFormWrapper>
 		</Styled.ModalFormContainer>
