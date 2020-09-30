@@ -57,10 +57,10 @@ export const ReviewCard = (props: Props) => {
 	let reviewCardTagComponents;
 	if (_postHasTags && _tagsReduxHasLoaded) {
 		reviewCardTagComponents = props.tags.map((id: number) => {
-			const tagTitle = tagsRedux[id].title.toLowerCase();
+			const tagGenre = tagsRedux[id].genre.toLowerCase();
 			return (
 				<Styled.ReviewCardTagKeyWrapper key={id}>
-					<Styled.ReviewCardTag style={animateTag}>{tagTitle}</Styled.ReviewCardTag>
+					<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
 				</Styled.ReviewCardTagKeyWrapper>
 			);
 		});

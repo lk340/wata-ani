@@ -80,18 +80,18 @@ export const ModalForm = (props: Props) => {
 	const postRatingsRedux = props.postsRedux[props.postId].ratings;
 
 	// --- Setting Tag Components --- //
-	const tagTitles = Object.entries(Lodash.mapValues(props.tagsRedux, (tag) => tag.title));
-	const tagCount = tagTitles.length;
-	const tags = tagTitles.map((tag: [string, string]) => {
+	const tagGenres = Object.entries(Lodash.mapValues(props.tagsRedux, (tag) => tag.genre));
+	const tagCount = tagGenres.length;
+	const tags = tagGenres.map((tag: [string, string]) => {
 		const id = tag[0];
-		const title = tag[1];
+		const genre = tag[1];
 		const isLastTag = Number(id) === tagCount;
 
 		return (
 			<Styled.TagContainer key={id}>
 				<Tag
 					tagId={id}
-					title={title}
+					genre={genre}
 					margin={isLastTag ? false : true}
 					selectedTags={selectedTags}
 					addToSelectedTags={addToSelectedTags}

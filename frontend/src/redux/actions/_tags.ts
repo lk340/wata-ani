@@ -15,7 +15,7 @@ export const TAG_ERRORS = "TAG_ERRORS";
 
 export type Tag = {
 	id: number;
-	title: string;
+	genre: string;
 };
 
 // ======================= //

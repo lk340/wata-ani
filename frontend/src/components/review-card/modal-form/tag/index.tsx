@@ -7,7 +7,7 @@ import { SelectedTags } from "../index";
 
 type Props = {
 	tagId: string;
-	title: string;
+	genre: string;
 	margin: boolean;
 	selectedTags: SelectedTags;
 	addToSelectedTags: Function;
@@ -40,7 +40,7 @@ export const Tag = (props: Props) => {
 
 	return (
 		<Styled.Tag onClick={handleClick} margin={props.margin.toString()} style={animateTag}>
-			{props.title}
+			{props.genre}
 		</Styled.Tag>
 	);
 };
