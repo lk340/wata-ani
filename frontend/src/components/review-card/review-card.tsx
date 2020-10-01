@@ -67,13 +67,6 @@ export const ReviewCard = (props: Props) => {
 			} else {
 				setShowReadMore(false);
 			}
-
-			console.log("Container:", reviewCardContainerHeight);
-			console.log("Child:", reviewCardHeight);
-			console.log(
-				"Is child bigger than container?:",
-				reviewCardHeight > reviewCardContainerHeight,
-			);
 		}
 	}, [reviewCardContainerRef, reviewCardRef]);
 
@@ -146,6 +139,7 @@ export const ReviewCard = (props: Props) => {
 			<Styled.ReviewCardWrapper read_more={readMore.toString()}>
 				{/* Fade */}
 				<Styled.ReviewCardWrapperFade
+					show_read_more={showReadMore.toString()}
 					read_more={readMore.toString()}
 					style={animateFade}
 				/>

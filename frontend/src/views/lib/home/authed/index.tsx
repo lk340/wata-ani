@@ -64,7 +64,7 @@ export const Authed = () => {
 		});
 
 		return (
-			<React.Fragment key={post.id}>
+			<Styled.AuthedReviewCard key={post.id}>
 				<Components.ReviewCard
 					postId={post.id}
 					username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
@@ -87,7 +87,7 @@ export const Authed = () => {
 					postsErrorsRedux={postsErrorsRedux}
 					ratingsRedux={ratingsRedux}
 				/>
-			</React.Fragment>
+			</Styled.AuthedReviewCard>
 		);
 	});
 

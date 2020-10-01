@@ -31,10 +31,8 @@ export const ReviewCardContainer = styled(animated.div)<ReviewCardProps>`
 		if (read_more === "true") return "auto";
 		else return `${Constants.size.components.reviewCard.height}px`;
 	}};
-	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
 	padding: 20px 0px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
-	/* overflow: hidden; */
 `;
 
 export const ReviewCardWrapper = styled("div")<ReviewCardProps>`
@@ -42,9 +40,21 @@ export const ReviewCardWrapper = styled("div")<ReviewCardProps>`
 	overflow: ${(props) => (props.read_more === "true" ? "visible" : "hidden")};
 `;
 
-export const ReviewCardWrapperFade = styled(animated.div)<ReviewCardProps>`
+type FadeProps = { show_read_more: string } & ReviewCardProps;
+
+export const ReviewCardWrapperFade = styled(animated.div)<FadeProps>`
 	${Snippets.absolute("auto", "0", "0", "0")};
-	display: ${(props) => (props.read_more === "true" ? "none" : "block")};
+
+	display: ${(props) => {
+		const { show_read_more, read_more } = props;
+
+		if (show_read_more === "false") {
+			return "none";
+		} else if (show_read_more === "true") {
+			if (read_more === "true") return "none";
+			else return "block";
+		}
+	}};
 	height: 40%;
 `;
 

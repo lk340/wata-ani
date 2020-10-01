@@ -96,8 +96,6 @@ async function POST(
 		// Failure
 		else {
 			if (type === "register") {
-				console.log("Failure:", Object.values(response.data));
-
 				const errors: string[] = [];
 				Object.values(response.data).forEach((data: string[]) => errors.push(data[0]));
 				dispatch(sessionErrors(errors));

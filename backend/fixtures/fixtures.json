@@ -1,5 +1,225 @@
 [
   {
+    "model": "posts.post",
+    "pk": 1,
+    "fields": {
+      "title": "\"Timeless classic\" is an understatement.",
+      "series_title": "Neon Genesis Evangelion",
+      "review": "People refer to this piece as a timeless classic, but that description alone fails to accurately portray why it has withstood the test of time. Not only are its animation and character designs fluid and bold, but also, it experiments with the human psyche - how we react to our surroundings as people, not as a hyperbolic fictional character. It is this realism that allows us to see ourselves in the characters' shoes. Evangelion has set the standard for its descendants.",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 2,
+    "fields": {
+      "title": "A True Childhood Classic",
+      "series_title": "Naruto",
+      "review": "I grew up watching this anime and learned so many different perspectives from its characters.",
+      "personal_rating": 7,
+      "author": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 3,
+    "fields": {
+      "title": "A Failure That Had Potential",
+      "series_title": "Bleach",
+      "review": "This series had a lot of potential, but it fell short in no thanks to the repetitive formulaic plot.",
+      "personal_rating": 6,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 4,
+    "fields": {
+      "title": "It isn't about power. It's about the comedy.",
+      "series_title": "One-Punch Man",
+      "review": "Ironically, the show isn't about how strong the main character, Saitama, is, but, rather, it's more about hilarity behind flipping the script between what's really an issue versus what really isn't.",
+      "personal_rating": 7,
+      "author": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 5,
+    "fields": {
+      "title": "Not an anime, but, man, is it good.",
+      "series_title": "Avatar: The Last Airbender",
+      "review": "Fill with lots of wise life lessons and characters that are brimming with life, Avatar: The Last Airbender is truly a show worth anyone's time, regardless of age.",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 6,
+    "fields": {
+      "title": "Test Post 1",
+      "series_title": "Test Post 1",
+      "review": "This is test Post 1",
+      "personal_rating": 8,
+      "author": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 7,
+    "fields": {
+      "title": "Test Post 2",
+      "series_title": "Test Post 2",
+      "review": "This is test Post 2",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 8,
+    "fields": {
+      "title": "Test Post 3",
+      "series_title": "Test Post 3",
+      "review": "This is test Post 3",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 9,
+    "fields": {
+      "title": "Test Post 4",
+      "series_title": "Test Post 4",
+      "review": "This is test Post 4",
+      "personal_rating": 8,
+      "author": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 10,
+    "fields": {
+      "title": "Test Post 5",
+      "series_title": "Test Post 5",
+      "review": "This is test Post 5",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 11,
+    "fields": {
+      "title": "Test Post 6",
+      "series_title": "Test Post 6",
+      "review": "This is test Post 6",
+      "personal_rating": 8,
+      "author": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 12,
+    "fields": {
+      "title": "Test Post 7",
+      "series_title": "Test Post 7",
+      "review": "This is test Post 7",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 13,
+    "fields": {
+      "title": "Test Post 8",
+      "series_title": "Test Post 8",
+      "review": "This is test Post 8",
+      "personal_rating": 8,
+      "author": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 14,
+    "fields": {
+      "title": "Test Post 9",
+      "series_title": "Test Post 9",
+      "review": "This is test Post 9",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 15,
+    "fields": {
+      "title": "Test Post 10",
+      "series_title": "Test Post 10",
+      "review": "This is test Post 10",
+      "personal_rating": 8,
+      "author": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 16,
+    "fields": {
+      "title": "Test Post 11",
+      "series_title": "Test Post 11",
+      "review": "This is test Post 11",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 17,
+    "fields": {
+      "title": "Test Post 12",
+      "series_title": "Test Post 12",
+      "review": "This is test Post 12",
+      "personal_rating": 8,
+      "author": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 18,
+    "fields": {
+      "title": "Test Post 13",
+      "series_title": "Test Post 13",
+      "review": "This is test Post 13",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 19,
+    "fields": {
+      "title": "Test Post 14",
+      "series_title": "Test Post 14",
+      "review": "This is test Post 14",
+      "personal_rating": 8,
+      "author": 2
+    }
+  },
+  {
+    "model": "posts.post",
+    "pk": 20,
+    "fields": {
+      "title": "Test Post 15",
+      "series_title": "Test Post 15",
+      "review": "This is test Post 15",
+      "personal_rating": 8,
+      "author": 1
+    }
+  },
+  {
     "model": "tags.tag",
     "pk": 1,
     "fields": {
