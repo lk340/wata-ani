@@ -120,7 +120,11 @@ export const ReviewCard = (props: Props) => {
 	}
 
 	return (
-		<Styled.ReviewCardContainer ref={reviewCardContainerRef} style={animateReviewCard}>
+		<Styled.ReviewCardContainer
+			ref={reviewCardContainerRef}
+			read_more={readMore.toString()}
+			style={animateReviewCard}
+		>
 			<Styled.ReviewCardWrapper read_more={readMore.toString()}>
 				<Styled.ReviewCard ref={reviewCardRef}>
 					<ModalForm

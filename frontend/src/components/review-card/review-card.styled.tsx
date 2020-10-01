@@ -20,19 +20,23 @@ import * as Colors from "@/utils/style/colors";
 // ↓↓↓ Review Card ↓↓↓ //
 // =================== //
 
-export const ReviewCardContainer = styled(animated.div)`
+type ReviewCardProps = { read_more: string };
+
+export const ReviewCardContainer = styled(animated.div)<ReviewCardProps>`
 	${Snippets.flex("column")};
 	width: 100%;
 	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
-	height: ${Constants.size.components.reviewCard.height}px;
+	height: ${(props) => {
+		const { read_more } = props;
+		if (read_more === "true") return "auto";
+		else return `${Constants.size.components.reviewCard.height}px`;
+	}};
 	padding: 20px 0px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
 	/* overflow: hidden; */
 `;
 
-type WrapperProps = { read_more: string };
-
-export const ReviewCardWrapper = styled("div")<WrapperProps>`
+export const ReviewCardWrapper = styled("div")<ReviewCardProps>`
 	overflow: ${(props) => (props.read_more === "true" ? "visible" : "hidden")};
 `;
 
@@ -200,7 +204,7 @@ type ReadMoreProps = { display: string };
 
 export const ReviewCardReadMore = styled("div")<ReadMoreProps>`
 	display: ${(props) => (props.display === "true" ? "block" : "none")};
-	padding: 0px 20px;
+	padding: 12px 20px 0px;
 	color: ${Colors.PRIMARY_100};
 
 	/* border: red solid 1px; */
