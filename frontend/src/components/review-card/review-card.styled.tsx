@@ -13,6 +13,7 @@ import * as Colors from "@/utils/style/colors";
  * Title & Date & Text
  * Author Rating
  * Tags
+ * Read More
  */
 
 // =================== //
@@ -20,18 +21,27 @@ import * as Colors from "@/utils/style/colors";
 // =================== //
 
 export const ReviewCardContainer = styled(animated.div)`
+	${Snippets.flex("column")};
 	width: 100%;
 	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
 	height: ${Constants.size.components.reviewCard.height}px;
 	padding: 20px 0px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
-	overflow: hidden;
+	/* overflow: hidden; */
+`;
+
+type WrapperProps = { read_more: string };
+
+export const ReviewCardWrapper = styled("div")<WrapperProps>`
+	overflow: ${(props) => (props.read_more === "true" ? "visible" : "hidden")};
 `;
 
 export const ReviewCard = styled("div")`
 	position: relative;
-	overflow-x: hidden;
+	overflow: hidden;
 `;
+
+export const ReviewCardFade = styled("div")``;
 
 // ============== //
 // ↓↓↓ Header ↓↓↓ //
@@ -180,4 +190,24 @@ export const ReviewCardTag = styled(animated.div)`
 	padding: 10px 14px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.tag};
 	font-size: ${Constants.fontSizes.components.reviewCard.tag};
+`;
+
+// ================= //
+// ↓↓↓ Read More ↓↓↓ //
+// ================= //
+
+type ReadMoreProps = { display: string };
+
+export const ReviewCardReadMore = styled("div")<ReadMoreProps>`
+	display: ${(props) => (props.display === "true" ? "block" : "none")};
+	padding: 0px 20px;
+	color: ${Colors.PRIMARY_100};
+
+	/* border: red solid 1px; */
+`;
+
+export const ReviewCardReadMoreText = styled("span")`
+	font-size: ${Constants.fontSizes.components.reviewCard.readMore};
+	font-weight: bold;
+	cursor: pointer;
 `;

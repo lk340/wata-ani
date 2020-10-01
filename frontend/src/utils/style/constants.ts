@@ -239,6 +239,7 @@ export const fontSizes = {
 				value: "0.875rem",
 			},
 			tag: "0.75rem",
+			readMore: "0.875rem",
 			modal: {
 				header: "1.25rem",
 				characterCount: "0.75rem",

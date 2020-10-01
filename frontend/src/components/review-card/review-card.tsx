@@ -49,10 +49,6 @@ export const ReviewCard = (props: Props) => {
 		setModalOpen(!modalOpen);
 	}
 
-	function toggleShowReadMore(): void {
-		setShowReadMore(!showReadMore);
-	}
-
 	function toggleReadMore(): void {
 		setReadMore(!readMore);
 	}
@@ -61,13 +57,25 @@ export const ReviewCard = (props: Props) => {
 	const reviewCardContainerRef = React.useRef(null);
 	const reviewCardRef = React.useRef(null);
 
-	// console.log("Container Ref:", reviewCardContainerRef);
-	// console.log("Ref:", reviewCardRef);
+	React.useEffect(() => {
+		if (reviewCardContainerRef.current && reviewCardRef.current) {
+			const reviewCardContainerHeight = reviewCardContainerRef.current.clientHeight;
+			const reviewCardHeight = reviewCardRef.current.clientHeight;
 
-	if (reviewCardContainerRef.current && reviewCardRef.current) {
-		console.log("Container Ref:", reviewCardContainerRef.current.clientHeight + 4);
-		console.log("Ref:", reviewCardRef.current.clientHeight);
-	}
+			if (reviewCardHeight > reviewCardContainerHeight) {
+				setShowReadMore(true);
+			} else {
+				setShowReadMore(false);
+			}
+
+			console.log("Container:", reviewCardContainerHeight);
+			console.log("Child:", reviewCardHeight);
+			console.log(
+				"Is child bigger than container?:",
+				reviewCardHeight > reviewCardContainerHeight,
+			);
+		}
+	}, [reviewCardContainerRef, reviewCardRef]);
 
 	// --- Animations --- //
 	const animateReviewCard = Springs.reviewCard();
@@ -113,87 +121,96 @@ export const ReviewCard = (props: Props) => {
 
 	return (
 		<Styled.ReviewCardContainer ref={reviewCardContainerRef} style={animateReviewCard}>
-			<Styled.ReviewCard ref={reviewCardRef}>
-				<ModalForm
-					isOpen={modalOpen}
-					toggleModalOpen={toggleModalOpen}
-					postId={props.postId}
-					postSeries={props.seriesTitle}
-					postTitle={props.title}
-					postReview={props.review}
-					personalRating={props.personalRating}
-					postTags={props.tags}
-					dispatch={props.dispatch}
-					currentUser={props.currentUser}
-					tagsRedux={tagsRedux}
-					ratingsRedux={props.ratingsRedux}
-					postsRedux={props.postsRedux}
-					postsErrorsRedux={props.postsErrorsRedux}
-				/>
+			<Styled.ReviewCardWrapper read_more={readMore.toString()}>
+				<Styled.ReviewCard ref={reviewCardRef}>
+					<ModalForm
+						isOpen={modalOpen}
+						toggleModalOpen={toggleModalOpen}
+						postId={props.postId}
+						postSeries={props.seriesTitle}
+						postTitle={props.title}
+						postReview={props.review}
+						personalRating={props.personalRating}
+						postTags={props.tags}
+						dispatch={props.dispatch}
+						currentUser={props.currentUser}
+						tagsRedux={tagsRedux}
+						ratingsRedux={props.ratingsRedux}
+						postsRedux={props.postsRedux}
+						postsErrorsRedux={props.postsErrorsRedux}
+					/>
 
-				{/* Header */}
-				<Styled.ReviewCardHeader>
-					{/* Profile Picture & Username */}
-					<Styled.ReviewCardProfilePicture_Username>
-						<Styled.ReviewCardProfilePicture />
-						<Styled.ReviewCardUsername>{props.username}</Styled.ReviewCardUsername>
-					</Styled.ReviewCardProfilePicture_Username>
-					{/* Modal Button (ellipses) */}
-					<Styled.ReviewCardModalButtonDotContainer
-						onClick={toggleModalOpen}
+					{/* Header */}
+					<Styled.ReviewCardHeader>
+						{/* Profile Picture & Username */}
+						<Styled.ReviewCardProfilePicture_Username>
+							<Styled.ReviewCardProfilePicture />
+							<Styled.ReviewCardUsername>{props.username}</Styled.ReviewCardUsername>
+						</Styled.ReviewCardProfilePicture_Username>
+						{/* Modal Button (ellipses) */}
+						<Styled.ReviewCardModalButtonDotContainer
+							onClick={toggleModalOpen}
+							belongs_to_current_user={props.belongsToCurrentUser.toString()}
+						>
+							<Styled.ReviewCardModalButtonDot />
+							<Components.Spacer height={"2px"} />
+							<Styled.ReviewCardModalButtonDot />
+							<Components.Spacer height={"2px"} />
+							<Styled.ReviewCardModalButtonDot />
+						</Styled.ReviewCardModalButtonDotContainer>
+					</Styled.ReviewCardHeader>
+
+					{/* Rating & Likes */}
+					<RatingAndLikes
+						postId={props.postId}
+						userRating={props.userRating}
+						userRatingCount={props.userRatingCount}
+						currentUserRating={currentUserRating}
+						likes={props.likes}
+						belongsToCurrentUser={props.belongsToCurrentUser}
+						userHasRated={props.userHasRated}
+						ratingId={props.ratingId}
+					/>
+
+					{/* Series Name */}
+					<Styled.ReviewCardSeriesTitle
 						belongs_to_current_user={props.belongsToCurrentUser.toString()}
 					>
-						<Styled.ReviewCardModalButtonDot />
-						<Components.Spacer height={"2px"} />
-						<Styled.ReviewCardModalButtonDot />
-						<Components.Spacer height={"2px"} />
-						<Styled.ReviewCardModalButtonDot />
-					</Styled.ReviewCardModalButtonDotContainer>
-				</Styled.ReviewCardHeader>
+						{props.seriesTitle}
+					</Styled.ReviewCardSeriesTitle>
 
-				{/* Rating & Likes */}
-				<RatingAndLikes
-					postId={props.postId}
-					userRating={props.userRating}
-					userRatingCount={props.userRatingCount}
-					currentUserRating={currentUserRating}
-					likes={props.likes}
-					belongsToCurrentUser={props.belongsToCurrentUser}
-					userHasRated={props.userHasRated}
-					ratingId={props.ratingId}
-				/>
+					{/* Title & Date & Text */}
+					<Styled.ReviewCardTitleDateText>
+						<Styled.ReviewCardTitle>{props.title}</Styled.ReviewCardTitle>
+						<Styled.ReviewCardDate style={animateCardDate}>
+							{props.dateCreated}
+						</Styled.ReviewCardDate>
+						<Styled.ReviewCardText>{props.review}</Styled.ReviewCardText>
+					</Styled.ReviewCardTitleDateText>
 
-				{/* Series Name */}
-				<Styled.ReviewCardSeriesTitle
-					belongs_to_current_user={props.belongsToCurrentUser.toString()}
-				>
-					{props.seriesTitle}
-				</Styled.ReviewCardSeriesTitle>
+					{/* Author Rating */}
+					<Styled.ReviewCardAuthorRating tagLength={tagCount}>
+						<Styled.ReviewCardAuthorRatingText>
+							I give this series a rating of:&nbsp;
+						</Styled.ReviewCardAuthorRatingText>
+						<Styled.ReviewCardAuthorRatingValue>
+							{props.personalRating}/10
+						</Styled.ReviewCardAuthorRatingValue>
+					</Styled.ReviewCardAuthorRating>
 
-				{/* Title & Date & Text */}
-				<Styled.ReviewCardTitleDateText>
-					<Styled.ReviewCardTitle>{props.title}</Styled.ReviewCardTitle>
-					<Styled.ReviewCardDate style={animateCardDate}>
-						{props.dateCreated}
-					</Styled.ReviewCardDate>
-					<Styled.ReviewCardText>{props.review}</Styled.ReviewCardText>
-				</Styled.ReviewCardTitleDateText>
+					{/* Tags */}
+					<Styled.ReviewCardTagContainer length={tagCount}>
+						{reviewCardTagComponents}
+					</Styled.ReviewCardTagContainer>
+				</Styled.ReviewCard>
+			</Styled.ReviewCardWrapper>
 
-				{/* Author Rating */}
-				<Styled.ReviewCardAuthorRating tagLength={tagCount}>
-					<Styled.ReviewCardAuthorRatingText>
-						I give this series a rating of:&nbsp;
-					</Styled.ReviewCardAuthorRatingText>
-					<Styled.ReviewCardAuthorRatingValue>
-						{props.personalRating}/10
-					</Styled.ReviewCardAuthorRatingValue>
-				</Styled.ReviewCardAuthorRating>
-
-				{/* Tags */}
-				<Styled.ReviewCardTagContainer length={tagCount}>
-					{reviewCardTagComponents}
-				</Styled.ReviewCardTagContainer>
-			</Styled.ReviewCard>
+			{/* Read More */}
+			<Styled.ReviewCardReadMore display={showReadMore.toString()}>
+				<Styled.ReviewCardReadMoreText onClick={toggleReadMore}>
+					{readMore ? "Read Less" : "Read More"}
+				</Styled.ReviewCardReadMoreText>
+			</Styled.ReviewCardReadMore>
 		</Styled.ReviewCardContainer>
 	);
 };
