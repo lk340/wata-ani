@@ -79,6 +79,7 @@ export const ReviewCard = (props: Props) => {
 
 	// --- Animations --- //
 	const animateReviewCard = Springs.reviewCard();
+	const animateFade = Springs.fade();
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
 
@@ -126,6 +127,12 @@ export const ReviewCard = (props: Props) => {
 			style={animateReviewCard}
 		>
 			<Styled.ReviewCardWrapper read_more={readMore.toString()}>
+				{/* Fade */}
+				<Styled.ReviewCardWrapperFade
+					read_more={readMore.toString()}
+					style={animateFade}
+				/>
+
 				<Styled.ReviewCard ref={reviewCardRef}>
 					<ModalForm
 						isOpen={modalOpen}

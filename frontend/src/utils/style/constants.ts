@@ -94,6 +94,9 @@ export const theme = {
 			},
 			date: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 			tag: { light: Colors.LIGHT.three, dark: Colors.DARK.four },
+			readMore: {
+				fade: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+			},
 		},
 	},
 	pages: {

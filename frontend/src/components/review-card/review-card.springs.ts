@@ -18,6 +18,28 @@ export function reviewCard() {
 	});
 }
 
+export function fade() {
+	return Spring.useSpring({
+		to: {
+			background:
+				localStorage.mode === "light"
+					? `linear-gradient(
+							180deg, 
+							${Constants.theme.components.reviewCard.readMore.fade.light} 0%, 
+							rgba(255, 255, 255, 0) 0%, 
+							${Constants.theme.components.reviewCard.readMore.fade.light} 100%
+						)`
+					: `linear-gradient(
+							180deg, 
+							${Constants.theme.components.reviewCard.readMore.fade.dark} 0%, 
+							rgba(255, 255, 255, 0) 0%, 
+							${Constants.theme.components.reviewCard.readMore.fade.dark} 100%
+						)`,
+		},
+		config: { duration: 100 },
+	});
+}
+
 export function cardDate() {
 	return Spring.useSpring({
 		to: {

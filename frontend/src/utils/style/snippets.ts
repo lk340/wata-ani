@@ -273,6 +273,12 @@ export function navbarMargins() {
 	`;
 }
 
+export function gradient(degree: number, colorOne: string, colorTwo: string) {
+	return css`
+		background: linear-gradient(${degree}deg, ${colorOne} 0%, ${colorTwo} 100%);
+	`;
+}
+
 // ========================= //
 // ↓↓↓ Responsive Styles ↓↓↓ //
 // ========================= //

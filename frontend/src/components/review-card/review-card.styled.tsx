@@ -25,27 +25,32 @@ type ReviewCardProps = { read_more: string };
 export const ReviewCardContainer = styled(animated.div)<ReviewCardProps>`
 	${Snippets.flex("column")};
 	width: 100%;
-	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
 	height: ${(props) => {
 		const { read_more } = props;
 		if (read_more === "true") return "auto";
 		else return `${Constants.size.components.reviewCard.height}px`;
 	}};
+	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
 	padding: 20px 0px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
 	/* overflow: hidden; */
 `;
 
 export const ReviewCardWrapper = styled("div")<ReviewCardProps>`
+	position: relative;
 	overflow: ${(props) => (props.read_more === "true" ? "visible" : "hidden")};
+`;
+
+export const ReviewCardWrapperFade = styled(animated.div)<ReviewCardProps>`
+	${Snippets.absolute("auto", "0", "0", "0")};
+	display: ${(props) => (props.read_more === "true" ? "none" : "block")};
+	height: 40%;
 `;
 
 export const ReviewCard = styled("div")`
 	position: relative;
 	overflow: hidden;
 `;
-
-export const ReviewCardFade = styled("div")``;
 
 // ============== //
 // ↓↓↓ Header ↓↓↓ //
@@ -178,7 +183,7 @@ export const ReviewCardTagContainer = styled("div")<Tag>`
 	${Snippets.flex("row", "auto", "center")};
 	display: ${(props) => (props.length > 0 ? "flex" : "none")};
 	overflow-y: auto;
-	padding-left: 20px;
+	padding: 0px 0px 5px 20px;
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		${Snippets.hideScrollbar()};
