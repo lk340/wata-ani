@@ -126,6 +126,23 @@ export const ReviewCard = (props: Props) => {
 			read_more={readMore.toString()}
 			style={animateReviewCard}
 		>
+			<ModalForm
+				isOpen={modalOpen}
+				toggleModalOpen={toggleModalOpen}
+				postId={props.postId}
+				postSeries={props.seriesTitle}
+				postTitle={props.title}
+				postReview={props.review}
+				personalRating={props.personalRating}
+				postTags={props.tags}
+				dispatch={props.dispatch}
+				currentUser={props.currentUser}
+				tagsRedux={tagsRedux}
+				ratingsRedux={props.ratingsRedux}
+				postsRedux={props.postsRedux}
+				postsErrorsRedux={props.postsErrorsRedux}
+			/>
+
 			<Styled.ReviewCardWrapper read_more={readMore.toString()}>
 				{/* Fade */}
 				<Styled.ReviewCardWrapperFade
@@ -134,23 +151,6 @@ export const ReviewCard = (props: Props) => {
 				/>
 
 				<Styled.ReviewCard ref={reviewCardRef}>
-					<ModalForm
-						isOpen={modalOpen}
-						toggleModalOpen={toggleModalOpen}
-						postId={props.postId}
-						postSeries={props.seriesTitle}
-						postTitle={props.title}
-						postReview={props.review}
-						personalRating={props.personalRating}
-						postTags={props.tags}
-						dispatch={props.dispatch}
-						currentUser={props.currentUser}
-						tagsRedux={tagsRedux}
-						ratingsRedux={props.ratingsRedux}
-						postsRedux={props.postsRedux}
-						postsErrorsRedux={props.postsErrorsRedux}
-					/>
-
 					{/* Header */}
 					<Styled.ReviewCardHeader>
 						{/* Profile Picture & Username */}

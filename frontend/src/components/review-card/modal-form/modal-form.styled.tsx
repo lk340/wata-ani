@@ -24,7 +24,7 @@ import close from "@/icons/close.svg";
 type ContainerProps = { is_open: string };
 
 export const ModalFormContainer = styled("div")<ContainerProps>`
-	${Snippets.absolute("0px", "0px", "0px", "0px")};
+	${Snippets.absolute("0px", "0px", "0px", "0px", 10)};
 	display: ${(props) => (props.is_open === "true" ? "block" : "none")};
 `;
 
@@ -149,6 +149,7 @@ type TagsProps = { length: number };
 export const Tags = styled("div")<TagsProps>`
 	${Snippets.flex("row", "auto", "center")};
 	margin-top: 10px;
+	padding-bottom: 5px;
 	overflow-x: scroll;
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {

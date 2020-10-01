@@ -24,6 +24,7 @@ type ReviewCardProps = { read_more: string };
 
 export const ReviewCardContainer = styled(animated.div)<ReviewCardProps>`
 	${Snippets.flex("column")};
+	position: relative;
 	width: 100%;
 	height: ${(props) => {
 		const { read_more } = props;
