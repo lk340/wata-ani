@@ -26,6 +26,18 @@ export function header() {
 	});
 }
 
+export function characterCount() {
+	return Spring.useSpring({
+		to: {
+			color:
+				localStorage.mode === "light"
+					? Constants.theme.components.reviewCard.modalForm.characterCount.light
+					: Constants.theme.components.reviewCard.modalForm.characterCount.dark,
+		},
+		config: { duration: 100 },
+	});
+}
+
 export function error() {
 	return Spring.useSpring({
 		to: {

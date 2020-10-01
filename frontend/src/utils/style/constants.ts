@@ -67,8 +67,9 @@ export const theme = {
 			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 			modalForm: {
-				header: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.six },
 				background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
+				header: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.six },
+				characterCount: { light: Colors.LIGHT.five, dark: Colors.DARK.five },
 				error: { light: Colors.ALERTS.error.light, dark: Colors.ALERTS.error.dark },
 				inputBorder: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 				inputBackground: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.three },
@@ -239,6 +240,7 @@ export const fontSizes = {
 			tag: "0.75rem",
 			modal: {
 				header: "1.25rem",
+				characterCount: "0.75rem",
 				text: "0.875rem",
 			},
 		},

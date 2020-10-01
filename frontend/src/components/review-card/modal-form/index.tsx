@@ -89,6 +89,7 @@ export const ModalForm = (props: Props) => {
 	// --- Animations --- //
 	const animateForm = Springs.form();
 	const animateHeader = Springs.header();
+	const animateCharacterCount = Springs.characterCount();
 	const animateError = Springs.error();
 	const animateInput = Springs.input();
 
@@ -201,7 +202,12 @@ export const ModalForm = (props: Props) => {
 
 					{/* Series Title */}
 					<Styled.ModalFormGroup>
-						<Styled.ModalFormGroupTitle>Series Title</Styled.ModalFormGroupTitle>
+						<Styled.ModalFormGroupTitle_Count>
+							<Styled.ModalFormGroupTitle>Series Title</Styled.ModalFormGroupTitle>
+							<Styled.ModalFormGroupCharacterCount style={animateCharacterCount}>
+								{seriesTitle.length}
+							</Styled.ModalFormGroupCharacterCount>
+						</Styled.ModalFormGroupTitle_Count>
 						<Styled.ModalFormGroupError style={animateError}>
 							{seriesTitleError}
 						</Styled.ModalFormGroupError>
@@ -214,7 +220,12 @@ export const ModalForm = (props: Props) => {
 
 					{/* Review Title */}
 					<Styled.ModalFormGroup>
-						<Styled.ModalFormGroupTitle>Review Title</Styled.ModalFormGroupTitle>
+						<Styled.ModalFormGroupTitle_Count>
+							<Styled.ModalFormGroupTitle>Review Title</Styled.ModalFormGroupTitle>
+							<Styled.ModalFormGroupCharacterCount style={animateCharacterCount}>
+								{reviewTitle.length}
+							</Styled.ModalFormGroupCharacterCount>
+						</Styled.ModalFormGroupTitle_Count>
 						<Styled.ModalFormGroupError style={animateError}>
 							{reviewTitleError}
 						</Styled.ModalFormGroupError>
@@ -227,7 +238,12 @@ export const ModalForm = (props: Props) => {
 
 					{/* Review */}
 					<Styled.ModalFormGroup>
-						<Styled.ModalFormGroupTitle>Your Review</Styled.ModalFormGroupTitle>
+						<Styled.ModalFormGroupTitle_Count>
+							<Styled.ModalFormGroupTitle>Your Review</Styled.ModalFormGroupTitle>
+							<Styled.ModalFormGroupCharacterCount style={animateCharacterCount}>
+								{review.length}
+							</Styled.ModalFormGroupCharacterCount>
+						</Styled.ModalFormGroupTitle_Count>
 						<Styled.ModalFormGroupError style={animateError}>
 							{reviewError}
 						</Styled.ModalFormGroupError>

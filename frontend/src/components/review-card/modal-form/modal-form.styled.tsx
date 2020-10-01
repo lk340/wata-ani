@@ -72,18 +72,25 @@ export const ModalFormGroup = styled("div")`
 	margin-bottom: 30px;
 `;
 
+export const ModalFormGroupTitle_Count = styled("div")`
+	${Snippets.flex("row", "auto", "center")};
+	margin-bottom: 10px;
+`;
+
 export const ModalFormGroupTitle = styled("h3")`
 	${Snippets.clearSpacing()};
-	margin-bottom: 10px;
 	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
 	font-weight: bold;
 `;
 
-type GroupError = { error: string };
+export const ModalFormGroupCharacterCount = styled(animated.span)`
+	display: block;
+	margin-left: 10px;
+	font-size: ${Constants.fontSizes.components.reviewCard.modal.characterCount};
+`;
 
 export const ModalFormGroupError = styled(animated.h3)`
 	${Snippets.clearSpacing()};
-	display: ${(props) => (props.error !== "" ? "block" : "none")};
 	margin-bottom: 10px;
 	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
 	font-weight: normal;
@@ -141,6 +148,7 @@ type TagsProps = { length: number };
 
 export const Tags = styled("div")<TagsProps>`
 	${Snippets.flex("row", "auto", "center")};
+	margin-top: 10px;
 	overflow-x: scroll;
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
