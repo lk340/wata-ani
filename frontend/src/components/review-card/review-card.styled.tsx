@@ -19,18 +19,18 @@ import * as Colors from "@/utils/style/colors";
 // ↓↓↓ Review Card ↓↓↓ //
 // =================== //
 
-export const ReviewCard = styled(animated.div)`
-	position: relative;
-	padding: 20px 0px;
-	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
+export const ReviewCardContainer = styled(animated.div)`
 	width: 100%;
-	/* height: ${Constants.size.components.reviewCard.height}px; */
+	max-width: ${Constants.size.components.reviewCard.maxWidth}px;
+	height: ${Constants.size.components.reviewCard.height}px;
+	padding: 20px 0px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
-	overflow-x: hidden;
+	overflow: hidden;
+`;
 
-	/* @media (max-width: ${Constants.breakpoints.mobile}px) {
-		height: 475px;
-	} */
+export const ReviewCard = styled("div")`
+	position: relative;
+	overflow-x: hidden;
 `;
 
 // ============== //

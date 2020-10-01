@@ -172,7 +172,8 @@ export const size = {
 			height: 500,
 		},
 		reviewCard: {
-			height: 470,
+			// height: 470,
+			height: 400,
 			maxWidth: (globals.maxWidth - 40) / 3,
 			input: { height: 50 },
 		},
