@@ -35,6 +35,7 @@ type Props = {
 };
 
 /**
+ * Refs
  * Animations
  * Fetching Redux state
  * Review Card Tag Components
