@@ -9,7 +9,7 @@ export function form() {
 				localStorage.mode === "light"
 					? Constants.theme.components.reviewCard.modalForm.background.light
 					: Constants.theme.components.reviewCard.modalForm.background.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }
@@ -21,7 +21,7 @@ export function header() {
 				localStorage.mode == "light"
 					? Constants.theme.components.reviewCard.modalForm.header.light
 					: Constants.theme.components.reviewCard.modalForm.header.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }
@@ -33,7 +33,7 @@ export function characterCount() {
 				localStorage.mode === "light"
 					? Constants.theme.components.reviewCard.modalForm.characterCount.light
 					: Constants.theme.components.reviewCard.modalForm.characterCount.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }
@@ -45,7 +45,7 @@ export function error() {
 				localStorage.mode === "light"
 					? Constants.theme.components.reviewCard.modalForm.error.light
 					: Constants.theme.components.reviewCard.modalForm.error.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }
@@ -61,7 +61,7 @@ export function input() {
 				localStorage.mode === "light"
 					? `${Constants.theme.components.reviewCard.modalForm.inputBorder.light} solid 2px`
 					: `${Constants.theme.components.reviewCard.modalForm.inputBorder.dark} solid 2px`,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }

@@ -7,6 +7,12 @@ import * as Functions from "@/utils/functions";
 
 import * as Styled from "./authed.styled";
 
+/**
+ * Checking if user is signed in or not
+ * Fetching Redux State
+ * Review Card Logic
+ */
+
 export const Authed = () => {
 	const dispatch = ReactRedux.useDispatch();
 
@@ -91,9 +97,45 @@ export const Authed = () => {
 		);
 	});
 
+	const foo = postValues[0];
+	let a: any = "";
+
+	if (foo) {
+		a = (
+			<Components.ReviewCard
+				postId={1}
+				username={usersRedux[foo.author] ? usersRedux[foo.author].username : ""}
+				seriesTitle={foo.series_title}
+				title={foo.title}
+				dateCreated={"dateCreated"}
+				review={foo.review}
+				personalRating={foo.personal_rating}
+				tags={foo.tags ? foo.tags : []}
+				ratings={foo.ratings ? foo.ratings : []}
+				likes={123}
+				ratingId={1}
+				userRating={7}
+				userRatingCount={0}
+				userHasRated={true}
+				belongsToCurrentUser={Number(foo.author) === currentUser.id}
+				dispatch={dispatch}
+				currentUser={currentUser}
+				postsRedux={postsRedux}
+				postsErrorsRedux={postsErrorsRedux}
+				ratingsRedux={ratingsRedux}
+			/>
+		);
+	} else {
+		a = "";
+	}
+
 	return (
 		<Styled.Authed>
-			<Styled.AuthedReviewCards>{reviewCards}</Styled.AuthedReviewCards>
+			{/* <Styled.AuthedReviewCards>{reviewCards}</Styled.AuthedReviewCards> */}
+
+			{a}
+			{a}
+
 			<Components.Pagination />
 		</Styled.Authed>
 	);

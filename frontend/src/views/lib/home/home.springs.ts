@@ -13,7 +13,7 @@ export function home() {
 				localStorage.mode === "light"
 					? Constants.theme.pages.home.background.light
 					: Constants.theme.pages.home.background.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }

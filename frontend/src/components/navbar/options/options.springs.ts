@@ -12,5 +12,6 @@ export function profileIcon(isUser: boolean) {
 				? `${Constants.theme.components.navbar.profileIcon.light} solid 1px`
 				: `${Constants.theme.components.navbar.profileIcon.light} solid 1px`,
 		},
+		config: { duration: 100 },
 	});
 }

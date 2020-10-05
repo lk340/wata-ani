@@ -9,7 +9,7 @@ export function likesCount() {
 				localStorage.mode === "light"
 					? Constants.theme.components.reviewCard.ratingAndLike.likes.light
 					: Constants.theme.components.reviewCard.ratingAndLike.likes.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }

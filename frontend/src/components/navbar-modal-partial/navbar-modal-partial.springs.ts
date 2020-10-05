@@ -20,7 +20,7 @@ export function container(mode: Context.Theme.Mode) {
 						border: `${Constants.theme.components.navbarModalPartial.border.dark} solid 1px`,
 						boxShadow: Shadows.dark.one,
 				  },
-		config: { duration: 100 },
+		 
 	});
 }
 
@@ -36,7 +36,7 @@ export function header(mode: Context.Theme.Mode) {
 						backgroundColor: Constants.theme.components.navbarModalPartial.header.dark,
 						borderBottom: `${Constants.theme.components.navbarModalPartial.border.dark} solid 1px`,
 				  },
-		config: { duration: 100 },
+		 
 	});
 }
 
@@ -47,7 +47,7 @@ export function headerText(mode: Context.Theme.Mode) {
 				mode === "light"
 					? Constants.theme.components.navbarModalPartial.headerText.light
 					: Constants.theme.components.navbarModalPartial.headerText.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }

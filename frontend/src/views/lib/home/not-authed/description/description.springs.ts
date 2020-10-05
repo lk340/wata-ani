@@ -9,7 +9,7 @@ export function block() {
 				localStorage.mode === "light"
 					? Constants.theme.pages.home.description.block.background.light
 					: Constants.theme.pages.home.description.block.background.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }
@@ -21,7 +21,7 @@ export function iconContainer() {
 				localStorage.mode === "light"
 					? Constants.theme.pages.home.description.block.iconBackground.light
 					: Constants.theme.pages.home.description.block.iconBackground.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }

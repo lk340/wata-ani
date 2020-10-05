@@ -11,7 +11,7 @@ export function optionIconText(state: boolean) {
 				: localStorage.mode === "light"
 				? Constants.theme.components.navbarMobile.option.light
 				: Constants.theme.components.navbarMobile.option.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }

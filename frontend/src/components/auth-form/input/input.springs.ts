@@ -37,5 +37,6 @@ export function inputField(isError: boolean, formType: AuthForm) {
 								? `${Colors.ALERTS.error.dark} solid 2px`
 								: `${Constants.theme.components.authForm.inputBorder.dark} solid 2px`,
 				  },
+		config: { duration: 100 },
 	});
 }

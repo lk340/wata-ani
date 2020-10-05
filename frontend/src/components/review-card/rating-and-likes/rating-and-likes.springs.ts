@@ -13,7 +13,7 @@ export function ratingAndLikes() {
 				localStorage.mode === "light"
 					? `${Constants.theme.components.reviewCard.ratingAndLike.border.light} solid 1px`
 					: `${Constants.theme.components.reviewCard.ratingAndLike.border.dark} solid 1px`,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }

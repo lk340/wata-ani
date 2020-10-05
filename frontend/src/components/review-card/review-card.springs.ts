@@ -13,7 +13,7 @@ export function reviewCard() {
 				localStorage.mode === "light"
 					? `${Constants.theme.components.reviewCard.border.light} solid 2px`
 					: `${Constants.theme.components.reviewCard.border.dark} solid 2px`,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }
@@ -35,7 +35,7 @@ export function fade() {
 							rgba(255, 255, 255, 0) 0%, 
 							${Constants.theme.components.reviewCard.readMore.fade.dark} 100%
 						)`,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }
@@ -47,7 +47,7 @@ export function cardDate() {
 				localStorage.mode === "light"
 					? Constants.theme.components.reviewCard.date.light
 					: Constants.theme.components.reviewCard.date.light,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }
@@ -59,7 +59,7 @@ export function tag() {
 				localStorage.mode === "light"
 					? Constants.theme.components.reviewCard.tag.light
 					: Constants.theme.components.reviewCard.tag.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }

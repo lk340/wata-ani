@@ -9,7 +9,7 @@ import * as Constants from "@/utils/style/constants";
 // 				? `${Constants.theme.components.reviewCard.modalForm.tag.border.light} solid 1px`
 // 				: `${Constants.theme.components.reviewCard.modalForm.tag.border.dark} solid 1px`,
 // 		},
-// 		config: { duration: 100 },
+// 		,
 // 	});
 // }
 
@@ -56,7 +56,7 @@ export function tag(selected: boolean) {
 			color: selected
 				? handleSelectedColor()
 				: Constants.theme.components.reviewCard.modalForm.tag.textNotSelected,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }

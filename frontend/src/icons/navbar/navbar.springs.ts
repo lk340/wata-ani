@@ -12,7 +12,7 @@ export function fill(mode: Context.Theme.Mode, state: boolean) {
 				: mode === "light"
 				? Constants.theme.components.navbarMobile.option.light
 				: Constants.theme.components.navbarMobile.option.dark,
-		},
+ 		},
 		config: { duration: 100 },
 	});
 }
