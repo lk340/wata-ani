@@ -32,10 +32,10 @@ export const Home = () => {
 			<Components.Navbar />
 			<Components.NavbarMobile />
 
-			<NotAuthed />
-			<Authed />
+			{/* <NotAuthed /> */}
+			{/* <Authed /> */}
 
-			{/* {userLoggedIn ? <Authed /> : <NotAuthed />} */}
+			{userLoggedIn ? <Authed /> : <NotAuthed />}
 			{/* {page} */}
 			<Components.Footer />
 		</Styled.Home>

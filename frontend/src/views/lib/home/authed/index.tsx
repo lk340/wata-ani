@@ -131,10 +131,22 @@ export const Authed = () => {
 
 	return (
 		<Styled.Authed>
-			{/* <Styled.AuthedReviewCards>{reviewCards}</Styled.AuthedReviewCards> */}
+			<Styled.AuthedReviewCards>{reviewCards}</Styled.AuthedReviewCards>
 
-			{a}
-			{a}
+			{/* <Styled.AuthedReviewCards>
+				{a}
+				{a}
+				{a}
+				{a}
+				{a}
+				{a}
+				{a}
+				{a}
+				{a}
+				{a}
+				{a}
+				{a}
+			</Styled.AuthedReviewCards> */}
 
 			<Components.Pagination />
 		</Styled.Authed>
