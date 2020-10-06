@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
 
+import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
 import * as Functions from "@/utils/functions";
@@ -14,6 +15,8 @@ import * as Styled from "./authed.styled";
  */
 
 export const Authed = () => {
+	const { windows } = Context.Windows.useWindowsContext();
+
 	const dispatch = ReactRedux.useDispatch();
 
 	// --- Checking if user is signed in or not --- //

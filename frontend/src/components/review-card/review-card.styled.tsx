@@ -33,24 +33,21 @@ export const ReviewCardContainer = styled(animated.div)<ReviewCardProps>`
 	}};
 	padding: 20px 0px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
-
-	border: green solid 1px !important;
 `;
 
-export const ReviewCardWrapper = styled("div")<ReviewCardProps>`
+export const ReviewCardWrapper = styled(animated.div)`
 	position: relative;
-	overflow: ${(props) => (props.read_more_expanded === "true" ? "visible" : "hidden")};
+	width: 100%;
 `;
 
-type FadeProps = { show_read_more: string } & ReviewCardProps;
-
-export const ReviewCardWrapperFade = styled(animated.div)<FadeProps>`
+export const ReviewCardWrapperFade = styled(animated.div)`
 	${Snippets.absolute("auto", "0", "0", "0")};
 	height: 40%;
 `;
 
 export const ReviewCard = styled("div")`
 	position: relative;
+	width: 100%;
 	overflow: hidden;
 `;
 
@@ -186,9 +183,9 @@ export const ReviewCardTagContainer = styled("div")<Tag>`
 	display: ${(props) => (props.length > 0 ? "flex" : "none")};
 	width: 100%;
 	padding: 0px 0px 5px 20px;
-	overflow: scroll;
+	overflow: auto;
 
-	border: blue solid 1px;
+	border: red solid 1px;
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		${Snippets.hideScrollbar()};

@@ -103,7 +103,7 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 	// ==================================== //
 
 	React.useEffect(() => {
-		// windows.setters.setWindows({ width, height });
+		windows.setters.setWindows({ width, height });
 		// scroll.setters.setScroll({ x, y });
 		// mouse.setters.setMouse({ x: elX, y: elY });
 		// location.setters.setLocation({ pathname });

@@ -18,6 +18,19 @@ export function reviewCard() {
 	});
 }
 
+export function container(readMoreExpanded: boolean) {
+	return Spring.useSpring({
+		to: {},
+	});
+}
+
+export function wrapper(readMoreExpanded: boolean) {
+	return Spring.useSpring({
+		to: { overflow: readMoreExpanded ? "visible" : "hidden" },
+		config: { duration: 0 },
+	});
+}
+
 export function fade(showReadMore: boolean, readMoreExpanded: boolean) {
 	return Spring.useSpring({
 		to: {

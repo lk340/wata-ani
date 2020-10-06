@@ -73,6 +73,7 @@ export const ReviewCard = (props: Props) => {
 
 	// --- Animations --- //
 	const animateReviewCard = Springs.reviewCard();
+	const animateWrapper = Springs.wrapper(readMoreExpanded);
 	const animateFade = Springs.fade(showReadMore, readMoreExpanded);
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
@@ -138,13 +139,9 @@ export const ReviewCard = (props: Props) => {
 				postsErrorsRedux={props.postsErrorsRedux}
 			/>
 
-			<Styled.ReviewCardWrapper read_more_expanded={readMoreExpanded.toString()}>
+			<Styled.ReviewCardWrapper style={animateWrapper}>
 				{/* Fade */}
-				<Styled.ReviewCardWrapperFade
-					show_read_more={showReadMore.toString()}
-					read_more_expanded={readMoreExpanded.toString()}
-					style={animateFade}
-				/>
+				<Styled.ReviewCardWrapperFade style={animateFade} />
 
 				<Styled.ReviewCard ref={reviewCardRef}>
 					{/* Header */}
