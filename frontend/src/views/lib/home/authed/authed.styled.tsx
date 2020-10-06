@@ -45,7 +45,6 @@ export const AuthedReviewCard = styled("div")`
 	max-width: ${containerMaxWidthDesktop}px;
 
 	@media (max-width: 1260px) {
-		width: 100%;
 		max-width: ${containerMaxWidthTablet}px;
 	}
 
