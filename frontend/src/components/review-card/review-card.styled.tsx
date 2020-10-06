@@ -20,41 +20,32 @@ import * as Colors from "@/utils/style/colors";
 // ↓↓↓ Review Card ↓↓↓ //
 // =================== //
 
-type ReviewCardProps = { read_more: string };
+type ReviewCardProps = { read_more_expanded: string };
 
 export const ReviewCardContainer = styled(animated.div)<ReviewCardProps>`
 	${Snippets.flex("column")};
 	position: relative;
 	width: 100%;
 	height: ${(props) => {
-		const { read_more } = props;
-		if (read_more === "true") return "auto";
+		const { read_more_expanded } = props;
+		if (read_more_expanded === "true") return "auto";
 		else return `${Constants.size.components.reviewCard.height}px`;
 	}};
 	padding: 20px 0px;
 	border-radius: ${Constants.borderRadius.components.reviewCard.card};
+
+	border: green solid 1px !important;
 `;
 
 export const ReviewCardWrapper = styled("div")<ReviewCardProps>`
 	position: relative;
-	overflow: ${(props) => (props.read_more === "true" ? "visible" : "hidden")};
+	overflow: ${(props) => (props.read_more_expanded === "true" ? "visible" : "hidden")};
 `;
 
 type FadeProps = { show_read_more: string } & ReviewCardProps;
 
 export const ReviewCardWrapperFade = styled(animated.div)<FadeProps>`
 	${Snippets.absolute("auto", "0", "0", "0")};
-
-	display: ${(props) => {
-		const { show_read_more, read_more } = props;
-
-		if (show_read_more === "false") {
-			return "none";
-		} else if (show_read_more === "true") {
-			if (read_more === "true") return "none";
-			else return "block";
-		}
-	}};
 	height: 40%;
 `;
 
@@ -193,8 +184,11 @@ type Tag = { length: number };
 export const ReviewCardTagContainer = styled("div")<Tag>`
 	${Snippets.flex("row", "auto", "center")};
 	display: ${(props) => (props.length > 0 ? "flex" : "none")};
-	overflow-y: auto;
+	width: 100%;
 	padding: 0px 0px 5px 20px;
+	overflow: scroll;
+
+	border: blue solid 1px;
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		${Snippets.hideScrollbar()};
@@ -216,14 +210,9 @@ export const ReviewCardTag = styled(animated.div)`
 // ↓↓↓ Read More ↓↓↓ //
 // ================= //
 
-type ReadMoreProps = { display: string };
-
-export const ReviewCardReadMore = styled("div")<ReadMoreProps>`
-	display: ${(props) => (props.display === "true" ? "block" : "none")};
+export const ReviewCardReadMore = styled(animated.div)`
 	padding: 12px 20px 0px;
 	color: ${Colors.PRIMARY_100};
-
-	/* border: red solid 1px; */
 `;
 
 export const ReviewCardReadMoreText = styled("span")`

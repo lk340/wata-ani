@@ -44,14 +44,14 @@ type Props = {
 export const ReviewCard = (props: Props) => {
 	const [modalOpen, setModalOpen] = React.useState(false);
 	const [showReadMore, setShowReadMore] = React.useState(false);
-	const [readMore, setReadMore] = React.useState(false);
+	const [readMoreExpanded, setReadMoreExpanded] = React.useState(false);
 
 	function toggleModalOpen(): void {
 		setModalOpen(!modalOpen);
 	}
 
 	function toggleReadMore(): void {
-		setReadMore(!readMore);
+		setReadMoreExpanded(!readMoreExpanded);
 	}
 
 	// --- Refs --- //
@@ -73,9 +73,10 @@ export const ReviewCard = (props: Props) => {
 
 	// --- Animations --- //
 	const animateReviewCard = Springs.reviewCard();
-	const animateFade = Springs.fade();
+	const animateFade = Springs.fade(showReadMore, readMoreExpanded);
 	const animateCardDate = Springs.cardDate();
 	const animateTag = Springs.tag();
+	const animateReadMore = Springs.readMore(showReadMore);
 
 	// --- Fetching Redux State --- //
 	const tagsRedux = Functions.getTags();
@@ -117,7 +118,7 @@ export const ReviewCard = (props: Props) => {
 	return (
 		<Styled.ReviewCardContainer
 			ref={reviewCardContainerRef}
-			read_more={readMore.toString()}
+			read_more_expanded={readMoreExpanded.toString()}
 			style={animateReviewCard}
 		>
 			<ModalForm
@@ -137,11 +138,11 @@ export const ReviewCard = (props: Props) => {
 				postsErrorsRedux={props.postsErrorsRedux}
 			/>
 
-			<Styled.ReviewCardWrapper read_more={readMore.toString()}>
+			<Styled.ReviewCardWrapper read_more_expanded={readMoreExpanded.toString()}>
 				{/* Fade */}
 				<Styled.ReviewCardWrapperFade
 					show_read_more={showReadMore.toString()}
-					read_more={readMore.toString()}
+					read_more_expanded={readMoreExpanded.toString()}
 					style={animateFade}
 				/>
 
@@ -212,9 +213,9 @@ export const ReviewCard = (props: Props) => {
 			</Styled.ReviewCardWrapper>
 
 			{/* Read More */}
-			<Styled.ReviewCardReadMore display={showReadMore.toString()}>
+			<Styled.ReviewCardReadMore style={animateReadMore}>
 				<Styled.ReviewCardReadMoreText onClick={toggleReadMore}>
-					{readMore ? "Read Less" : "Read More"}
+					{readMoreExpanded ? "Read Less" : "Read More"}
 				</Styled.ReviewCardReadMoreText>
 			</Styled.ReviewCardReadMore>
 		</Styled.ReviewCardContainer>

@@ -87,6 +87,7 @@ export const ModalForm = (props: Props) => {
 	React.useEffect(() => handlePersonalRatingError(), [personalRating]);
 
 	// --- Animations --- //
+	const animateContainer = Springs.container(props.isOpen);
 	const animateForm = Springs.form();
 	const animateHeader = Springs.header();
 	const animateCharacterCount = Springs.characterCount();
@@ -188,7 +189,7 @@ export const ModalForm = (props: Props) => {
 	}
 
 	return (
-		<Styled.ModalFormContainer is_open={props.isOpen.toString()}>
+		<Styled.ModalFormContainer style={animateContainer}>
 			{/* Form */}
 			<Styled.ModalFormWrapper>
 				<Styled.ModalForm onSubmit={handleSubmit} style={animateForm}>

@@ -21,11 +21,8 @@ import close from "@/icons/close.svg";
 // ↓↓↓ Modal Form ↓↓↓ //
 // ================== //
 
-type ContainerProps = { is_open: string };
-
-export const ModalFormContainer = styled("div")<ContainerProps>`
+export const ModalFormContainer = styled(animated.div)`
 	${Snippets.absolute("0px", "0px", "0px", "0px", 10)};
-	display: ${(props) => (props.is_open === "true" ? "block" : "none")};
 `;
 
 export const ModalFormWrapper = styled("div")`
