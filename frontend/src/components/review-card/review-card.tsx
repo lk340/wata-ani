@@ -2,6 +2,7 @@ import * as React from "react";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
+import * as Actions from "@/redux/actions";
 import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
@@ -12,26 +13,29 @@ import { RatingAndLikes } from "./rating-and-likes";
 import { ModalForm } from "./modal-form";
 
 type Props = {
-	postId: number;
-	username: string;
-	seriesTitle: string;
-	title: string;
-	dateCreated: string;
-	review: string;
-	personalRating: number;
-	tags: number[];
-	ratings: number[];
-	likes: number;
-	ratingId: number;
-	userRating: number | "N/A";
-	userRatingCount: number;
-	userHasRated: boolean;
-	belongsToCurrentUser: boolean;
-	dispatch: Function;
-	currentUser: Context.AuthForm.CurrentUser;
-	postsRedux: Types.Posts;
-	postsErrorsRedux: any;
+	post: Actions.Posts.Post;
 	ratingsRedux: Types.Ratings;
+
+	// postId: number;
+	// username: string;
+	// seriesTitle: string;
+	// title: string;
+	// dateCreated: string;
+	// review: string;
+	// personalRating: number;
+	// tags: number[];
+	// ratings: number[];
+	// likes: number;
+	// ratingId: number;
+	// userRating: number | "N/A";
+	// userRatingCount: number;
+	// userHasRated: boolean;
+	// belongsToCurrentUser: boolean;
+	// dispatch: Function;
+	// currentUser: Context.AuthForm.CurrentUser;
+	// postsRedux: Types.Posts;
+	// postsErrorsRedux: any;
+	// ratingsRedux: Types.Ratings;
 };
 
 /**
@@ -81,6 +85,21 @@ export const ReviewCard = (props: Props) => {
 
 	// --- Fetching Redux State --- //
 	const tagsRedux = Functions.getTags();
+
+	// --- Post Logic --- //
+	const _parsedDate = new Date(props.post.date_created.slice(0, 10)).toString().slice(4, 15);
+	const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
+
+	const userRatingCount = props.post.user_ratings.length;
+
+	let _userRatingsSum = 0;
+	if (props.post.user_ratings.length > 0) {
+		props.post.user_ratings.forEach((rating: number) => {
+			_userRatingsSum += props.ratingsRedux[rating].rating;
+		});
+	}
+
+	const userRating = Number((_userRatingsSum / userRatingCount).toFixed(1));
 
 	// --- Review Card Tag Components --- //
 	const tagCount = props.tags.length;

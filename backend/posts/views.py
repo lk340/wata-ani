@@ -8,6 +8,8 @@ from . import models
 from . import serializers
 from . import permissions as CustomPermissions
 
+from ratings.models import Rating
+
 
 class PostList(APIView):
     permission_classes = (
@@ -15,12 +17,11 @@ class PostList(APIView):
     )
 
     def get(self, request, format=None):
-        post = models.Post.objects.all().order_by("-date_created")
+        # post = models.Post.objects.all().order_by("-date_created")
+        post = models.Post.objects.all()
         serializer = serializers.PostSerializer(post, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-        # custom_data = {post["id"]: post for post in serializer.data}
-        # return Response(custom_data, status=status.HTTP_200_OK)
+        custom_data = {post["id"]: post for post in serializer.data}
+        return Response(custom_data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
         serializer = serializers.PostSerializer(data=request.data)
@@ -91,3 +92,29 @@ class PostUserRatings(APIView):
         post = self.get_post(pk)
         serializer = serializers.PostSerializer(post)
         return Response(serializer.data["user_ratings"], status=status.HTTP_200_OK)
+
+
+class PostAverageUserRatings(APIView):
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly, CustomPermissions.IsOwnerOrReadOnly
+    )
+
+    def get_post(self, pk):
+        try:
+            return models.Post.objects.get(pk=pk)
+        except models.Post.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        post = self.get_post(pk)
+        serializer = serializers.PostSerializer(post)
+        ratings = serializer.data["user_ratings"]
+        total_ratings = 0
+        average_rating = 0
+
+        if len(ratings) > 0:
+            for rating in ratings:
+                total_ratings += Rating.objects.get(id=rating).rating
+            average_rating = total_ratings / len(ratings)
+
+        return Response({"average": average_rating}, status=status.HTTP_200_OK)

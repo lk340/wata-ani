@@ -23,11 +23,11 @@ export type Post = {
 	series_title: string;
 	review: string;
 	personal_rating: number;
-	user_rating: number;
+	// user_rating: number;
 	date_created: string;
-	author: string;
+	author: number;
 	tags: number[];
-	ratings: number[];
+	user_ratings: number[];
 
 	// tags: Tag[];
 	// ratings: Rating[];
