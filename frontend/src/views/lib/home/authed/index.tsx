@@ -76,6 +76,8 @@ export const Authed = () => {
 			<Styled.AuthedReviewCard key={post.id}>
 				<Components.ReviewCard
 					post={post}
+					currentUser={currentUser}
+					ratingsRedux={ratingsRedux}
 
 					// postId={post.id}
 					// username={usersRedux[post.author] ? usersRedux[post.author].username : ""}

@@ -14,6 +14,7 @@ import { ModalForm } from "./modal-form";
 
 type Props = {
 	post: Actions.Posts.Post;
+	currentUser: Context.AuthForm.CurrentUser;
 	ratingsRedux: Types.Ratings;
 
 	// postId: number;
@@ -90,50 +91,46 @@ export const ReviewCard = (props: Props) => {
 	const _parsedDate = new Date(props.post.date_created.slice(0, 10)).toString().slice(4, 15);
 	const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
 
-	const userRatingCount = props.post.user_ratings.length;
-
-	let _userRatingsSum = 0;
-	if (props.post.user_ratings.length > 0) {
-		props.post.user_ratings.forEach((rating: number) => {
-			_userRatingsSum += props.ratingsRedux[rating].rating;
-		});
-	}
-
-	const userRating = Number((_userRatingsSum / userRatingCount).toFixed(1));
+	const averageUserRating = Functions.getPostAverageUserRatings(props.post.id);
+	// const averageUserRating = Functions.getPostAverageUserRatings(props.post.id).toFixed(1);
 
 	// --- Review Card Tag Components --- //
-	const tagCount = props.tags.length;
-	const _postHasTags = tagCount > 0;
-	const _tagsReduxHasLoaded = Object.keys(tagsRedux).length > 0;
+	const tags = Functions.getPostTags(props.post.id);
+	
+	// const tagCount = props.tags.length;
+	// const _postHasTags = tagCount > 0;
+	// const _tagsReduxHasLoaded = Object.keys(tagsRedux).length > 0;
 
-	let reviewCardTagComponents;
-	if (_postHasTags && _tagsReduxHasLoaded) {
-		reviewCardTagComponents = props.tags.map((id: number) => {
-			const tagGenre = tagsRedux[id].genre.toLowerCase();
-			return (
-				<Styled.ReviewCardTagKeyWrapper key={id}>
-					<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
-				</Styled.ReviewCardTagKeyWrapper>
-			);
-		});
-	} else {
-		reviewCardTagComponents = "";
-	}
+	// let reviewCardTagComponents;
+	// if (_postHasTags && _tagsReduxHasLoaded) {
+	// 	reviewCardTagComponents = props.tags.map((id: number) => {
+	// 		const tagGenre = tagsRedux[id].genre.toLowerCase();
+	// 		return (
+	// 			<Styled.ReviewCardTagKeyWrapper key={id}>
+	// 				<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
+	// 			</Styled.ReviewCardTagKeyWrapper>
+	// 		);
+	// 	});
+	// } else {
+	// 	reviewCardTagComponents = "";
+	// }
 
 	// If user has made a rating, display it in the form and make the request a PATCH request
 	// 	instead of a POST request.
-	const userRatings = props.currentUser.ratings;
-
-	let currentUserRating: number = 0;
-	if (Object.keys(props.ratingsRedux).length > 0 && userRatings) {
-		props.ratings.forEach((postRating: number) => {
-			if (userRatings.includes(postRating)) {
-				currentUserRating = props.ratingsRedux[postRating].rating;
-			} else {
-				currentUserRating = 0;
-			}
-		});
-	}
+	
+	const userRating = Functions.getUserRating(props.currentUser.id, props.post.id);
+	
+	// const userRatings = props.currentUser.ratings;
+	// let currentUserRating: number = 0;
+	// if (Object.keys(props.ratingsRedux).length > 0 && userRatings) {
+	// 	props.ratings.forEach((postRating: number) => {
+	// 		if (userRatings.includes(postRating)) {
+	// 			currentUserRating = props.ratingsRedux[postRating].rating;
+	// 		} else {
+	// 			currentUserRating = 0;
+	// 		}
+	// 	});
+	// }
 
 	return (
 		<Styled.ReviewCardContainer

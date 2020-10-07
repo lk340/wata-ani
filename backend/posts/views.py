@@ -109,12 +109,13 @@ class PostAverageUserRatings(APIView):
         post = self.get_post(pk)
         serializer = serializers.PostSerializer(post)
         ratings = serializer.data["user_ratings"]
+        ratings_count = len(ratings)
         total_ratings = 0
         average_rating = 0
 
-        if len(ratings) > 0:
+        if ratings_count > 0:
             for rating in ratings:
                 total_ratings += Rating.objects.get(id=rating).rating
-            average_rating = total_ratings / len(ratings)
+            average_rating = total_ratings / ratings_count
 
-        return Response({"average": average_rating}, status=status.HTTP_200_OK)
+        return Response(average_rating, status=status.HTTP_200_OK)
