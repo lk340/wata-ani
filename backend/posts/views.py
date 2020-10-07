@@ -15,10 +15,12 @@ class PostList(APIView):
     )
 
     def get(self, request, format=None):
-        post = models.Post.objects.all()
+        post = models.Post.objects.all().order_by("-date_created")
         serializer = serializers.PostSerializer(post, many=True)
-        custom_data = {post["id"]: post for post in serializer.data}
-        return Response(custom_data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+        # custom_data = {post["id"]: post for post in serializer.data}
+        # return Response(custom_data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
         serializer = serializers.PostSerializer(data=request.data)
