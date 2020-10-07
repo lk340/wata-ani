@@ -57,3 +57,37 @@ class PostDetail(APIView):
         post.delete()
         response_detail = {"detail": "Post has successfully been deleted."}
         return Response(response_detail, status=status.HTTP_204_NO_CONTENT)
+
+
+class PostTags(APIView):
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly, CustomPermissions.IsOwnerOrReadOnly
+    )
+
+    def get_post(self, pk):
+        try:
+            return models.Post.objects.get(pk=pk)
+        except models.Post.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        post = self.get_post(pk)
+        serializer = serializers.PostSerializer(post)
+        return Response(serializer.data["tags"], status=status.HTTP_200_OK)
+
+
+class PostUserRatings(APIView):
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly, CustomPermissions.IsOwnerOrReadOnly
+    )
+
+    def get_post(self, pk):
+        try:
+            return models.Post.objects.get(pk=pk)
+        except models.Post.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        post = self.get_post(pk)
+        serializer = serializers.PostSerializer(post)
+        return Response(serializer.data["user_ratings"], status=status.HTTP_200_OK)

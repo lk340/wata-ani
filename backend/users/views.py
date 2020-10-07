@@ -15,7 +15,7 @@ class UserList(APIView):
     def get(self, request, format=None):
         users = User.objects.all()
         serializer = serializers.UserSerializer(users, many=True)
-        custom_data = { user["id"]: user for user in serializer.data }
+        custom_data = {user["id"]: user for user in serializer.data}
         return Response(custom_data, status=status.HTTP_200_OK)
 
 
@@ -47,3 +47,18 @@ class UserDetail(APIView):
             "detail": "Your account has been successfully deleted."
         }
         return Response(response_detail, status=status.HTTP_204_NO_CONTENT)
+
+
+class UserPosts(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_user(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        user = self.get_user(pk)
+        serializer = serializers.UserSerializer(user)
+        return Response(serializer.data["posts"], status=status.HTTP_200_OK)
