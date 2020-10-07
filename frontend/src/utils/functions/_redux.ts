@@ -70,3 +70,4 @@ export function getRatings() {
 export function getRatingsErrors() {
 	return ReactRedux.useSelector((state: Types.ReduxState) => state.errors.ratings);
 }
+ 

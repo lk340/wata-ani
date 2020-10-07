@@ -16,6 +16,7 @@ type Props = {
 	post: Actions.Posts.Post;
 	currentUser: Context.AuthForm.CurrentUser;
 	ratingsRedux: Types.Ratings;
+	username: string;
 
 	// postId: number;
 	// username: string;
@@ -88,7 +89,9 @@ export const ReviewCard = (props: Props) => {
 	const tagsRedux = Functions.getTags();
 
 	// --- Post Logic --- //
-	const _parsedDate = new Date(props.post.date_created.slice(0, 10)).toString().slice(4, 15);
+	const _parsedDate = new Date(props.post.date_created.slice(0, 10))
+		.toString()
+		.slice(4, 15);
 	const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
 
 	const averageUserRating = Functions.getPostAverageUserRatings(props.post.id);
@@ -96,30 +99,32 @@ export const ReviewCard = (props: Props) => {
 
 	// --- Review Card Tag Components --- //
 	const tags = Functions.getPostTags(props.post.id);
-	
+
 	// const tagCount = props.tags.length;
 	// const _postHasTags = tagCount > 0;
 	// const _tagsReduxHasLoaded = Object.keys(tagsRedux).length > 0;
 
-	// let reviewCardTagComponents;
-	// if (_postHasTags && _tagsReduxHasLoaded) {
-	// 	reviewCardTagComponents = props.tags.map((id: number) => {
-	// 		const tagGenre = tagsRedux[id].genre.toLowerCase();
-	// 		return (
-	// 			<Styled.ReviewCardTagKeyWrapper key={id}>
-	// 				<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
-	// 			</Styled.ReviewCardTagKeyWrapper>
-	// 		);
-	// 	});
-	// } else {
-	// 	reviewCardTagComponents = "";
-	// }
+	const tagCount = tags.length;
+
+	let reviewCardTagComponents;
+	if (_postHasTags && _tagsReduxHasLoaded) {
+		reviewCardTagComponents = props.tags.map((id: number) => {
+			const tagGenre = tagsRedux[id].genre.toLowerCase();
+			return (
+				<Styled.ReviewCardTagKeyWrapper key={id}>
+					<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
+				</Styled.ReviewCardTagKeyWrapper>
+			);
+		});
+	} else {
+		reviewCardTagComponents = "";
+	}
 
 	// If user has made a rating, display it in the form and make the request a PATCH request
 	// 	instead of a POST request.
-	
+
 	const userRating = Functions.getUserRating(props.currentUser.id, props.post.id);
-	
+
 	// const userRatings = props.currentUser.ratings;
 	// let currentUserRating: number = 0;
 	// if (Object.keys(props.ratingsRedux).length > 0 && userRatings) {
@@ -132,6 +137,8 @@ export const ReviewCard = (props: Props) => {
 	// 	});
 	// }
 
+	const belongsToCurrentUser = props.post.author === props.currentUser.id;
+
 	return (
 		<Styled.ReviewCardContainer
 			ref={reviewCardContainerRef}
@@ -141,18 +148,20 @@ export const ReviewCard = (props: Props) => {
 			<ModalForm
 				isOpen={modalOpen}
 				toggleModalOpen={toggleModalOpen}
-				postId={props.postId}
-				postSeries={props.seriesTitle}
-				postTitle={props.title}
-				postReview={props.review}
-				personalRating={props.personalRating}
-				postTags={props.tags}
-				dispatch={props.dispatch}
+				post={props.post}
 				currentUser={props.currentUser}
-				tagsRedux={tagsRedux}
-				ratingsRedux={props.ratingsRedux}
-				postsRedux={props.postsRedux}
-				postsErrorsRedux={props.postsErrorsRedux}
+				// postId={props.postId}
+				// postSeries={props.seriesTitle}
+				// postTitle={props.title}
+				// postReview={props.review}
+				// personalRating={props.personalRating}
+				// postTags={props.tags}
+				// dispatch={props.dispatch}
+				// currentUser={props.currentUser}
+				// tagsRedux={tagsRedux}
+				// ratingsRedux={props.ratingsRedux}
+				// postsRedux={props.postsRedux}
+				// postsErrorsRedux={props.postsErrorsRedux}
 			/>
 
 			<Styled.ReviewCardWrapper style={animateWrapper}>
@@ -170,7 +179,7 @@ export const ReviewCard = (props: Props) => {
 						{/* Modal Button (ellipses) */}
 						<Styled.ReviewCardModalButtonDotContainer
 							onClick={toggleModalOpen}
-							belongs_to_current_user={props.belongsToCurrentUser.toString()}
+							belongs_to_current_user={belongsToCurrentUser.toString()}
 						>
 							<Styled.ReviewCardModalButtonDot />
 							<Components.Spacer height={"2px"} />
@@ -194,7 +203,7 @@ export const ReviewCard = (props: Props) => {
 
 					{/* Series Name */}
 					<Styled.ReviewCardSeriesTitle
-						belongs_to_current_user={props.belongsToCurrentUser.toString()}
+						belongs_to_current_user={belongsToCurrentUser.toString()}
 					>
 						{props.seriesTitle}
 					</Styled.ReviewCardSeriesTitle>

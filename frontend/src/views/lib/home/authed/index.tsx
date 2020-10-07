@@ -78,6 +78,7 @@ export const Authed = () => {
 					post={post}
 					currentUser={currentUser}
 					ratingsRedux={ratingsRedux}
+					username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
 
 					// postId={post.id}
 					// username={usersRedux[post.author] ? usersRedux[post.author].username : ""}

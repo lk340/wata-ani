@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 import * as Lodash from "lodash";
 
 import * as Context from "@/context";
@@ -14,18 +15,21 @@ import { Tag } from "./tag";
 type Props = {
 	isOpen: boolean;
 	toggleModalOpen: Function;
-	postId: number;
-	postSeries: string;
-	postTitle: string;
-	postReview: string;
-	personalRating: number;
-	postTags: number[];
-	dispatch: Function;
+	post: Actions.Posts.Post;
 	currentUser: Context.AuthForm.CurrentUser;
-	tagsRedux: Types.Tags;
-	ratingsRedux: Types.Ratings;
-	postsRedux: Types.Posts;
-	postsErrorsRedux: any;
+	
+	// postId: number;
+	// postSeries: string;
+	// postTitle: string;
+	// postReview: string;
+	// personalRating: number;
+	// postTags: number[];
+	// dispatch: Function;
+	// currentUser: Context.AuthForm.CurrentUser;
+	// tagsRedux: Types.Tags;
+	// ratingsRedux: Types.Ratings;
+	// postsRedux: Types.Posts;
+	// postsErrorsRedux: any;
 };
 
 export type SelectedTags = {
@@ -43,20 +47,26 @@ export type SelectedTags = {
  */
 
 export const ModalForm = (props: Props) => {
-	const [seriesTitle, setSeriesTitle] = React.useState(props.postSeries);
-	const [reviewTitle, setReviewTitle] = React.useState(props.postTitle);
-	const [review, setReview] = React.useState(props.postReview);
-	const [personalRating, setRating] = React.useState(props.personalRating.toString());
+	const [seriesTitle, setSeriesTitle] = React.useState(props.post.series_title);
+	const [reviewTitle, setReviewTitle] = React.useState(props.post.title);
+	const [review, setReview] = React.useState(props.post.review);
+	const [personalRating, setRating] = React.useState(props.post.personal_rating.toString());
 	const [seriesTitleError, setSeriesTitleError] = React.useState("");
 	const [reviewTitleError, setReviewTitleError] = React.useState("");
 	const [reviewError, setReviewError] = React.useState("");
 	const [personalRatingError, setPersonalRatingError] = React.useState("");
 	const [selectedTags, setSelectedTags] = React.useState<SelectedTags>({});
 
+	// --- Fetching Redux State --- // 
+	const dispatch = ReactRedux.useDispatch();
+	const author = props.currentUser.id;
+	const userRatings = Functions.getPosts()[props.post.id].user_ratings;
+	const tagsRedux = Functions.getTags();
+	
 	// --- selectedTags Handlers --- //
 	function addToSelectedTags(tagId: string): void {
 		const newTags = selectedTags;
-		newTags[tagId] = props.tagsRedux[tagId];
+		newTags[tagId] = tagsRedux[tagId];
 		setSelectedTags(newTags);
 	}
 
@@ -72,14 +82,14 @@ export const ModalForm = (props: Props) => {
 
 	// --- Initializing selectedTags --- //
 	React.useEffect(() => {
-		if (Object.values(props.tagsRedux).length > 0) {
-			props.postTags.forEach((tagId: number) => {
+		if (Object.values(tagsRedux).length > 0) {
+			props.post.tags.forEach((tagId: number) => {
 				const newTags = selectedTags;
-				newTags[tagId] = props.tagsRedux[tagId];
+				newTags[tagId] = tagsRedux[tagId];
 				setSelectedTags(newTags);
 			});
 		}
-	}, [Object.values(props.tagsRedux).length]);
+	}, [Object.values(tagsRedux).length]);
 
 	React.useEffect(() => handleSeriesTitleError(), [seriesTitle]);
 	React.useEffect(() => handleReviewTitleError(), [reviewTitle]);
@@ -94,12 +104,8 @@ export const ModalForm = (props: Props) => {
 	const animateError = Springs.error();
 	const animateInput = Springs.input();
 
-	// --- Fetching Redux State --- //
-	const author = props.currentUser.id;
-	const postRatingsRedux = props.postsRedux[props.postId].ratings;
-
 	// --- Setting Tag Components --- //
-	const tagGenres = Object.entries(Lodash.mapValues(props.tagsRedux, (tag) => tag.genre));
+	const tagGenres = Object.entries(Lodash.mapValues(tagsRedux, (tag) => tag.genre));
 	const tagCount = tagGenres.length;
 	const tags = tagGenres.map((tag: [string, string]) => {
 		const id = tag[0];
@@ -173,16 +179,16 @@ export const ModalForm = (props: Props) => {
 			review,
 			personal_rating: Number(personalRating),
 			author,
-			ratings: postRatingsRedux,
+			ratings: userRatings,
 			tags: Functions.convertKeysToIntegers(selectedTags),
 		};
 
 		if (personalRatingError === "") {
 			Actions.Posts.thunkUpdatePost(
-				props.postId,
+				props.post.id,
 				data,
-				props.dispatch,
-				props.postsErrorsRedux,
+				dispatch,
+				Functions.getPostsErrors(),
 			);
 			props.toggleModalOpen();
 		}
