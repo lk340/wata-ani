@@ -13,15 +13,15 @@ import { RatingFormMobile } from "./rating-form-mobile";
 
 type Props = {
 	postId: number;
-	userRating: number | "N/A";
+	averageUserRating: number | "N/A";
 	userRatingCount: number;
 	currentUserRating: number;
 	userHasRated: boolean;
-	userRatingId: number;
+	userHasRatedRatingId: number;
 };
 
 export const Rating = (props: Props) => {
-	const { userRatingId } = props;
+	const { userHasRatedRatingId } = props;
 
 	const [rating, setRating] = React.useState("");
 	const [error, setError] = React.useState("");
@@ -52,7 +52,12 @@ export const Rating = (props: Props) => {
 			const data = { rating: Number(rating), owner, post };
 
 			if (props.userHasRated) {
-				Actions.Ratings.thunkUpdateRating(userRatingId, data, dispatch, ratingsErrorsRedux);
+				Actions.Ratings.thunkUpdateRating(
+					userHasRatedRatingId,
+					data,
+					dispatch,
+					ratingsErrorsRedux,
+				);
 			} else {
 				Actions.Ratings.thunkCreateRating(data, dispatch, ratingsErrorsRedux);
 			}
@@ -73,7 +78,10 @@ export const Rating = (props: Props) => {
 
 	return (
 		<Styled.Rating>
-			<UserRating userRating={props.userRating} userRatingCount={props.userRatingCount} />
+			<UserRating
+				userRating={props.averageUserRating}
+				userRatingCount={props.userRatingCount}
+			/>
 
 			<RatingFormDesktop
 				rating={rating}

@@ -1,10 +1,8 @@
 import * as React from "react";
-import axios from "axios";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
-import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
@@ -17,29 +15,8 @@ import { ModalForm } from "./modal-form";
 type Props = {
 	post: Actions.Posts.Post;
 	currentUser: Context.AuthForm.CurrentUser;
-	ratingsRedux: Types.Ratings;
 	username: string;
-
-	// postId: number;
-	// username: string;
-	// seriesTitle: string;
-	// title: string;
-	// dateCreated: string;
-	// review: string;
-	// personalRating: number;
-	// tags: number[];
-	// ratings: number[];
-	// likes: number;
-	// ratingId: number;
-	// userRating: number | "N/A";
-	// userRatingCount: number;
-	// userHasRated: boolean;
-	// belongsToCurrentUser: boolean;
-	// dispatch: Function;
-	// currentUser: Context.AuthForm.CurrentUser;
-	// postsRedux: Types.Posts;
-	// postsErrorsRedux: any;
-	// ratingsRedux: Types.Ratings;
+	ratingsRedux: Types.Ratings;
 };
 
 /**
@@ -100,54 +77,43 @@ export const ReviewCard = (props: Props) => {
 		.slice(4, 15);
 	const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
 
-	Functions.getPostAverageUserRatings(props.post.id, setAverageUserRating, setAverageUserRatingError);
-	// const averageUserRating = Functions.getPostAverageUserRatings(props.post.id).toFixed(1);
+	Functions.getPostAverageUserRatings(
+		props.post.id,
+		setAverageUserRating,
+		setAverageUserRatingError,
+	);
+
+	Functions.getPostAverageUserRatings(
+		props.post.id,
+		setAverageUserRating,
+		setAverageUserRatingError,
+	);
+
+	//.toFixed(1)
 
 	// --- Review Card Tag Components --- //
 	const tags = props.post.tags;
 	const tagCount = tags.length;
 
 	// const tagCount = props.tags.length;
-	// const _postHasTags = tagCount > 0;
-	// const _tagsReduxHasLoaded = Object.keys(tagsRedux).length > 0;
+	const _postHasTags = tagCount > 0;
+	const _tagsReduxHasLoaded = Object.keys(tagsRedux).length > 0;
 
 	// const tagCount = tags.length;
 
 	let reviewCardTagComponents;
-	// if (_postHasTags && _tagsReduxHasLoaded) {
-	// 	reviewCardTagComponents = props.tags.map((id: number) => {
-	// 		const tagGenre = tagsRedux[id].genre.toLowerCase();
-	// 		return (
-	// 			<Styled.ReviewCardTagKeyWrapper key={id}>
-	// 				<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
-	// 			</Styled.ReviewCardTagKeyWrapper>
-	// 		);
-	// 	});
-	// } else {
-	// 	reviewCardTagComponents = "";
-	// }
-
-	// If user has made a rating, display it in the form and make the request a PATCH request
-	// 	instead of a POST request.
-
-	// const userRating = Functions.getUserRating(props.currentUser.id, props.post.id);
-
-	// async function getUserRating(): Promise<void> {
-	// 	try {
-	// 		const endpoint = `/api/users/${props.currentUser.id}/posts/${props.post.id}/`;
-	// 		const validateStatus = AxiosHelpers.validateStatus;
-	// 		const response = await axios.get(endpoint, { validateStatus });
-
-	// 		// Success
-	// 		if (response.status < 400) setUserRating(response.data);
-	// 		// Failure
-	// 		else return setUserRatingError(response.data);
-	// 	} catch (error) {
-	// 		// Dev debug log
-	// 		console.log(error);
-	// 	}
-	// }
-	// getUserRating();
+	if (_postHasTags && _tagsReduxHasLoaded) {
+		reviewCardTagComponents = props.post.tags.map((tagId: number) => {
+			const tagGenre = tagsRedux[tagId].genre.toLowerCase();
+			return (
+				<Styled.ReviewCardTagKeyWrapper key={tagId}>
+					<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
+				</Styled.ReviewCardTagKeyWrapper>
+			);
+		});
+	} else {
+		reviewCardTagComponents = "";
+	}
 
 	Functions.getUserRating(
 		props.currentUser.id,
@@ -156,21 +122,19 @@ export const ReviewCard = (props: Props) => {
 		setCurrentUserRatingError,
 	);
 
-	console.log("User Rating:", currentUserRating);
-
-	// const userRatings = props.currentUser.ratings;
-	// let currentUserRating: number = 0;
-	// if (Object.keys(props.ratingsRedux).length > 0 && userRatings) {
-	// 	props.ratings.forEach((postRating: number) => {
-	// 		if (userRatings.includes(postRating)) {
-	// 			currentUserRating = props.ratingsRedux[postRating].rating;
-	// 		} else {
-	// 			currentUserRating = 0;
-	// 		}
-	// 	});
-	// }
-
 	const belongsToCurrentUser = props.post.author === props.currentUser.id;
+
+	let userHasRated = false;
+	let userHasRatedRatingId = 0;
+
+	props.post.user_ratings.forEach((postUserRatingId: number) => {
+		if (props.currentUser.ratings.includes(postUserRatingId)) {
+			userHasRated = true;
+			userHasRatedRatingId = postUserRatingId;
+		} else {
+			userHasRated = false;
+		}
+	});
 
 	return (
 		<Styled.ReviewCardContainer
@@ -183,18 +147,6 @@ export const ReviewCard = (props: Props) => {
 				toggleModalOpen={toggleModalOpen}
 				post={props.post}
 				currentUser={props.currentUser}
-				// postId={props.postId}
-				// postSeries={props.seriesTitle}
-				// postTitle={props.title}
-				// postReview={props.review}
-				// personalRating={props.personalRating}
-				// postTags={props.tags}
-				// dispatch={props.dispatch}
-				// currentUser={props.currentUser}
-				// tagsRedux={tagsRedux}
-				// ratingsRedux={props.ratingsRedux}
-				// postsRedux={props.postsRedux}
-				// postsErrorsRedux={props.postsErrorsRedux}
 			/>
 
 			<Styled.ReviewCardWrapper style={animateWrapper}>
@@ -225,18 +177,11 @@ export const ReviewCard = (props: Props) => {
 					{/* Rating & Likes */}
 					<RatingAndLikes
 						post={props.post}
-						averageUserRating={averageUserRating}
+						averageUserRating={averageUserRating > 0 ? averageUserRating : "N/A"}
 						currentUserRating={currentUserRating}
 						belongsToCurrentUser={belongsToCurrentUser}
-					
-						// postId={props.postId}
-						// userRating={props.userRating}
-						// userRatingCount={props.userRatingCount}
-						// currentUserRating={currentUserRating}
-						// likes={props.likes}
-						// belongsToCurrentUser={props.belongsToCurrentUser}
-						// userHasRated={props.userHasRated}
-						// ratingId={props.ratingId}
+						userHasRated={userHasRated}
+						userHasRatedRatingId={userHasRatedRatingId}
 					/>
 
 					{/* Series Name */}

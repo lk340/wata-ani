@@ -17,19 +17,6 @@ type Props = {
 	toggleModalOpen: Function;
 	post: Actions.Posts.Post;
 	currentUser: Context.AuthForm.CurrentUser;
-	
-	// postId: number;
-	// postSeries: string;
-	// postTitle: string;
-	// postReview: string;
-	// personalRating: number;
-	// postTags: number[];
-	// dispatch: Function;
-	// currentUser: Context.AuthForm.CurrentUser;
-	// tagsRedux: Types.Tags;
-	// ratingsRedux: Types.Ratings;
-	// postsRedux: Types.Posts;
-	// postsErrorsRedux: any;
 };
 
 export type SelectedTags = {
@@ -50,19 +37,22 @@ export const ModalForm = (props: Props) => {
 	const [seriesTitle, setSeriesTitle] = React.useState(props.post.series_title);
 	const [reviewTitle, setReviewTitle] = React.useState(props.post.title);
 	const [review, setReview] = React.useState(props.post.review);
-	const [personalRating, setRating] = React.useState(props.post.personal_rating.toString());
+	const [personalRating, setRating] = React.useState(
+		props.post.personal_rating.toString(),
+	);
 	const [seriesTitleError, setSeriesTitleError] = React.useState("");
 	const [reviewTitleError, setReviewTitleError] = React.useState("");
 	const [reviewError, setReviewError] = React.useState("");
 	const [personalRatingError, setPersonalRatingError] = React.useState("");
 	const [selectedTags, setSelectedTags] = React.useState<SelectedTags>({});
 
-	// --- Fetching Redux State --- // 
+	// --- Fetching Redux State --- //
 	const dispatch = ReactRedux.useDispatch();
 	const author = props.currentUser.id;
 	const userRatings = Functions.getPosts()[props.post.id].user_ratings;
+	const postErrorsRedux = Functions.getPostsErrors();
 	const tagsRedux = Functions.getTags();
-	
+
 	// --- selectedTags Handlers --- //
 	function addToSelectedTags(tagId: string): void {
 		const newTags = selectedTags;
@@ -179,17 +169,12 @@ export const ModalForm = (props: Props) => {
 			review,
 			personal_rating: Number(personalRating),
 			author,
-			ratings: userRatings,
+			user_ratings: userRatings,
 			tags: Functions.convertKeysToIntegers(selectedTags),
 		};
 
 		if (personalRatingError === "") {
-			Actions.Posts.thunkUpdatePost(
-				props.post.id,
-				data,
-				dispatch,
-				Functions.getPostsErrors(),
-			);
+			Actions.Posts.thunkUpdatePost(props.post.id, data, dispatch, postErrorsRedux);
 			props.toggleModalOpen();
 		}
 	}

@@ -13,15 +13,8 @@ type Props = {
 	averageUserRating: number | "N/A";
 	currentUserRating: number;
 	belongsToCurrentUser: boolean;
-
-	// postId: number;
-	// userRating: number | "N/A";
-	// userRatingCount: number;
-	// currentUserRating: number;
-	// userHasRated: boolean;
-	// ratingId: number;
-	// likes: number;
-	// belongsToCurrentUser: boolean;
+	userHasRated: boolean;
+	userHasRatedRatingId: number;
 };
 
 export const RatingAndLikes = (props: Props) => {
@@ -34,11 +27,11 @@ export const RatingAndLikes = (props: Props) => {
 		>
 			<Rating
 				postId={props.post.id}
-				userRating={props.userRating}
+				averageUserRating={props.averageUserRating}
 				userRatingCount={props.post.user_ratings.length}
 				currentUserRating={props.currentUserRating}
 				userHasRated={props.userHasRated}
-				userRatingId={props.ratingId}
+				userHasRatedRatingId={props.userHasRatedRatingId}
 			/>
 			{/* <Likes likes={likes} /> */}
 		</Styled.RatingAndLikes>

@@ -51,6 +51,4 @@ export const AuthedReviewCard = styled("div")`
 	@media (max-width: 960px) {
 		max-width: 100%;
 	}
-
-	border: blue solid 1px;
 `;

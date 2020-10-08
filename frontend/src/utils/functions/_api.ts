@@ -12,15 +12,9 @@ async function handleResponse(
 	const response = await axios.get(endpoint, { validateStatus });
 
 	// Success
-	if (response.status < 400) {
-		// console.log("Response:", response.data);
-		setter(response.data);
-	}
+	if (response.status < 400) setter(response.data);
 	// Failure
-	else {
-		// console.log("Response:", response);
-		errorSetter(response.data);
-	}
+	else errorSetter(response.data);
 }
 
 export function getUserRatings(id: number, setter: any, errorSetter: any) {

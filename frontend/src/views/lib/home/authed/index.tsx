@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
 
-import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
 import * as Functions from "@/utils/functions";
@@ -15,8 +14,6 @@ import * as Styled from "./authed.styled";
  */
 
 export const Authed = () => {
-	const { windows } = Context.Windows.useWindowsContext();
-
 	const dispatch = ReactRedux.useDispatch();
 
 	// --- Checking if user is signed in or not --- //
@@ -47,59 +44,13 @@ export const Authed = () => {
 	const postValues: Actions.Posts.Post[] = Object.values(postsRedux).reverse();
 
 	const reviewCards = postValues.map((post: Actions.Posts.Post) => {
-		// const _parsedDate = new Date(post.date_created.slice(0, 10)).toString().slice(4, 15);
-		// const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
-
-		// const userRatingCount = post.user_ratings.length;
-
-		// let _userRatingsSum = 0;
-		// if (Object.values(ratingsRedux).length > 0) {
-		// 	post.user_ratings.forEach((rating: number) => {
-		// 		_userRatingsSum += ratingsRedux[rating].rating;
-		// 	});
-		// }
-
-		// const userRating = Number((_userRatingsSum / userRatingCount).toFixed(1));
-
-		let userHasRated = false;
-		let userRatingRatedId = 0;
-		post.user_ratings.forEach((ratingId: number) => {
-			if (currentUser.ratings.includes(ratingId)) {
-				userHasRated = true;
-				userRatingRatedId = ratingId;
-			} else {
-				userHasRated = false;
-			}
-		});
-
 		return (
 			<Styled.AuthedReviewCard key={post.id}>
 				<Components.ReviewCard
 					post={post}
 					currentUser={currentUser}
-					ratingsRedux={ratingsRedux}
 					username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
-
-					// postId={post.id}
-					// username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
-					// seriesTitle={post.series_title}
-					// title={post.title}
-					// dateCreated={dateCreated}
-					// review={post.review}
-					// personalRating={post.personal_rating}
-					// tags={post.tags ? post.tags : []}
-					// ratings={post.user_ratings ? post.user_ratings : []}
-					// likes={123}
-					// ratingId={userRatingRatedId}
-					// userRating={userRating > 0 ? userRating : "N/A"}
-					// userRatingCount={userRatingCount}
-					// userHasRated={userHasRated}
-					// belongsToCurrentUser={Number(post.author) === currentUser.id}
-					// dispatch={dispatch}
-					// currentUser={currentUser}
-					// postsRedux={postsRedux}
-					// postsErrorsRedux={postsErrorsRedux}
-					// ratingsRedux={ratingsRedux}
+					ratingsRedux={ratingsRedux}
 				/>
 			</Styled.AuthedReviewCard>
 		);

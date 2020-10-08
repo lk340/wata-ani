@@ -185,8 +185,6 @@ export const ReviewCardTagContainer = styled("div")<Tag>`
 	padding: 0px 0px 5px 20px;
 	overflow: auto;
 
-	border: red solid 1px;
-
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		${Snippets.hideScrollbar()};
 	}
