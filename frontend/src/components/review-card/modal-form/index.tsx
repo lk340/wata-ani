@@ -13,10 +13,10 @@ import * as Springs from "./modal-form.springs";
 import { Tag } from "./tag";
 
 type Props = {
-	isOpen: boolean;
-	toggleModalOpen: Function;
 	post: Actions.Posts.Post;
 	currentUser: Context.AuthForm.CurrentUser;
+	isOpen: boolean;
+	toggleModalOpen: Function;
 };
 
 export type SelectedTags = {
@@ -24,10 +24,10 @@ export type SelectedTags = {
 };
 
 /**
- * selectedTags handlers
- * Initializing selectedTags
- * Animations
  * Fetching Redux State
+ * selectedTags (state) Handlers
+ * Initializing selectedTags (state)
+ * Animations
  * Setting Tag Components
  * Error Handlers
  * Form Handlers
@@ -53,7 +53,7 @@ export const ModalForm = (props: Props) => {
 	const postErrorsRedux = Functions.getPostsErrors();
 	const tagsRedux = Functions.getTags();
 
-	// --- selectedTags Handlers --- //
+	// --- selectedTags (state) Handlers --- //
 	function addToSelectedTags(tagId: string): void {
 		const newTags = selectedTags;
 		newTags[tagId] = tagsRedux[tagId];
@@ -70,7 +70,7 @@ export const ModalForm = (props: Props) => {
 		return !!selectedTags[tagId];
 	}
 
-	// --- Initializing selectedTags --- //
+	// --- Initializing selectedTags (state) --- //
 	React.useEffect(() => {
 		if (Object.values(tagsRedux).length > 0) {
 			props.post.tags.forEach((tagId: number) => {

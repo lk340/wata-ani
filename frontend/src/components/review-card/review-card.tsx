@@ -23,7 +23,9 @@ type Props = {
  * Refs
  * Animations
  * Fetching Redux state
+ * Post Logic
  * Review Card Tag Components
+ * Rating Logic
  */
 
 export const ReviewCard = (props: Props) => {
@@ -72,34 +74,22 @@ export const ReviewCard = (props: Props) => {
 	const tagsRedux = Functions.getTags();
 
 	// --- Post Logic --- //
-	const _parsedDate = new Date(props.post.date_created.slice(0, 10))
+	const _monthDayYear = new Date(props.post.date_created.slice(0, 10))
 		.toString()
 		.slice(4, 15);
-	const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
+	const dateCreated = _monthDayYear.slice(0, 6) + ", " + _monthDayYear.slice(6);
 
 	Functions.getPostAverageUserRatings(
 		props.post.id,
 		setAverageUserRating,
 		setAverageUserRatingError,
 	);
-
-	Functions.getPostAverageUserRatings(
-		props.post.id,
-		setAverageUserRating,
-		setAverageUserRatingError,
-	);
-
-	//.toFixed(1)
 
 	// --- Review Card Tag Components --- //
 	const tags = props.post.tags;
 	const tagCount = tags.length;
-
-	// const tagCount = props.tags.length;
 	const _postHasTags = tagCount > 0;
 	const _tagsReduxHasLoaded = Object.keys(tagsRedux).length > 0;
-
-	// const tagCount = tags.length;
 
 	let reviewCardTagComponents;
 	if (_postHasTags && _tagsReduxHasLoaded) {
@@ -122,8 +112,9 @@ export const ReviewCard = (props: Props) => {
 		setCurrentUserRatingError,
 	);
 
+	// --- Rating Logic --- //
 	const belongsToCurrentUser = props.post.author === props.currentUser.id;
-
+	
 	let userHasRated = false;
 	let userHasRatedRatingId = 0;
 
