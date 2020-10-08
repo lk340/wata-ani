@@ -120,4 +120,4 @@ class PostAverageUserRatings(APIView):
                 total_ratings += Rating.objects.get(id=rating).rating
             average_rating = total_ratings / ratings_count
 
-        return Response(average_rating, status=status.HTTP_200_OK)
+        return Response(round(average_rating, 1), status=status.HTTP_200_OK)
