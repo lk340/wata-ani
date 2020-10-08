@@ -16,6 +16,8 @@ import * as Styled from "./authed.styled";
 
 export const Authed = () => {
 	const [posts, setPosts] = React.useState([]);
+	const [nextPageLink, setNextPageLink] = React.useState("");
+	const [previousPageLink, setPreviousPageLink] = React.useState("");
 
 	const dispatch = ReactRedux.useDispatch();
 
@@ -33,10 +35,6 @@ export const Authed = () => {
 	const ratingErrorsRedux = Functions.getRatingsErrors();
 
 	React.useEffect(() => {
-		axios.get("/api/posts/descending/").then((response) => setPosts(response.data));
-	}, [postsRedux]);
-
-	React.useEffect(() => {
 		if (userIsSignedIn) {
 			Actions.Users.thunkGetUsers(dispatch, userErrorsRedux);
 			Actions.Posts.thunkGetPosts(dispatch, postsErrorsRedux);
@@ -45,20 +43,38 @@ export const Authed = () => {
 		}
 	}, [userIsSignedIn]);
 
+	React.useEffect(() => {
+		async function getPostsDescending(): Promise<void> {
+			await axios.get("/api/posts/descending/").then((response) => {
+				setPosts(response.data.results);
+				setPreviousPageLink(response.data.previous);
+				setNextPageLink(response.data.next);
+			});
+		}
+		getPostsDescending();
+	}, []);
+
 	// --- Review Card Logic --- //
 
-	const reviewCards = posts.map((post: Actions.Posts.Post) => {
-		return (
-			<Styled.AuthedReviewCard key={post.id}>
-				<Components.ReviewCard
-					post={post}
-					currentUser={currentUser}
-					username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
-					ratingsRedux={ratingsRedux}
-				/>
-			</Styled.AuthedReviewCard>
-		);
-	});
+	let reviewCards: React.ReactNode[] | "" = "";
+
+	// if (posts.length > 0) {
+	// 	reviewCards = posts.map((post: Actions.Posts.Post) => {
+	// 		return (
+	// 			<Styled.AuthedReviewCard key={post.id}>
+	// 				<Components.ReviewCard
+	// 					post={post}
+	// 					currentUser={currentUser}
+	// 					username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
+	// 					ratingsRedux={ratingsRedux}
+	// 				/>
+	// 			</Styled.AuthedReviewCard>
+	// 		);
+	// 	});
+	// }
+
+	console.log("Posts:", posts);
+	console.log("Review Cards:", reviewCards);
 
 	return (
 		<Styled.Authed>

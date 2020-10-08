@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import Http404
 from rest_framework import permissions, status
-from rest_framework.views import APIView
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from . import models
 from . import serializers
@@ -17,8 +18,8 @@ class PostList(APIView):
     )
 
     def get(self, request, format=None):
-        post = models.Post.objects.all()
-        serializer = serializers.PostSerializer(post, many=True)
+        posts = models.Post.objects.all()
+        serializer = serializers.PostSerializer(posts, many=True)
         custom_data = {post["id"]: post for post in serializer.data}
         return Response(custom_data, status=status.HTTP_200_OK)
 
@@ -59,11 +60,16 @@ class PostDetail(APIView):
         return Response(response_detail, status=status.HTTP_204_NO_CONTENT)
 
 
-class PostListDescending(APIView):
+class PostListDescending(APIView, LimitOffsetPagination):
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly, CustomPermissions.IsOwnerOrReadOnly
+    )
+
     def get(self, request, format=None):
-        post = models.Post.objects.all().order_by("-date_created")
-        serializer = serializers.PostSerializer(post, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        posts = models.Post.objects.all().order_by("-date_created")
+        paginated_posts = self.paginate_queryset(posts, request, view=self)
+        serializer = serializers.PostSerializer(paginated_posts, many=True)
+        return self.get_paginated_response(serializer.data)
 
 
 class PostTags(APIView):
