@@ -21,6 +21,10 @@ export function handleResponse(
 	}
 }
 
+// ====================================== //
+// ↓↓↓ Fetching Data From Redux Store ↓↓↓ //
+// ====================================== //
+
 // --- Session Redux --- //
 
 export function getSession() {
@@ -70,4 +74,3 @@ export function getRatings() {
 export function getRatingsErrors() {
 	return ReactRedux.useSelector((state: Types.ReduxState) => state.errors.ratings);
 }
- 

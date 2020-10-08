@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import * as Actions from "@/redux/actions";
+
 import * as Styled from "./rating-and-likes.styled";
 import * as Springs from "./rating-and-likes.springs";
 
@@ -7,14 +9,19 @@ import { Rating } from "./rating";
 import { Likes } from "./likes";
 
 type Props = {
-	postId: number;
-	userRating: number | "N/A";
-	userRatingCount: number;
+	post: Actions.Posts.Post;
+	averageUserRating: number | "N/A";
 	currentUserRating: number;
-	userHasRated: boolean;
-	ratingId: number;
-	likes: number;
 	belongsToCurrentUser: boolean;
+
+	// postId: number;
+	// userRating: number | "N/A";
+	// userRatingCount: number;
+	// currentUserRating: number;
+	// userHasRated: boolean;
+	// ratingId: number;
+	// likes: number;
+	// belongsToCurrentUser: boolean;
 };
 
 export const RatingAndLikes = (props: Props) => {
@@ -26,12 +33,12 @@ export const RatingAndLikes = (props: Props) => {
 			style={animateRatingAndLikes}
 		>
 			<Rating
-				postId={props.postId}
+				postId={props.post.id}
 				userRating={props.userRating}
-				userRatingCount={props.userRatingCount}
+				userRatingCount={props.post.user_ratings.length}
 				currentUserRating={props.currentUserRating}
 				userHasRated={props.userHasRated}
-				ratingId={props.ratingId}
+				userRatingId={props.ratingId}
 			/>
 			{/* <Likes likes={likes} /> */}
 		</Styled.RatingAndLikes>

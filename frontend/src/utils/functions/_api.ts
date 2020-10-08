@@ -4,37 +4,46 @@ import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
 const validateStatus = AxiosHelpers.validateStatus;
 
-async function handleResponse(endpoint: string): Promise<void> {
+async function handleResponse(
+	endpoint: string,
+	setter: any,
+	errorSetter: any,
+): Promise<void> {
 	const response = await axios.get(endpoint, { validateStatus });
 
 	// Success
 	if (response.status < 400) {
-		return response.data;
-		// console.log(response);
+		// console.log("Response:", response.data);
+		setter(response.data);
 	}
 	// Failure
 	else {
-		return response.data;
-		// console.log(response);
+		// console.log("Response:", response);
+		errorSetter(response.data);
 	}
 }
 
-export function getUserRatings(id: number) {
-	handleResponse(`/api/users/${id}/ratings/`);
+export function getUserRatings(id: number, setter: any, errorSetter: any) {
+	return handleResponse(`/api/users/${id}/ratings/`, setter, errorSetter);
 }
 
-export function getUserRating(userId: number, postId: number) {
-	handleResponse(`/api/users/${userId}/posts/${postId}/`);
+export function getUserRating(
+	userId: number,
+	postId: number,
+	setter: any,
+	errorSetter: any,
+) {
+	return handleResponse(`/api/users/${userId}/posts/${postId}/`, setter, errorSetter);
 }
 
-export function getPostUserRatings(id: number) {
-	handleResponse(`/api/posts/${1}/ratings/`);
+export function getPostUserRatings(id: number, setter: any, errorSetter: any) {
+	return handleResponse(`/api/posts/${1}/ratings/`, setter, errorSetter);
 }
 
-export function getPostAverageUserRatings(id: number) {
-	handleResponse(`/api/posts/${id}/average-ratings/`);
+export function getPostAverageUserRatings(id: number, setter: any, errorSetter: any) {
+	return handleResponse(`/api/posts/${id}/average-ratings/`, setter, errorSetter);
 }
 
-export function getPostTags(id: number) {
-	handleResponse(`/api/posts/${id}/tags/`);
+export function getPostTags(id: number, setter: any, errorSetter: any) {
+	return handleResponse(`/api/posts/${id}/tags/`, setter, errorSetter);
 }

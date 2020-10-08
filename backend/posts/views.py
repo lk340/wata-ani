@@ -74,7 +74,8 @@ class PostTags(APIView):
     def get(self, request, pk, format=None):
         post = self.get_post(pk)
         serializer = serializers.PostSerializer(post)
-        return Response(serializer.data["tags"], status=status.HTTP_200_OK)
+        tags = serializer.data["tags"]
+        return Response(tags, status=status.HTTP_200_OK)
 
 
 class PostUserRatings(APIView):
@@ -91,7 +92,8 @@ class PostUserRatings(APIView):
     def get(self, request, pk, format=None):
         post = self.get_post(pk)
         serializer = serializers.PostSerializer(post)
-        return Response(serializer.data["user_ratings"], status=status.HTTP_200_OK)
+        user_ratings = serializer.data["user_ratings"]
+        return Response(user_ratings, status=status.HTTP_200_OK)
 
 
 class PostAverageUserRatings(APIView):

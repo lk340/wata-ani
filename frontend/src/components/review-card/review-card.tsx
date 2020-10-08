@@ -1,8 +1,10 @@
 import * as React from "react";
+import axios from "axios";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
+import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
@@ -48,6 +50,10 @@ type Props = {
  */
 
 export const ReviewCard = (props: Props) => {
+	const [currentUserRating, setCurrentUserRating] = React.useState(0);
+	const [currentUserRatingError, setCurrentUserRatingError] = React.useState("");
+	const [averageUserRating, setAverageUserRating] = React.useState<number | "N/A">("N/A");
+	const [averageUserRatingError, setAverageUserRatingError] = React.useState("");
 	const [modalOpen, setModalOpen] = React.useState(false);
 	const [showReadMore, setShowReadMore] = React.useState(false);
 	const [readMoreExpanded, setReadMoreExpanded] = React.useState(false);
@@ -94,36 +100,63 @@ export const ReviewCard = (props: Props) => {
 		.slice(4, 15);
 	const dateCreated = _parsedDate.slice(0, 6) + ", " + _parsedDate.slice(6);
 
-	const averageUserRating = Functions.getPostAverageUserRatings(props.post.id);
+	Functions.getPostAverageUserRatings(props.post.id, setAverageUserRating, setAverageUserRatingError);
 	// const averageUserRating = Functions.getPostAverageUserRatings(props.post.id).toFixed(1);
 
 	// --- Review Card Tag Components --- //
-	const tags = Functions.getPostTags(props.post.id);
+	const tags = props.post.tags;
+	const tagCount = tags.length;
 
 	// const tagCount = props.tags.length;
 	// const _postHasTags = tagCount > 0;
 	// const _tagsReduxHasLoaded = Object.keys(tagsRedux).length > 0;
 
-	const tagCount = tags.length;
+	// const tagCount = tags.length;
 
 	let reviewCardTagComponents;
-	if (_postHasTags && _tagsReduxHasLoaded) {
-		reviewCardTagComponents = props.tags.map((id: number) => {
-			const tagGenre = tagsRedux[id].genre.toLowerCase();
-			return (
-				<Styled.ReviewCardTagKeyWrapper key={id}>
-					<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
-				</Styled.ReviewCardTagKeyWrapper>
-			);
-		});
-	} else {
-		reviewCardTagComponents = "";
-	}
+	// if (_postHasTags && _tagsReduxHasLoaded) {
+	// 	reviewCardTagComponents = props.tags.map((id: number) => {
+	// 		const tagGenre = tagsRedux[id].genre.toLowerCase();
+	// 		return (
+	// 			<Styled.ReviewCardTagKeyWrapper key={id}>
+	// 				<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
+	// 			</Styled.ReviewCardTagKeyWrapper>
+	// 		);
+	// 	});
+	// } else {
+	// 	reviewCardTagComponents = "";
+	// }
 
 	// If user has made a rating, display it in the form and make the request a PATCH request
 	// 	instead of a POST request.
 
-	const userRating = Functions.getUserRating(props.currentUser.id, props.post.id);
+	// const userRating = Functions.getUserRating(props.currentUser.id, props.post.id);
+
+	// async function getUserRating(): Promise<void> {
+	// 	try {
+	// 		const endpoint = `/api/users/${props.currentUser.id}/posts/${props.post.id}/`;
+	// 		const validateStatus = AxiosHelpers.validateStatus;
+	// 		const response = await axios.get(endpoint, { validateStatus });
+
+	// 		// Success
+	// 		if (response.status < 400) setUserRating(response.data);
+	// 		// Failure
+	// 		else return setUserRatingError(response.data);
+	// 	} catch (error) {
+	// 		// Dev debug log
+	// 		console.log(error);
+	// 	}
+	// }
+	// getUserRating();
+
+	Functions.getUserRating(
+		props.currentUser.id,
+		props.post.id,
+		setCurrentUserRating,
+		setCurrentUserRatingError,
+	);
+
+	console.log("User Rating:", currentUserRating);
 
 	// const userRatings = props.currentUser.ratings;
 	// let currentUserRating: number = 0;
@@ -191,44 +224,49 @@ export const ReviewCard = (props: Props) => {
 
 					{/* Rating & Likes */}
 					<RatingAndLikes
-						postId={props.postId}
-						userRating={props.userRating}
-						userRatingCount={props.userRatingCount}
+						post={props.post}
+						averageUserRating={averageUserRating}
 						currentUserRating={currentUserRating}
-						likes={props.likes}
-						belongsToCurrentUser={props.belongsToCurrentUser}
-						userHasRated={props.userHasRated}
-						ratingId={props.ratingId}
+						belongsToCurrentUser={belongsToCurrentUser}
+					
+						// postId={props.postId}
+						// userRating={props.userRating}
+						// userRatingCount={props.userRatingCount}
+						// currentUserRating={currentUserRating}
+						// likes={props.likes}
+						// belongsToCurrentUser={props.belongsToCurrentUser}
+						// userHasRated={props.userHasRated}
+						// ratingId={props.ratingId}
 					/>
 
 					{/* Series Name */}
 					<Styled.ReviewCardSeriesTitle
 						belongs_to_current_user={belongsToCurrentUser.toString()}
 					>
-						{props.seriesTitle}
+						{props.post.series_title}
 					</Styled.ReviewCardSeriesTitle>
 
 					{/* Title & Date & Text */}
 					<Styled.ReviewCardTitleDateText>
-						<Styled.ReviewCardTitle>{props.title}</Styled.ReviewCardTitle>
+						<Styled.ReviewCardTitle>{props.post.title}</Styled.ReviewCardTitle>
 						<Styled.ReviewCardDate style={animateCardDate}>
-							{props.dateCreated}
+							{dateCreated}
 						</Styled.ReviewCardDate>
-						<Styled.ReviewCardText>{props.review}</Styled.ReviewCardText>
+						<Styled.ReviewCardText>{props.post.review}</Styled.ReviewCardText>
 					</Styled.ReviewCardTitleDateText>
 
 					{/* Author Rating */}
-					<Styled.ReviewCardAuthorRating tagLength={tagCount}>
+					<Styled.ReviewCardAuthorRating tag_count={tagCount}>
 						<Styled.ReviewCardAuthorRatingText>
 							I give this series a rating of:&nbsp;
 						</Styled.ReviewCardAuthorRatingText>
 						<Styled.ReviewCardAuthorRatingValue>
-							{props.personalRating}/10
+							{props.post.personal_rating}/10
 						</Styled.ReviewCardAuthorRatingValue>
 					</Styled.ReviewCardAuthorRating>
 
 					{/* Tags */}
-					<Styled.ReviewCardTagContainer length={tagCount}>
+					<Styled.ReviewCardTagContainer tag_count={tagCount}>
 						{reviewCardTagComponents}
 					</Styled.ReviewCardTagContainer>
 				</Styled.ReviewCard>

@@ -152,11 +152,11 @@ export const ReviewCardText = styled("p")`
 // ↓↓↓ Author Rating ↓↓↓ //
 // ===================== //
 
-type AuthorRating = { tagLength: number };
+type AuthorRating = { tag_count: number };
 
 export const ReviewCardAuthorRating = styled("div")<AuthorRating>`
 	display: flex;
-	margin: ${(props) => (props.tagLength > 0 ? "10px 0px 26px" : "10px 0px 0px")};
+	margin: ${(props) => (props.tag_count > 0 ? "10px 0px 26px" : "10px 0px 0px")};
 	padding: 0px 20px;
 `;
 
@@ -176,11 +176,11 @@ export const ReviewCardAuthorRatingValue = styled("span")`
 // ↓↓↓ Tags ↓↓↓ //
 // ============ //
 
-type Tag = { length: number };
+type Tag = { tag_count: number };
 
 export const ReviewCardTagContainer = styled("div")<Tag>`
 	${Snippets.flex("row", "auto", "center")};
-	display: ${(props) => (props.length > 0 ? "flex" : "none")};
+	display: ${(props) => (props.tag_count > 0 ? "flex" : "none")};
 	width: 100%;
 	padding: 0px 0px 5px 20px;
 	overflow: auto;

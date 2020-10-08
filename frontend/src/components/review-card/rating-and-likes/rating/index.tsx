@@ -17,11 +17,11 @@ type Props = {
 	userRatingCount: number;
 	currentUserRating: number;
 	userHasRated: boolean;
-	ratingId: number;
+	userRatingId: number;
 };
 
 export const Rating = (props: Props) => {
-	const { ratingId } = props;
+	const { userRatingId } = props;
 
 	const [rating, setRating] = React.useState("");
 	const [error, setError] = React.useState("");
@@ -52,7 +52,7 @@ export const Rating = (props: Props) => {
 			const data = { rating: Number(rating), owner, post };
 
 			if (props.userHasRated) {
-				Actions.Ratings.thunkUpdateRating(ratingId, data, dispatch, ratingsErrorsRedux);
+				Actions.Ratings.thunkUpdateRating(userRatingId, data, dispatch, ratingsErrorsRedux);
 			} else {
 				Actions.Ratings.thunkCreateRating(data, dispatch, ratingsErrorsRedux);
 			}
