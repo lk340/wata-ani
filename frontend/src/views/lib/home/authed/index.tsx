@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
+import axios from "axios";
 
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
@@ -14,6 +15,8 @@ import * as Styled from "./authed.styled";
  */
 
 export const Authed = () => {
+	const [posts, setPosts] = React.useState([]);
+
 	const dispatch = ReactRedux.useDispatch();
 
 	// --- Checking if user is signed in or not --- //
@@ -30,6 +33,10 @@ export const Authed = () => {
 	const ratingErrorsRedux = Functions.getRatingsErrors();
 
 	React.useEffect(() => {
+		axios.get("/api/posts/descending/").then((response) => setPosts(response.data));
+	}, [postsRedux]);
+
+	React.useEffect(() => {
 		if (userIsSignedIn) {
 			Actions.Users.thunkGetUsers(dispatch, userErrorsRedux);
 			Actions.Posts.thunkGetPosts(dispatch, postsErrorsRedux);
@@ -38,12 +45,9 @@ export const Authed = () => {
 		}
 	}, [userIsSignedIn]);
 
-	// ↓↓↓ Review Card Logic ↓↓↓ //
+	// --- Review Card Logic --- //
 
-	// Reversing here to make sure that the posts are being displayed in descending order.
-	const postValues: Actions.Posts.Post[] = Object.values(postsRedux).reverse();
-
-	const reviewCards = postValues.map((post: Actions.Posts.Post) => {
+	const reviewCards = posts.map((post: Actions.Posts.Post) => {
 		return (
 			<Styled.AuthedReviewCard key={post.id}>
 				<Components.ReviewCard

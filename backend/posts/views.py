@@ -17,7 +17,6 @@ class PostList(APIView):
     )
 
     def get(self, request, format=None):
-        # post = models.Post.objects.all().order_by("-date_created")
         post = models.Post.objects.all()
         serializer = serializers.PostSerializer(post, many=True)
         custom_data = {post["id"]: post for post in serializer.data}
@@ -58,6 +57,13 @@ class PostDetail(APIView):
         post.delete()
         response_detail = {"detail": "Post has successfully been deleted."}
         return Response(response_detail, status=status.HTTP_204_NO_CONTENT)
+
+
+class PostListDescending(APIView):
+    def get(self, request, format=None):
+        post = models.Post.objects.all().order_by("-date_created")
+        serializer = serializers.PostSerializer(post, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class PostTags(APIView):
