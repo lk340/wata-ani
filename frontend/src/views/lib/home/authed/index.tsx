@@ -52,29 +52,34 @@ export const Authed = () => {
 			});
 		}
 		getPostsDescending();
-	}, []);
+	}, [postsRedux]);
 
 	// --- Review Card Logic --- //
 
 	let reviewCards: React.ReactNode[] | "" = "";
 
-	// if (posts.length > 0) {
-	// 	reviewCards = posts.map((post: Actions.Posts.Post) => {
-	// 		return (
-	// 			<Styled.AuthedReviewCard key={post.id}>
-	// 				<Components.ReviewCard
-	// 					post={post}
-	// 					currentUser={currentUser}
-	// 					username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
-	// 					ratingsRedux={ratingsRedux}
-	// 				/>
-	// 			</Styled.AuthedReviewCard>
-	// 		);
-	// 	});
-	// }
+	if (posts.length > 0) {
+		reviewCards = posts.map((post: Actions.Posts.Post) => {
+			// console.log("FOO AH:", post);
+			// return "";
 
-	console.log("Posts:", posts);
-	console.log("Review Cards:", reviewCards);
+			return (
+				<Styled.AuthedReviewCard key={post.id}>
+					<Components.ReviewCard
+						post={post}
+						currentUser={currentUser}
+						username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
+						ratingsRedux={ratingsRedux}
+					/>
+				</Styled.AuthedReviewCard>
+			);
+		});
+	}
+
+	// console.log("========================================");
+	// console.log("Posts:", posts);
+	// console.log("Review Cards:", reviewCards);
+	// if (posts.length > 0) console.log(posts.map((post: Actions.Posts.Post) => post));
 
 	return (
 		<Styled.Authed>

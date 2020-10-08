@@ -49,7 +49,9 @@ export const ModalForm = (props: Props) => {
 	// --- Fetching Redux State --- //
 	const dispatch = ReactRedux.useDispatch();
 	const author = props.currentUser.id;
-	const userRatings = Functions.getPosts()[props.post.id].user_ratings;
+	const postsRedux = Functions.getPosts();
+	// const userRatings = postsRedux !== {} ? Functions.getPosts()[props.post.id].user_ratings : [];
+	// const userRatings = props.post.user_ratings;
 	const postErrorsRedux = Functions.getPostsErrors();
 	const tagsRedux = Functions.getTags();
 
@@ -169,7 +171,7 @@ export const ModalForm = (props: Props) => {
 			review,
 			personal_rating: Number(personalRating),
 			author,
-			user_ratings: userRatings,
+			user_ratings: props.post.user_ratings,
 			tags: Functions.convertKeysToIntegers(selectedTags),
 		};
 

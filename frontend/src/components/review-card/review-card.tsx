@@ -114,7 +114,7 @@ export const ReviewCard = (props: Props) => {
 
 	// --- Rating Logic --- //
 	const belongsToCurrentUser = props.post.author === props.currentUser.id;
-	
+
 	let userHasRated = false;
 	let userHasRatedRatingId = 0;
 

@@ -23,14 +23,10 @@ export type Post = {
 	series_title: string;
 	review: string;
 	personal_rating: number;
-	// user_rating: number;
 	date_created: string;
 	author: number;
 	tags: number[];
 	user_ratings: number[];
-
-	// tags: Tag[];
-	// ratings: Rating[];
 };
 
 type CreateData = {
@@ -38,11 +34,9 @@ type CreateData = {
 	series_title: string;
 	review: string;
 	personal_rating: number;
-	// author: Context.AuthForm.CurrentUser;
 	author: number;
-	// tags?: Tag | Tag[];
 	tags: number[];
-	ratings: number[];
+	user_ratings: number[];
 };
 
 // ======================= //
@@ -155,7 +149,7 @@ export async function thunkCreatePost(
 
 export async function thunkUpdatePost(
 	id: number,
-	data: Partial<CreateData>,
+	data: CreateData,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
 ): Promise<void> {
