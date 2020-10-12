@@ -60,9 +60,6 @@ export const Authed = () => {
 
 	if (posts.length > 0) {
 		reviewCards = posts.map((post: Actions.Posts.Post) => {
-			// console.log("FOO AH:", post);
-			// return "";
-
 			return (
 				<Styled.AuthedReviewCard key={post.id}>
 					<Components.ReviewCard
@@ -75,11 +72,6 @@ export const Authed = () => {
 			);
 		});
 	}
-
-	// console.log("========================================");
-	// console.log("Posts:", posts);
-	// console.log("Review Cards:", reviewCards);
-	// if (posts.length > 0) console.log(posts.map((post: Actions.Posts.Post) => post));
 
 	return (
 		<Styled.Authed>
