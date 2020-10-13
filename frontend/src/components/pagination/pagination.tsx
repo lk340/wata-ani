@@ -1,6 +1,8 @@
 import * as React from "react";
+import axios from "axios";
 
 import * as Context from "@/context";
+import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Colors from "@/utils/style/colors";
 
 import * as Styled from "./pagination.styled";
@@ -30,10 +32,45 @@ export const Pagination = () => {
 	const isFourthPage = currentPage === fourthPage;
 	const isLastPage = currentPage === lastPage;
 
+	const validateStatus = AxiosHelpers.validateStatus;
+
+	async function goToPreviousPage(): Promise<void> {
+		console.log("This is the previous page handler!");
+		console.log("Previous:", pagination.state.previous);
+		console.log("Next:", pagination.state.next);
+
+		if (pagination.state.previous) {
+			const response = await axios.get(pagination.state.previous, { validateStatus });
+
+			pagination.setters.setPagination({
+				posts: response.data.results,
+				previous: response.data.previous,
+				next: response.data.next,
+			});
+		}
+	}
+
+	async function goToNextPage(): Promise<void> {
+		console.log("This is the next page handler!");
+		console.log("Previous:", pagination.state.previous);
+		console.log("Next:", pagination.state.next);
+
+		if (pagination.state.next) {
+			const response = await axios.get(pagination.state.next, { validateStatus });
+
+			pagination.setters.setPagination({
+				posts: response.data.results,
+				previous: response.data.previous,
+				next: response.data.next,
+			});
+		}
+	}
+
 	return (
 		<Styled.Pagination>
 			{/* Left Arrow */}
-			<Arrow flip={true} setCurrentPage={pagination.setters.decrementCurrentPage} />
+			{/* <Arrow flip={true} setCurrentPage={pagination.setters.decrementCurrentPage} /> */}
+			<Arrow flip={true} nextPreviousPageHandler={goToPreviousPage} />
 
 			{/* Pages */}
 			<Styled.PaginationPages>
@@ -45,7 +82,8 @@ export const Pagination = () => {
 			</Styled.PaginationPages>
 
 			{/* Right Arrow */}
-			<Arrow flip={false} setCurrentPage={pagination.setters.incrementCurrentPage} />
+			{/* <Arrow flip={false} setCurrentPage={pagination.setters.incrementCurrentPage} /> */}
+			<Arrow flip={false} nextPreviousPageHandler={goToNextPage} />
 		</Styled.Pagination>
 	);
 };
@@ -56,18 +94,22 @@ export const Pagination = () => {
 
 type ArrowProps = {
 	flip: boolean;
-	setCurrentPage: React.MouseEventHandler;
+	// setCurrentPage: React.MouseEventHandler;
+	nextPreviousPageHandler: Function;
 };
 
 const Arrow = (props: ArrowProps) => {
-	const { flip, setCurrentPage } = props;
+	const { flip, nextPreviousPageHandler } = props;
 
 	let arrowIconFill: string;
 	if (localStorage.mode === "light") arrowIconFill = Colors.LIGHT.five;
 	else arrowIconFill = Colors.DARK.five;
 
 	return (
-		<Styled.PaginationArrowContainer onClick={setCurrentPage} flip={flip.toString()}>
+		<Styled.PaginationArrowContainer
+			onClick={() => nextPreviousPageHandler()}
+			flip={flip.toString()}
+		>
 			<ArrowIcon fill={arrowIconFill} width="20" />
 		</Styled.PaginationArrowContainer>
 	);

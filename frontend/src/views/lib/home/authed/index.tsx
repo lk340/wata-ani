@@ -5,6 +5,7 @@ import axios from "axios";
 import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
+import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Functions from "@/utils/functions";
 
 import * as Styled from "./authed.styled";
@@ -18,9 +19,8 @@ import * as Styled from "./authed.styled";
 export const Authed = () => {
 	const { pagination } = Context.Pagination.usePaginationContext();
 
-	const [posts, setPosts] = React.useState([]);
-
 	const dispatch = ReactRedux.useDispatch();
+	const validateStatus = AxiosHelpers.validateStatus;
 
 	// --- Checking if user is signed in or not --- //
 	const currentUser = Functions.getSession();
@@ -46,13 +46,13 @@ export const Authed = () => {
 
 	React.useEffect(() => {
 		async function getPostsDescending(): Promise<void> {
-			await axios.get("/api/posts/descending/").then((response) => {
+			await axios.get("/api/posts/descending/", { validateStatus }).then((response) => {
 				const resultPaginationCount = 12;
 				const resultTotalCount = response.data.count;
 				const maxPageCount = Math.ceil(resultTotalCount / resultPaginationCount);
 
-				setPosts(response.data.results);
 				pagination.setters.setPagination({
+					posts: response.data.results,
 					maxPage: maxPageCount,
 					previous: response.data.previous,
 					next: response.data.next,
@@ -62,15 +62,12 @@ export const Authed = () => {
 		getPostsDescending();
 	}, [postsRedux]);
 
-	console.log("Next:", pagination.state.next);
-	console.log("Previous:", pagination.state.previous);
-
 	// --- Review Card Logic --- //
 
 	let reviewCards: React.ReactNode[] | "" = "";
 
-	if (posts.length > 0) {
-		reviewCards = posts.map((post: Actions.Posts.Post) => {
+	if (pagination.state.posts.length > 0) {
+		reviewCards = pagination.state.posts.map((post: Actions.Posts.Post) => {
 			return (
 				<Styled.AuthedReviewCard key={post.id}>
 					<Components.ReviewCard
