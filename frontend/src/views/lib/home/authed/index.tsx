@@ -52,7 +52,7 @@ export const Authed = () => {
 				const maxPageCount = Math.ceil(resultTotalCount / resultPaginationCount);
 
 				pagination.setters.setPagination({
-					posts: response.data.results,
+					postResults: response.data.results,
 					maxPage: maxPageCount,
 					previous: response.data.previous,
 					next: response.data.next,
@@ -66,8 +66,8 @@ export const Authed = () => {
 
 	let reviewCards: React.ReactNode[] | "" = "";
 
-	if (pagination.state.posts.length > 0) {
-		reviewCards = pagination.state.posts.map((post: Actions.Posts.Post) => {
+	if (pagination.state.postResults.length > 0) {
+		reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
 			return (
 				<Styled.AuthedReviewCard key={post.id}>
 					<Components.ReviewCard

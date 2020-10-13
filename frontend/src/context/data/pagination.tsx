@@ -4,7 +4,7 @@ import * as Helpers from "@/context/helpers";
 import * as Actions from "@/redux/actions";
 
 type State = {
-	posts: Actions.Posts.Post[];
+	postResults: Actions.Posts.Post[];
 	currentPage: number;
 	lastPage: number;
 	maxPage: number;
@@ -13,7 +13,7 @@ type State = {
 };
 
 const initialState = Object.freeze<State>({
-	posts: [],
+	postResults: [],
 	currentPage: 1,
 	lastPage: 5,
 	maxPage: 0,

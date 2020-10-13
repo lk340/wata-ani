@@ -35,34 +35,30 @@ export const Pagination = () => {
 	const validateStatus = AxiosHelpers.validateStatus;
 
 	async function goToPreviousPage(): Promise<void> {
-		console.log("This is the previous page handler!");
-		console.log("Previous:", pagination.state.previous);
-		console.log("Next:", pagination.state.next);
-
 		if (pagination.state.previous) {
 			const response = await axios.get(pagination.state.previous, { validateStatus });
 
 			pagination.setters.setPagination({
-				posts: response.data.results,
+				postResults: response.data.results,
 				previous: response.data.previous,
 				next: response.data.next,
 			});
+
+			window.scrollTo(0, 0);
 		}
 	}
 
 	async function goToNextPage(): Promise<void> {
-		console.log("This is the next page handler!");
-		console.log("Previous:", pagination.state.previous);
-		console.log("Next:", pagination.state.next);
-
 		if (pagination.state.next) {
 			const response = await axios.get(pagination.state.next, { validateStatus });
 
 			pagination.setters.setPagination({
-				posts: response.data.results,
+				postResults: response.data.results,
 				previous: response.data.previous,
 				next: response.data.next,
 			});
+
+			window.scrollTo(0, 0);
 		}
 	}
 
