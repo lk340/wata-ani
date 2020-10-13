@@ -1,8 +1,6 @@
 import * as React from "react";
-import axios from "axios";
 
 import * as Context from "@/context";
-import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Colors from "@/utils/style/colors";
 
 import * as Styled from "./pagination.styled";
@@ -40,6 +38,10 @@ export const Pagination = () => {
 		});
 	}, [lastPage]);
 
+	// pageGroup is an array that contains our five <Page /> components, as we'd only like
+	// to show five pages at a time in the pagination UI.
+	// pageGroups is an array that contains pageGroup arrays. We'll use this to render the
+	// correct page numbers in the pagination UI.
 	const pageGroups = [];
 	let pageGroup: React.ReactNode[] = [];
 	for (let pageNumber = 1; pageNumber <= pagination.state.maxPage; pageNumber++) {
@@ -102,18 +104,17 @@ const Arrow = (props: ArrowProps) => {
 type PageProps = { pageNumber: number };
 
 const Page = (props: PageProps) => {
-	const { pageNumber } = props;
-
 	const { pagination } = Context.Pagination.usePaginationContext();
 
-	const isCurrentPage = pageNumber === pagination.state.currentPage;
+	const isCurrentPage = props.pageNumber === pagination.state.currentPage;
 
 	return (
 		<Styled.PaginationPagesNumber
-			onClick={() => pagination.setters.setCurrentPage(pageNumber)}
+			// onClick={() => pagination.setters.setCurrentPage(props.pageNumber)}
+			onClick={() => pagination.api.handlePageClick(props.pageNumber)}
 			isCurrentPage={isCurrentPage.toString()}
 		>
-			{pageNumber}
+			{props.pageNumber}
 		</Styled.PaginationPagesNumber>
 	);
 };

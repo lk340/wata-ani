@@ -100,6 +100,30 @@ export const usePaginationContext = Helpers.createUseContext(() => {
 		}
 	}
 
+	async function handlePageClick(pageNumber: number): Promise<void> {
+		let endpoint = "";
+
+		if (pageNumber === 1) {
+			endpoint = "/api/posts/descending/?limit=12";
+		} else if (pageNumber > 1) {
+			const multiplier = pageNumber - 1;
+			endpoint = `/api/posts/descending/?limit=12&offset=${12 * multiplier}`;
+		}
+
+		if (endpoint.includes("api")) {
+			const response = await axios.get(endpoint, { validateStatus });
+
+			setPagination({
+				postResults: response.data.results,
+				currentPage: pageNumber,
+				previous: response.data.previous,
+				next: response.data.next,
+			});
+
+			window.scrollTo(0, 0);
+		}
+	}
+
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //
 	// =============== //
@@ -122,6 +146,7 @@ export const usePaginationContext = Helpers.createUseContext(() => {
 	const api = {
 		goToPreviousPage,
 		goToNextPage,
+		handlePageClick,
 	};
 
 	return {
