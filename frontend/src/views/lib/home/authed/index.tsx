@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactRedux from "react-redux";
 import axios from "axios";
 
+import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Actions from "@/redux/actions";
 import * as Functions from "@/utils/functions";
@@ -15,9 +16,9 @@ import * as Styled from "./authed.styled";
  */
 
 export const Authed = () => {
+	const { pagination } = Context.Pagination.usePaginationContext();
+
 	const [posts, setPosts] = React.useState([]);
-	const [nextPageLink, setNextPageLink] = React.useState("");
-	const [previousPageLink, setPreviousPageLink] = React.useState("");
 
 	const dispatch = ReactRedux.useDispatch();
 
@@ -47,12 +48,17 @@ export const Authed = () => {
 		async function getPostsDescending(): Promise<void> {
 			await axios.get("/api/posts/descending/").then((response) => {
 				setPosts(response.data.results);
-				setPreviousPageLink(response.data.previous);
-				setNextPageLink(response.data.next);
+				pagination.setters.setPagination({
+					previous: response.data.previous,
+					next: response.data.next,
+				});
 			});
 		}
 		getPostsDescending();
 	}, [postsRedux]);
+
+	console.log("Next:", pagination.state.next);
+	console.log("Previous:", pagination.state.previous);
 
 	// --- Review Card Logic --- //
 

@@ -5,15 +5,15 @@ import * as Helpers from "@/context/helpers";
 type State = {
 	currentPage: number;
 	lastPage: number;
-	next: string | null;
 	previous: string | null;
+	next: string | null;
 };
 
 const initialState = Object.freeze<State>({
 	currentPage: 1,
 	lastPage: 5,
-	next: null,
 	previous: null,
+	next: null,
 });
 
 export const usePaginationContext = Helpers.createUseContext(() => {
