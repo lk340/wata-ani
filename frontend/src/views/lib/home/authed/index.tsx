@@ -47,8 +47,13 @@ export const Authed = () => {
 	React.useEffect(() => {
 		async function getPostsDescending(): Promise<void> {
 			await axios.get("/api/posts/descending/").then((response) => {
+				const resultPaginationCount = 12;
+				const resultTotalCount = response.data.count;
+				const maxPageCount = Math.ceil(resultTotalCount / resultPaginationCount);
+
 				setPosts(response.data.results);
 				pagination.setters.setPagination({
+					maxPage: maxPageCount,
 					previous: response.data.previous,
 					next: response.data.next,
 				});

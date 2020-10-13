@@ -5,6 +5,7 @@ import * as Helpers from "@/context/helpers";
 type State = {
 	currentPage: number;
 	lastPage: number;
+	maxPage: number;
 	previous: string | null;
 	next: string | null;
 };
@@ -12,6 +13,7 @@ type State = {
 const initialState = Object.freeze<State>({
 	currentPage: 1,
 	lastPage: 5,
+	maxPage: 0,
 	previous: null,
 	next: null,
 });
@@ -51,6 +53,11 @@ export const usePaginationContext = Helpers.createUseContext(() => {
 		setPagination({ currentPage });
 	}
 
+	function setLastPage(resultPaginationCount: number, resultTotalCount: number): void {
+		const maxPageCount = Math.ceil(resultTotalCount / resultPaginationCount);
+		setPagination({ lastPage: maxPageCount });
+	}
+
 	// =============== //
 	// ↓↓↓ Handlers ↓↓↓ //
 	// =============== //
@@ -74,6 +81,7 @@ export const usePaginationContext = Helpers.createUseContext(() => {
 		incrementCurrentPage,
 		decrementCurrentPage,
 		setCurrentPage,
+		setLastPage,
 	};
 
 	const handlers = {};
