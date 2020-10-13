@@ -1,7 +1,9 @@
 import * as React from "react";
+import axios from "axios";
 
 import * as Helpers from "@/context/helpers";
 import * as Actions from "@/redux/actions";
+import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
 type State = {
 	postResults: Actions.Posts.Post[];
@@ -56,11 +58,6 @@ export const usePaginationContext = Helpers.createUseContext(() => {
 		setPagination({ currentPage });
 	}
 
-	function setLastPage(resultPaginationCount: number, resultTotalCount: number): void {
-		const maxPageCount = Math.ceil(resultTotalCount / resultPaginationCount);
-		setPagination({ lastPage: maxPageCount });
-	}
-
 	// =============== //
 	// ↓↓↓ Handlers ↓↓↓ //
 	// =============== //
@@ -68,6 +65,38 @@ export const usePaginationContext = Helpers.createUseContext(() => {
 	// =============== //
 	// ↓↓↓ API ↓↓↓ //
 	// =============== //
+
+	const validateStatus = AxiosHelpers.validateStatus;
+
+	async function goToPreviousPage(): Promise<void> {
+		if (pagination.previous) {
+			const response = await axios.get(pagination.previous, { validateStatus });
+
+			setPagination({
+				postResults: response.data.results,
+				currentPage: pagination.currentPage - 1,
+				previous: response.data.previous,
+				next: response.data.next,
+			});
+
+			window.scrollTo(0, 0);
+		}
+	}
+
+	async function goToNextPage(): Promise<void> {
+		if (pagination.next) {
+			const response = await axios.get(pagination.next, { validateStatus });
+
+			setPagination({
+				postResults: response.data.results,
+				currentPage: pagination.currentPage + 1,
+				previous: response.data.previous,
+				next: response.data.next,
+			});
+
+			window.scrollTo(0, 0);
+		}
+	}
 
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //
@@ -84,12 +113,14 @@ export const usePaginationContext = Helpers.createUseContext(() => {
 		incrementCurrentPage,
 		decrementCurrentPage,
 		setCurrentPage,
-		setLastPage,
 	};
 
 	const handlers = {};
 
-	const api = {};
+	const api = {
+		goToPreviousPage,
+		goToNextPage,
+	};
 
 	return {
 		pagination: { state, getters, setters, handlers, api },

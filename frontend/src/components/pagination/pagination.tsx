@@ -13,6 +13,13 @@ export const Pagination = () => {
 	const { pagination } = Context.Pagination.usePaginationContext();
 	const { currentPage, lastPage } = pagination.state;
 
+	console.log("Current Page:", pagination.state.currentPage);
+	console.log("Last Page:", pagination.state.lastPage);
+	console.log("Max Page:", pagination.state.maxPage);
+	console.log("Previous Link:", pagination.state.previous);
+	console.log("Next Link:", pagination.state.next);
+	console.log("===================================================");
+
 	React.useEffect(() => {
 		if (currentPage > lastPage) {
 			pagination.setters.incrementLastPage();
@@ -26,60 +33,24 @@ export const Pagination = () => {
 	const thirdPage = lastPage - 2;
 	const fourthPage = lastPage - 1;
 
-	const isFirstPage = currentPage === firstPage;
-	const isSecondPage = currentPage === secondPage;
-	const isThirdPage = currentPage === thirdPage;
-	const isFourthPage = currentPage === fourthPage;
-	const isLastPage = currentPage === lastPage;
-
-	const validateStatus = AxiosHelpers.validateStatus;
-
-	async function goToPreviousPage(): Promise<void> {
-		if (pagination.state.previous) {
-			const response = await axios.get(pagination.state.previous, { validateStatus });
-
-			pagination.setters.setPagination({
-				postResults: response.data.results,
-				previous: response.data.previous,
-				next: response.data.next,
-			});
-
-			window.scrollTo(0, 0);
-		}
-	}
-
-	async function goToNextPage(): Promise<void> {
-		if (pagination.state.next) {
-			const response = await axios.get(pagination.state.next, { validateStatus });
-
-			pagination.setters.setPagination({
-				postResults: response.data.results,
-				previous: response.data.previous,
-				next: response.data.next,
-			});
-
-			window.scrollTo(0, 0);
-		}
-	}
-
 	return (
 		<Styled.Pagination>
 			{/* Left Arrow */}
 			{/* <Arrow flip={true} setCurrentPage={pagination.setters.decrementCurrentPage} /> */}
-			<Arrow flip={true} nextPreviousPageHandler={goToPreviousPage} />
+			<Arrow flip={true} nextPreviousPageHandler={pagination.api.goToPreviousPage} />
 
 			{/* Pages */}
 			<Styled.PaginationPages>
-				<Page pageNumber={firstPage} isCurrentPage={isFirstPage} />
-				<Page pageNumber={secondPage} isCurrentPage={isSecondPage} />
-				<Page pageNumber={thirdPage} isCurrentPage={isThirdPage} />
-				<Page pageNumber={fourthPage} isCurrentPage={isFourthPage} />
-				<Page pageNumber={lastPage} isCurrentPage={isLastPage} />
+				<Page pageNumber={firstPage} />
+				<Page pageNumber={secondPage} />
+				<Page pageNumber={thirdPage} />
+				<Page pageNumber={fourthPage} />
+				<Page pageNumber={lastPage} />
 			</Styled.PaginationPages>
 
 			{/* Right Arrow */}
 			{/* <Arrow flip={false} setCurrentPage={pagination.setters.incrementCurrentPage} /> */}
-			<Arrow flip={false} nextPreviousPageHandler={goToNextPage} />
+			<Arrow flip={false} nextPreviousPageHandler={pagination.api.goToNextPage} />
 		</Styled.Pagination>
 	);
 };
@@ -117,13 +88,14 @@ const Arrow = (props: ArrowProps) => {
 
 type PageProps = {
 	pageNumber: number;
-	isCurrentPage: boolean;
 };
 
 const Page = (props: PageProps) => {
-	const { pageNumber, isCurrentPage } = props;
+	const { pageNumber } = props;
 
 	const { pagination } = Context.Pagination.usePaginationContext();
+
+	const isCurrentPage = pageNumber === pagination.state.currentPage;
 
 	return (
 		<Styled.PaginationPagesNumber

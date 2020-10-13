@@ -12,8 +12,6 @@ export const Pagination = styled("div")`
 	${Snippets.flexRowCenter()};
 	margin: 60px 0px;
 
-	border: red solid 1px;
-
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		margin: 30px 0px;
 	}
