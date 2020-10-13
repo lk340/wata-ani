@@ -8,6 +8,7 @@ import * as AxiosHelpers from "@/utils/api/axios-helpers";
 type State = {
 	postResults: Actions.Posts.Post[];
 	currentPage: number;
+	currentPageGroup: number;
 	lastPage: number;
 	maxPage: number;
 	previous: string | null;
@@ -17,6 +18,7 @@ type State = {
 const initialState = Object.freeze<State>({
 	postResults: [],
 	currentPage: 1,
+	currentPageGroup: 0,
 	lastPage: 5,
 	maxPage: 0,
 	previous: null,

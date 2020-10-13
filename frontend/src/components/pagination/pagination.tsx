@@ -20,7 +20,11 @@ export const Pagination = () => {
 	console.log("Next Link:", pagination.state.next);
 	console.log("===================================================");
 
+	// Automatically increments the five page values depending on whether or not
+	// pagination.state.currentPage goes beyond pagination.state.lastPage or lower
+	// than the lowest page.
 	React.useEffect(() => {
+		const firstPage = lastPage - 4;
 		if (currentPage > lastPage) {
 			pagination.setters.incrementLastPage();
 		} else if (currentPage < firstPage && lastPage - 5 > 0) {
@@ -28,28 +32,38 @@ export const Pagination = () => {
 		}
 	}, [currentPage]);
 
-	const firstPage = lastPage - 4;
-	const secondPage = lastPage - 3;
-	const thirdPage = lastPage - 2;
-	const fourthPage = lastPage - 1;
+	// Automatically increments/decrements current page group (our group of five pages),
+	// depending on the last page value.
+	React.useEffect(() => {
+		pagination.setters.setPagination({
+			currentPageGroup: pagination.state.lastPage / 5 - 1,
+		});
+	}, [lastPage]);
+
+	const pageGroups = [];
+	let pageGroup: React.ReactNode[] = [];
+	for (let pageNumber = 1; pageNumber <= pagination.state.maxPage; pageNumber++) {
+		if (pageGroup.length === 5) {
+			pageGroups.push(pageGroup);
+			pageGroup = [];
+		} else {
+			pageGroup.push(<Page pageNumber={pageNumber} />);
+		}
+	}
+
+	if (pageGroup.length < 5) pageGroups.push(pageGroup);
 
 	return (
 		<Styled.Pagination>
 			{/* Left Arrow */}
-			{/* <Arrow flip={true} setCurrentPage={pagination.setters.decrementCurrentPage} /> */}
 			<Arrow flip={true} nextPreviousPageHandler={pagination.api.goToPreviousPage} />
 
 			{/* Pages */}
 			<Styled.PaginationPages>
-				<Page pageNumber={firstPage} />
-				<Page pageNumber={secondPage} />
-				<Page pageNumber={thirdPage} />
-				<Page pageNumber={fourthPage} />
-				<Page pageNumber={lastPage} />
+				{pageGroups[pagination.state.currentPageGroup]}
 			</Styled.PaginationPages>
 
 			{/* Right Arrow */}
-			{/* <Arrow flip={false} setCurrentPage={pagination.setters.incrementCurrentPage} /> */}
 			<Arrow flip={false} nextPreviousPageHandler={pagination.api.goToNextPage} />
 		</Styled.Pagination>
 	);
@@ -61,7 +75,6 @@ export const Pagination = () => {
 
 type ArrowProps = {
 	flip: boolean;
-	// setCurrentPage: React.MouseEventHandler;
 	nextPreviousPageHandler: Function;
 };
 
@@ -86,9 +99,7 @@ const Arrow = (props: ArrowProps) => {
 // ↓↓↓ Page ↓↓↓ //
 // ============ //
 
-type PageProps = {
-	pageNumber: number;
-};
+type PageProps = { pageNumber: number };
 
 const Page = (props: PageProps) => {
 	const { pageNumber } = props;
