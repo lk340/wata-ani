@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from . import serializers
+from posts.serializers import PostSerializer
 
 from posts.models import Post
 from ratings.models import Rating
@@ -62,9 +63,12 @@ class UserPosts(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-        user = self.get_user(pk)
-        serializer = serializers.UserSerializer(user)
-        return Response(serializer.data["posts"], status=status.HTTP_200_OK)
+        # user = self.get_user(pk)
+        posts = Post.objects.get(author=pk)
+        serializer = PostSerializer(posts)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        # return Response(serializer.data["posts"], status=status.HTTP_200_OK)
 
 
 class UserPostRating(APIView):
@@ -86,6 +90,7 @@ class UserPostRating(APIView):
         if len(user_rating_ids) > 0 and len(post_rating_ids) > 0:
             for user_rating_id in user_rating_ids:
                 if user_rating_id in post_rating_ids:
-                    user_post_rating = Rating.objects.get(pk=user_rating_id).rating
+                    user_post_rating = Rating.objects.get(
+                        pk=user_rating_id).rating
 
         return Response(user_post_rating, status=status.HTTP_200_OK)

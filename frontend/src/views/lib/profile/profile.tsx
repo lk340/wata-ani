@@ -1,7 +1,10 @@
 import * as React from "react";
+import axios from "axios";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
+import * as Actions from "@/redux/actions";
+import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Functions from "@/utils/functions";
 import * as Constants from "@/utils/style/constants";
 
@@ -10,14 +13,24 @@ import * as Springs from "./profile.springs";
 
 import * as Icons from "@/icons/profile";
 
+/**
+ * Fetching Redux Data
+ * Setting State Values
+ * Determining fill color for information icons
+ * Fetching User Posts
+ * Animations
+ */
+
 export const Profile = () => {
 	const { theme } = Context.Theme.useThemeContext();
 
-	const [userId, setUserId] = React.useState(0);
+	const [userId, setUserId] = React.useState<number | null>(null);
 	const [username, setUsername] = React.useState("");
 	const [reviewCount, setReviewCount] = React.useState<number | "">("");
 	const [biography, setBiography] = React.useState("");
 	const [iconFill, setIconFill] = React.useState("");
+	const [posts, setPosts] = React.useState<Actions.Posts.Post[]>([]);
+	const [postsError, setPostsError] = React.useState("");
 
 	// --- Fetching Redux Data --- //
 	const currentUser = Functions.getSession();
@@ -39,6 +52,31 @@ export const Profile = () => {
 			? setIconFill(Constants.theme.pages.profile.information.data.light)
 			: setIconFill(Constants.theme.pages.profile.information.data.dark);
 	}, [theme.state.mode, localStorage.mode]);
+
+	// --- Fetching User Posts --- //
+	React.useEffect(() => {
+		const validateStatus = AxiosHelpers.validateStatus;
+
+		async function fetchUserPosts(): Promise<void> {
+			try {
+				const endpoint = `/api/users/${userId}/posts/`;
+				const response = await axios.get(endpoint, { validateStatus });
+
+				// Success
+				if (response.status < 400) {
+					console.log("Whoa! Haha:", response.data);
+
+					setPosts(response.data);
+				} else {
+					setPostsError(response.data);
+				}
+			} catch (error) {
+				// Dev debug log
+				console.log(error);
+			}
+		}
+		if (userId) fetchUserPosts();
+	}, []);
 
 	// --- Animations --- //
 	const animateBackground = Springs.background();
