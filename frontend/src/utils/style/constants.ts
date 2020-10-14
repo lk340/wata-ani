@@ -119,7 +119,8 @@ export const theme = {
 			information: {
 				background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 				borderBottom: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
-				data: { light: Colors.LIGHT.seven, dark: Colors.DARK.five },
+				profilePicture: { light: Colors.LIGHT.three, dark: Colors.DARK.four },
+				data: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 			},
 		},
 	},
@@ -281,7 +282,9 @@ export const fontSizes = {
 		},
 		profile: {
 			information: {
+				username: "1.25rem",
 				data: "0.875rem",
+				bio: "0.875rem",
 			},
 		},
 	},

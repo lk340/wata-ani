@@ -34,6 +34,18 @@ export function information() {
 	});
 }
 
+export function profilePicture() {
+	return Spring.useSpring({
+		to: {
+			border:
+				localStorage.mode === "light"
+					? `${Constants.theme.pages.profile.information.profilePicture.light} solid 1px`
+					: `${Constants.theme.pages.profile.information.profilePicture.dark} solid 1px`,
+		},
+		config: { duration: 100 },
+	});
+}
+
 export function data() {
 	return Spring.useSpring({
 		to: {
