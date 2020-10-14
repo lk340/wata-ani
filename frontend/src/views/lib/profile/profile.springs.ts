@@ -28,7 +28,7 @@ export function information() {
 			borderBottom:
 				localStorage.mode === "light"
 					? `${Constants.theme.pages.profile.information.borderBottom.light} solid 1px`
-					: `${Constants.theme.pages.profile.information.borderBottom.dark} solid 1px;`,
+					: `${Constants.theme.pages.profile.information.borderBottom.dark} solid 1px`,
 		},
 		config: { duration: 100 },
 	});

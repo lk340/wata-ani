@@ -32,6 +32,8 @@ export const ProfileInformation = styled(animated.div)`
 
 export const ProfileInformationContainer = styled("div")`
 	${Snippets.flex("column")};
+	width: 100%;
+	max-width: ${Constants.globals.maxWidth / 2}px;
 `;
 
 export const ProfileInformationMain = styled("div")`
@@ -76,4 +78,6 @@ export const ProfileInformationBio = styled("p")`
 
 export const ProfilePosts = styled("div")`
 	flex: 1;
+
+  border: red solidi 10px;
 `;

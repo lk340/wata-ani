@@ -13,22 +13,33 @@ import * as Icons from "@/icons/profile";
 export const Profile = () => {
 	const { theme } = Context.Theme.useThemeContext();
 
-	const [reviewCount, setReviewCount] = React.useState<number | "N/A">("N/A");
-
 	const [iconFill, setIconFill] = React.useState("");
 
+	// --- Determining fill color for information icons --- //
 	React.useEffect(() => {
 		localStorage.mode === "light"
 			? setIconFill(Constants.theme.pages.profile.information.data.light)
 			: setIconFill(Constants.theme.pages.profile.information.data.dark);
 	}, [theme.state.mode, localStorage.mode]);
 
+	// --- Fetching Redux Data --- //
+	const currentUser = Functions.getSession();
+	let currentUserId: number;
+	let currentUserUsername: string = "";
+	let currentUserReviewCount: number | "" = "";
+
+	if (currentUser.id && currentUser.posts) {
+		// TODO: When using loading animation, end it here.
+		currentUserId = currentUser.id;
+		currentUserUsername = currentUser.username;
+		currentUserReviewCount = currentUser.posts.length;
+	}
+
+	// --- Animations --- //
 	const animateBackground = Springs.background();
 	const animateInformation = Springs.information();
 	const animateProfilePicture = Springs.profilePicture();
 	const animateData = Springs.data();
-
-	const currentUserId = Functions.getSession().id;
 
 	return (
 		<Styled.Profile style={animateBackground}>
@@ -43,7 +54,7 @@ export const Profile = () => {
 						<Styled.ProfileInformationMainUsernameDataContainer>
 							{/* Username */}
 							<Styled.ProfileInformationMainUsername>
-								DaddyDaddyDo
+								{currentUserUsername}
 							</Styled.ProfileInformationMainUsername>
 							{/* Data */}
 							<Styled.ProfileInformationData style={animateData}>
@@ -51,7 +62,7 @@ export const Profile = () => {
 								<Icons.Reviews fill={iconFill} />
 								{/* Review Text */}
 								<Styled.ProfileInformationDataText>
-									{reviewCount} Reviews
+									{currentUserReviewCount} Reviews
 								</Styled.ProfileInformationDataText>
 							</Styled.ProfileInformationData>
 						</Styled.ProfileInformationMainUsernameDataContainer>
@@ -64,7 +75,7 @@ export const Profile = () => {
 				</Styled.ProfileInformationContainer>
 			</Styled.ProfileInformation>
 
-			<Styled.ProfilePosts>Profile Posts</Styled.ProfilePosts>
+			{/* <Styled.ProfilePosts>Profile Posts</Styled.ProfilePosts> */}
 
 			<Components.Pagination />
 		</Styled.Profile>
