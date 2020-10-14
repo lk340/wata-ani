@@ -257,14 +257,14 @@ export function theme(light: string, dark: string) {
 	`;
 }
 
-export function navbarMargins() {
+export function paddingsDueToNavbar() {
 	return css`
-		margin-top: ${Constants.size.components.navbar.height}px;
+		padding-top: ${Constants.size.components.navbar.height}px;
 
 		@media (max-width: 625px) {
-			margin-top: ${Constants.size.components.navbar.height / 2}px;
+			padding-top: ${Constants.size.components.navbar.height / 2}px;
 
-			margin-bottom: ${(props) => {
+			padding-bottom: ${(props) => {
 				const { isCurrentUser } = props.theme;
 				if (isCurrentUser) return `${Constants.size.components.navbarMobile.height}px`;
 				else return "0px";

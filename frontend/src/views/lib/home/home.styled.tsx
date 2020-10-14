@@ -9,7 +9,7 @@ import * as Snippets from "@/utils/style/snippets";
 
 export const Home = styled(animated.div)`
 	${Snippets.flex("column")};
-	${Snippets.navbarMargins()};
+	${Snippets.paddingsDueToNavbar()};
 	position: relative;
 	min-height: 100vh;
 `;

@@ -11,12 +11,12 @@ export const Pagination = () => {
 	const { pagination } = Context.Pagination.usePaginationContext();
 	const { currentPage, lastPage } = pagination.state;
 
-	console.log("Current Page:", pagination.state.currentPage);
-	console.log("Last Page:", pagination.state.lastPage);
-	console.log("Max Page:", pagination.state.maxPage);
-	console.log("Previous Link:", pagination.state.previous);
-	console.log("Next Link:", pagination.state.next);
-	console.log("===================================================");
+	// console.log("Current Page:", pagination.state.currentPage);
+	// console.log("Last Page:", pagination.state.lastPage);
+	// console.log("Max Page:", pagination.state.maxPage);
+	// console.log("Previous Link:", pagination.state.previous);
+	// console.log("Next Link:", pagination.state.next);
+	// console.log("===================================================");
 
 	// Automatically increments the five page values depending on whether or not
 	// pagination.state.currentPage goes beyond pagination.state.lastPage or lower

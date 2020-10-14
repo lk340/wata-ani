@@ -114,6 +114,14 @@ export const theme = {
 			},
 			cta: { background: { light: Colors.LIGHT.three, dark: Colors.DARK.three } },
 		},
+		profile: {
+			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
+			information: {
+				background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+				borderBottom: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+				data: { light: Colors.LIGHT.seven, dark: Colors.DARK.five },
+			},
+		},
 	},
 };
 
@@ -269,6 +277,11 @@ export const fontSizes = {
 			cta: {
 				title: "2rem",
 				body: "1rem",
+			},
+		},
+		profile: {
+			information: {
+				data: "0.875rem",
 			},
 		},
 	},
