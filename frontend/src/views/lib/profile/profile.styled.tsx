@@ -28,6 +28,14 @@ export const Profile = styled(animated.div)`
 export const ProfileInformation = styled(animated.div)`
 	${Snippets.flexColumnCenter()};
 	padding: 34px 0px;
+
+	@media (max-width: 1260px) {
+		padding: 34px ${Constants.sidePaddings.tablet}px;
+	}
+
+	@media (max-width: ${Constants.breakpoints.mobile}) {
+		padding: 34px ${Constants.sidePaddings.mobile}px;
+	}
 `;
 
 export const ProfileInformationContainer = styled("div")`
@@ -39,12 +47,20 @@ export const ProfileInformationContainer = styled("div")`
 export const ProfileInformationMain = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
 	margin-bottom: 20px;
+
+	@media (max-width: 415px) {
+		${Snippets.flex("column", "auto", "center")};
+	}
 `;
 
 export const ProfileInformationMainProfilePicture = styled(animated.img)`
 	${Snippets.square("100px")};
 	${Snippets.makeCircle()};
 	margin-right: 40px;
+
+	@media (max-width: 415px) {
+		margin: 0px;
+	}
 `;
 
 export const ProfileInformationMainUsernameDataContainer = styled("div")``;
@@ -54,6 +70,11 @@ export const ProfileInformationMainUsername = styled("h3")`
 	margin-bottom: 20px;
 	font-size: ${Constants.fontSizes.pages.profile.information.username};
 	font-weight: bold;
+
+	@media (max-width: 415px) {
+		margin-top: 20px;
+		text-align: center;
+	}
 `;
 
 export const ProfileInformationData = styled(animated.div)`
@@ -81,7 +102,15 @@ export const ProfilePosts = styled("div")`
 	flex: 1;
 	width: 100%;
 	max-width: ${Constants.globals.maxWidth / 2}px;
-	margin: 0px auto;
+	margin: 30px auto 0px;
+
+	@media (max-width: 1260px) {
+		padding: 0px ${Constants.sidePaddings.tablet}px;
+	}
+
+	@media (max-width: ${Constants.breakpoints.mobile}) {
+		padding: 0px ${Constants.sidePaddings.mobile}px;
+	}
 
 	border: red solid 1px;
 `;
