@@ -21,6 +21,7 @@ class CustomUser(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     first_name = models.CharField(max_length=20, blank=True)
     last_name = models.CharField(max_length=20, blank=True)
+    biography = models.TextField(max_length=300, blank=True)
     profile_picture = models.ImageField(
         default="default_profile_picture.png",
         upload_to="profile_pictures",

@@ -13,6 +13,7 @@ export type CurrentUser = {
 	last_login: string;
 	first_name: string;
 	last_name: string;
+	biography: string;
 	profile_picture: string;
 	posts: number[];
 	ratings: number[];

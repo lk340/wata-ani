@@ -46,7 +46,7 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = models.CustomUser
         fields = (
-            "email", "username", "password", "date_joined", "is_active", "is_admin", "is_staff", "is_superuser", "first_name", "last_name", "profile_picture"
+            "email", "username", "password", "date_joined", "is_active", "is_admin", "is_staff", "is_superuser", "first_name", "last_name", "biography", "profile_picture"
         )
 
     def clean_password(self):

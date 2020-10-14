@@ -13,7 +13,25 @@ import * as Icons from "@/icons/profile";
 export const Profile = () => {
 	const { theme } = Context.Theme.useThemeContext();
 
+	const [userId, setUserId] = React.useState(0);
+	const [username, setUsername] = React.useState("");
+	const [reviewCount, setReviewCount] = React.useState<number | "">("");
+	const [biography, setBiography] = React.useState("");
 	const [iconFill, setIconFill] = React.useState("");
+
+	// --- Fetching Redux Data --- //
+	const currentUser = Functions.getSession();
+
+	// --- Setting State Values --- //
+	React.useEffect(() => {
+		// TODO: When using loading animation, end it here.
+		if (currentUser.id) {
+			setUserId(currentUser.id);
+			setUsername(currentUser.username);
+			setReviewCount(currentUser.posts.length);
+			setBiography(currentUser.biography);
+		}
+	}, [currentUser]);
 
 	// --- Determining fill color for information icons --- //
 	React.useEffect(() => {
@@ -21,19 +39,6 @@ export const Profile = () => {
 			? setIconFill(Constants.theme.pages.profile.information.data.light)
 			: setIconFill(Constants.theme.pages.profile.information.data.dark);
 	}, [theme.state.mode, localStorage.mode]);
-
-	// --- Fetching Redux Data --- //
-	const currentUser = Functions.getSession();
-	let currentUserId: number;
-	let currentUserUsername: string = "";
-	let currentUserReviewCount: number | "" = "";
-
-	if (currentUser.id && currentUser.posts) {
-		// TODO: When using loading animation, end it here.
-		currentUserId = currentUser.id;
-		currentUserUsername = currentUser.username;
-		currentUserReviewCount = currentUser.posts.length;
-	}
 
 	// --- Animations --- //
 	const animateBackground = Springs.background();
@@ -54,7 +59,7 @@ export const Profile = () => {
 						<Styled.ProfileInformationMainUsernameDataContainer>
 							{/* Username */}
 							<Styled.ProfileInformationMainUsername>
-								{currentUserUsername}
+								{username}
 							</Styled.ProfileInformationMainUsername>
 							{/* Data */}
 							<Styled.ProfileInformationData style={animateData}>
@@ -62,16 +67,14 @@ export const Profile = () => {
 								<Icons.Reviews fill={iconFill} />
 								{/* Review Text */}
 								<Styled.ProfileInformationDataText>
-									{currentUserReviewCount} Reviews
+									{reviewCount} Reviews
 								</Styled.ProfileInformationDataText>
 							</Styled.ProfileInformationData>
 						</Styled.ProfileInformationMainUsernameDataContainer>
 					</Styled.ProfileInformationMain>
 
 					{/* Bio */}
-					<Styled.ProfileInformationBio>
-						Hello, this is an example bio.
-					</Styled.ProfileInformationBio>
+					<Styled.ProfileInformationBio>{biography}</Styled.ProfileInformationBio>
 				</Styled.ProfileInformationContainer>
 			</Styled.ProfileInformation>
 
