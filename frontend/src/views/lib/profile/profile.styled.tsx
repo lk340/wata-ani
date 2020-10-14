@@ -77,7 +77,11 @@ export const ProfileInformationBio = styled("p")`
 // ============= //
 
 export const ProfilePosts = styled("div")`
+	${Snippets.grid(1, "auto", 30, "center", "center")};
 	flex: 1;
+	width: 100%;
+	max-width: ${Constants.globals.maxWidth / 2}px;
+	margin: 0px auto;
 
-  border: red solidi 10px;
+	border: red solid 1px;
 `;

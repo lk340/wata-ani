@@ -75,7 +75,7 @@ export const Profile = () => {
 				</Styled.ProfileInformationContainer>
 			</Styled.ProfileInformation>
 
-			{/* <Styled.ProfilePosts>Profile Posts</Styled.ProfilePosts> */}
+			<Styled.ProfilePosts>Profile Posts</Styled.ProfilePosts>
 
 			<Components.Pagination />
 		</Styled.Profile>
