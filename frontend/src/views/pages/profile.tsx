@@ -7,7 +7,6 @@ import * as Lib from "@/views/lib";
 export default () => (
 	<Wrappers.Layout>
 		<Components.SEO title="Profile Page" />
-		{/* <Lib.Home /> */}
-		<div>Profile Page</div>
+		<Lib.Profile />
 	</Wrappers.Layout>
 );
