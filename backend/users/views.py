@@ -56,19 +56,10 @@ class UserDetail(APIView):
 class UserPosts(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get_user(self, pk):
-        try:
-            return User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            raise Http404
-
     def get(self, request, pk, format=None):
-        # user = self.get_user(pk)
-        posts = Post.objects.get(author=pk)
-        serializer = PostSerializer(posts)
-
+        posts = Post.objects.filter(author=pk)
+        serializer = PostSerializer(posts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-        # return Response(serializer.data["posts"], status=status.HTTP_200_OK)
 
 
 class UserPostRating(APIView):
