@@ -14,28 +14,36 @@ import * as Springs from "./profile.springs";
 import * as Icons from "@/icons/profile";
 
 /**
- * Fetching Redux Data
- * Setting State Values
- * Determining fill color for information icons
- * Fetching User Posts
  * Animations
+ * Fetching Redux State
+ * Setting Local Component State Values
+ * Determining Fill Color For Information Icons Fill
+ * Fetching User Posts
+ * Review Card Logic
  */
 
 export const Profile = () => {
 	const { theme } = Context.Theme.useThemeContext();
+	const { pagination } = Context.Pagination.usePaginationContext();
 
 	const [userId, setUserId] = React.useState<number | null>(null);
 	const [username, setUsername] = React.useState("");
 	const [reviewCount, setReviewCount] = React.useState<number | "">("");
 	const [biography, setBiography] = React.useState("");
 	const [iconFill, setIconFill] = React.useState("");
-	const [posts, setPosts] = React.useState<Actions.Posts.Post[]>([]);
 	const [postsError, setPostsError] = React.useState("");
 
-	// --- Fetching Redux Data --- //
-	const currentUser = Functions.getSession();
+	// --- Animations --- //
+	const animateBackground = Springs.background();
+	const animateInformation = Springs.information();
+	const animateProfilePicture = Springs.profilePicture();
+	const animateData = Springs.data();
 
-	// --- Setting State Values --- //
+	// --- Fetching Redux State --- //
+	const currentUser = Functions.getSession();
+	const ratingsRedux = Functions.getRatings();
+
+	// --- Setting Local Component State Values --- //
 	React.useEffect(() => {
 		// TODO: When using loading animation, end it here.
 		if (currentUser.id) {
@@ -46,7 +54,7 @@ export const Profile = () => {
 		}
 	}, [currentUser]);
 
-	// --- Determining fill color for information icons --- //
+	// --- Determining Fill Color For Information Icons Fill --- //
 	React.useEffect(() => {
 		localStorage.mode === "light"
 			? setIconFill(Constants.theme.pages.profile.information.data.light)
@@ -55,18 +63,24 @@ export const Profile = () => {
 
 	// --- Fetching User Posts --- //
 	React.useEffect(() => {
-		const validateStatus = AxiosHelpers.validateStatus;
-
 		async function fetchUserPosts(): Promise<void> {
 			try {
 				const endpoint = `/api/users/${userId}/posts/`;
+				const validateStatus = AxiosHelpers.validateStatus;
 				const response = await axios.get(endpoint, { validateStatus });
 
 				// Success
 				if (response.status < 400) {
-					console.log("Whoa! Haha:", response.data);
+					const resultPaginationCount = 12;
+					const resultTotalCount = response.data.count;
+					const maxPageCount = Math.ceil(resultTotalCount / resultPaginationCount);
 
-					setPosts(response.data);
+					pagination.setters.setPagination({
+						postResults: response.data.results,
+						maxPage: maxPageCount,
+						previous: response.data.previous,
+						next: response.data.next,
+					});
 				} else {
 					setPostsError(response.data);
 				}
@@ -76,20 +90,32 @@ export const Profile = () => {
 			}
 		}
 		if (userId) fetchUserPosts();
-	}, []);
+	}, [userId]);
 
-	// --- Animations --- //
-	const animateBackground = Springs.background();
-	const animateInformation = Springs.information();
-	const animateProfilePicture = Springs.profilePicture();
-	const animateData = Springs.data();
+	// --- Review Card Logic --- //
+	let reviewCards: React.ReactNode[] | "" = "";
+
+	if (pagination.state.postResults.length > 0) {
+		reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
+			return (
+				<Styled.ProfilePost key={post.id}>
+					<Components.ReviewCard
+						post={post}
+						currentUser={currentUser}
+						username={username}
+						ratingsRedux={ratingsRedux}
+					/>
+				</Styled.ProfilePost>
+			);
+		});
+	}
 
 	return (
 		<Styled.Profile style={animateBackground}>
 			<Components.Navbar />
 
-			<Styled.ProfileInformation style={animateInformation}>
-				<Styled.ProfileInformationContainer>
+			<Styled.ProfileInformationContainer style={animateInformation}>
+				<Styled.ProfileInformation>
 					<Styled.ProfileInformationMain>
 						{/* Profile Picture */}
 						<Styled.ProfileInformationMainProfilePicture style={animateProfilePicture} />
@@ -105,7 +131,7 @@ export const Profile = () => {
 								<Icons.Reviews fill={iconFill} />
 								{/* Review Text */}
 								<Styled.ProfileInformationDataText>
-									{reviewCount} Reviews
+									{reviewCount} {reviewCount === 1 ? "Review" : "Reviews"}
 								</Styled.ProfileInformationDataText>
 							</Styled.ProfileInformationData>
 						</Styled.ProfileInformationMainUsernameDataContainer>
@@ -113,10 +139,10 @@ export const Profile = () => {
 
 					{/* Bio */}
 					<Styled.ProfileInformationBio>{biography}</Styled.ProfileInformationBio>
-				</Styled.ProfileInformationContainer>
-			</Styled.ProfileInformation>
+				</Styled.ProfileInformation>
+			</Styled.ProfileInformationContainer>
 
-			<Styled.ProfilePosts>Profile Posts</Styled.ProfilePosts>
+			<Styled.ProfilePosts>{reviewCards}</Styled.ProfilePosts>
 
 			<Components.Pagination />
 		</Styled.Profile>

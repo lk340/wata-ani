@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.http import Http404
 from rest_framework import permissions, status
-from rest_framework.views import APIView
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from . import serializers
 from posts.serializers import PostSerializer
@@ -53,13 +54,16 @@ class UserDetail(APIView):
         return Response(response_detail, status=status.HTTP_204_NO_CONTENT)
 
 
-class UserPosts(APIView):
+class UserPosts(APIView, LimitOffsetPagination):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, pk, format=None):
         posts = Post.objects.filter(author=pk)
-        serializer = PostSerializer(posts, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        paginated_posts = self.paginate_queryset(posts, request, view=self)
+        serializer = PostSerializer(paginated_posts, many=True)
+        return self.get_paginated_response(serializer.data)
+        
+        # return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class UserPostRating(APIView):

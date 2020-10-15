@@ -17,6 +17,7 @@ import * as Colors from "@/utils/style/colors";
 
 export const Profile = styled(animated.div)`
 	${Snippets.paddingsDueToNavbar()};
+	${Snippets.flex("column")};
 	position: relative;
 	min-height: 100vh;
 `;
@@ -25,7 +26,7 @@ export const Profile = styled(animated.div)`
 // ↓↓↓ Information ↓↓↓ //
 // =================== //
 
-export const ProfileInformation = styled(animated.div)`
+export const ProfileInformationContainer = styled(animated.div)`
 	${Snippets.flexColumnCenter()};
 	padding: 34px 0px;
 
@@ -38,7 +39,7 @@ export const ProfileInformation = styled(animated.div)`
 	}
 `;
 
-export const ProfileInformationContainer = styled("div")`
+export const ProfileInformation = styled("div")`
 	${Snippets.flex("column")};
 	width: 100%;
 	max-width: ${Constants.globals.maxWidth / 2}px;
@@ -91,6 +92,7 @@ export const ProfileInformationDataText = styled("span")`
 export const ProfileInformationBio = styled("p")`
 	${Snippets.clearSpacing()};
 	font-size: ${Constants.fontSizes.pages.profile.information.bio};
+	line-height: 150%;
 `;
 
 // ============= //
@@ -104,13 +106,13 @@ export const ProfilePosts = styled("div")`
 	max-width: ${Constants.globals.maxWidth / 2}px;
 	margin: 30px auto 0px;
 
-	@media (max-width: 1260px) {
-		padding: 0px ${Constants.sidePaddings.tablet}px;
-	}
+	border: red solidd 1px;
 
-	@media (max-width: ${Constants.breakpoints.mobile}) {
+	@media (max-width: 654px) {
 		padding: 0px ${Constants.sidePaddings.mobile}px;
 	}
+`;
 
-	border: red solid 1px;
+export const ProfilePost = styled("div")`
+	width: 100%;
 `;

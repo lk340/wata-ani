@@ -63,7 +63,6 @@ export const Authed = () => {
 	}, [postsRedux]);
 
 	// --- Review Card Logic --- //
-
 	let reviewCards: React.ReactNode[] | "" = "";
 
 	if (pagination.state.postResults.length > 0) {
