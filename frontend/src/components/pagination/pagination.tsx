@@ -49,7 +49,11 @@ export const Pagination = () => {
 			pageGroups.push(pageGroup);
 			pageGroup = [];
 		} else {
-			pageGroup.push(<Page pageNumber={pageNumber} />);
+			pageGroup.push(
+				<React.Fragment key={`pagination-${pageNumber}`}>
+					<Page pageNumber={pageNumber} />
+				</React.Fragment>,
+			);
 		}
 	}
 
