@@ -4,6 +4,7 @@ import * as ReactRedux from "react-redux";
 import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Icons from "@/icons/navbar";
+import * as Functions from "@/utils/functions";
 import * as Animations from "@/utils/style/animations";
 import * as Constants from "@/utils/style/constants";
 
@@ -16,7 +17,7 @@ export const Options = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { theme } = Context.Theme.useThemeContext();
 
-	const userId = ReactRedux.useSelector((state) => state.session.id);
+	const userId = Functions.getSession().id;
 	const isUser = !!userId;
 	const displayWhenSignedIn = isUser;
 	const displayWhenSignedOut = !isUser;

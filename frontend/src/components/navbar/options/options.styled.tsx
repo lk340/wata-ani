@@ -54,7 +54,7 @@ export const OptionRegisterLinkContainer = styled(animated.div).attrs(() => ({
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
 	margin-left: ${Constants.size.components.navbar.spacer}px;
 	border-radius: ${Constants.borderRadius.components.navbar.register};
-	cursor: pointer;t
+	cursor: pointer;
 `;
 
 export const OptionRegisterLink = styled(Gatsby.Link).attrs(() => ({

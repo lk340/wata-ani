@@ -99,7 +99,7 @@ export const Profile = () => {
 		reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
 			return (
 				<Styled.ProfilePost key={post.id}>
-					<Components.ReviewCard
+					<Components.Post
 						post={post}
 						currentUser={currentUser}
 						username={username}
