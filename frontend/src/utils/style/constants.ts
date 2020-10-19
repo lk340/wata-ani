@@ -98,6 +98,14 @@ export const theme = {
 				fade: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 			},
 		},
+		navbarOptions: {
+			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+			background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
+			header: {
+				background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
+				text: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
+			},
+		},
 	},
 	pages: {
 		home: {
@@ -189,6 +197,9 @@ export const size = {
 			maxWidth: (globals.maxWidth - 40) / 3,
 			input: { height: 50 },
 		},
+		navbarOption: {
+			header: 70,
+		},
 	},
 	pages: {
 		home: {
@@ -257,6 +268,9 @@ export const fontSizes = {
 				characterCount: "0.75rem",
 				text: "0.875rem",
 			},
+		},
+		navbarOption: {
+			header: "1rem",
 		},
 	},
 	pages: {
@@ -341,6 +355,9 @@ export const borderRadius = {
 			ratingFormMobile: "0.3125rem",
 			tag: "0.25rem",
 			modal: "0.3125rem",
+		},
+		navbarOption: {
+			container: "0.3125rem",
 		},
 	},
 	pages: {
