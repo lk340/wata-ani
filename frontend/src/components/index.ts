@@ -11,4 +11,4 @@ export { ThemeButton } from "./theme-button/theme-button";
 export { Footer } from "./footer/footer";
 export { CTAButton } from "./cta-button/cta-button";
 export { Pagination } from "./pagination/pagination";
-export { ReviewCard } from "./review-card/review-card";
+export { Post } from "./post/post";

@@ -42,6 +42,6 @@ export const LikesCount = styled(animated.span)`
 	display: block;
 	margin-left: 10px;
 	color: ${Colors.LIGHT.five};
-	font-size: ${Constants.fontSizes.components.reviewCard.likesCount};
+	font-size: ${Constants.fontSizes.components.post.likesCount};
 	font-weight: bold;
 `;

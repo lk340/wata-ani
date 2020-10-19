@@ -21,18 +21,18 @@ export const UserRatingValue_Fraction = styled("div")`
 export const UserRatingValue = styled("h2")`
 	${Snippets.clearSpacing()};
 	color: ${Colors.PRIMARY_100};
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingValue};
+	font-size: ${Constants.fontSizes.components.post.ratingValue};
 	font-weight: bold;
 `;
 
 export const UserRatingFraction = styled("span")`
 	display: block;
 	color: ${Colors.LIGHT.five};
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingFraction};
+	font-size: ${Constants.fontSizes.components.post.ratingFraction};
 	font-weight: bold;
 `;
 
 export const UserRatingCount = styled("span")`
 	display: block;
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingCount};
+	font-size: ${Constants.fontSizes.components.post.ratingCount};
 `;

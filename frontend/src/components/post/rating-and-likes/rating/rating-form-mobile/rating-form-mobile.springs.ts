@@ -11,13 +11,13 @@ export function form(isOpen: boolean) {
 			userSelect: isOpen ? "auto" : "none",
 			border:
 				localStorage.mode === "light"
-					? `${Constants.theme.components.reviewCard.ratingAndLike.formMobile.border.light} solid 1px`
-					: `${Constants.theme.components.reviewCard.ratingAndLike.formMobile.border.dark} solid 1px`,
+					? `${Constants.theme.components.post.ratingAndLike.formMobile.border.light} solid 1px`
+					: `${Constants.theme.components.post.ratingAndLike.formMobile.border.dark} solid 1px`,
 			backgroundColor:
 				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.ratingAndLike.formMobile.background
+					? Constants.theme.components.post.ratingAndLike.formMobile.background
 							.light
-					: Constants.theme.components.reviewCard.ratingAndLike.formMobile.background
+					: Constants.theme.components.post.ratingAndLike.formMobile.background
 							.dark,
 			boxShadow:
 				localStorage.mode === "light"
@@ -33,8 +33,8 @@ export function input() {
 		to: {
 			backgroundColor:
 				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.ratingAndLike.input.light
-					: Constants.theme.components.reviewCard.ratingAndLike.input.dark,
+					? Constants.theme.components.post.ratingAndLike.input.light
+					: Constants.theme.components.post.ratingAndLike.input.dark,
  		},
 		config: { duration: 100 },
 	});

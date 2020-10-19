@@ -38,8 +38,8 @@ export const RatingToggleMobileFormButton = styled("div")`
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
 	border: none;
-	border-radius: ${Constants.borderRadius.components.reviewCard.ratingSubmit};
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingSubmit};
+	border-radius: ${Constants.borderRadius.components.post.ratingSubmit};
+	font-size: ${Constants.fontSizes.components.post.ratingSubmit};
 	font-weight: bold;
 	cursor: pointer;
 `;

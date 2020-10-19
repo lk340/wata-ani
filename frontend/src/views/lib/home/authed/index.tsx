@@ -63,26 +63,26 @@ export const Authed = () => {
 	}, [postsRedux]);
 
 	// --- Review Card Logic --- //
-	let reviewCards: React.ReactNode[] | "" = "";
+	let posts: React.ReactNode[] | "" = "";
 
 	if (pagination.state.postResults.length > 0) {
-		reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
+		posts = pagination.state.postResults.map((post: Actions.Posts.Post) => {
 			return (
-				<Styled.AuthedReviewCard key={post.id}>
-					<Components.ReviewCard
+				<Styled.AuthedPost key={post.id}>
+					<Components.Post
 						post={post}
 						currentUser={currentUser}
 						username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
 						ratingsRedux={ratingsRedux}
 					/>
-				</Styled.AuthedReviewCard>
+				</Styled.AuthedPost>
 			);
 		});
 	}
 
 	return (
 		<Styled.Authed>
-			<Styled.AuthedReviewCards>{reviewCards}</Styled.AuthedReviewCards>
+			<Styled.AuthedPosts>{posts}</Styled.AuthedPosts>
 			<Components.Pagination />
 		</Styled.Authed>
 	);

@@ -22,7 +22,7 @@ export const RatingForm = styled(animated.form)`
 	${Snippets.absolute("100%", "auto", "auto", "-20px")};
 	${Snippets.grid(2, "auto", 30, "center", "center")};
 	padding: 10px 20px;
-	border-radius: ${Constants.borderRadius.components.reviewCard.ratingFormMobile};
+	border-radius: ${Constants.borderRadius.components.post.ratingFormMobile};
 `;
 
 // =================== //
@@ -46,8 +46,8 @@ export const RatingFormInput = styled(animated.input).attrs(() => ({
 	margin-right: 6px;
 	color: inherit;
 	border: none;
-	border-radius: ${Constants.borderRadius.components.reviewCard.ratingInput};
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingInput};
+	border-radius: ${Constants.borderRadius.components.post.ratingInput};
+	font-size: ${Constants.fontSizes.components.post.ratingInput};
 	font-weight: bold;
 	text-align: center;
 	outline: none;
@@ -62,7 +62,7 @@ type InputText = { margin: "true" | "false" };
 export const RatingFormInputText = styled("span")<InputText>`
 	display: block;
 	margin-right: ${(props) => (props.margin === "true" ? "4px" : "0px")};
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingInputText};
+	font-size: ${Constants.fontSizes.components.post.ratingInputText};
 	font-weight: bold;
 `;
 
@@ -77,8 +77,8 @@ export const RatingFormSubmitButton = styled("button").attrs(() => ({
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
 	border: none;
-	border-radius: ${Constants.borderRadius.components.reviewCard.ratingSubmit};
-	font-size: ${Constants.fontSizes.components.reviewCard.ratingSubmit};
+	border-radius: ${Constants.borderRadius.components.post.ratingSubmit};
+	font-size: ${Constants.fontSizes.components.post.ratingSubmit};
 	font-weight: bold;
 	cursor: pointer;
 `;

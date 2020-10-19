@@ -6,7 +6,7 @@ import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
 /**
- * Review Card
+ * Post
  * Header
  * Modal Button
  * Series Title
@@ -17,35 +17,35 @@ import * as Colors from "@/utils/style/colors";
  */
 
 // =================== //
-// ↓↓↓ Review Card ↓↓↓ //
+// ↓↓↓ Post ↓↓↓ //
 // =================== //
 
-type ReviewCardProps = { read_more_expanded: string };
+type PostProps = { read_more_expanded: string };
 
-export const ReviewCardContainer = styled(animated.div)<ReviewCardProps>`
+export const PostContainer = styled(animated.div)<PostProps>`
 	${Snippets.flex("column")};
 	position: relative;
 	width: 100%;
 	height: ${(props) => {
 		const { read_more_expanded } = props;
 		if (read_more_expanded === "true") return "auto";
-		else return `${Constants.size.components.reviewCard.height}px`;
+		else return `${Constants.size.components.post.height}px`;
 	}};
 	padding: 20px 0px;
-	border-radius: ${Constants.borderRadius.components.reviewCard.card};
+	border-radius: ${Constants.borderRadius.components.post.card};
 `;
 
-export const ReviewCardWrapper = styled(animated.div)`
+export const PostWrapper = styled(animated.div)`
 	position: relative;
 	width: 100%;
 `;
 
-export const ReviewCardWrapperFade = styled(animated.div)`
+export const PostWrapperFade = styled(animated.div)`
 	${Snippets.absolute("auto", "0", "0", "0")};
 	height: 40%;
 `;
 
-export const ReviewCard = styled("div")`
+export const Post = styled("div")`
 	position: relative;
 	width: 100%;
 	overflow: hidden;
@@ -55,17 +55,17 @@ export const ReviewCard = styled("div")`
 // ↓↓↓ Header ↓↓↓ //
 // ============== //
 
-export const ReviewCardHeader = styled("div")`
+export const PostHeader = styled("div")`
 	${Snippets.flex("row", "space-between", "center")};
 	margin-bottom: 20px;
 	padding: 0px 20px;
 `;
 
-export const ReviewCardProfilePicture_Username = styled("div")`
+export const PostProfilePicture_Username = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
 `;
 
-export const ReviewCardProfilePicture = styled("img").attrs(() => ({
+export const PostProfilePicture = styled("img").attrs(() => ({
 	// alt: "review card component profile picture",
 }))`
 	${Snippets.square("40px")};
@@ -74,7 +74,7 @@ export const ReviewCardProfilePicture = styled("img").attrs(() => ({
 	background-color: ${Colors.LIGHT.five};
 `;
 
-export const ReviewCardUsername = styled("p")`
+export const PostUsername = styled("p")`
 	${Snippets.clearSpacing()};
 	font-weight: bold;
 `;
@@ -85,7 +85,7 @@ export const ReviewCardUsername = styled("p")`
 
 type ModalButtonProps = { belongs_to_current_user: string };
 
-export const ReviewCardModalButtonDotContainer = styled("div")<ModalButtonProps>`
+export const PostModalButtonDotContainer = styled("div")<ModalButtonProps>`
 	${Snippets.flexColumnCenter()};
 	${Snippets.square("16px")};
 	display: ${(props) => {
@@ -96,7 +96,7 @@ export const ReviewCardModalButtonDotContainer = styled("div")<ModalButtonProps>
 	cursor: pointer;
 `;
 
-export const ReviewCardModalButtonDot = styled("div")`
+export const PostModalButtonDot = styled("div")`
 	${Snippets.square("4px")};
 	${Snippets.makeCircle()};
 	background-color: ${Colors.LIGHT.five};
@@ -108,7 +108,7 @@ export const ReviewCardModalButtonDot = styled("div")`
 
 type SeriesTitleProps = { belongs_to_current_user: string };
 
-export const ReviewCardSeriesTitle = styled("p")<SeriesTitleProps>`
+export const PostSeriesTitle = styled("p")<SeriesTitleProps>`
 	${Snippets.clearSpacing()};
 	padding: ${(props) => {
 		const { belongs_to_current_user } = props;
@@ -116,7 +116,7 @@ export const ReviewCardSeriesTitle = styled("p")<SeriesTitleProps>`
 		else return "20px 20px 10px";
 	}};
 	color: ${Colors.PRIMARY_100};
-	font-size: ${Constants.fontSizes.components.reviewCard.seriesName};
+	font-size: ${Constants.fontSizes.components.post.seriesName};
 	font-weight: bold;
 	line-height: ${Constants.lineHeights.body};
 `;
@@ -125,26 +125,26 @@ export const ReviewCardSeriesTitle = styled("p")<SeriesTitleProps>`
 // ↓↓↓ Title & Date & Text ↓↓↓ //
 // =========================== //
 
-export const ReviewCardTitleDateText = styled("div")`
+export const PostTitleDateText = styled("div")`
 	${Snippets.grid(1, "auto", 6)};
 	padding: 0px 20px;
 `;
 
-export const ReviewCardTitle = styled("p")`
+export const PostTitle = styled("p")`
 	${Snippets.clearSpacing()};
-	font-size: ${Constants.fontSizes.components.reviewCard.cardTitle};
+	font-size: ${Constants.fontSizes.components.post.cardTitle};
 	font-weight: bold;
 	line-height: ${Constants.lineHeights.body};
 `;
 
-export const ReviewCardDate = styled(animated.p)`
+export const PostDate = styled(animated.p)`
 	${Snippets.clearSpacing()};
-	font-size: ${Constants.fontSizes.components.reviewCard.cardDate};
+	font-size: ${Constants.fontSizes.components.post.cardDate};
 `;
 
-export const ReviewCardText = styled("p")`
+export const PostText = styled("p")`
 	${Snippets.clearSpacing()};
-	font-size: ${Constants.fontSizes.components.reviewCard.cardText};
+	font-size: ${Constants.fontSizes.components.post.cardText};
 	line-height: ${Constants.lineHeights.body};
 `;
 
@@ -154,21 +154,21 @@ export const ReviewCardText = styled("p")`
 
 type AuthorRating = { tag_count: number };
 
-export const ReviewCardAuthorRating = styled("div")<AuthorRating>`
+export const PostAuthorRating = styled("div")<AuthorRating>`
 	display: flex;
 	margin: ${(props) => (props.tag_count > 0 ? "10px 0px 26px" : "10px 0px 0px")};
 	padding: 0px 20px;
 `;
 
-export const ReviewCardAuthorRatingText = styled("span")`
+export const PostAuthorRatingText = styled("span")`
 	display: block;
-	font-size: ${Constants.fontSizes.components.reviewCard.authorRating.text};
+	font-size: ${Constants.fontSizes.components.post.authorRating.text};
 `;
 
-export const ReviewCardAuthorRatingValue = styled("span")`
+export const PostAuthorRatingValue = styled("span")`
 	display: block;
 	color: ${Colors.PRIMARY_100};
-	font-size: ${Constants.fontSizes.components.reviewCard.authorRating.value};
+	font-size: ${Constants.fontSizes.components.post.authorRating.value};
 	font-weight: bold;
 `;
 
@@ -178,7 +178,7 @@ export const ReviewCardAuthorRatingValue = styled("span")`
 
 type Tag = { tag_count: number };
 
-export const ReviewCardTagContainer = styled("div")<Tag>`
+export const PostTagContainer = styled("div")<Tag>`
 	${Snippets.flex("row", "auto", "center")};
 	display: ${(props) => (props.tag_count > 0 ? "flex" : "none")};
 	width: 100%;
@@ -190,28 +190,28 @@ export const ReviewCardTagContainer = styled("div")<Tag>`
 	}
 `;
 
-export const ReviewCardTagKeyWrapper = styled("div")`
+export const PostTagKeyWrapper = styled("div")`
 	flex-shrink: 0;
 `;
 
-export const ReviewCardTag = styled(animated.div)`
+export const PostTag = styled(animated.div)`
 	margin-right: 10px;
 	padding: 10px 14px;
-	border-radius: ${Constants.borderRadius.components.reviewCard.tag};
-	font-size: ${Constants.fontSizes.components.reviewCard.tag};
+	border-radius: ${Constants.borderRadius.components.post.tag};
+	font-size: ${Constants.fontSizes.components.post.tag};
 `;
 
 // ================= //
 // ↓↓↓ Read More ↓↓↓ //
 // ================= //
 
-export const ReviewCardReadMore = styled(animated.div)`
+export const PostReadMore = styled(animated.div)`
 	padding: 12px 20px 0px;
 	color: ${Colors.PRIMARY_100};
 `;
 
-export const ReviewCardReadMoreText = styled("span")`
-	font-size: ${Constants.fontSizes.components.reviewCard.readMore};
+export const PostReadMoreText = styled("span")`
+	font-size: ${Constants.fontSizes.components.post.readMore};
 	font-weight: bold;
 	cursor: pointer;
 `;

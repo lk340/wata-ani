@@ -7,8 +7,8 @@ export function form() {
 		to: {
 			backgroundColor:
 				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.ratingAndLike.formDesktop.light
-					: Constants.theme.components.reviewCard.ratingAndLike.formDesktop.dark,
+					? Constants.theme.components.post.ratingAndLike.formDesktop.light
+					: Constants.theme.components.post.ratingAndLike.formDesktop.dark,
  		},
 		config: { duration: 100 },
 	});
@@ -19,8 +19,8 @@ export function input() {
 		to: {
 			backgroundColor:
 				localStorage.mode === "light"
-					? Constants.theme.components.reviewCard.ratingAndLike.input.light
-					: Constants.theme.components.reviewCard.ratingAndLike.input.dark,
+					? Constants.theme.components.post.ratingAndLike.input.light
+					: Constants.theme.components.post.ratingAndLike.input.dark,
  		},
 		config: { duration: 100 },
 	});

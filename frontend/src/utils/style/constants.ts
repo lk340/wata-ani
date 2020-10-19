@@ -63,7 +63,7 @@ export const theme = {
 		footer: {
 			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 		},
-		reviewCard: {
+		post: {
 			background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 			border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 			modalForm: {
@@ -183,7 +183,7 @@ export const size = {
 		footer: {
 			height: 500,
 		},
-		reviewCard: {
+		post: {
 			// height: 470,
 			height: 400,
 			maxWidth: (globals.maxWidth - 40) / 3,
@@ -233,7 +233,7 @@ export const fontSizes = {
 		},
 		ctaButton: "1.375rem",
 		pagination: "0.875rem",
-		reviewCard: {
+		post: {
 			username: "0.875rem",
 			seriesName: "1rem",
 			cardTitle: "0.875rem",
@@ -332,7 +332,7 @@ export const borderRadius = {
 			logo: "0.375rem",
 		},
 		ctaButton: "0.5rem",
-		reviewCard: {
+		post: {
 			card: "0.3125rem",
 			ratingAndLikes: "0.3125rem",
 			ratingForm: "0.3125rem",

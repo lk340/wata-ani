@@ -6,8 +6,8 @@ import * as Actions from "@/redux/actions";
 import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
-import * as Styled from "./review-card.styled";
-import * as Springs from "./review-card.springs";
+import * as Styled from "./post.styled";
+import * as Springs from "./post.springs";
 
 import { RatingAndLikes } from "./rating-and-likes";
 import { ModalForm } from "./modal-form";
@@ -24,11 +24,11 @@ type Props = {
  * Animations
  * Fetching Redux state
  * Post Logic
- * Review Card Tag Components
+ * Post Tag Components
  * Rating Logic
  */
 
-export const ReviewCard = (props: Props) => {
+export const Post = (props: Props) => {
 	const [currentUserRating, setCurrentUserRating] = React.useState(0);
 	const [currentUserRatingError, setCurrentUserRatingError] = React.useState("");
 	const [averageUserRating, setAverageUserRating] = React.useState<number | "N/A">("N/A");
@@ -46,24 +46,24 @@ export const ReviewCard = (props: Props) => {
 	}
 
 	// --- Refs --- //
-	const reviewCardContainerRef = React.useRef(null);
-	const reviewCardRef = React.useRef(null);
+	const postContainerRef = React.useRef(null);
+	const postRef = React.useRef(null);
 
 	React.useEffect(() => {
-		if (reviewCardContainerRef.current && reviewCardRef.current) {
-			const reviewCardContainerHeight = reviewCardContainerRef.current.clientHeight;
-			const reviewCardHeight = reviewCardRef.current.clientHeight;
+		if (postContainerRef.current && postRef.current) {
+			const postContainerHeight = postContainerRef.current.clientHeight;
+			const postHeight = postRef.current.clientHeight;
 
-			if (reviewCardHeight > reviewCardContainerHeight) {
+			if (postHeight > postContainerHeight) {
 				setShowReadMore(true);
 			} else {
 				setShowReadMore(false);
 			}
 		}
-	}, [reviewCardContainerRef, reviewCardRef]);
+	}, [postContainerRef, postRef]);
 
 	// --- Animations --- //
-	const animateReviewCard = Springs.reviewCard();
+	const animatePost = Springs.post();
 	const animateWrapper = Springs.wrapper(readMoreExpanded);
 	const animateFade = Springs.fade(showReadMore, readMoreExpanded);
 	const animateCardDate = Springs.cardDate();
@@ -85,24 +85,24 @@ export const ReviewCard = (props: Props) => {
 		setAverageUserRatingError,
 	);
 
-	// --- Review Card Tag Components --- //
+	// --- Post Tag Components --- //
 	const tags = props.post.tags;
 	const tagCount = tags.length;
 	const _postHasTags = tagCount > 0;
 	const _tagsReduxHasLoaded = Object.keys(tagsRedux).length > 0;
 
-	let reviewCardTagComponents;
+	let postTagComponents;
 	if (_postHasTags && _tagsReduxHasLoaded) {
-		reviewCardTagComponents = props.post.tags.map((tagId: number) => {
+		postTagComponents = props.post.tags.map((tagId: number) => {
 			const tagGenre = tagsRedux[tagId].genre.toLowerCase();
 			return (
-				<Styled.ReviewCardTagKeyWrapper key={tagId}>
-					<Styled.ReviewCardTag style={animateTag}>{tagGenre}</Styled.ReviewCardTag>
-				</Styled.ReviewCardTagKeyWrapper>
+				<Styled.PostTagKeyWrapper key={tagId}>
+					<Styled.PostTag style={animateTag}>{tagGenre}</Styled.PostTag>
+				</Styled.PostTagKeyWrapper>
 			);
 		});
 	} else {
-		reviewCardTagComponents = "";
+		postTagComponents = "";
 	}
 
 	Functions.getUserRating(
@@ -128,10 +128,10 @@ export const ReviewCard = (props: Props) => {
 	});
 
 	return (
-		<Styled.ReviewCardContainer
-			ref={reviewCardContainerRef}
+		<Styled.PostContainer
+			ref={postContainerRef}
 			read_more_expanded={readMoreExpanded.toString()}
-			style={animateReviewCard}
+			style={animatePost}
 		>
 			<ModalForm
 				isOpen={modalOpen}
@@ -140,30 +140,30 @@ export const ReviewCard = (props: Props) => {
 				currentUser={props.currentUser}
 			/>
 
-			<Styled.ReviewCardWrapper style={animateWrapper}>
+			<Styled.PostWrapper style={animateWrapper}>
 				{/* Fade */}
-				<Styled.ReviewCardWrapperFade style={animateFade} />
+				<Styled.PostWrapperFade style={animateFade} />
 
-				<Styled.ReviewCard ref={reviewCardRef}>
+				<Styled.Post ref={postRef}>
 					{/* Header */}
-					<Styled.ReviewCardHeader>
+					<Styled.PostHeader>
 						{/* Profile Picture & Username */}
-						<Styled.ReviewCardProfilePicture_Username>
-							<Styled.ReviewCardProfilePicture />
-							<Styled.ReviewCardUsername>{props.username}</Styled.ReviewCardUsername>
-						</Styled.ReviewCardProfilePicture_Username>
+						<Styled.PostProfilePicture_Username>
+							<Styled.PostProfilePicture />
+							<Styled.PostUsername>{props.username}</Styled.PostUsername>
+						</Styled.PostProfilePicture_Username>
 						{/* Modal Button (ellipses) */}
-						<Styled.ReviewCardModalButtonDotContainer
+						<Styled.PostModalButtonDotContainer
 							onClick={toggleModalOpen}
 							belongs_to_current_user={belongsToCurrentUser.toString()}
 						>
-							<Styled.ReviewCardModalButtonDot />
+							<Styled.PostModalButtonDot />
 							<Components.Spacer height={"2px"} />
-							<Styled.ReviewCardModalButtonDot />
+							<Styled.PostModalButtonDot />
 							<Components.Spacer height={"2px"} />
-							<Styled.ReviewCardModalButtonDot />
-						</Styled.ReviewCardModalButtonDotContainer>
-					</Styled.ReviewCardHeader>
+							<Styled.PostModalButtonDot />
+						</Styled.PostModalButtonDotContainer>
+					</Styled.PostHeader>
 
 					{/* Rating & Likes */}
 					<RatingAndLikes
@@ -176,44 +176,42 @@ export const ReviewCard = (props: Props) => {
 					/>
 
 					{/* Series Name */}
-					<Styled.ReviewCardSeriesTitle
+					<Styled.PostSeriesTitle
 						belongs_to_current_user={belongsToCurrentUser.toString()}
 					>
 						{props.post.series_title}
-					</Styled.ReviewCardSeriesTitle>
+					</Styled.PostSeriesTitle>
 
 					{/* Title & Date & Text */}
-					<Styled.ReviewCardTitleDateText>
-						<Styled.ReviewCardTitle>{props.post.title}</Styled.ReviewCardTitle>
-						<Styled.ReviewCardDate style={animateCardDate}>
-							{dateCreated}
-						</Styled.ReviewCardDate>
-						<Styled.ReviewCardText>{props.post.review}</Styled.ReviewCardText>
-					</Styled.ReviewCardTitleDateText>
+					<Styled.PostTitleDateText>
+						<Styled.PostTitle>{props.post.title}</Styled.PostTitle>
+						<Styled.PostDate style={animateCardDate}>{dateCreated}</Styled.PostDate>
+						<Styled.PostText>{props.post.review}</Styled.PostText>
+					</Styled.PostTitleDateText>
 
 					{/* Author Rating */}
-					<Styled.ReviewCardAuthorRating tag_count={tagCount}>
-						<Styled.ReviewCardAuthorRatingText>
+					<Styled.PostAuthorRating tag_count={tagCount}>
+						<Styled.PostAuthorRatingText>
 							I give this series a rating of:&nbsp;
-						</Styled.ReviewCardAuthorRatingText>
-						<Styled.ReviewCardAuthorRatingValue>
+						</Styled.PostAuthorRatingText>
+						<Styled.PostAuthorRatingValue>
 							{props.post.personal_rating}/10
-						</Styled.ReviewCardAuthorRatingValue>
-					</Styled.ReviewCardAuthorRating>
+						</Styled.PostAuthorRatingValue>
+					</Styled.PostAuthorRating>
 
 					{/* Tags */}
-					<Styled.ReviewCardTagContainer tag_count={tagCount}>
-						{reviewCardTagComponents}
-					</Styled.ReviewCardTagContainer>
-				</Styled.ReviewCard>
-			</Styled.ReviewCardWrapper>
+					<Styled.PostTagContainer tag_count={tagCount}>
+						{postTagComponents}
+					</Styled.PostTagContainer>
+				</Styled.Post>
+			</Styled.PostWrapper>
 
 			{/* Read More */}
-			<Styled.ReviewCardReadMore style={animateReadMore}>
-				<Styled.ReviewCardReadMoreText onClick={toggleReadMore}>
+			<Styled.PostReadMore style={animateReadMore}>
+				<Styled.PostReadMoreText onClick={toggleReadMore}>
 					{readMoreExpanded ? "Read Less" : "Read More"}
-				</Styled.ReviewCardReadMoreText>
-			</Styled.ReviewCardReadMore>
-		</Styled.ReviewCardContainer>
+				</Styled.PostReadMoreText>
+			</Styled.PostReadMore>
+		</Styled.PostContainer>
 	);
 };

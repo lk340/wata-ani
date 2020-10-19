@@ -49,7 +49,7 @@ export const ModalFormCloseContainer = styled("div")`
 
 export const ModalFormCloseTitle = styled(animated.h2)`
 	${Snippets.clearSpacing()};
-	font-size: ${Constants.fontSizes.components.reviewCard.modal.header};
+	font-size: ${Constants.fontSizes.components.post.modal.header};
 	font-weight: normal;
 `;
 
@@ -76,20 +76,20 @@ export const ModalFormGroupTitle_Count = styled("div")`
 
 export const ModalFormGroupTitle = styled("h3")`
 	${Snippets.clearSpacing()};
-	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
+	font-size: ${Constants.fontSizes.components.post.modal.text};
 	font-weight: bold;
 `;
 
 export const ModalFormGroupCharacterCount = styled(animated.span)`
 	display: block;
 	margin-left: 10px;
-	font-size: ${Constants.fontSizes.components.reviewCard.modal.characterCount};
+	font-size: ${Constants.fontSizes.components.post.modal.characterCount};
 `;
 
 export const ModalFormGroupError = styled(animated.h3)`
 	${Snippets.clearSpacing()};
 	margin-bottom: 10px;
-	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
+	font-size: ${Constants.fontSizes.components.post.modal.text};
 	font-weight: normal;
 `;
 
@@ -99,15 +99,15 @@ export const ModalFormGroupError = styled(animated.h3)`
 
 const inputStyles = css`
 	width: 100%;
-	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
+	border-radius: ${Constants.borderRadius.components.post.modal};
 	color: inherit;
-	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
+	font-size: ${Constants.fontSizes.components.post.modal.text};
 	outline: none;
 `;
 
 export const ModalFormInputField = styled(animated.input)`
 	${inputStyles};
-	min-height: ${Constants.size.components.reviewCard.input.height}px;
+	min-height: ${Constants.size.components.post.input.height}px;
 	padding: 0px 20px;
 `;
 
@@ -125,14 +125,14 @@ export const ModalFormTextareaField = styled(animated.textarea)`
 
 export const ModalFormPersonalRating = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
-	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
+	font-size: ${Constants.fontSizes.components.post.modal.text};
 `;
 
 export const ModalFormPersonalRatingInput = styled(animated.input)`
 	${Snippets.square("50px")};
 	color: inherit;
-	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
-	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
+	border-radius: ${Constants.borderRadius.components.post.modal};
+	font-size: ${Constants.fontSizes.components.post.modal.text};
 	text-align: center;
 	outline: none;
 `;
@@ -166,12 +166,12 @@ export const ModalFormSubmit = styled("button").attrs(() => ({
 	type: "submit",
 }))`
 	flex-shrink: 0;
-	height: ${Constants.size.components.reviewCard.input.height}px;
+	height: ${Constants.size.components.post.input.height}px;
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
 	border: none;
-	border-radius: ${Constants.borderRadius.components.reviewCard.modal};
-	font-size: ${Constants.fontSizes.components.reviewCard.modal.text};
+	border-radius: ${Constants.borderRadius.components.post.modal};
+	font-size: ${Constants.fontSizes.components.post.modal.text};
 	font-weight: bold;
 	text-align: center;
 	outline: none;

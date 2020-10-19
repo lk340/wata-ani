@@ -15,7 +15,7 @@ export const Authed = styled("div")`
 	}};
 `;
 
-export const AuthedReviewCards = styled("div")`
+export const AuthedPosts = styled("div")`
 	${Snippets.grid(3, "1fr", 20, "center", "start")};
 	flex: 1;
 	margin: 20px auto 0px;
@@ -40,7 +40,7 @@ export const AuthedReviewCards = styled("div")`
 const containerMaxWidthDesktop = (Constants.globals.maxWidth - 20 * 2) / 3;
 const containerMaxWidthTablet = (Constants.globals.maxWidth - 20) / 2;
 
-export const AuthedReviewCard = styled("div")`
+export const AuthedPost = styled("div")`
 	width: 100%;
 	max-width: ${containerMaxWidthDesktop}px;
 
