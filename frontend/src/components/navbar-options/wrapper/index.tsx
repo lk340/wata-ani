@@ -2,15 +2,15 @@ import * as React from "react";
 
 import * as Context from "@/context";
 
-import * as Styled from "./navbar-option-wrapper.styled";
-import * as Springs from "./navbar-option-wrapper.springs";
+import * as Styled from "./wrapper.styled";
+import * as Springs from "./wrapper.springs";
 
 type Props = {
-	Component: React.ReactNode;
+	children: React.ReactNode;
 };
 
 export const Wrapper = (props: Props) => {
-	const { Component } = props;
+	const { children } = props;
 
 	const { userAgent } = Context.UserAgent.useUserAgentContext();
 
@@ -21,7 +21,7 @@ export const Wrapper = (props: Props) => {
 			return (
 				item && (
 					<Styled.Wrapper key={key} style={props}>
-						{Component}
+						{children}
 					</Styled.Wrapper>
 				)
 			);
