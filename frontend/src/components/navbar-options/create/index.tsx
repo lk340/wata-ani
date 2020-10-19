@@ -16,16 +16,30 @@ export const Create = () => {
 
 	const animateCreate = Springs.create();
 	const animateHeader = Springs.header();
+	const animateInput = Springs.input();
 
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
 			item && (
 				<Styled.CreateContainer key={key} style={props}>
 					<Styled.Create style={animateCreate}>
+						{/* Header */}
 						<Styled.CreateHeader style={animateHeader}>
-							<Styled.CreateHeaderTitle>Header</Styled.CreateHeaderTitle>
+							<Styled.CreateHeaderTitle>Create A Review</Styled.CreateHeaderTitle>
+							<Styled.CreateHeaderClose onClick={navbar.setters.toggleCreate} />
 						</Styled.CreateHeader>
-						<Styled.CreateBody>Body</Styled.CreateBody>
+						{/* Body */}
+						<Styled.CreateBody>
+							{/* Body */}
+							<Styled.CreateBodyForm>
+								<Styled.CreateBodyFormSeriesTitleInput style={animateInput} />
+								<Styled.CreateBodyFormPostTitleInput style={animateInput} />
+								<Styled.CreateBodyFormReviewTextarea style={animateInput} />
+								<Styled.CreateBodyFormSubmitButton>
+									Submit
+								</Styled.CreateBodyFormSubmitButton>
+							</Styled.CreateBodyForm>
+						</Styled.CreateBody>
 					</Styled.Create>
 				</Styled.CreateContainer>
 			)

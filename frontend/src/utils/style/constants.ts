@@ -105,6 +105,10 @@ export const theme = {
 				background: { light: Colors.NEUTRALS.white_100, dark: Colors.DARK.one },
 				text: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.five },
 			},
+			input: {
+				border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
+				background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
+			},
 		},
 	},
 	pages: {
@@ -271,6 +275,9 @@ export const fontSizes = {
 		},
 		navbarOption: {
 			header: "1rem",
+			create: {
+				form: "0.875rem",
+			},
 		},
 	},
 	pages: {
@@ -358,6 +365,9 @@ export const borderRadius = {
 		},
 		navbarOption: {
 			container: "0.3125rem",
+			create: {
+				form: "0.3125rem",
+			},
 		},
 	},
 	pages: {

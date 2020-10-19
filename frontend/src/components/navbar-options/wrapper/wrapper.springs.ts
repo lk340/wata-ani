@@ -21,7 +21,7 @@ export function transition(show: boolean, isMobile: boolean) {
 	});
 }
 
-export function create() {
+export function wrapper() {
 	return Spring.useSpring({
 		to: {
 			backgroundColor:
@@ -56,22 +56,6 @@ export function header() {
 				localStorage.mode === "light"
 					? `${Constants.theme.components.navbarOptions.border.light} solid 1px`
 					: `${Constants.theme.components.navbarOptions.border.dark} solid 1px`,
-		},
-		config: { duration: 100 },
-	});
-}
-
-export function input() {
-	return Spring.useSpring({
-		to: {
-			backgroundColor:
-				localStorage.mode === "light"
-					? Constants.theme.components.navbarOptions.input.background.light
-					: Constants.theme.components.navbarOptions.input.background.dark,
-			border:
-				localStorage.mode === "light"
-					? `${Constants.theme.components.navbarOptions.input.border.light} solid 2px`
-					: `${Constants.theme.components.navbarOptions.input.border.dark} solid 2px`,
 		},
 		config: { duration: 100 },
 	});
