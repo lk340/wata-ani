@@ -109,6 +109,13 @@ export const theme = {
 				border: { light: Colors.LIGHT.four, dark: Colors.DARK.five },
 				background: { light: Colors.LIGHT.one, dark: Colors.DARK.two },
 			},
+			create: {
+				form: {
+					title: { light: Colors.LIGHT.seven, dark: Colors.LIGHT.six },
+					characterCount: { light: Colors.LIGHT.five, dark: Colors.DARK.five },
+					error: { light: Colors.ALERTS.error.light, dark: Colors.ALERTS.error.dark },
+				},
+			},
 		},
 	},
 	pages: {
@@ -276,7 +283,11 @@ export const fontSizes = {
 		navbarOption: {
 			header: "1rem",
 			create: {
-				form: "0.875rem",
+				form: {
+					header: "1.25rem",
+					characterCount: "0.75rem",
+					input: "0.875rem",
+				},
 			},
 		},
 	},

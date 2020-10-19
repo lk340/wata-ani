@@ -70,11 +70,35 @@ export const CreateBodyForm = styled("form")`
 	${Snippets.grid(1, "auto", 30, "center", "center")};
 `;
 
+export const CreateBodyFormTitle_Count = styled("div")`
+	${Snippets.flex("row", "auto", "center")};
+	margin-bottom: 10px;
+`;
+
+export const CreateBodyFormTitle = styled("h3")`
+	${Snippets.clearSpacing()};
+	font-size: ${Constants.fontSizes.components.navbarOption.create.form.header};
+	font-weight: bold;
+`;
+
+export const CreateBodyFormCharacterCount = styled(animated.span)`
+	display: block;
+	margin-left: 10px;
+	font-size: ${Constants.fontSizes.components.navbarOption.create.form.characterCount};
+`;
+
+export const CreateBodyFormPersonalRatingError = styled(animated.h3)`
+	${Snippets.clearSpacing()};
+	margin-bottom: 10px;
+	font-size: ${Constants.fontSizes.components.navbarOption.create.form.input};
+	font-weight: normal;
+`;
+
 const inputStyles = css`
 	${Snippets.size("400px", "50px")};
 	color: inherit;
 	border-radius: ${Constants.borderRadius.components.navbarOption.create.form};
-	font-size: ${Constants.fontSizes.components.navbarOption.create.form};
+	font-size: ${Constants.fontSizes.components.navbarOption.create.form.input};
 	outline: none;
 `;
 
@@ -87,6 +111,13 @@ export const CreateBodyFormSeriesTitleInput = styled(animated.input).attrs(() =>
 
 export const CreateBodyFormPostTitleInput = styled(animated.input).attrs(() => ({
 	placeholder: "Your title here (max 50 characters)",
+}))`
+	padding: 0px 20px;
+	${inputStyles};
+`;
+
+export const CreateBodyFormPersonalRatingInput = styled(animated.input).attrs(() => ({
+	placeholder: "Your personal rating here",
 }))`
 	padding: 0px 20px;
 	${inputStyles};

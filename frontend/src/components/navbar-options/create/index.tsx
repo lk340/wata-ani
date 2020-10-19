@@ -1,14 +1,32 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
+import axios from "axios";
 
 import * as Context from "@/context";
+import * as Functions from "@/utils/functions";
+import * as Types from "@/utils/types";
+import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
 import * as Styled from "./create.styled";
 import * as Springs from "./create.springs";
+
+/**
+ * Animations
+ * Fetching Redux State
+ * Handlers
+ */
 
 export const Create = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { userAgent } = Context.UserAgent.useUserAgentContext();
 
+	const [seriesTitle, setSeriesTitle] = React.useState("");
+	const [postTitle, setPostTitle] = React.useState("");
+	const [review, setReview] = React.useState("");
+	const [personalRating, setPersonalRating] = React.useState(0);
+	const [personalRatingErrors, setPersonalRatingErrors] = React.useState("");
+
+	// --- Animations --- //
 	const transitionAnimation = Springs.transition(
 		navbar.state.create,
 		userAgent.state.isMobile,
@@ -17,6 +35,72 @@ export const Create = () => {
 	const animateCreate = Springs.create();
 	const animateHeader = Springs.header();
 	const animateInput = Springs.input();
+
+	// --- Setting Personal Rating Errors --- //
+	React.useEffect(() => {}, [personalRating]);
+
+	// --- Fetching Redux State --- //
+	const currentUser = Functions.getSession();
+
+	// --- Handlers --- //
+	function handleTitleChange(
+		event: Types.Input,
+		type: "series" | "post" | "personal rating",
+	): void {
+		if (type === "series") setSeriesTitle(event.currentTarget.value);
+		else if (type === "post") setPostTitle(event.currentTarget.value);
+		else setPersonalRating(Number(personalRating));
+	}
+
+	function handleReviewChange(event: Types.Textarea): void {
+		setReview(event.currentTarget.value);
+	}
+
+	function handleSubmit(event: Types.Submit): void {
+		event.preventDefault();
+
+		async function createPost(): Promise<void> {
+			try {
+				const data = {
+					title: postTitle,
+					series_title: seriesTitle,
+					review,
+					personal_rating: personalRating,
+					author: currentUser.id,
+					user_ratings: [],
+				};
+
+				const validateStatus = AxiosHelpers.validateStatus;
+				const response = await axios.post(`/api/posts/`, data, { validateStatus });
+
+				// Success
+				if (response.status < 400) {
+					console.log(response.data);
+
+					setSeriesTitle("");
+					setPostTitle("");
+					setReview("");
+					setPersonalRating(0);
+					setPersonalRatingErrors("");
+					navbar.setters.toggleCreate();
+				}
+				// Failure
+				else {
+					console.log(response.data);
+				}
+			} catch (error) {
+				// Dev Debug Log
+				console.log(error);
+			}
+		}
+
+		if (currentUser.id) createPost();
+
+		console.log("Series Title:", seriesTitle);
+		console.log("Post Title:", postTitle);
+		console.log("Review:", review);
+		console.log("Submitted!");
+	}
 
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
@@ -30,11 +114,34 @@ export const Create = () => {
 						</Styled.CreateHeader>
 						{/* Body */}
 						<Styled.CreateBody>
-							{/* Body */}
-							<Styled.CreateBodyForm>
-								<Styled.CreateBodyFormSeriesTitleInput style={animateInput} />
-								<Styled.CreateBodyFormPostTitleInput style={animateInput} />
-								<Styled.CreateBodyFormReviewTextarea style={animateInput} />
+							{/* Form */}
+							<Styled.CreateBodyForm onSubmit={handleSubmit}>
+								{/* Series Title Input */}
+								<Styled.CreateBodyFormSeriesTitleInput
+									onChange={(event: Types.Input) => handleTitleChange(event, "series")}
+									style={animateInput}
+								/>
+
+								{/* Post Title Input */}
+								<Styled.CreateBodyFormPostTitleInput
+									onChange={(event: Types.Input) => handleTitleChange(event, "post")}
+									style={animateInput}
+								/>
+
+								{/* Personal Rating */}
+								<Styled.CreateBodyFormPersonalRatingInput
+									onChange={(event: Types.Input) =>
+										handleTitleChange(event, "personal rating")
+									}
+									style={animateInput}
+								/>
+
+								{/* Review Text Area */}
+								<Styled.CreateBodyFormReviewTextarea
+									onChange={handleReviewChange}
+									style={animateInput}
+								/>
+								{/* Submit Button */}
 								<Styled.CreateBodyFormSubmitButton>
 									Submit
 								</Styled.CreateBodyFormSubmitButton>
