@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactRedux from "react-redux";
 import axios from "axios";
 
 import * as Context from "@/context";
@@ -95,11 +94,6 @@ export const Create = () => {
 		}
 
 		if (currentUser.id) createPost();
-
-		console.log("Series Title:", seriesTitle);
-		console.log("Post Title:", postTitle);
-		console.log("Review:", review);
-		console.log("Submitted!");
 	}
 
 	return transitionAnimation.map(({ item, key, props }) => {
@@ -117,22 +111,25 @@ export const Create = () => {
 							{/* Form */}
 							<Styled.CreateBodyForm onSubmit={handleSubmit}>
 								{/* Series Title Input */}
-								<Styled.CreateBodyFormSeriesTitleInput
+								<Styled.CreateBodyFormInput
 									onChange={(event: Types.Input) => handleTitleChange(event, "series")}
+									placeholder="Series title here (max 100 characters)"
 									style={animateInput}
 								/>
 
 								{/* Post Title Input */}
-								<Styled.CreateBodyFormPostTitleInput
+								<Styled.CreateBodyFormInput
 									onChange={(event: Types.Input) => handleTitleChange(event, "post")}
 									style={animateInput}
+									placeholder="Your title here (max 50 characters)"
 								/>
 
 								{/* Personal Rating */}
-								<Styled.CreateBodyFormPersonalRatingInput
+								<Styled.CreateBodyFormInput
 									onChange={(event: Types.Input) =>
 										handleTitleChange(event, "personal rating")
 									}
+									placeholder="Your personal rating here"
 									style={animateInput}
 								/>
 
@@ -152,4 +149,30 @@ export const Create = () => {
 			)
 		);
 	});
+};
+
+// ================== //
+// ↓↓↓ Form Title Group ↓↓↓ //
+// ================== //
+
+type FormTitleGroupProps = {
+	title: string;
+	characterCount: number;
+	errorMessage: string;
+};
+
+const FormTitleGroup = (props: FormTitleGroupProps) => {
+	return (
+		<div>
+			<Styled.CreateBodyFormTitle_Count>
+				<Styled.CreateBodyFormTitle>{props.title}</Styled.CreateBodyFormTitle>
+				<Styled.CreateBodyFormCharacterCount>
+					{props.characterCount}
+				</Styled.CreateBodyFormCharacterCount>
+			</Styled.CreateBodyFormTitle_Count>
+			<Styled.CreateBodyFormPersonalRatingError>
+				{props.errorMessage}
+			</Styled.CreateBodyFormPersonalRatingError>
+		</div>
+	);
 };

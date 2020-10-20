@@ -102,23 +102,7 @@ const inputStyles = css`
 	outline: none;
 `;
 
-export const CreateBodyFormSeriesTitleInput = styled(animated.input).attrs(() => ({
-	placeholder: "Series title here (max 100 characters)",
-}))`
-	padding: 0px 20px;
-	${inputStyles};
-`;
-
-export const CreateBodyFormPostTitleInput = styled(animated.input).attrs(() => ({
-	placeholder: "Your title here (max 50 characters)",
-}))`
-	padding: 0px 20px;
-	${inputStyles};
-`;
-
-export const CreateBodyFormPersonalRatingInput = styled(animated.input).attrs(() => ({
-	placeholder: "Your personal rating here",
-}))`
+export const CreateBodyFormInput = styled(animated.input)`
 	padding: 0px 20px;
 	${inputStyles};
 `;
