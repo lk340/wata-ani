@@ -12,6 +12,10 @@ import close from "@/icons/close.svg";
  * Header
  * Body
  * Form
+ * Form: Title & Character Count
+ * Form: Error
+ * Form: Input & Textarea
+ * Form: Submit Button
  */
 
 // ============== //
@@ -22,6 +26,7 @@ export const CreateContainer = styled(animated.div)`
 	top: 100%;
 	right: 0%;
 	margin-right: ${Constants.size.components.navbar.spacer}px;
+	border-radius: ${Constants.borderRadius.components.navbarOption.container};
 `;
 
 export const Create = styled(animated.div)`
@@ -70,6 +75,12 @@ export const CreateBodyForm = styled("form")`
 	${Snippets.grid(1, "auto", 30, "center", "center")};
 `;
 
+export const CreateBodyFormGroup = styled("div")``;
+
+// ====================================== //
+// ↓↓↓ Form : Title & Character Count ↓↓↓ //
+// ====================================== //
+
 export const CreateBodyFormTitle_Count = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
 	margin-bottom: 10px;
@@ -87,12 +98,20 @@ export const CreateBodyFormCharacterCount = styled(animated.span)`
 	font-size: ${Constants.fontSizes.components.navbarOption.create.form.characterCount};
 `;
 
+// =================== //
+// ↓↓↓ Form: Error ↓↓↓ //
+// =================== //
+
 export const CreateBodyFormPersonalRatingError = styled(animated.h3)`
 	${Snippets.clearSpacing()};
 	margin-bottom: 10px;
 	font-size: ${Constants.fontSizes.components.navbarOption.create.form.input};
 	font-weight: normal;
 `;
+
+// ============================== //
+// ↓↓↓ Form: Input & Textarea ↓↓↓ //
+// ============================== //
 
 const inputStyles = css`
 	${Snippets.size("400px", "50px")};
@@ -102,7 +121,23 @@ const inputStyles = css`
 	outline: none;
 `;
 
-export const CreateBodyFormInput = styled(animated.input)`
+export const CreateBodyFormSeriesTitleInput = styled(animated.input).attrs(() => ({
+	placeholder: "Series title here (max 100 characters)",
+}))`
+	padding: 0px 20px;
+	${inputStyles};
+`;
+
+export const CreateBodyFormReviewTitleInput = styled(animated.input).attrs(() => ({
+	placeholder: "Your title here (max 50 characters)",
+}))`
+	padding: 0px 20px;
+	${inputStyles};
+`;
+
+export const CreateBodyFormPersonalRatingInput = styled(animated.input).attrs(() => ({
+	placeholder: "Your personal rating here",
+}))`
 	padding: 0px 20px;
 	${inputStyles};
 `;
@@ -114,6 +149,10 @@ export const CreateBodyFormReviewTextarea = styled(animated.textarea).attrs(() =
 	padding: 20px;
 	height: 100px;
 `;
+
+// =========================== //
+// ↓↓↓ Form: Submit Button ↓↓↓ //
+// =========================== //
 
 export const CreateBodyFormSubmitButton = styled("button").attrs(() => ({
 	type: "submit",

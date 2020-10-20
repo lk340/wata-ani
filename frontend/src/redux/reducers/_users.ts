@@ -27,7 +27,7 @@ export function usersReducer(state: any = {}, action: Action) {
 		case Actions.Users.GET_USER:
 			stateCopy[action.user.id] = action.user;
 			return stateCopy;
-
+			
 		case Actions.Users.UPDATE_USER:
 			stateCopy[action.user.id] = action.user;
 			return stateCopy;

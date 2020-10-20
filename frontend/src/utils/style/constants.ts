@@ -284,7 +284,7 @@ export const fontSizes = {
 			header: "1rem",
 			create: {
 				form: {
-					header: "1.25rem",
+					header: "0.875rem",
 					characterCount: "0.75rem",
 					input: "0.875rem",
 				},

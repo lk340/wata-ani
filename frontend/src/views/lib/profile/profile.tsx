@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 import axios from "axios";
 
 import * as Context from "@/context";
@@ -40,8 +41,17 @@ export const Profile = () => {
 	const animateData = Springs.data();
 
 	// --- Fetching Redux State --- //
+	const dispatch = ReactRedux.useDispatch();
 	const currentUser = Functions.getSession();
 	const ratingsRedux = Functions.getRatings();
+	const userPostsRedux = Functions.getUserPosts();
+	const postsErrorsRedux = Functions.getPostsErrors();
+
+	React.useEffect(() => {
+		if (userId) {
+			Actions.Posts.thunkGetUserPosts(userId, dispatch, postsErrorsRedux);
+		}
+	}, [userId]);
 
 	// --- Setting Local Component State Values --- //
 	React.useEffect(() => {
@@ -95,8 +105,23 @@ export const Profile = () => {
 	// --- Review Card Logic --- //
 	let reviewCards: React.ReactNode[] | "" = "";
 
-	if (pagination.state.postResults.length > 0) {
-		reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
+	// if (pagination.state.postResults.length > 0) {
+	// 	reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
+	// 		return (
+	// 			<Styled.ProfilePost key={post.id}>
+	// 				<Components.Post
+	// 					post={post}
+	// 					currentUser={currentUser}
+	// 					username={username}
+	// 					ratingsRedux={ratingsRedux}
+	// 				/>
+	// 			</Styled.ProfilePost>
+	// 		);
+	// 	});
+	// }
+
+	if (userPostsRedux.length > 0) {
+		reviewCards = userPostsRedux.map((post: Actions.Posts.Post) => {
 			return (
 				<Styled.ProfilePost key={post.id}>
 					<Components.Post

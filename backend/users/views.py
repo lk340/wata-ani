@@ -62,8 +62,6 @@ class UserPosts(APIView, LimitOffsetPagination):
         paginated_posts = self.paginate_queryset(posts, request, view=self)
         serializer = PostSerializer(paginated_posts, many=True)
         return self.get_paginated_response(serializer.data)
-        
-        # return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class UserPostRating(APIView):

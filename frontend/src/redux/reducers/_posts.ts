@@ -46,3 +46,25 @@ export function postsReducer(state: State = {}, action: Action) {
 			return stateCopy;
 	}
 }
+
+type UserPostsAction = {
+	type: typeof Actions.Posts.GET_USER_POSTS | typeof Actions.Posts.CREATE_USER_POST;
+	[key: string]: any;
+};
+
+export function userPostsReducer(state: State = [], action: UserPostsAction) {
+	Object.freeze(state);
+	const stateCopy: Actions.Posts.Post[] = Lodash.merge([], state);
+
+	switch (action.type) {
+		case Actions.Posts.GET_USER_POSTS:
+			return action.posts.results;
+
+		case Actions.Posts.CREATE_USER_POST:
+			stateCopy.unshift(action.post);
+			return stateCopy;
+
+		default:
+			return stateCopy;
+	}
+}

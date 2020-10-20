@@ -1,5 +1,6 @@
 import * as ReactRedux from "react-redux";
 
+import * as Actions from "@/redux/actions";
 import * as Types from "@/utils/types";
 import { clearErrors } from "@/redux/actions/_clear_errors";
 
@@ -12,11 +13,15 @@ export function handleResponse(
 ) {
 	// Success
 	if (response.status < 400) {
+		console.log(response.data);
+		console.log(actionCreator);
+
 		dispatch(actionCreator(response.data));
 		if (errors.length > 0) dispatch(clearErrors());
 	}
 	// Failure
 	else {
+		console.log(response.data);
 		dispatch(errorActionCreator(response.data));
 	}
 }
@@ -49,6 +54,10 @@ export function getUsersErrors() {
 
 export function getPosts() {
 	return ReactRedux.useSelector((state: Types.ReduxState) => state.entities.posts);
+}
+
+export function getUserPosts() {
+	return ReactRedux.useSelector((state: Types.ReduxState) => state.entities.userPosts);
 }
 
 export function getPostsErrors() {

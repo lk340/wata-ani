@@ -5,6 +5,8 @@ import * as Types from "@/utils/types";
 import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Functions from "@/utils/functions";
 
+import { Post } from "../actions/_posts";
+
 const validateStatus = AxiosHelpers.validateStatus;
 
 export const GET_USERS = "GET_USERS";

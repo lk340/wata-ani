@@ -12,7 +12,9 @@ const validateStatus = AxiosHelpers.validateStatus;
 
 export const GET_POSTS = "GET_POSTS";
 export const GET_POST = "GET_POST";
+export const GET_USER_POSTS = "GET_USER_POSTS";
 export const CREATE_POST = "CREATE_POST";
+export const CREATE_USER_POST = "CREATE_USER_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 export const POST_ERRORS = "POST_ERRORS";
@@ -35,7 +37,7 @@ type CreateData = {
 	review: string;
 	personal_rating: number;
 	author: number;
-	tags: number[];
+	tags?: number[];
 	user_ratings: number[];
 };
 
@@ -57,9 +59,23 @@ function getPost(post: Post): Types.POJO {
 	};
 }
 
+function getUserPosts(posts: Post[]): Types.POJO {
+	return {
+		type: GET_USER_POSTS,
+		posts,
+	};
+}
+
 function createPost(post: Post): Types.POJO {
 	return {
 		type: CREATE_POST,
+		post,
+	};
+}
+
+function createUserPost(post: Post): Types.POJO {
+	return {
+		type: CREATE_USER_POST,
 		post,
 	};
 }
@@ -133,6 +149,20 @@ export async function thunkGetPost(
 	}
 }
 
+export async function thunkGetUserPosts(
+	userId: number,
+	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
+): Promise<void> {
+	try {
+		const response = await axios.get(`/api/users/${userId}/posts/`, { validateStatus });
+		Functions.handleResponse(dispatch, response, getUserPosts, postErrors, errors);
+	} catch (error) {
+		// Dev debug log
+		console.log(error);
+	}
+}
+
 export async function thunkCreatePost(
 	data: CreateData,
 	dispatch: Function,
@@ -141,6 +171,20 @@ export async function thunkCreatePost(
 	try {
 		const response = await axios.post("/api/posts/", data, { validateStatus });
 		Functions.handleResponse(dispatch, response, createPost, postErrors, errors);
+	} catch (error) {
+		// Dev debug log
+		console.log(error);
+	}
+}
+
+export async function thunkCreateUserPost(
+	data: CreateData,
+	dispatch: Function,
+	errors: Types.ActionCreatorErrors,
+): Promise<void> {
+	try {
+		const response = await axios.post("/api/posts/", data, { validateStatus });
+		Functions.handleResponse(dispatch, response, createUserPost, postErrors, errors);
 	} catch (error) {
 		// Dev debug log
 		console.log(error);
