@@ -1,11 +1,7 @@
 import * as React from "react";
-import * as ReactRedux from "react-redux";
-import axios from "axios";
 
 import * as Helpers from "@/context/helpers";
 import * as Actions from "@/redux/actions";
-import * as AxiosHelpers from "@/utils/api/axios-helpers";
-import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
 type State = {
@@ -165,45 +161,6 @@ export const useNavbarOptionsCreateContext = Helpers.createUseContext(() => {
 			);
 		}
 
-		// async function createPost(): Promise<void> {
-		// 	try {
-		// 		const data = {
-		// 			title: reviewTitle,
-		// 			series_title: seriesTitle,
-		// 			review,
-		// 			personal_rating: personalRating,
-		// 			author: currentUserId,
-		// 			user_ratings: [],
-		// 		};
-
-		// 		const validateStatus = AxiosHelpers.validateStatus;
-		// 		const response = await axios.post(`/api/posts/`, data, { validateStatus });
-
-		// 		// Success
-		// 		if (response.status < 400) {
-		// 			console.log(response.data);
-
-		// 			clearErrors();
-		// 			toggleCreate();
-		// 		}
-		// 		// Failure
-		// 		else {
-		// 			console.log(response.data);
-		// 		}
-		// 	} catch (error) {
-		// 		// Dev Debug Log
-		// 		console.log(error);
-		// 	}
-		// }
-
-		// if (currentUserId && checkNoErrors()) createPost();
-
-		// ↓↓↓
-		// The code below was created when I was attempting to fix the issue with the profile
-		// page not re-rendering when creating a new post. I decided to scrap this functionality for
-		// now because it coincides with a much more important feature: pagination.
-		// ↓↓↓
-
 		if (currentUserId && checkNoErrors()) {
 			const data = {
 				title: reviewTitle,
@@ -220,10 +177,6 @@ export const useNavbarOptionsCreateContext = Helpers.createUseContext(() => {
 			toggleCreate();
 		}
 	}
-
-	// =============== //
-	// ↓↓↓ API ↓↓↓ //
-	// =============== //
 
 	// =============== //
 	// ↓↓↓ Exports ↓↓↓ //

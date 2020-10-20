@@ -1,17 +1,15 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
-import axios from "axios";
 
 import * as Context from "@/context";
-import * as Actions from "@/redux/actions";
 import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
-import * as AxiosHelpers from "@/utils/api/axios-helpers";
 
 import * as Styled from "./create.styled";
 import * as Springs from "./create.springs";
 
 /**
+ * Fetching Redux State
  * Animations
  */
 
