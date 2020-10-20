@@ -16,6 +16,7 @@ import * as Mouse from "@/context/utilities/mouse";
 import * as AuthForm from "@/context/data/auth-form";
 import * as Navbar from "@/context/data/navbar";
 import * as Pagination from "@/context/data/pagination";
+import * as NavbarOptionsCreate from "@/context/data/navbar-options-create"
 
 // =============== //
 // ↓↓↓ Exports ↓↓↓ //
@@ -31,4 +32,5 @@ export {
 	AuthForm,
 	Navbar,
 	Pagination,
+	NavbarOptionsCreate
 };

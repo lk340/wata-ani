@@ -78,12 +78,14 @@ export const Profile = () => {
 				const endpoint = `/api/users/${userId}/posts/`;
 				const validateStatus = AxiosHelpers.validateStatus;
 				const response = await axios.get(endpoint, { validateStatus });
-
+				
 				// Success
 				if (response.status < 400) {
 					const resultPaginationCount = 12;
 					const resultTotalCount = response.data.count;
 					const maxPageCount = Math.ceil(resultTotalCount / resultPaginationCount);
+
+					console.log("Response:", response.data.results)
 
 					pagination.setters.setPagination({
 						postResults: response.data.results,
@@ -100,28 +102,13 @@ export const Profile = () => {
 			}
 		}
 		if (userId) fetchUserPosts();
-	}, [userId]);
+	}, [userId, userPostsRedux]);
 
 	// --- Review Card Logic --- //
 	let reviewCards: React.ReactNode[] | "" = "";
 
-	// if (pagination.state.postResults.length > 0) {
-	// 	reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
-	// 		return (
-	// 			<Styled.ProfilePost key={post.id}>
-	// 				<Components.Post
-	// 					post={post}
-	// 					currentUser={currentUser}
-	// 					username={username}
-	// 					ratingsRedux={ratingsRedux}
-	// 				/>
-	// 			</Styled.ProfilePost>
-	// 		);
-	// 	});
-	// }
-
-	if (userPostsRedux.length > 0) {
-		reviewCards = userPostsRedux.map((post: Actions.Posts.Post) => {
+	if (pagination.state.postResults.length > 0) {
+		reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
 			return (
 				<Styled.ProfilePost key={post.id}>
 					<Components.Post
@@ -134,6 +121,29 @@ export const Profile = () => {
 			);
 		});
 	}
+
+	// ↓↓↓
+	// Below code uses Redux instead of pagination post results to render user profile posts.
+	// The unfortunate setback with this is that it messes with the pagination logic, so, I
+	// had to pick between iterating through Redux or pagination posts, and I decided that it'd
+	// be better to iterate through the pagination posts because pagination is a much better feature
+	// than simply re-rendering when making a new post.
+	// ↓↓↓
+
+	// if (userPostsRedux.length > 0) {
+	// 	reviewCards = userPostsRedux.map((post: Actions.Posts.Post) => {
+	// 		return (
+	// 			<Styled.ProfilePost key={post.id}>
+	// 				<Components.Post
+	// 					post={post}
+	// 					currentUser={currentUser}
+	// 					username={username}
+	// 					ratingsRedux={ratingsRedux}
+	// 				/>
+	// 			</Styled.ProfilePost>
+	// 		);
+	// 	});
+	// }
 
 	return (
 		<Styled.Profile style={animateBackground}>

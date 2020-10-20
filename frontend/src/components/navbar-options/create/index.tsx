@@ -13,24 +13,19 @@ import * as Springs from "./create.springs";
 
 /**
  * Animations
- * Error Handling
- * Fetching Redux State
- * Error Handlers
- * Form Handlers
  */
 
 export const Create = () => {
+	const {
+		navbarOptionsCreate,
+	} = Context.NavbarOptionsCreate.useNavbarOptionsCreateContext();
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { userAgent } = Context.UserAgent.useUserAgentContext();
 
-	const [seriesTitle, setSeriesTitle] = React.useState("");
-	const [reviewTitle, setReviewTitle] = React.useState("");
-	const [review, setReview] = React.useState("");
-	const [personalRating, setPersonalRating] = React.useState("");
-	const [seriesTitleError, setSeriesTitleError] = React.useState("");
-	const [reviewTitleError, setReviewTitleError] = React.useState("");
-	const [reviewError, setReviewError] = React.useState("");
-	const [personalRatingError, setPersonalRatingError] = React.useState("");
+	// --- Fetching Redux State --- //
+	const dispatch = ReactRedux.useDispatch();
+	const currentUser = Functions.getSession();
+	const postsErrorsRedux = Functions.getPostsErrors();
 
 	// --- Animations --- //
 	const transitionAnimation = Springs.transition(
@@ -41,138 +36,6 @@ export const Create = () => {
 	const animateCreate = Springs.create();
 	const animateHeader = Springs.header();
 	const animateInput = Springs.input();
-
-	// --- Error Handling --- //
-	React.useEffect(() => handleSeriesTitleError(), [seriesTitle]);
-	React.useEffect(() => handleReviewTitleError(), [reviewTitle]);
-	React.useEffect(() => handleReviewError(), [review]);
-	React.useEffect(() => handlePersonalRatingError(), [personalRating]);
-
-	// --- Fetching Redux State --- //
-	const dispatch = ReactRedux.useDispatch();
-	const currentUser = Functions.getSession();
-	const postsErrors = Functions.getPostsErrors();
-
-	// --- Error Handlers --- //
-	function handleSeriesTitleError(): void {
-		if (seriesTitle === "") setSeriesTitleError("");
-		else if (seriesTitle.length > 100) setSeriesTitleError("Max 100 characters!");
-		else if (seriesTitle.length < 100) setSeriesTitleError("");
-		else setSeriesTitleError("");
-	}
-
-	function handleReviewTitleError(): void {
-		if (reviewTitle === "") setReviewTitleError("");
-		else if (reviewTitle.length > 50) setReviewTitleError("Max 50 characters!");
-		else if (reviewTitle.length < 50) setReviewTitleError("");
-		else setReviewTitleError("");
-	}
-
-	function handleReviewError(): void {
-		if (review === "") setReviewError("");
-		else if (review.length > 500) setReviewError("Max 500 characters!");
-		else if (review.length < 500) setReviewError("");
-		else setReviewError("");
-	}
-
-	function handlePersonalRatingError(): void {
-		if (personalRating === "") setPersonalRatingError("You must set a rating!");
-		else if (personalRating === "0") setPersonalRatingError("Must be between 1 and 10!");
-		else if (Number(personalRating) < 1)
-			setPersonalRatingError("Must be between 1 and 10!");
-		else if (Number(personalRating) > 10)
-			setPersonalRatingError("Must be between 1 and 10!");
-		else if (!Number(personalRating)) setPersonalRatingError("Must be a number!");
-		else setPersonalRatingError("");
-	}
-
-	// --- Form Handlers --- //
-	function handleTitleChange(
-		event: Types.Input,
-		type: "series" | "post" | "personal rating",
-	): void {
-		const userInput = event.currentTarget.value;
-		if (type === "series") setSeriesTitle(userInput);
-		else if (type === "post") setReviewTitle(userInput);
-		else setPersonalRating(userInput);
-	}
-
-	function handleReviewChange(event: Types.Textarea): void {
-		setReview(event.currentTarget.value);
-	}
-
-	function handleSubmit(event: Types.Submit): void {
-		event.preventDefault();
-
-		async function createPost(): Promise<void> {
-			try {
-				const data = {
-					title: reviewTitle,
-					series_title: seriesTitle,
-					review,
-					personal_rating: personalRating,
-					author: currentUser.id,
-					user_ratings: [],
-				};
-
-				const validateStatus = AxiosHelpers.validateStatus;
-				const response = await axios.post(`/api/posts/`, data, { validateStatus });
-
-				// Success
-				if (response.status < 400) {
-					console.log(response.data);
-
-					setSeriesTitle("");
-					setReviewTitle("");
-					setReview("");
-					setPersonalRating("");
-					setSeriesTitleError("");
-					setReviewTitleError("");
-					setReviewError("");
-					setPersonalRatingError("");
-					navbar.setters.toggleCreate();
-				}
-				// Failure
-				else {
-					console.log(response.data);
-				}
-			} catch (error) {
-				// Dev Debug Log
-				console.log(error);
-			}
-		}
-
-		// if (currentUser.id) createPost();
-
-		if (
-			currentUser.id &&
-			seriesTitleError === "" &&
-			reviewTitleError === "" &&
-			reviewError === "" &&
-			personalRatingError === ""
-		) {
-			const data = {
-				title: reviewTitle,
-				series_title: seriesTitle,
-				review,
-				personal_rating: Number(personalRating),
-				author: currentUser.id,
-				user_ratings: [],
-			};
-
-			Actions.Posts.thunkCreateUserPost(data, dispatch, postsErrors);
-
-			setSeriesTitle("");
-			setReviewTitle("");
-			setReview("");
-			setPersonalRating("");
-			setSeriesTitleError("");
-			setReviewTitleError("");
-			setReviewError("");
-			setPersonalRatingError("");
-			navbar.setters.toggleCreate();
-		}
-	}
 
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
@@ -187,16 +50,28 @@ export const Create = () => {
 						{/* Body */}
 						<Styled.CreateBody>
 							{/* Form */}
-							<Styled.CreateBodyForm onSubmit={handleSubmit}>
+							<Styled.CreateBodyForm
+								onSubmit={(event: Types.Submit) =>
+									navbarOptionsCreate.handlers.handleSubmit(
+										event,
+										navbar.setters.toggleCreate,
+										currentUser.id,
+										dispatch,
+										postsErrorsRedux,
+									)
+								}
+							>
 								{/* Series Title Input */}
 								<Styled.CreateBodyFormGroup>
 									<FormTitleGroup
 										title="Series Title"
-										characterCount={seriesTitle.length}
-										errorMessage={seriesTitleError}
+										characterCount={navbarOptionsCreate.state.seriesTitle.length}
+										errorMessage={navbarOptionsCreate.state.seriesTitleError}
 									/>
 									<Styled.CreateBodyFormSeriesTitleInput
-										onChange={(event: Types.Input) => handleTitleChange(event, "series")}
+										onChange={(event: Types.Input) =>
+											navbarOptionsCreate.handlers.handleTitleChange(event, "series")
+										}
 										style={animateInput}
 									/>
 								</Styled.CreateBodyFormGroup>
@@ -205,11 +80,13 @@ export const Create = () => {
 								<Styled.CreateBodyFormGroup>
 									<FormTitleGroup
 										title="Review Title"
-										characterCount={reviewTitle.length}
-										errorMessage={reviewTitleError}
+										characterCount={navbarOptionsCreate.state.reviewTitle.length}
+										errorMessage={navbarOptionsCreate.state.reviewTitleError}
 									/>
 									<Styled.CreateBodyFormReviewTitleInput
-										onChange={(event: Types.Input) => handleTitleChange(event, "post")}
+										onChange={(event: Types.Input) =>
+											navbarOptionsCreate.handlers.handleTitleChange(event, "post")
+										}
 										style={animateInput}
 									/>
 								</Styled.CreateBodyFormGroup>
@@ -218,11 +95,14 @@ export const Create = () => {
 								<Styled.CreateBodyFormGroup>
 									<FormTitleGroup
 										title="Personal Rating"
-										errorMessage={personalRatingError}
+										errorMessage={navbarOptionsCreate.state.personalRatingError}
 									/>
 									<Styled.CreateBodyFormPersonalRatingInput
 										onChange={(event: Types.Input) =>
-											handleTitleChange(event, "personal rating")
+											navbarOptionsCreate.handlers.handleTitleChange(
+												event,
+												"personal rating",
+											)
 										}
 										style={animateInput}
 									/>
@@ -232,11 +112,11 @@ export const Create = () => {
 								<Styled.CreateBodyFormGroup>
 									<FormTitleGroup
 										title="Your Review"
-										characterCount={review.length}
-										errorMessage={reviewError}
+										characterCount={navbarOptionsCreate.state.review.length}
+										errorMessage={navbarOptionsCreate.state.reviewError}
 									/>
 									<Styled.CreateBodyFormReviewTextarea
-										onChange={handleReviewChange}
+										onChange={navbarOptionsCreate.handlers.handleReviewChange}
 										style={animateInput}
 									/>
 								</Styled.CreateBodyFormGroup>
