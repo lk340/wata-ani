@@ -127,6 +127,10 @@ export const Profile = () => {
 			<Components.Navbar />
 			<Components.NavbarMobile />
 
+			<Styled.ProfileMobileOptionComponents>
+				<Components.Create />
+			</Styled.ProfileMobileOptionComponents>
+
 			<Styled.ProfileInformationContainer style={animateInformation}>
 				<Styled.ProfileInformation>
 					<Styled.ProfileInformationMain>

@@ -26,10 +26,6 @@ export const NavbarMobile = () => {
 
 	return (
 		<Styled.NavbarMobile display={true.toString()} style={animateNavbarMobile}>
-			<Styled.NavbarMobileOptionComponents>
-				<Components.Create />
-			</Styled.NavbarMobileOptionComponents>
-			
 			{/* Home */}
 			<OptionLink
 				to="/"

@@ -23,17 +23,24 @@ import close from "@/icons/close.svg";
 // ============== //
 
 export const CreateContainer = styled(animated.div)`
-	${Snippets.absolute("100%", "0%", "auto", "auto", 2)};
+	${Snippets.absolute("100%", "0%", "auto", "auto")};
 	margin-right: ${Constants.size.components.navbar.spacer}px;
 	border-radius: ${Constants.borderRadius.components.navbarOption.container};
 
 	@media (max-width: 625px) {
+		${Snippets.absolute("auto", "auto", "auto", "auto")};
+		margin-right: 0px;
+		width: 100%;
 	}
 `;
 
 export const Create = styled(animated.div)`
 	${Snippets.flex("column")};
 	border-radius: ${Constants.borderRadius.components.navbarOption.container};
+
+	/* @media (max-width: 625px) {
+		height: 100%;
+	} */
 `;
 
 // ============== //
@@ -74,7 +81,8 @@ export const CreateBody = styled("div")`
 // ============ //
 
 export const CreateBodyForm = styled("form")`
-	${Snippets.grid(1, "auto", 30, "center", "center")};
+	/* ${Snippets.grid(1, "auto", 30, "center", "center")}; */
+	${Snippets.flexColumnCenter()};
 `;
 
 export const CreateBodyFormGroup = styled("div")``;
@@ -117,6 +125,7 @@ export const CreateBodyFormPersonalRatingError = styled(animated.h3)`
 
 const inputStyles = css`
 	${Snippets.size("400px", "50px")};
+	margin-bottom: 30px;
 	color: inherit;
 	border-radius: ${Constants.borderRadius.components.navbarOption.create.form};
 	font-size: ${Constants.fontSizes.components.navbarOption.create.form.input};

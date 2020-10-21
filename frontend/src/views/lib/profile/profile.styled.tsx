@@ -9,6 +9,7 @@ import * as Colors from "@/utils/style/colors";
  * Profile
  * Information
  * Posts
+ * Mobile Options
  */
 
 // =============== //
@@ -106,8 +107,6 @@ export const ProfilePosts = styled("div")`
 	max-width: ${Constants.globals.maxWidth / 2}px;
 	margin: 30px auto 0px;
 
-	border: red solidd 1px;
-
 	@media (max-width: 654px) {
 		padding: 0px ${Constants.sidePaddings.mobile}px;
 	}
@@ -115,4 +114,21 @@ export const ProfilePosts = styled("div")`
 
 export const ProfilePost = styled("div")`
 	width: 100%;
+`;
+
+// ====================== //
+// ↓↓↓ Mobile Options ↓↓↓ //
+// ====================== //
+const navbarMobileHeight = Constants.size.components.navbar.height / 2;
+const navbarMobileOptionsHeight = Constants.size.components.navbarMobile.height;
+const totalMobileHeight = `${navbarMobileHeight + navbarMobileOptionsHeight}px`;
+
+export const ProfileMobileOptionComponents = styled("div")`
+	display: none;
+
+	@media (max-width: 625px) {
+		${Snippets.fixed("auto", "0%", "auto", "0%", 2)};
+		display: block;
+		height: ${`calc(100vh - ${totalMobileHeight})`};
+	}
 `;
