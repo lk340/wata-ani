@@ -23,10 +23,12 @@ import close from "@/icons/close.svg";
 // ============== //
 
 export const CreateContainer = styled(animated.div)`
-	top: 100%;
-	right: 0%;
+	${Snippets.absolute("100%", "0%", "auto", "auto", 2)};
 	margin-right: ${Constants.size.components.navbar.spacer}px;
 	border-radius: ${Constants.borderRadius.components.navbarOption.container};
+
+	@media (max-width: 625px) {
+	}
 `;
 
 export const Create = styled(animated.div)`

@@ -125,6 +125,7 @@ export const Profile = () => {
 	return (
 		<Styled.Profile style={animateBackground}>
 			<Components.Navbar />
+			<Components.NavbarMobile />
 
 			<Styled.ProfileInformationContainer style={animateInformation}>
 				<Styled.ProfileInformation>

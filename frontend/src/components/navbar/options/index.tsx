@@ -46,7 +46,7 @@ export const Options = () => {
 			</Styled.OptionLink>
 
 			{/* Like Button */}
-			<Styled.OptionButton
+			{/* <Styled.OptionButton
 				onClick={navbar.setters.toggleLikes}
 				display={displayWhenSignedIn.toString()}
 				test_id="like"
@@ -57,7 +57,7 @@ export const Options = () => {
 					mode={theme.state.mode}
 					state={navbar.state.likes}
 				/>
-			</Styled.OptionButton>
+			</Styled.OptionButton> */}
 
 			{/* Create Button */}
 			<Styled.OptionButton

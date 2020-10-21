@@ -7,6 +7,7 @@ import * as Types from "@/utils/types";
 
 import * as Styled from "./create.styled";
 import * as Springs from "./create.springs";
+import * as OptionSprings from "../navbar-options.springs";
 
 /**
  * Fetching Redux State
@@ -26,12 +27,12 @@ export const Create = () => {
 	const postsErrorsRedux = Functions.getPostsErrors();
 
 	// --- Animations --- //
-	const transitionAnimation = Springs.transition(
+	const transitionAnimation = OptionSprings.transition(
 		navbar.state.create,
 		userAgent.state.isMobile,
 	);
 
-	const animateCreate = Springs.create();
+	const animateCreate = OptionSprings.wrapper();
 	const animateHeader = Springs.header();
 	const animateInput = Springs.input();
 

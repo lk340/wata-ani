@@ -33,3 +33,11 @@ export const NavbarMobile = styled(animated.div).attrs(() => ({
 		}};
 	}
 `;
+
+export const NavbarMobileOptionComponents = styled("div")`
+	display: none;
+
+	@media (max-width: 625px) {
+		display: block;
+	}
+`;

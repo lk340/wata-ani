@@ -26,6 +26,10 @@ export const NavbarMobile = () => {
 
 	return (
 		<Styled.NavbarMobile display={true.toString()} style={animateNavbarMobile}>
+			<Styled.NavbarMobileOptionComponents>
+				<Components.Create />
+			</Styled.NavbarMobileOptionComponents>
+			
 			{/* Home */}
 			<OptionLink
 				to="/"
@@ -45,7 +49,7 @@ export const NavbarMobile = () => {
 			<Components.Spacer width="40px" />
 
 			{/* Likes */}
-			<OptionButton
+			{/* <OptionButton
 				onClick={navbar.setters.toggleLikes}
 				icon={
 					<Icons.LikeHollow
@@ -59,7 +63,7 @@ export const NavbarMobile = () => {
 				state={navbar.state.likes}
 				test_id="likes"
 			/>
-			<Components.Spacer width="40px" />
+			<Components.Spacer width="40px" /> */}
 
 			{/* Create */}
 			<OptionButton
@@ -97,7 +101,7 @@ export const NavbarMobile = () => {
 
 			{/* Profile */}
 			<OptionLink
-				to="/"
+				to="/profile"
 				onClick={navbar.setters.setProfileOn}
 				state={navbar.state.profile}
 				icon={

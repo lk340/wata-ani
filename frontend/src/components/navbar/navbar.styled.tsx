@@ -89,6 +89,12 @@ export const NavbarRegisterLink = styled(Gatsby.Link).attrs(() => ({
 	padding: 12px 18px;
 `;
 
+export const NavbarOptionComponents = styled("div")`
+	@media (max-width: 625px) {
+		display: none;
+	}
+`;
+
 // ======================== //
 // ↓↓↓ Navbar Logo Icon ↓↓↓ //
 // ======================== //
