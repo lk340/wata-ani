@@ -28,7 +28,7 @@ export const Navbar = () => {
 
 	return (
 		<Styled.Navbar style={animateNavbar}>
-			<Styled.NavbarGlobalStyles mode={navbar.state.hamburgerOpen.toString()} />
+			<Styled.NavbarGlobalStyles hamburger_open={navbar.state.hamburgerOpen.toString()} />
 
 			<Styled.NavbarMaxWidth>
 				<Styled.NavbarOptionComponents>

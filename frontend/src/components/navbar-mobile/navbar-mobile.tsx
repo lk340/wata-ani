@@ -24,8 +24,13 @@ export const NavbarMobile = () => {
 
 	const animateNavbarMobile = Springs.navbarMobile();
 
+	const isNavbarOptionOpen =
+		navbar.state.create || navbar.state.search || navbar.state.settings;
+
 	return (
 		<Styled.NavbarMobile display={true.toString()} style={animateNavbarMobile}>
+			<Styled.NavbarMobileGlobalStyles option_open={isNavbarOptionOpen.toString()} />
+
 			{/* Home */}
 			<OptionLink
 				to="/"

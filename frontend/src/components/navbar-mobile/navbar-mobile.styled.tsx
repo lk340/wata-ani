@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { animated } from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
@@ -31,5 +31,18 @@ export const NavbarMobile = styled(animated.div).attrs(() => ({
 			if (display === "true" && isCurrentUser) return "flex";
 			else return "none";
 		}};
+	}
+`;
+
+
+// ============== //
+// ↓↓↓ Global ↓↓↓ //
+// ============== //
+
+type GlobalProps = { option_open: string };
+
+export const NavbarMobileGlobalStyles = createGlobalStyle`
+	body {
+		overflow-y: ${(props: GlobalProps) => (props.option_open === "true" ? "hidden" : "auto")};
 	}
 `;

@@ -131,4 +131,6 @@ export const ProfileMobileOptionComponents = styled("div")`
 		display: block;
 		height: ${`calc(100vh - ${totalMobileHeight})`};
 	}
+
+	border: red solid 1px;
 `;

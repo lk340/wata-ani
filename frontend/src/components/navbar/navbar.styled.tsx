@@ -47,11 +47,11 @@ export const NavbarMaxWidth = styled("div")`
 // ↓↓↓ Global ↓↓↓ //
 // ============== //
 
-type GlobalProps = { mode: string };
+type GlobalProps = { hamburger_open: string };
 
 export const NavbarGlobalStyles = createGlobalStyle`
 	body {
-		overflow-y: ${(props: GlobalProps) => (props.mode === "true" ? "hidden" : "auto")};
+		overflow-y: ${(props: GlobalProps) => (props.hamburger_open === "true" ? "hidden" : "auto")};
 	}
 `;
 

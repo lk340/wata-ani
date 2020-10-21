@@ -22,25 +22,36 @@ import close from "@/icons/close.svg";
 // ↓↓↓ Create ↓↓↓ //
 // ============== //
 
+const navbarMobileHeight = Constants.size.components.navbar.height / 2;
+const navbarMobileOptionsHeight = Constants.size.components.navbarMobile.height;
+const totalMobileHeight = navbarMobileHeight + navbarMobileOptionsHeight;
+
 export const CreateContainer = styled(animated.div)`
 	${Snippets.absolute("100%", "0%", "auto", "auto")};
 	margin-right: ${Constants.size.components.navbar.spacer}px;
 	border-radius: ${Constants.borderRadius.components.navbarOption.container};
 
 	@media (max-width: 625px) {
-		${Snippets.absolute("auto", "auto", "auto", "auto")};
+		${Snippets.fixed("auto", "0%", "auto", "0%", 2)};
 		margin-right: 0px;
-		width: 100%;
+		height: ${`calc(100vh - ${totalMobileHeight}px)`};
+		border-radius: 0rem;
+		transform: translateY(0px) !important;
 	}
+
+	border: red solid 1px;
 `;
 
 export const Create = styled(animated.div)`
 	${Snippets.flex("column")};
 	border-radius: ${Constants.borderRadius.components.navbarOption.container};
 
-	/* @media (max-width: 625px) {
-		height: 100%;
-	} */
+	@media (max-width: 625px) {
+		border: none !important;
+		border-radius: 0rem;
+
+		border: red solid 1px !important;
+	}
 `;
 
 // ============== //
@@ -51,6 +62,8 @@ export const CreateHeader = styled(animated.div)`
 	${Snippets.flex("row", "space-between", "center")};
 	height: ${Constants.size.components.navbarOption.header}px;
 	padding: 0px 30px;
+
+	border: blue solid 1px !important;
 `;
 
 export const CreateHeaderTitle = styled("h2")`
@@ -74,6 +87,8 @@ export const CreateHeaderClose = styled("img").attrs(() => ({
 export const CreateBody = styled("div")`
 	flex: 1;
 	padding: 30px;
+
+	border: blue solid 1px !important;
 `;
 
 // ============ //
@@ -81,11 +96,14 @@ export const CreateBody = styled("div")`
 // ============ //
 
 export const CreateBodyForm = styled("form")`
-	/* ${Snippets.grid(1, "auto", 30, "center", "center")}; */
 	${Snippets.flexColumnCenter()};
 `;
 
-export const CreateBodyFormGroup = styled("div")``;
+export const CreateBodyFormGroup = styled("div")`
+	@media (max-width: 625px) {
+		width: 100%;
+	}
+`;
 
 // ====================================== //
 // ↓↓↓ Form : Title & Character Count ↓↓↓ //
@@ -94,6 +112,10 @@ export const CreateBodyFormGroup = styled("div")``;
 export const CreateBodyFormTitle_Count = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
 	margin-bottom: 10px;
+
+	@media (max-width: 625px) {
+		display: none;
+	}
 `;
 
 export const CreateBodyFormTitle = styled("h3")`
@@ -130,6 +152,10 @@ const inputStyles = css`
 	border-radius: ${Constants.borderRadius.components.navbarOption.create.form};
 	font-size: ${Constants.fontSizes.components.navbarOption.create.form.input};
 	outline: none;
+
+	@media (max-width: 625px) {
+		width: 100%;
+	}
 `;
 
 export const CreateBodyFormSeriesTitleInput = styled(animated.input).attrs(() => ({
