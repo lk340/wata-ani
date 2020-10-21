@@ -84,7 +84,7 @@ export const NavbarMobile = () => {
 			<Components.Spacer width="40px" />
 
 			{/* Search */}
-			<OptionButton
+			{/* <OptionButton
 				onClick={navbar.setters.toggleSearch}
 				icon={
 					<Icons.Search
@@ -98,7 +98,7 @@ export const NavbarMobile = () => {
 				state={navbar.state.search}
 				test_id="search"
 			/>
-			<Components.Spacer width="40px" />
+			<Components.Spacer width="40px" /> */}
 
 			{/* Profile */}
 			<OptionLink

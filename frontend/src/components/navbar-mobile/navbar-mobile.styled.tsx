@@ -34,7 +34,6 @@ export const NavbarMobile = styled(animated.div).attrs(() => ({
 	}
 `;
 
-
 // ============== //
 // ↓↓↓ Global ↓↓↓ //
 // ============== //

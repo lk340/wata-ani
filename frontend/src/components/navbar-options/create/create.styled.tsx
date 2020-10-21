@@ -29,17 +29,16 @@ const totalMobileHeight = navbarMobileHeight + navbarMobileOptionsHeight;
 export const CreateContainer = styled(animated.div)`
 	${Snippets.absolute("100%", "0%", "auto", "auto")};
 	margin-right: ${Constants.size.components.navbar.spacer}px;
-	border-radius: ${Constants.borderRadius.components.navbarOption.container};
+	overflow-y: auto;
 
 	@media (max-width: 625px) {
 		${Snippets.fixed("auto", "0%", "auto", "0%", 2)};
 		margin-right: 0px;
-		height: ${`calc(100vh - ${totalMobileHeight}px)`};
-		border-radius: 0rem;
+		/* height: ${`calc(100vh - ${totalMobileHeight}px)`}; */
 		transform: translateY(0px) !important;
 	}
 
-	border: red solid 1px;
+	border: red solid 2px !important;
 `;
 
 export const Create = styled(animated.div)`
@@ -47,10 +46,10 @@ export const Create = styled(animated.div)`
 	border-radius: ${Constants.borderRadius.components.navbarOption.container};
 
 	@media (max-width: 625px) {
+		height: 100%;
 		border: none !important;
 		border-radius: 0rem;
-
-		border: red solid 1px !important;
+		border: green solid 2px !important;
 	}
 `;
 
@@ -63,7 +62,7 @@ export const CreateHeader = styled(animated.div)`
 	height: ${Constants.size.components.navbarOption.header}px;
 	padding: 0px 30px;
 
-	border: blue solid 1px !important;
+	border: white solid 2px !important;
 `;
 
 export const CreateHeaderTitle = styled("h2")`
@@ -88,7 +87,7 @@ export const CreateBody = styled("div")`
 	flex: 1;
 	padding: 30px;
 
-	border: blue solid 1px !important;
+	border: blue solid 2px;
 `;
 
 // ============ //
@@ -97,6 +96,8 @@ export const CreateBody = styled("div")`
 
 export const CreateBodyForm = styled("form")`
 	${Snippets.flexColumnCenter()};
+
+	border: purple solid 2px;
 `;
 
 export const CreateBodyFormGroup = styled("div")`

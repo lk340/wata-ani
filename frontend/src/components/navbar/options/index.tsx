@@ -74,7 +74,7 @@ export const Options = () => {
 			</Styled.OptionButton>
 
 			{/* Search Button */}
-			<Styled.OptionButton
+			{/* <Styled.OptionButton
 				onClick={navbar.setters.toggleSearch}
 				display={displayWhenSignedIn.toString()}
 				test_id="search"
@@ -85,7 +85,7 @@ export const Options = () => {
 					mode={theme.state.mode}
 					state={navbar.state.search}
 				/>
-			</Styled.OptionButton>
+			</Styled.OptionButton> */}
 
 			{/* Settings Button */}
 			<Styled.OptionButton
