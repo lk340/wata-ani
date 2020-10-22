@@ -22,14 +22,10 @@ import close from "@/icons/close.svg";
 // ↓↓↓ Create ↓↓↓ //
 // ============== //
 
-const navbarMobileHeight = Constants.size.components.navbar.height / 2;
-const navbarMobileOptionsHeight = Constants.size.components.navbarMobile.height;
-const totalMobileHeight = navbarMobileHeight + navbarMobileOptionsHeight;
-
 export const CreateContainer = styled(animated.div)`
 	${Snippets.absolute("100%", "0%", "auto", "auto")};
 	margin-right: ${Constants.size.components.navbar.spacer}px;
-	overflow-y: auto;
+	/* overflow-y: auto; */
 
 	@media (max-width: 625px) {
 		${Snippets.fixed("0%", "0%", "0%", "0%", 2)};
@@ -191,4 +187,8 @@ export const CreateBodyFormSubmitButton = styled("button").attrs(() => ({
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};
 	cursor: pointer;
+
+	@media (max-width: 625px) {
+		margin-bottom: 30px;
+	}
 `;
