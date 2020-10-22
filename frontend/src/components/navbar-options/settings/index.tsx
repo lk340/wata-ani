@@ -8,6 +8,9 @@ import * as Types from "@/utils/types";
 import * as OptionStyled from "../navbar-options.styled";
 import * as OptionSprings from "../navbar-options.springs";
 
+import * as Styled from "./settings.styled";
+import * as Springs from "./settings.springs";
+
 export const Settings = () => {
 	const {
 		navbarOptionsSettings,
@@ -108,16 +111,7 @@ export const Settings = () => {
 										characterCount={navbarOptionsSettings.state.currentPassword.length}
 										errorMessage={navbarOptionsSettings.state.currentPasswordError}
 									/>
-									<OptionStyled.FormInput
-										onChange={(event: Types.Input) =>
-											navbarOptionsSettings.handlers.handleChange(
-												event,
-												"currentPassword",
-											)
-										}
-										placeholder="Enter your current password."
-										style={animateInput}
-									/>
+									<PasswordField type="current password" />
 								</OptionStyled.FormGroup>
 
 								{/* New Password Input */}
@@ -127,13 +121,7 @@ export const Settings = () => {
 										characterCount={navbarOptionsSettings.state.newPassword.length}
 										errorMessage={navbarOptionsSettings.state.newPasswordError}
 									/>
-									<OptionStyled.FormInput
-										onChange={(event: Types.Input) =>
-											navbarOptionsSettings.handlers.handleChange(event, "newPassword")
-										}
-										placeholder="Enter a new password."
-										style={animateInput}
-									/>
+									<PasswordField type="new password" />
 								</OptionStyled.FormGroup>
 
 								{/* New Password Confirm Input */}
@@ -143,16 +131,7 @@ export const Settings = () => {
 										characterCount={navbarOptionsSettings.state.newPasswordConfirm.length}
 										errorMessage={navbarOptionsSettings.state.newPasswordError}
 									/>
-									<OptionStyled.FormInput
-										onChange={(event: Types.Input) =>
-											navbarOptionsSettings.handlers.handleChange(
-												event,
-												"newPasswordConfirm",
-											)
-										}
-										placeholder="Confirm new password."
-										style={animateInput}
-									/>
+									<PasswordField type="new password confirmation" />
 								</OptionStyled.FormGroup>
 
 								{/* Submit Button */}
@@ -200,5 +179,80 @@ const FormTitleGroup = (props: FormTitleGroupProps) => {
 				{props.errorMessage}
 			</OptionStyled.FormError>
 		</>
+	);
+};
+
+// ====================== //
+// ↓↓↓ Password Field ↓↓↓ //
+// ====================== //
+
+type PasswordFieldProps = {
+	type: "current password" | "new password" | "new password confirmation";
+};
+
+const PasswordField = (props: PasswordFieldProps) => {
+	const {
+		navbarOptionsSettings,
+	} = Context.NavbarOptionsSettings.useNavbarOptionsSettings();
+
+	console.log(navbarOptionsSettings.state.currentPassword);
+	console.log(navbarOptionsSettings.state.newPassword);
+	console.log(navbarOptionsSettings.state.newPasswordConfirm);
+
+	// --- Setting Input Field Type --- //
+
+	let input: React.ReactNode = <React.Fragment />;
+
+	if (props.type === "current password") {
+		input = (
+			<Styled.InputCurrentPassword
+				onChange={(event: Types.Input) =>
+					navbarOptionsSettings.handlers.handleChange(event, "currentPassword")
+				}
+				reveal_password={navbarOptionsSettings.state.showPassword.toString()}
+			/>
+		);
+	} else if (props.type === "new password") {
+		input = (
+			<Styled.InputNewPassword
+				onChange={(event: Types.Input) =>
+					navbarOptionsSettings.handlers.handleChange(event, "newPassword")
+				}
+				reveal_password={navbarOptionsSettings.state.showPassword.toString()}
+			/>
+		);
+	} else {
+		input = (
+			<Styled.InputNewPasswordConfirmation
+				onChange={(event: Types.Input) =>
+					navbarOptionsSettings.handlers.handleChange(event, "newPasswordConfirm")
+				}
+				reveal_password={navbarOptionsSettings.state.showPassword.toString()}
+			/>
+		);
+	}
+
+	// --- Animations --- //
+
+	const animateContainer = Springs.container();
+
+	const animatePasswordHide = Springs.togglePasswordHideIcon(
+		navbarOptionsSettings.state.showPassword,
+	);
+
+	const animatePasswordShow = Springs.togglePasswordShowIcon(
+		navbarOptionsSettings.state.showPassword,
+	);
+
+	return (
+		<Styled.SettingsInputContainer style={animateContainer}>
+			{input}
+			<Styled.InputFieldPasswordRevealIcons
+				onClick={navbarOptionsSettings.setters.toggleShowPassword}
+			>
+				<Styled.InputIconPasswordHide style={animatePasswordHide} />
+				<Styled.InputIconPasswordShow style={animatePasswordShow} />
+			</Styled.InputFieldPasswordRevealIcons>
+		</Styled.SettingsInputContainer>
 	);
 };

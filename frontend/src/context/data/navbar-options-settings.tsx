@@ -17,6 +17,7 @@ type State = {
 	currentPasswordError: string;
 	newPasswordError: string;
 	newPasswordConfirmError: string;
+	showPassword: boolean;
 };
 
 const initialState = Object.freeze<State>({
@@ -30,6 +31,7 @@ const initialState = Object.freeze<State>({
 	currentPasswordError: "",
 	newPasswordError: "",
 	newPasswordConfirmError: "",
+	showPassword: false,
 });
 
 export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
@@ -48,6 +50,7 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 		currentPasswordError,
 		newPasswordError,
 		newPasswordConfirmError,
+		showPassword,
 	} = navbarOptionsSettings;
 
 	// ====================== //
@@ -66,6 +69,10 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 
 	function setNavbarOptionsSettings(state: Partial<State>): void {
 		_setNavbarOptionsSettings({ ...navbarOptionsSettings, ...state });
+	}
+
+	function toggleShowPassword(): void {
+		setNavbarOptionsSettings({ showPassword: !showPassword });
 	}
 
 	function clearErrors(): void {
@@ -201,7 +208,6 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 
 					// Success
 					if (response.status < 400) {
-						console.log(response.data);
 					}
 					// Failure
 					else {
@@ -236,6 +242,7 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 
 	const setters = {
 		setNavbarOptionsSettings,
+		toggleShowPassword,
 	};
 
 	const handlers = {
