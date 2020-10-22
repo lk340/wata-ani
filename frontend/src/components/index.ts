@@ -13,3 +13,4 @@ export { CTAButton } from "./cta-button/cta-button";
 export { Pagination } from "./pagination/pagination";
 export { Post } from "./post/post";
 export { Create } from "./navbar-options/create";
+export { Settings } from "./navbar-options/settings";

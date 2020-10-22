@@ -31,7 +31,7 @@ export const Settings = () => {
 							<OptionStyled.HeaderClose onClick={navbar.setters.toggleCreate} />
 						</OptionStyled.Header>
 						{/* Body */}
-						<OptionStyled.Body></OptionStyled.Body>
+						<OptionStyled.Body>Hello</OptionStyled.Body>
 					</OptionStyled.Wrapper>
 				</OptionStyled.Container>
 			)

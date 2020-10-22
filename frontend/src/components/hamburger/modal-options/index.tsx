@@ -68,13 +68,13 @@ export const ModalOptions = () => {
 			/>
 
 			{/* Settings */}
-			<ModalButton
+			{/* <ModalButton
 				iconType="settings"
 				text="Settings"
 				display={displayWhenSignedIn}
 				buttonType="settings"
 				test_id="settings"
-			/>
+			/> */}
 		</Styled.ModalOptions>
 	);
 };

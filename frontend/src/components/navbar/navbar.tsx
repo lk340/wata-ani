@@ -38,6 +38,7 @@ export const Navbar = () => {
 
 				<Styled.NavbarOptionComponents>
 					<Components.Create />
+					<Components.Settings />
 				</Styled.NavbarOptionComponents>
 
 				<Options />
