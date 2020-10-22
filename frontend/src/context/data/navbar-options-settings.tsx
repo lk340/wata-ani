@@ -155,6 +155,8 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 		event: Types.Submit,
 		closeModal: Function,
 		currentUserId: number,
+		currentUserPosts: number[],
+		currentUserRatings: number[],
 		dispatch: Function,
 		userErrorsRedux: any,
 	): void {
@@ -177,6 +179,8 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 				id: currentUserId,
 				username,
 				email,
+				posts: currentUserPosts,
+				ratings: currentUserRatings,
 			};
 
 			Actions.Users.thunkUpdateUser(currentUserId, userData, dispatch, userErrorsRedux);
@@ -209,7 +213,10 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 				}
 			}
 
-			changePassword();
+			if (currentPassword !== "" && newPassword !== "" && newPasswordConfirm !== "") {
+				changePassword();
+			}
+
 			clearErrors();
 			closeModal();
 		}

@@ -13,14 +13,14 @@ export function handleResponse(
 ) {
 	// Success
 	if (response.status < 400) {
-		// console.log(response.data);
+		console.log(response.data);
 
 		dispatch(actionCreator(response.data));
 		if (errors.length > 0) dispatch(clearErrors());
 	}
 	// Failure
 	else {
-		// console.log(response.data);
+		console.log(response.data);
 		dispatch(errorActionCreator(response.data));
 	}
 }

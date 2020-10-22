@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
+import * as Gatsby from "gatsby";
 import axios from "axios";
 
 import * as Context from "@/context";
@@ -26,6 +27,7 @@ import * as Icons from "@/icons/profile";
 export const Profile = () => {
 	const { theme } = Context.Theme.useThemeContext();
 	const { pagination } = Context.Pagination.usePaginationContext();
+	const { location } = Context.Location.useLocationContext();
 
 	const [userId, setUserId] = React.useState<number | null>(null);
 	const [username, setUsername] = React.useState("");
@@ -46,6 +48,13 @@ export const Profile = () => {
 	const ratingsRedux = Functions.getRatings();
 	const userPostsRedux = Functions.getUserPosts();
 	const postsErrorsRedux = Functions.getPostsErrors();
+
+	// Redirecting user back to home page when not logged in.
+	React.useEffect(() => {
+		if (!currentUser.id) {
+			Gatsby.navigate("/");
+		}
+	}, [currentUser.id]);
 
 	React.useEffect(() => {
 		if (userId) {

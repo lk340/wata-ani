@@ -106,7 +106,7 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 		windows.setters.setWindows({ width, height });
 		// scroll.setters.setScroll({ x, y });
 		// mouse.setters.setMouse({ x: elX, y: elY });
-		// location.setters.setLocation({ pathname });
+		location.setters.setLocation({ pathname });
 
 		const deviceIsiPhone = navigator.userAgent.includes("iPhone");
 		const deviceIsiPad = navigator.userAgent.includes("iPad");

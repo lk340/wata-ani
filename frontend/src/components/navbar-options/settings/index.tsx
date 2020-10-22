@@ -14,6 +14,7 @@ export const Settings = () => {
 	} = Context.NavbarOptionsSettings.useNavbarOptionsSettings();
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { userAgent } = Context.UserAgent.useUserAgentContext();
+	const { location } = Context.Location.useLocationContext();
 
 	// --- Fetching Redux State --- //
 	const dispatch = ReactRedux.useDispatch();
@@ -27,7 +28,7 @@ export const Settings = () => {
 				email: currentUser.email,
 			});
 		}
-	}, [currentUser.id]);
+	}, [currentUser.id, location.state.pathname]);
 
 	// --- Animations --- //
 	const transitionAnimation = OptionSprings.transition(
@@ -59,6 +60,8 @@ export const Settings = () => {
 										event,
 										navbar.setters.closeAll,
 										currentUser.id,
+										currentUser.posts,
+										currentUser.ratings,
 										dispatch,
 										userErrorsRedux,
 									)
