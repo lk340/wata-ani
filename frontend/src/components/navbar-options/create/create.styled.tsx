@@ -32,13 +32,11 @@ export const CreateContainer = styled(animated.div)`
 	overflow-y: auto;
 
 	@media (max-width: 625px) {
-		${Snippets.fixed("auto", "0%", "auto", "0%", 2)};
+		${Snippets.fixed("0%", "0%", "0%", "0%", 2)};
 		margin-right: 0px;
-		/* height: ${`calc(100vh - ${totalMobileHeight}px)`}; */
+		padding: 50px 0px 80px;
 		transform: translateY(0px) !important;
 	}
-
-	border: red solid 2px !important;
 `;
 
 export const Create = styled(animated.div)`
@@ -49,7 +47,6 @@ export const Create = styled(animated.div)`
 		height: 100%;
 		border: none !important;
 		border-radius: 0rem;
-		border: green solid 2px !important;
 	}
 `;
 
@@ -61,8 +58,7 @@ export const CreateHeader = styled(animated.div)`
 	${Snippets.flex("row", "space-between", "center")};
 	height: ${Constants.size.components.navbarOption.header}px;
 	padding: 0px 30px;
-
-	border: white solid 2px !important;
+	flex-shrink: 0;
 `;
 
 export const CreateHeaderTitle = styled("h2")`
@@ -86,8 +82,7 @@ export const CreateHeaderClose = styled("img").attrs(() => ({
 export const CreateBody = styled("div")`
 	flex: 1;
 	padding: 30px;
-
-	border: blue solid 2px;
+	overflow-y: auto;
 `;
 
 // ============ //
@@ -96,8 +91,6 @@ export const CreateBody = styled("div")`
 
 export const CreateBodyForm = styled("form")`
 	${Snippets.flexColumnCenter()};
-
-	border: purple solid 2px;
 `;
 
 export const CreateBodyFormGroup = styled("div")`
@@ -113,10 +106,6 @@ export const CreateBodyFormGroup = styled("div")`
 export const CreateBodyFormTitle_Count = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
 	margin-bottom: 10px;
-
-	@media (max-width: 625px) {
-		display: none;
-	}
 `;
 
 export const CreateBodyFormTitle = styled("h3")`
@@ -197,6 +186,7 @@ export const CreateBodyFormSubmitButton = styled("button").attrs(() => ({
 }))`
 	${Snippets.flexRowCenter()};
 	${inputStyles};
+	margin: 0px;
 	border: none;
 	color: ${Colors.NEUTRALS.white_100};
 	background-color: ${Colors.PRIMARY_100};

@@ -9,8 +9,7 @@ export function transition(show: boolean, isMobile: boolean) {
 			transform: isMobile ? "translateY(10px)" : "translateY(-25px)",
 		},
 		enter: {
-			opac
-      overflow-y: auto;ity: "1",
+			opacity: "1",
 			transform: isMobile ? "translateY(0px)" : "translateY(-20px)",
 		},
 		leave: {
