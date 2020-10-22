@@ -143,7 +143,7 @@ export const useNavbarOptionsCreateContext = Helpers.createUseContext(() => {
 
 	function handleSubmit(
 		event: Types.Submit,
-		toggleCreate: Function,
+		closeModal: Function,
 		currentUserId: number,
 		dispatch: Function,
 		postsErrorsRedux: any,
@@ -174,7 +174,7 @@ export const useNavbarOptionsCreateContext = Helpers.createUseContext(() => {
 			Actions.Posts.thunkCreateUserPost(data, dispatch, postsErrorsRedux);
 
 			clearErrors();
-			toggleCreate();
+			closeModal();
 		}
 	}
 

@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
 import * as Functions from "@/utils/functions";
@@ -15,7 +16,9 @@ export const Settings = () => {
 	const { userAgent } = Context.UserAgent.useUserAgentContext();
 
 	// --- Fetching Redux State --- //
+	const dispatch = ReactRedux.useDispatch();
 	const currentUser = Functions.getSession();
+	const userErrorsRedux = Functions.getSessionErrors();
 
 	React.useEffect(() => {
 		if (currentUser.id) {
@@ -50,7 +53,17 @@ export const Settings = () => {
 						{/* Body */}
 						<OptionStyled.Body>
 							{/* Form */}
-							<OptionStyled.Form>
+							<OptionStyled.Form
+								onSubmit={(event: Types.Submit) =>
+									navbarOptionsSettings.handlers.handleSubmit(
+										event,
+										navbar.setters.closeAll,
+										currentUser.id,
+										dispatch,
+										userErrorsRedux,
+									)
+								}
+							>
 								{/* Username Input */}
 								<OptionStyled.FormGroup>
 									<FormTitleGroup

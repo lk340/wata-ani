@@ -16,6 +16,7 @@ export const DELETE_USER = "DELETE_USER";
 export const USER_ERRORS = "USER_ERRORS";
 
 type User = Context.AuthForm.CurrentUser;
+
 type Users = User[];
 
 // ======================= //
@@ -90,7 +91,7 @@ export async function thunkGetUser(
 
 export async function thunkUpdateUser(
 	id: number,
-	data: Partial<Context.AuthForm.CurrentUser>,
+	data: Partial<User>,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
 ): Promise<void> {

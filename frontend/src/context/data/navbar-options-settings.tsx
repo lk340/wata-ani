@@ -2,6 +2,8 @@ import * as React from "react";
 import axios from "axios";
 
 import * as Helpers from "@/context/helpers";
+import * as Actions from "@/redux/actions";
+import * as AxiosHelpers from "@/utils/api/axios-helpers";
 import * as Types from "@/utils/types";
 
 type State = {
@@ -151,6 +153,7 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 
 	function handleSubmit(
 		event: Types.Submit,
+		closeModal: Function,
 		currentUserId: number,
 		dispatch: Function,
 		userErrorsRedux: any,
@@ -170,10 +173,46 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 		}
 
 		if (currentUserId && checkNoErrors()) {
-			const data = {};
-		}
+			const userData = {
+				id: currentUserId,
+				username,
+				email,
+			};
 
-		clearErrors();
+			Actions.Users.thunkUpdateUser(currentUserId, userData, dispatch, userErrorsRedux);
+
+			async function changePassword(): Promise<void> {
+				try {
+					const endpoint = "/auth/password/change/";
+
+					const passwordData = {
+						old_password: currentPassword,
+						new_password1: newPassword,
+						new_password2: newPasswordConfirm,
+					};
+
+					const validateStatus = AxiosHelpers.validateStatus;
+
+					const response = await axios.post(endpoint, passwordData, { validateStatus });
+
+					// Success
+					if (response.status < 400) {
+						console.log(response.data);
+					}
+					// Failure
+					else {
+						console.log(response.data);
+					}
+				} catch (error) {
+					// Dev debug log
+					console.log(error);
+				}
+			}
+
+			changePassword();
+			clearErrors();
+			closeModal();
+		}
 	}
 
 	// =============== //
