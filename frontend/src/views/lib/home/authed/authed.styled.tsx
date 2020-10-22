@@ -52,3 +52,11 @@ export const AuthedPost = styled("div")`
 		max-width: 100%;
 	}
 `;
+
+export const AuthedMobileOptionComponents = styled("div")`
+	display: none;
+
+	@media (max-width: 625px) {
+		display: block;
+	}
+`;

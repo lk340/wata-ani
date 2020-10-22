@@ -118,9 +118,6 @@ export const ProfilePost = styled("div")`
 // ====================== //
 // ↓↓↓ Mobile Options ↓↓↓ //
 // ====================== //
-const navbarMobileHeight = Constants.size.components.navbar.height / 2;
-const navbarMobileOptionsHeight = Constants.size.components.navbarMobile.height;
-const totalMobileHeight = `${navbarMobileHeight + navbarMobileOptionsHeight}px`;
 
 export const ProfileMobileOptionComponents = styled("div")`
 	display: none;

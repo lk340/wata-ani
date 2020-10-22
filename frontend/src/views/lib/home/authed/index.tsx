@@ -82,6 +82,10 @@ export const Authed = () => {
 
 	return (
 		<Styled.Authed>
+			<Styled.AuthedMobileOptionComponents>
+				<Components.Create />
+			</Styled.AuthedMobileOptionComponents>
+
 			<Styled.AuthedPosts>{posts}</Styled.AuthedPosts>
 			<Components.Pagination />
 		</Styled.Authed>

@@ -31,16 +31,17 @@ export const Navbar = () => {
 			<Styled.NavbarGlobalStyles hamburger_open={navbar.state.hamburgerOpen.toString()} />
 
 			<Styled.NavbarMaxWidth>
-				<Styled.NavbarOptionComponents>
-					<Components.Create />
-				</Styled.NavbarOptionComponents>
-
 				{/* Logo Link */}
 				<Styled.NavbarOption to="/" onClick={navbar.setters.setHomeOn}>
 					<Styled.NavbarLogoIcon />
 				</Styled.NavbarOption>
 
+				<Styled.NavbarOptionComponents>
+					<Components.Create />
+				</Styled.NavbarOptionComponents>
+
 				<Options />
+
 				<Components.Hamburger />
 			</Styled.NavbarMaxWidth>
 		</Styled.Navbar>
