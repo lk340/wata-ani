@@ -29,7 +29,7 @@ export const NavbarMobile = () => {
 
 	return (
 		<Styled.NavbarMobile display={true.toString()} style={animateNavbarMobile}>
-			<Styled.NavbarMobileGlobalStyles option_open={isNavbarOptionOpen.toString()} />
+			{/* <Styled.NavbarMobileGlobalStyles option_open={isNavbarOptionOpen.toString()} /> */}
 
 			{/* Home */}
 			<OptionLink

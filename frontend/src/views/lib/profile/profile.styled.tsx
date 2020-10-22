@@ -1,9 +1,8 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import { animated } from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
-import * as Colors from "@/utils/style/colors";
 
 /**
  * Profile
@@ -127,10 +126,6 @@ export const ProfileMobileOptionComponents = styled("div")`
 	display: none;
 
 	@media (max-width: 625px) {
-		${Snippets.fixed("auto", "0%", "auto", "0%", 2)};
 		display: block;
-		height: ${`calc(100vh - ${totalMobileHeight})`};
 	}
-
-	border: red solid 1px;
 `;
