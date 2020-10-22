@@ -54,9 +54,9 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 
 	React.useEffect(() => handleUsernameError(), [username]);
 	React.useEffect(() => handleEmailError(), [email]);
-	React.useEffect(() => handleCurrentPasswordError(), [currentPassword]);
+	// React.useEffect(() => handleCurrentPasswordError(), [currentPassword]);
 	React.useEffect(() => handleNewPasswordError(), [newPassword]);
-	React.useEffect(() => handleNewPasswordConfirmError(), [newPasswordConfirm]);
+	// React.useEffect(() => handleNewPasswordConfirmError(), [newPasswordConfirm]);
 
 	// =============== //
 	// ↓↓↓ Setters ↓↓↓ //
@@ -84,9 +84,9 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 	function handleUsernameError(): void {
 		if (username === "") {
 			setNavbarOptionsSettings({ usernameError: "" });
-		} else if (username.length > 100) {
-			setNavbarOptionsSettings({ usernameError: "Max 100 characters!" });
-		} else if (username.length < 100) {
+		} else if (username.length > 15) {
+			setNavbarOptionsSettings({ usernameError: "Max 15 characters!" });
+		} else if (username.length < 15) {
 			setNavbarOptionsSettings({ usernameError: "" });
 		} else {
 			setNavbarOptionsSettings({ usernameError: "" });
@@ -105,49 +105,43 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 		}
 	}
 
-	function handleCurrentPasswordError(): void {
-		if (currentPassword === "") {
-			setNavbarOptionsSettings({ currentPasswordError: "" });
-		} else if (currentPassword.length > 500) {
-			setNavbarOptionsSettings({ currentPasswordError: "Max 500 characters!" });
-		} else if (currentPassword.length < 500) {
-			setNavbarOptionsSettings({ currentPasswordError: "" });
-		} else {
-			setNavbarOptionsSettings({ currentPasswordError: "" });
-		}
-	}
+	// function handleCurrentPasswordError(): void {
+	// 	if (currentPassword === "") {
+	// 		setNavbarOptionsSettings({ currentPasswordError: "" });
+	// 	} else if (currentPassword.length > 500) {
+	// 		setNavbarOptionsSettings({ currentPasswordError: "Max 500 characters!" });
+	// 	} else if (currentPassword.length < 500) {
+	// 		setNavbarOptionsSettings({ currentPasswordError: "" });
+	// 	} else {
+	// 		setNavbarOptionsSettings({ currentPasswordError: "" });
+	// 	}
+	// }
 
 	function handleNewPasswordError(): void {
 		if (newPassword === "") {
-			setNavbarOptionsSettings({ newPasswordError: "You must  set a rating!" });
-		} else if (newPassword === "0") {
-			setNavbarOptionsSettings({ newPasswordError: "Must be between 1 and 10!" });
-		} else if (Number(newPassword) < 1) {
-			setNavbarOptionsSettings({ newPasswordError: "Must be between 1 and 10!" });
-		} else if (Number(newPassword) > 10) {
-			setNavbarOptionsSettings({ newPasswordError: "Must be between 1 and 10!" });
-		} else if (!Number(newPassword)) {
-			setNavbarOptionsSettings({ newPasswordError: "Must be a number!" });
+			setNavbarOptionsSettings({ newPasswordError: "" });
+		} else if (newPassword !== newPasswordConfirm) {
+			setNavbarOptionsSettings({ newPasswordError: "New passwords don't match!" });
 		} else {
 			setNavbarOptionsSettings({ newPasswordError: "" });
 		}
 	}
 
-	function handleNewPasswordConfirmError(): void {
-		if (newPasswordConfirm === "") {
-			setNavbarOptionsSettings({ newPasswordConfirmError: "You must  set a rating!" });
-		} else if (newPasswordConfirm === "0") {
-			setNavbarOptionsSettings({ newPasswordConfirmError: "Must be between 1 and 10!" });
-		} else if (Number(newPasswordConfirm) < 1) {
-			setNavbarOptionsSettings({ newPasswordConfirmError: "Must be between 1 and 10!" });
-		} else if (Number(newPasswordConfirm) > 10) {
-			setNavbarOptionsSettings({ newPasswordConfirmError: "Must be between 1 and 10!" });
-		} else if (!Number(newPasswordConfirm)) {
-			setNavbarOptionsSettings({ newPasswordConfirmError: "Must be a number!" });
-		} else {
-			setNavbarOptionsSettings({ newPasswordConfirmError: "" });
-		}
-	}
+	// function handleNewPasswordConfirmError(): void {
+	// 	if (newPasswordConfirm === "") {
+	// 		setNavbarOptionsSettings({ newPasswordConfirmError: "You must  set a rating!" });
+	// 	} else if (newPasswordConfirm === "0") {
+	// 		setNavbarOptionsSettings({ newPasswordConfirmError: "Must be between 1 and 10!" });
+	// 	} else if (Number(newPasswordConfirm) < 1) {
+	// 		setNavbarOptionsSettings({ newPasswordConfirmError: "Must be between 1 and 10!" });
+	// 	} else if (Number(newPasswordConfirm) > 10) {
+	// 		setNavbarOptionsSettings({ newPasswordConfirmError: "Must be between 1 and 10!" });
+	// 	} else if (!Number(newPasswordConfirm)) {
+	// 		setNavbarOptionsSettings({ newPasswordConfirmError: "Must be a number!" });
+	// 	} else {
+	// 		setNavbarOptionsSettings({ newPasswordConfirmError: "" });
+	// 	}
+	// }
 
 	// --- Form Handlers --- //
 	function handleChange(event: Types.Input, type: keyof State): void {
@@ -155,8 +149,29 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 		setNavbarOptionsSettings({ [`${type}`]: userInput });
 	}
 
-	function handleSubmit(event: Types.Submit): void {
+	function handleSubmit(
+		event: Types.Submit,
+		currentUserId: number,
+		dispatch: Function,
+		userErrorsRedux: any,
+	): void {
 		event.preventDefault();
+
+		function checkNoErrors(): boolean {
+			const noUsernameError = usernameError === "";
+			const noEmailError = emailError === "";
+			// const noCurrentPasswordError = currentPasswordError === "";
+			const noNewPasswordError = newPasswordError === "";
+			const noNewPasswordConfirmError = newPasswordConfirmError === "";
+
+			return (
+				noUsernameError && noEmailError && noNewPasswordError && noNewPasswordConfirmError
+			);
+		}
+
+		if (currentUserId && checkNoErrors()) {
+			const data = {};
+		}
 
 		clearErrors();
 	}
