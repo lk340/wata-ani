@@ -55,7 +55,7 @@ export const useNavbarOptionsSettings = Helpers.createUseContext(() => {
 	React.useEffect(() => handleUsernameError(), [username]);
 	React.useEffect(() => handleEmailError(), [email]);
 	// React.useEffect(() => handleCurrentPasswordError(), [currentPassword]);
-	React.useEffect(() => handleNewPasswordError(), [newPassword]);
+	React.useEffect(() => handleNewPasswordError(), [newPassword, newPasswordConfirm]);
 	// React.useEffect(() => handleNewPasswordConfirmError(), [newPasswordConfirm]);
 
 	// =============== //

@@ -7,9 +7,6 @@ import * as Types from "@/utils/types";
 import * as OptionStyled from "../navbar-options.styled";
 import * as OptionSprings from "../navbar-options.springs";
 
-import * as Styled from "./settings.styled";
-import * as Springs from "./settings.springs";
-
 export const Settings = () => {
 	const {
 		navbarOptionsSettings,
@@ -37,7 +34,7 @@ export const Settings = () => {
 
 	const animateWrapper = OptionSprings.wrapper();
 	const animateHeader = OptionSprings.header();
-	const animateInput = Springs.input();
+	const animateInput = OptionSprings.input();
 
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
@@ -47,11 +44,13 @@ export const Settings = () => {
 						{/* Header */}
 						<OptionStyled.Header style={animateHeader}>
 							<OptionStyled.HeaderTitle>Settings</OptionStyled.HeaderTitle>
-							<OptionStyled.HeaderClose onClick={navbar.setters.toggleCreate} />
+							<OptionStyled.HeaderClose onClick={navbar.setters.closeAll} />
 						</OptionStyled.Header>
+
 						{/* Body */}
 						<OptionStyled.Body>
-							<Styled.SettingsForm>
+							{/* Form */}
+							<OptionStyled.Form>
 								{/* Username Input */}
 								<OptionStyled.FormGroup>
 									<FormTitleGroup
@@ -126,7 +125,7 @@ export const Settings = () => {
 									<FormTitleGroup
 										title="Confirm New Password"
 										characterCount={navbarOptionsSettings.state.newPasswordConfirm.length}
-										errorMessage={navbarOptionsSettings.state.newPasswordConfirmError}
+										errorMessage={navbarOptionsSettings.state.newPasswordError}
 									/>
 									<OptionStyled.FormInput
 										onChange={(event: Types.Input) =>
@@ -142,7 +141,7 @@ export const Settings = () => {
 
 								{/* Submit Button */}
 								<OptionStyled.FormSubmitButton>Submit</OptionStyled.FormSubmitButton>
-							</Styled.SettingsForm>
+							</OptionStyled.Form>
 						</OptionStyled.Body>
 					</OptionStyled.Wrapper>
 				</OptionStyled.Container>
@@ -181,9 +180,9 @@ const FormTitleGroup = (props: FormTitleGroupProps) => {
 				<OptionStyled.FormTitle>{props.title}</OptionStyled.FormTitle>
 				{characterCount}
 			</OptionStyled.FormTitle_Count>
-			<OptionStyled.FormPersonalRatingError style={animateError}>
+			<OptionStyled.FormError style={animateError}>
 				{props.errorMessage}
-			</OptionStyled.FormPersonalRatingError>
+			</OptionStyled.FormError>
 		</>
 	);
 };

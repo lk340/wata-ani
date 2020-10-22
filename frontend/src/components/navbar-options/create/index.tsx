@@ -45,8 +45,9 @@ export const Create = () => {
 						{/* Header */}
 						<OptionStyled.Header style={animateHeader}>
 							<OptionStyled.HeaderTitle>Create A Review</OptionStyled.HeaderTitle>
-							<OptionStyled.HeaderClose onClick={navbar.setters.toggleCreate} />
+							<OptionStyled.HeaderClose onClick={navbar.setters.closeAll} />
 						</OptionStyled.Header>
+
 						{/* Body */}
 						<OptionStyled.Body>
 							{/* Form */}
@@ -166,9 +167,9 @@ const FormTitleGroup = (props: FormTitleGroupProps) => {
 				<OptionStyled.FormTitle>{props.title}</OptionStyled.FormTitle>
 				{characterCount}
 			</OptionStyled.FormTitle_Count>
-			<OptionStyled.FormPersonalRatingError style={animateError}>
+			<OptionStyled.FormError style={animateError}>
 				{props.errorMessage}
-			</OptionStyled.FormPersonalRatingError>
+			</OptionStyled.FormError>
 		</>
 	);
 };

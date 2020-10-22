@@ -119,7 +119,7 @@ export const FormCharacterCount = styled(animated.span)`
 // ↓↓↓ Form: Error ↓↓↓ //
 // =================== //
 
-export const FormPersonalRatingError = styled(animated.h3)`
+export const FormError = styled(animated.h3)`
 	${Snippets.clearSpacing()};
 	margin-bottom: 10px;
 	font-size: ${Constants.fontSizes.components.navbarOption.create.form.input};
@@ -146,35 +146,6 @@ const inputStyles = css`
 export const FormInput = styled(animated.input)`
 	${inputStyles};
 	padding: 0px 20px;
-`;
-
-export const FormSeriesTitleInput = styled(animated.input).attrs(() => ({
-	placeholder: "Series title here (max 100 characters)",
-}))`
-	${inputStyles};
-	padding: 0px 20px;
-`;
-
-export const FormReviewTitleInput = styled(animated.input).attrs(() => ({
-	placeholder: "Your title here (max 50 characters)",
-}))`
-	${inputStyles};
-	padding: 0px 20px;
-`;
-
-export const FormPersonalRatingInput = styled(animated.input).attrs(() => ({
-	placeholder: "Your personal rating here",
-}))`
-	${inputStyles};
-	padding: 0px 20px;
-`;
-
-export const FormReviewTextarea = styled(animated.textarea).attrs(() => ({
-	placeholder: "Your review here (max 500 characters)",
-}))`
-	${inputStyles};
-	padding: 20px;
-	height: 100px;
 `;
 
 // =========================== //

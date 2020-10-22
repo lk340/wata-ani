@@ -33,6 +33,15 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const setNavbar = (state: Partial<State>) => _setNavbar({ ...navbar, ...state });
 
+	function closeAll(): void {
+		setNavbar({
+			likes: false,
+			create: false,
+			search: false,
+			settings: false,
+		});
+	}
+
 	function setHomeOn(): void {
 		setNavbar({
 			home: true,
@@ -115,6 +124,7 @@ export const useNavbarContext = Helpers.createUseContext(() => {
 
 	const setters = {
 		setNavbar,
+		closeAll,
 		setHomeOn,
 		setProfileOn,
 		toggleLikes,
