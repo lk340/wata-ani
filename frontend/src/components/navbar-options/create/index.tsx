@@ -34,15 +34,15 @@ export const Create = () => {
 		userAgent.state.isMobile,
 	);
 
-	const animateCreate = OptionSprings.wrapper();
-	const animateHeader = Springs.header();
+	const animateWrapper = OptionSprings.wrapper();
+	const animateHeader = OptionSprings.header();
 	const animateInput = Springs.input();
 
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
 			item && (
 				<OptionStyled.Container key={key} style={props}>
-					<OptionStyled.Wrapper style={animateCreate}>
+					<OptionStyled.Wrapper style={animateWrapper}>
 						{/* Header */}
 						<OptionStyled.Header style={animateHeader}>
 							<OptionStyled.HeaderTitle>Create A Review</OptionStyled.HeaderTitle>

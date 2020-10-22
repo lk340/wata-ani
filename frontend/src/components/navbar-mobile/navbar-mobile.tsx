@@ -83,6 +83,23 @@ export const NavbarMobile = () => {
 			/>
 			<Components.Spacer width="40px" />
 
+			{/* Settings */}
+			<OptionButton
+				onClick={navbar.setters.toggleSettings}
+				icon={
+					<Icons.SettingsHollow
+						width={`${Constants.size.components.navbarMobile.icon}px`}
+						fill={navbar.state.iconFill}
+						mode={theme.state.mode}
+						state={navbar.state.settings}
+					/>
+				}
+				text="Settings"
+				state={navbar.state.settings}
+				test_id="Settings"
+			/>
+			<Components.Spacer width="40px" />
+
 			{/* Search */}
 			{/* <OptionButton
 				onClick={navbar.setters.toggleSearch}
