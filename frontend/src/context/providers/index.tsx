@@ -15,7 +15,9 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({ children })
 										<Context.Navbar.Provider>
 											<Context.Pagination.Provider>
 												<Context.NavbarOptionsCreate.Provider>
-													{children}
+													<Context.NavbarOptionsSettings.Provider>
+														{children}
+													</Context.NavbarOptionsSettings.Provider>
 												</Context.NavbarOptionsCreate.Provider>
 											</Context.Pagination.Provider>
 										</Context.Navbar.Provider>

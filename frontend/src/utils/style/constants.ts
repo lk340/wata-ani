@@ -289,6 +289,13 @@ export const fontSizes = {
 					input: "0.875rem",
 				},
 			},
+			settings: {
+				form: {
+					header: "0.875rem",
+					characterCount: "0.75rem",
+					input: "0.875rem",
+				},
+			},
 		},
 	},
 	pages: {
@@ -377,6 +384,9 @@ export const borderRadius = {
 		navbarOption: {
 			container: "0.3125rem",
 			create: {
+				form: "0.3125rem",
+			},
+			settings: {
 				form: "0.3125rem",
 			},
 		},

@@ -9,7 +9,6 @@ import * as OptionStyled from "../navbar-options.styled";
 import * as OptionSprings from "../navbar-options.springs";
 
 import * as Styled from "./create.styled";
-import * as Springs from "./create.springs";
 
 /**
  * Fetching Redux State
@@ -36,7 +35,7 @@ export const Create = () => {
 
 	const animateWrapper = OptionSprings.wrapper();
 	const animateHeader = OptionSprings.header();
-	const animateInput = Springs.input();
+	const animateInput = OptionSprings.input();
 
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
@@ -51,7 +50,7 @@ export const Create = () => {
 						{/* Body */}
 						<OptionStyled.Body>
 							{/* Form */}
-							<Styled.CreateForm
+							<OptionStyled.Form
 								onSubmit={(event: Types.Submit) =>
 									navbarOptionsCreate.handlers.handleSubmit(
 										event,
@@ -63,54 +62,57 @@ export const Create = () => {
 								}
 							>
 								{/* Series Title Input */}
-								<Styled.CreateFormGroup>
+								<OptionStyled.FormGroup>
 									<FormTitleGroup
 										title="Series Title"
 										characterCount={navbarOptionsCreate.state.seriesTitle.length}
 										errorMessage={navbarOptionsCreate.state.seriesTitleError}
 									/>
-									<Styled.CreateFormSeriesTitleInput
+									<OptionStyled.FormInput
 										onChange={(event: Types.Input) =>
 											navbarOptionsCreate.handlers.handleTitleChange(event, "series")
 										}
+										placeholder="Series title here (max 100 characters)"
 										style={animateInput}
 									/>
-								</Styled.CreateFormGroup>
+								</OptionStyled.FormGroup>
 
 								{/* Review Title Input */}
-								<Styled.CreateFormGroup>
+								<OptionStyled.FormGroup>
 									<FormTitleGroup
 										title="Review Title"
 										characterCount={navbarOptionsCreate.state.reviewTitle.length}
 										errorMessage={navbarOptionsCreate.state.reviewTitleError}
 									/>
-									<Styled.CreateFormReviewTitleInput
+									<OptionStyled.FormInput
 										onChange={(event: Types.Input) =>
 											navbarOptionsCreate.handlers.handleTitleChange(event, "post")
 										}
+										placeholder="Your title here (max 50 characters)"
 										style={animateInput}
 									/>
-								</Styled.CreateFormGroup>
+								</OptionStyled.FormGroup>
 
 								{/* Personal Rating */}
-								<Styled.CreateFormGroup>
+								<OptionStyled.FormGroup>
 									<FormTitleGroup
 										title="Personal Rating"
 										errorMessage={navbarOptionsCreate.state.personalRatingError}
 									/>
-									<Styled.CreateFormPersonalRatingInput
+									<OptionStyled.FormInput
 										onChange={(event: Types.Input) =>
 											navbarOptionsCreate.handlers.handleTitleChange(
 												event,
 												"personal rating",
 											)
 										}
+										placeholder="Your personal rating here"
 										style={animateInput}
 									/>
-								</Styled.CreateFormGroup>
+								</OptionStyled.FormGroup>
 
 								{/* Review Text Area */}
-								<Styled.CreateFormGroup>
+								<OptionStyled.FormGroup>
 									<FormTitleGroup
 										title="Your Review"
 										characterCount={navbarOptionsCreate.state.review.length}
@@ -118,12 +120,14 @@ export const Create = () => {
 									/>
 									<Styled.CreateFormReviewTextarea
 										onChange={navbarOptionsCreate.handlers.handleReviewChange}
+										placeholder="Your review here (max 500 characters)"
 										style={animateInput}
 									/>
-								</Styled.CreateFormGroup>
+								</OptionStyled.FormGroup>
+
 								{/* Submit Button */}
-								<Styled.CreateFormSubmitButton>Submit</Styled.CreateFormSubmitButton>
-							</Styled.CreateForm>
+								<OptionStyled.FormSubmitButton>Submit</OptionStyled.FormSubmitButton>
+							</OptionStyled.Form>
 						</OptionStyled.Body>
 					</OptionStyled.Wrapper>
 				</OptionStyled.Container>
@@ -143,28 +147,28 @@ type FormTitleGroupProps = {
 };
 
 const FormTitleGroup = (props: FormTitleGroupProps) => {
-	const animateCharacterCount = Springs.characterCount();
-	const animateError = Springs.error();
+	const animateCharacterCount = OptionSprings.characterCount();
+	const animateError = OptionSprings.error();
 
 	let characterCount: React.ReactNode | "" = "";
 
 	if (props.characterCount) {
 		characterCount = (
-			<Styled.CreateFormCharacterCount style={animateCharacterCount}>
+			<OptionStyled.FormCharacterCount style={animateCharacterCount}>
 				{props.characterCount}
-			</Styled.CreateFormCharacterCount>
+			</OptionStyled.FormCharacterCount>
 		);
 	}
 
 	return (
 		<>
-			<Styled.CreateFormTitle_Count>
-				<Styled.CreateFormTitle>{props.title}</Styled.CreateFormTitle>
+			<OptionStyled.FormTitle_Count>
+				<OptionStyled.FormTitle>{props.title}</OptionStyled.FormTitle>
 				{characterCount}
-			</Styled.CreateFormTitle_Count>
-			<Styled.CreateFormPersonalRatingError style={animateError}>
+			</OptionStyled.FormTitle_Count>
+			<OptionStyled.FormPersonalRatingError style={animateError}>
 				{props.errorMessage}
-			</Styled.CreateFormPersonalRatingError>
+			</OptionStyled.FormPersonalRatingError>
 		</>
 	);
 };
