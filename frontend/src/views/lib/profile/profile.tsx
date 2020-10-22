@@ -85,8 +85,6 @@ export const Profile = () => {
 					const resultTotalCount = response.data.count;
 					const maxPageCount = Math.ceil(resultTotalCount / resultPaginationCount);
 
-					console.log("Response:", response.data.results);
-
 					pagination.setters.setPagination({
 						postResults: response.data.results,
 						maxPage: maxPageCount,
@@ -126,7 +124,7 @@ export const Profile = () => {
 		<Styled.Profile style={animateBackground}>
 			<Components.Navbar />
 			<Components.NavbarMobile />
-			
+
 			{/* <Components.Create /> */}
 
 			<Styled.ProfileMobileOptionComponents>

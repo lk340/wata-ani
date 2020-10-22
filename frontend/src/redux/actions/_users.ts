@@ -106,7 +106,7 @@ export async function thunkUpdateUser(
 export async function thunkDeleteUser(id: number, dispatch: Function): Promise<void> {
 	try {
 		const response = await axios.delete(`/api/users/${id}/`, { validateStatus });
-		console.log(response.data);
+		// console.log(response.data);
 
 		// Success
 		if (response.status < 400) dispatch(deleteUser(id));
