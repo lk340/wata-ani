@@ -1,16 +1,11 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled, { css } from "styled-components";
 import { animated } from "react-spring";
 
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
 import * as Colors from "@/utils/style/colors";
 
-import close from "@/icons/close.svg";
-
 /**
- * Create
- * Header
- * Body
  * Form
  * Form: Title & Character Count
  * Form: Error
@@ -18,78 +13,15 @@ import close from "@/icons/close.svg";
  * Form: Submit Button
  */
 
-// ============== //
-// ↓↓↓ Create ↓↓↓ //
-// ============== //
-
-export const CreateContainer = styled(animated.div)`
-	${Snippets.absolute("100%", "0%", "auto", "auto")};
-	margin-right: ${Constants.size.components.navbar.spacer}px;
-	/* overflow-y: auto; */
-
-	@media (max-width: 625px) {
-		${Snippets.fixed("0%", "0%", "0%", "0%", 2)};
-		margin-right: 0px;
-		padding: 50px 0px 80px;
-		transform: translateY(0px) !important;
-	}
-`;
-
-export const Create = styled(animated.div)`
-	${Snippets.flex("column")};
-	border-radius: ${Constants.borderRadius.components.navbarOption.container};
-
-	@media (max-width: 625px) {
-		height: 100%;
-		border: none !important;
-		border-radius: 0rem;
-	}
-`;
-
-// ============== //
-// ↓↓↓ Header ↓↓↓ //
-// ============== //
-
-export const CreateHeader = styled(animated.div)`
-	${Snippets.flex("row", "space-between", "center")};
-	height: ${Constants.size.components.navbarOption.header}px;
-	padding: 0px 30px;
-	flex-shrink: 0;
-`;
-
-export const CreateHeaderTitle = styled("h2")`
-	${Snippets.clearSpacing()};
-	color: inherit;
-	font-size: ${Constants.fontSizes.components.navbarOption.header};
-`;
-
-export const CreateHeaderClose = styled("img").attrs(() => ({
-	src: close,
-	alt: "navbar option component header close icon",
-}))`
-	${Snippets.square("20px")};
-	cursor: pointer;
-`;
-
-// ============ //
-// ↓↓↓ Body ↓↓↓ //
-// ============ //
-
-export const CreateBody = styled("div")`
-	flex: 1;
-	padding: 30px;
-	overflow-y: auto;
-`;
-
 // ============ //
 // ↓↓↓ Form ↓↓↓ //
 // ============ //
 
-export const CreateBodyForm = styled("form")`
+export const CreateForm = styled("form")`
 	${Snippets.flexColumnCenter()};
 `;
 
-export const CreateBodyFormGroup = styled("div")`
+export const CreateFormGroup = styled("div")`
 	@media (max-width: 625px) {
 		width: 100%;
 	}
@@ -99,18 +31,18 @@ export const CreateBodyFormGroup = styled("div")`
 // ↓↓↓ Form : Title & Character Count ↓↓↓ //
 // ====================================== //
 
-export const CreateBodyFormTitle_Count = styled("div")`
+export const CreateFormTitle_Count = styled("div")`
 	${Snippets.flex("row", "auto", "center")};
 	margin-bottom: 10px;
 `;
 
-export const CreateBodyFormTitle = styled("h3")`
+export const CreateFormTitle = styled("h3")`
 	${Snippets.clearSpacing()};
 	font-size: ${Constants.fontSizes.components.navbarOption.create.form.header};
 	font-weight: bold;
 `;
 
-export const CreateBodyFormCharacterCount = styled(animated.span)`
+export const CreateFormCharacterCount = styled(animated.span)`
 	display: block;
 	margin-left: 10px;
 	font-size: ${Constants.fontSizes.components.navbarOption.create.form.characterCount};
@@ -120,7 +52,7 @@ export const CreateBodyFormCharacterCount = styled(animated.span)`
 // ↓↓↓ Form: Error ↓↓↓ //
 // =================== //
 
-export const CreateBodyFormPersonalRatingError = styled(animated.h3)`
+export const CreateFormPersonalRatingError = styled(animated.h3)`
 	${Snippets.clearSpacing()};
 	margin-bottom: 10px;
 	font-size: ${Constants.fontSizes.components.navbarOption.create.form.input};
@@ -144,28 +76,28 @@ const inputStyles = css`
 	}
 `;
 
-export const CreateBodyFormSeriesTitleInput = styled(animated.input).attrs(() => ({
+export const CreateFormSeriesTitleInput = styled(animated.input).attrs(() => ({
 	placeholder: "Series title here (max 100 characters)",
 }))`
 	padding: 0px 20px;
 	${inputStyles};
 `;
 
-export const CreateBodyFormReviewTitleInput = styled(animated.input).attrs(() => ({
+export const CreateFormReviewTitleInput = styled(animated.input).attrs(() => ({
 	placeholder: "Your title here (max 50 characters)",
 }))`
 	padding: 0px 20px;
 	${inputStyles};
 `;
 
-export const CreateBodyFormPersonalRatingInput = styled(animated.input).attrs(() => ({
+export const CreateFormPersonalRatingInput = styled(animated.input).attrs(() => ({
 	placeholder: "Your personal rating here",
 }))`
 	padding: 0px 20px;
 	${inputStyles};
 `;
 
-export const CreateBodyFormReviewTextarea = styled(animated.textarea).attrs(() => ({
+export const CreateFormReviewTextarea = styled(animated.textarea).attrs(() => ({
 	placeholder: "Your review here (max 500 characters)",
 }))`
 	${inputStyles};
@@ -177,7 +109,7 @@ export const CreateBodyFormReviewTextarea = styled(animated.textarea).attrs(() =
 // ↓↓↓ Form: Submit Button ↓↓↓ //
 // =========================== //
 
-export const CreateBodyFormSubmitButton = styled("button").attrs(() => ({
+export const CreateFormSubmitButton = styled("button").attrs(() => ({
 	type: "submit",
 }))`
 	${Snippets.flexRowCenter()};

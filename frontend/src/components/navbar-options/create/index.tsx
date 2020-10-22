@@ -5,6 +5,7 @@ import * as Context from "@/context";
 import * as Functions from "@/utils/functions";
 import * as Types from "@/utils/types";
 
+import * as OptionStyled from "../navbar-options.styled";
 import * as OptionSprings from "../navbar-options.springs";
 
 import * as Styled from "./create.styled";
@@ -40,17 +41,17 @@ export const Create = () => {
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
 			item && (
-				<Styled.CreateContainer key={key} style={props}>
-					<Styled.Create style={animateCreate}>
+				<OptionStyled.Container key={key} style={props}>
+					<OptionStyled.Wrapper style={animateCreate}>
 						{/* Header */}
-						<Styled.CreateHeader style={animateHeader}>
-							<Styled.CreateHeaderTitle>Create A Review</Styled.CreateHeaderTitle>
-							<Styled.CreateHeaderClose onClick={navbar.setters.toggleCreate} />
-						</Styled.CreateHeader>
+						<OptionStyled.Header style={animateHeader}>
+							<OptionStyled.HeaderTitle>Create A Review</OptionStyled.HeaderTitle>
+							<OptionStyled.HeaderClose onClick={navbar.setters.toggleCreate} />
+						</OptionStyled.Header>
 						{/* Body */}
-						<Styled.CreateBody>
+						<OptionStyled.Body>
 							{/* Form */}
-							<Styled.CreateBodyForm
+							<Styled.CreateForm
 								onSubmit={(event: Types.Submit) =>
 									navbarOptionsCreate.handlers.handleSubmit(
 										event,
@@ -62,42 +63,42 @@ export const Create = () => {
 								}
 							>
 								{/* Series Title Input */}
-								<Styled.CreateBodyFormGroup>
+								<Styled.CreateFormGroup>
 									<FormTitleGroup
 										title="Series Title"
 										characterCount={navbarOptionsCreate.state.seriesTitle.length}
 										errorMessage={navbarOptionsCreate.state.seriesTitleError}
 									/>
-									<Styled.CreateBodyFormSeriesTitleInput
+									<Styled.CreateFormSeriesTitleInput
 										onChange={(event: Types.Input) =>
 											navbarOptionsCreate.handlers.handleTitleChange(event, "series")
 										}
 										style={animateInput}
 									/>
-								</Styled.CreateBodyFormGroup>
+								</Styled.CreateFormGroup>
 
 								{/* Review Title Input */}
-								<Styled.CreateBodyFormGroup>
+								<Styled.CreateFormGroup>
 									<FormTitleGroup
 										title="Review Title"
 										characterCount={navbarOptionsCreate.state.reviewTitle.length}
 										errorMessage={navbarOptionsCreate.state.reviewTitleError}
 									/>
-									<Styled.CreateBodyFormReviewTitleInput
+									<Styled.CreateFormReviewTitleInput
 										onChange={(event: Types.Input) =>
 											navbarOptionsCreate.handlers.handleTitleChange(event, "post")
 										}
 										style={animateInput}
 									/>
-								</Styled.CreateBodyFormGroup>
+								</Styled.CreateFormGroup>
 
 								{/* Personal Rating */}
-								<Styled.CreateBodyFormGroup>
+								<Styled.CreateFormGroup>
 									<FormTitleGroup
 										title="Personal Rating"
 										errorMessage={navbarOptionsCreate.state.personalRatingError}
 									/>
-									<Styled.CreateBodyFormPersonalRatingInput
+									<Styled.CreateFormPersonalRatingInput
 										onChange={(event: Types.Input) =>
 											navbarOptionsCreate.handlers.handleTitleChange(
 												event,
@@ -106,28 +107,26 @@ export const Create = () => {
 										}
 										style={animateInput}
 									/>
-								</Styled.CreateBodyFormGroup>
+								</Styled.CreateFormGroup>
 
 								{/* Review Text Area */}
-								<Styled.CreateBodyFormGroup>
+								<Styled.CreateFormGroup>
 									<FormTitleGroup
 										title="Your Review"
 										characterCount={navbarOptionsCreate.state.review.length}
 										errorMessage={navbarOptionsCreate.state.reviewError}
 									/>
-									<Styled.CreateBodyFormReviewTextarea
+									<Styled.CreateFormReviewTextarea
 										onChange={navbarOptionsCreate.handlers.handleReviewChange}
 										style={animateInput}
 									/>
-								</Styled.CreateBodyFormGroup>
+								</Styled.CreateFormGroup>
 								{/* Submit Button */}
-								<Styled.CreateBodyFormSubmitButton>
-									Submit
-								</Styled.CreateBodyFormSubmitButton>
-							</Styled.CreateBodyForm>
-						</Styled.CreateBody>
-					</Styled.Create>
-				</Styled.CreateContainer>
+								<Styled.CreateFormSubmitButton>Submit</Styled.CreateFormSubmitButton>
+							</Styled.CreateForm>
+						</OptionStyled.Body>
+					</OptionStyled.Wrapper>
+				</OptionStyled.Container>
 			)
 		);
 	});
@@ -151,21 +150,21 @@ const FormTitleGroup = (props: FormTitleGroupProps) => {
 
 	if (props.characterCount) {
 		characterCount = (
-			<Styled.CreateBodyFormCharacterCount style={animateCharacterCount}>
+			<Styled.CreateFormCharacterCount style={animateCharacterCount}>
 				{props.characterCount}
-			</Styled.CreateBodyFormCharacterCount>
+			</Styled.CreateFormCharacterCount>
 		);
 	}
 
 	return (
 		<>
-			<Styled.CreateBodyFormTitle_Count>
-				<Styled.CreateBodyFormTitle>{props.title}</Styled.CreateBodyFormTitle>
+			<Styled.CreateFormTitle_Count>
+				<Styled.CreateFormTitle>{props.title}</Styled.CreateFormTitle>
 				{characterCount}
-			</Styled.CreateBodyFormTitle_Count>
-			<Styled.CreateBodyFormPersonalRatingError style={animateError}>
+			</Styled.CreateFormTitle_Count>
+			<Styled.CreateFormPersonalRatingError style={animateError}>
 				{props.errorMessage}
-			</Styled.CreateBodyFormPersonalRatingError>
+			</Styled.CreateFormPersonalRatingError>
 		</>
 	);
 };
