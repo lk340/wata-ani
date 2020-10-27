@@ -2,7 +2,6 @@ import * as React from "react";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
-import * as Functions from "@/utils/functions";
 
 import * as Styled from "./home.styled";
 import * as Springs from "./home.springs";
@@ -15,7 +14,6 @@ export const Home = () => {
 
 	const animateHome = Springs.home();
 
-	const currentUser = Functions.getSession();
 	const userLoggedIn = !!localStorage.access;
 
 	return (

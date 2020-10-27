@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
+import * as Gatsby from "gatsby";
 
 import * as Context from "@/context";
 import * as Actions from "@/redux/actions";
@@ -22,6 +23,7 @@ export const ModalSignOutButton = (props: Props) => {
 	function handleClick(): void {
 		Actions.Session.signOut(dispatch);
 		navbar.setters.toggleHamburgerOpen();
+		Gatsby.navigate("/");
 	}
 
 	return (

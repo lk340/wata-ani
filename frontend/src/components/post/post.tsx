@@ -119,11 +119,13 @@ export const Post = (props: Props) => {
 	let userHasRatedRatingId = 0;
 
 	props.post.user_ratings.forEach((postUserRatingId: number) => {
-		if (props.currentUser.ratings.includes(postUserRatingId)) {
-			userHasRated = true;
-			userHasRatedRatingId = postUserRatingId;
-		} else {
-			userHasRated = false;
+		if (props.currentUser.ratings) {
+			if (props.currentUser.ratings.includes(postUserRatingId)) {
+				userHasRated = true;
+				userHasRatedRatingId = postUserRatingId;
+			} else {
+				userHasRated = false;
+			}
 		}
 	});
 

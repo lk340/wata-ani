@@ -26,7 +26,7 @@ export const Authed = () => {
 
 	// --- Checking if user is signed in or not --- //
 	const currentUser = Functions.getSession();
-	const userIsSignedIn = !!currentUser.id;
+	const userLoggedIn = !!localStorage.access;
 
 	// --- Fetching Redux State --- //
 	const usersRedux = Functions.getUsers();
@@ -39,13 +39,17 @@ export const Authed = () => {
 	const tagsRedux = Functions.getTags();
 
 	React.useEffect(() => {
-		if (userIsSignedIn) {
+		loading.setters.setLoading({ loading: false });
+	}, []);
+
+	React.useEffect(() => {
+		if (userLoggedIn) {
 			Actions.Users.thunkGetUsers(dispatch, userErrorsRedux);
 			Actions.Posts.thunkGetPosts(dispatch, postsErrorsRedux);
 			Actions.Tags.thunkGetTags(dispatch, tagsErrorsRedux);
 			Actions.Ratings.thunkGetRatings(dispatch, ratingErrorsRedux);
 		}
-	}, [userIsSignedIn]);
+	}, [userLoggedIn]);
 
 	React.useEffect(() => {
 		async function getPostsDescending(): Promise<void> {

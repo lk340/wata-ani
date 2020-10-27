@@ -10,7 +10,7 @@ export const HomeHollow = (props: Types.Props) => {
 	const w = width || "10";
 	const f = fill || "#6ba6ff";
 
-	const animateFill = Springs.fill(mode, state);
+	const animateFill = Springs.fill(mode, false);
 
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" width={w} viewBox="0 0 10 10" fill="none">

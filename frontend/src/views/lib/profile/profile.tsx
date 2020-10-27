@@ -37,6 +37,10 @@ export const Profile = () => {
 	const [iconFill, setIconFill] = React.useState("");
 	const [postsError, setPostsError] = React.useState("");
 
+	React.useEffect(() => {
+		loading.setters.setLoading({ loading: false });
+	}, []);
+
 	// --- Animations --- //
 	const animateBackground = Springs.background();
 	const animateInformation = Springs.information();
