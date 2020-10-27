@@ -24,12 +24,12 @@ import * as NavbarOptionsSettings from "@/context/data/navbar-options-settings";
 // =============== //
 
 export {
-	Theme,
+	UserAgent,
+	Location,
 	Windows,
 	Scroll,
+	Theme,
 	Mouse,
-	Location,
-	UserAgent,
 	AuthForm,
 	Navbar,
 	Pagination,

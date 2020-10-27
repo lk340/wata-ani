@@ -27,7 +27,6 @@ import * as Icons from "@/icons/profile";
 export const Profile = () => {
 	const { theme } = Context.Theme.useThemeContext();
 	const { pagination } = Context.Pagination.usePaginationContext();
-	const { location } = Context.Location.useLocationContext();
 
 	const [userId, setUserId] = React.useState<number | null>(null);
 	const [username, setUsername] = React.useState("");
@@ -51,10 +50,8 @@ export const Profile = () => {
 
 	// Redirecting user back to home page when not logged in.
 	React.useEffect(() => {
-		if (!currentUser.id) {
-			Gatsby.navigate("/");
-		}
-	}, [currentUser.id]);
+		if (!localStorage.access) Gatsby.navigate("/");
+	}, [localStorage.access]);
 
 	React.useEffect(() => {
 		if (userId) {
