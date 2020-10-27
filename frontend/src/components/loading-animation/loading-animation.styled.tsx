@@ -6,12 +6,11 @@ import * as Colors from "@/utils/style/colors";
 
 export const Loading = styled(animated.div)`
 	${Snippets.fixed("0", "0", "0", "0", 30)};
+	${Snippets.flexRowCenter()};
 	background-color: ${Colors.MODAL.overlay.light};
 `;
 
 export const LoadingCircle = styled(animated.div)`
-	${Snippets.absoluteCenter()};
-	${Snippets.flexRowCenter()};
 	${Snippets.makeCircle()};
 	${Snippets.square("50px")};
 	border-top: ${Colors.PRIMARY_100} solid 6px !important;

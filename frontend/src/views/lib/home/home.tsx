@@ -16,7 +16,7 @@ export const Home = () => {
 	const animateHome = Springs.home();
 
 	const currentUser = Functions.getSession();
-	const userLoggedIn = !!currentUser.id;
+	const userLoggedIn = !!localStorage.access;
 
 	return (
 		<Styled.Home style={animateHome}>

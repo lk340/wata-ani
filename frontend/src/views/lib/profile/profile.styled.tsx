@@ -93,6 +93,11 @@ export const ProfileInformationBio = styled("p")`
 	${Snippets.clearSpacing()};
 	font-size: ${Constants.fontSizes.pages.profile.information.bio};
 	line-height: 150%;
+
+	@media (max-width: 415px) {
+		margin-top: 20px;
+		text-align: center;
+	}
 `;
 
 // ============= //

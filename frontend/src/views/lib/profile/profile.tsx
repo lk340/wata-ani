@@ -153,7 +153,7 @@ export const Profile = () => {
 				<Styled.ProfileInformation>
 					<Styled.ProfileInformationMain>
 						{/* Profile Picture */}
-						<Styled.ProfileInformationMainProfilePicture style={animateProfilePicture} />
+						{/* <Styled.ProfileInformationMainProfilePicture style={animateProfilePicture} /> */}
 						{/* Username & Data */}
 						<Styled.ProfileInformationMainUsernameDataContainer>
 							{/* Username */}

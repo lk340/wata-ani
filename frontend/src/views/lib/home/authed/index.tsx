@@ -77,7 +77,7 @@ export const Authed = () => {
 		) {
 			setTimeout(() => {
 				loading.setters.setLoading({ loading: false });
-			}, 1000);
+			}, 1800);
 		}
 	}, [
 		Object.keys(usersRedux).length,

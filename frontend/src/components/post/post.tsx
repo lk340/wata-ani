@@ -149,7 +149,7 @@ export const Post = (props: Props) => {
 					<Styled.PostHeader>
 						{/* Profile Picture & Username */}
 						<Styled.PostProfilePicture_Username>
-							<Styled.PostProfilePicture />
+							{/* <Styled.PostProfilePicture /> */}
 							<Styled.PostUsername>{props.username}</Styled.PostUsername>
 						</Styled.PostProfilePicture_Username>
 						{/* Modal Button (ellipses) */}
