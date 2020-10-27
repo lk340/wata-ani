@@ -21,6 +21,7 @@ import * as Icons from "@/icons/profile";
  * Setting Local Component State Values
  * Determining Fill Color For Information Icons Fill
  * Fetching User Posts
+ * Setting Loading Animation
  * Review Card Logic
  */
 

@@ -17,7 +17,7 @@ export function circle() {
 			border:
 				localStorage.mode === "light"
 					? `${Colors.LIGHT.two} solid 6px`
-					: `${Colors.DARK.three} solid 6px`,
+					: `${Colors.DARK.two} solid 6px`,
 		},
 		config: { duration: 100 },
 	});

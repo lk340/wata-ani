@@ -13,11 +13,13 @@ import * as Styled from "./authed.styled";
 /**
  * Checking if user is signed in or not
  * Fetching Redux State
+ * Setting Loading Animation
  * Review Card Logic
  */
 
 export const Authed = () => {
 	const { pagination } = Context.Pagination.usePaginationContext();
+	const { loading } = Context.Loading.useLoadingContext();
 
 	const dispatch = ReactRedux.useDispatch();
 	const validateStatus = AxiosHelpers.validateStatus;
@@ -34,6 +36,7 @@ export const Authed = () => {
 	const tagsErrorsRedux = Functions.getTagsErrors();
 	const ratingsRedux = Functions.getRatings();
 	const ratingErrorsRedux = Functions.getRatingsErrors();
+	const tagsRedux = Functions.getTags();
 
 	React.useEffect(() => {
 		if (userIsSignedIn) {
@@ -62,6 +65,27 @@ export const Authed = () => {
 		getPostsDescending();
 	}, [postsRedux]);
 
+	console.log("HELLO FROM THE AUTHED COMPONENT");
+
+	// --- Setting Loading Animation --- //
+	React.useEffect(() => {
+		if (
+			Object.keys(usersRedux).length > 0 &&
+			Object.keys(postsRedux).length > 0 &&
+			Object.keys(ratingsRedux).length > 0 &&
+			Object.keys(tagsRedux).length > 0
+		) {
+			setTimeout(() => {
+				loading.setters.setLoading({ loading: false });
+			}, 1000);
+		}
+	}, [
+		Object.keys(usersRedux).length,
+		Object.keys(postsRedux).length,
+		Object.keys(ratingsRedux).length,
+		Object.keys(tagsRedux).length,
+	]);
+
 	// --- Review Card Logic --- //
 	let posts: React.ReactNode[] | "" = "";
 
@@ -82,6 +106,8 @@ export const Authed = () => {
 
 	return (
 		<Styled.Authed>
+			<Components.Loading />
+
 			<Styled.AuthedMobileOptionComponents>
 				<Components.Create />
 				<Components.Settings />
