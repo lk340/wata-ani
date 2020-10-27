@@ -27,6 +27,7 @@ import * as Icons from "@/icons/profile";
 export const Profile = () => {
 	const { theme } = Context.Theme.useThemeContext();
 	const { pagination } = Context.Pagination.usePaginationContext();
+	const { loading } = Context.Loading.useLoadingContext();
 
 	const [userId, setUserId] = React.useState<number | null>(null);
 	const [username, setUsername] = React.useState("");
@@ -108,6 +109,13 @@ export const Profile = () => {
 		if (userId) fetchUserPosts();
 	}, [userId, userPostsRedux]);
 
+	// --- Setting Loading Animation --- //
+	React.useEffect(() => {
+		if (userPostsRedux.length > 0) {
+			loading.setters.setLoading({ loading: false });
+		}
+	}, [userPostsRedux.length]);
+
 	// --- Review Card Logic --- //
 	let reviewCards: React.ReactNode[] | "" = "";
 
@@ -128,6 +136,8 @@ export const Profile = () => {
 
 	return (
 		<Styled.Profile style={animateBackground}>
+			<Components.Loading />
+
 			<Components.Navbar />
 			<Components.NavbarMobile />
 

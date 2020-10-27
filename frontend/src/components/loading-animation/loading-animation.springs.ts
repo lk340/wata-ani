@@ -1,7 +1,9 @@
 import * as Spring from "react-spring";
 
-export function loading() {
-	return Spring.useTransition(null, null, {
+import * as Colors from "@/utils/style/colors";
+
+export function loading(loading: boolean) {
+	return Spring.useTransition(loading, null, {
 		from: { opacity: "0" },
 		enter: { opacity: "1" },
 		leave: { opacity: "0" },
@@ -11,7 +13,12 @@ export function loading() {
 
 export function circle() {
 	return Spring.useSpring({
-		from: { Animation },
-		to: { Animation },
+		to: {
+			border:
+				localStorage.mode === "light"
+					? `${Colors.LIGHT.two} solid 6px`
+					: `${Colors.DARK.three} solid 6px`,
+		},
+		config: { duration: 100 },
 	});
 }

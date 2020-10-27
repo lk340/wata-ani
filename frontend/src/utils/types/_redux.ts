@@ -24,7 +24,7 @@ export type ReduxState = {
 		posts: Posts;
 		tags: Tags;
 		ratings: Ratings;
-		userPosts: Posts;
+		userPosts: Actions.Posts.Post[];
 	};
 	// session: InitialState | Context.AuthForm.CurrentUser;
 	session: Context.AuthForm.CurrentUser;
