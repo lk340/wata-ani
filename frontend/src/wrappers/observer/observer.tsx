@@ -85,6 +85,22 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
 	const { userAgent } = Context.UserAgent.useUserAgentContext();
 
+	// =============== //
+	// ↓↓↓ Loading ↓↓↓ //
+	// =============== //
+
+	const { loading } = Context.Loading.useLoadingContext();
+
+	// ================================= //
+	// ↓↓↓ Setting Loading Animation ↓↓↓ //
+	// ================================= //
+
+	React.useEffect(() => {
+		if (localStorage.pathChange === true) {
+			loading.setters.setLoading({ loading: false });
+		}
+	}, [localStorage.pathChange]);
+
 	// ===================== //
 	// ↓↓↓ Setting Theme ↓↓↓ //
 	// ===================== //
