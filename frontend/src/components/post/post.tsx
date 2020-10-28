@@ -205,9 +205,9 @@ export const Post = (props: Props) => {
 					</Styled.PostAuthorRating>
 
 					{/* Tags */}
-					{/* <Styled.PostTagContainer tag_count={tagCount}>
+					<Styled.PostTagContainer tag_count={tagCount}>
 						{postTagComponents}
-					</Styled.PostTagContainer> */}
+					</Styled.PostTagContainer>
 				</Styled.Post>
 			</Styled.PostWrapper>
 

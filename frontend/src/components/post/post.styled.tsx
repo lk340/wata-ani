@@ -37,8 +37,6 @@ export const PostContainer = styled(animated.div)<PostProps>`
 	}};
 	padding: 20px 0px;
 	border-radius: ${Constants.borderRadius.components.post.card};
-
-	border: red solid 1px !important;
 `;
 
 export const PostWrapper = styled(animated.div)`
@@ -187,9 +185,9 @@ type Tag = { tag_count: number };
 export const PostTagContainer = styled("div")<Tag>`
 	${Snippets.flex("row", "auto", "center")};
 	display: ${(props) => (props.tag_count > 0 ? "flex" : "none")};
-	width: 100%;
+	max-width: ${Constants.globals.maxWidth / 2}px;
 	padding: 0px 0px 5px 20px;
-	overflow: auto;
+	overflow-x: auto;
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		${Snippets.hideScrollbar()};

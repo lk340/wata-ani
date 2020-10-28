@@ -48,7 +48,17 @@ export const Profile = () => {
 	const currentUser = Functions.getSession();
 	const ratingsRedux = Functions.getRatings();
 	const userPostsRedux = Functions.getUserPosts();
+	const tagsRedux = Functions.getTags();
 	const postsErrorsRedux = Functions.getPostsErrors();
+	const tagsErrorsRedux = Functions.getTagsErrors();
+
+	const userLoggedIn = !!localStorage.access;
+
+	React.useEffect(() => {
+		if (userLoggedIn) {
+			Actions.Tags.thunkGetTags(dispatch, tagsErrorsRedux);
+		}
+	}, [userLoggedIn]);
 
 	// Redirecting user back to home page when not logged in.
 	React.useEffect(() => {
@@ -112,12 +122,12 @@ export const Profile = () => {
 
 	// --- Setting Loading Animation --- //
 	React.useEffect(() => {
-		if (userPostsRedux.length > 0) {
+		if (userPostsRedux.length > 0 && Object.keys(tagsRedux).length > 0) {
 			loading.setters.setLoading({ loading: false });
 		} else {
 			loading.setters.setLoading({ loading: true });
 		}
-	}, [userPostsRedux.length]);
+	}, [userPostsRedux.length, Object.keys(tagsRedux).length]);
 
 	// --- Review Card Logic --- //
 	let reviewCards: React.ReactNode[] | "" = "";

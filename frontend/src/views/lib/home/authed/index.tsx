@@ -32,11 +32,11 @@ export const Authed = () => {
 	const usersRedux = Functions.getUsers();
 	const userErrorsRedux = Functions.getUsersErrors();
 	const postsRedux = Functions.getPosts();
-	const postsErrorsRedux = Functions.getPostsErrors();
-	const tagsErrorsRedux = Functions.getTagsErrors();
 	const ratingsRedux = Functions.getRatings();
-	const ratingErrorsRedux = Functions.getRatingsErrors();
 	const tagsRedux = Functions.getTags();
+	const postsErrorsRedux = Functions.getPostsErrors();
+	const ratingErrorsRedux = Functions.getRatingsErrors();
+	const tagsErrorsRedux = Functions.getTagsErrors();
 
 	React.useEffect(() => {
 		loading.setters.setLoading({ loading: false });

@@ -114,14 +114,10 @@ export const ProfilePosts = styled("div")`
 	@media (max-width: 654px) {
 		padding: 0px ${Constants.sidePaddings.mobile}px;
 	}
-
-	border: blue solid 1px;
 `;
 
 export const ProfilePost = styled("div")`
 	width: 100%;
-
-	border: green solid 4px;
 `;
 
 // ====================== //

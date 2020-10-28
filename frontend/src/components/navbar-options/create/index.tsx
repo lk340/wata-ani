@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
+import * as Lodash from "lodash";
 
 import * as Context from "@/context";
 import * as Functions from "@/utils/functions";
@@ -10,9 +11,12 @@ import * as OptionSprings from "../navbar-options.springs";
 
 import * as Styled from "./create.styled";
 
+import { Tag } from "@/components/post/modal-form/tag";
+
 /**
  * Fetching Redux State
  * Animations
+ * Setting Tag Components
  */
 
 export const Create = () => {
@@ -25,6 +29,7 @@ export const Create = () => {
 	// --- Fetching Redux State --- //
 	const dispatch = ReactRedux.useDispatch();
 	const currentUser = Functions.getSession();
+	const tagsRedux = Functions.getTags();
 	const postsErrorsRedux = Functions.getPostsErrors();
 
 	// --- Animations --- //
@@ -36,6 +41,33 @@ export const Create = () => {
 	const animateWrapper = OptionSprings.wrapper();
 	const animateHeader = OptionSprings.header();
 	const animateInput = OptionSprings.input();
+
+	// --- Setting Tag Components --- //
+	const tagGenres = Object.entries(Lodash.mapValues(tagsRedux, (tag) => tag.genre));
+	const tagCount = tagGenres.length;
+
+	console.log("Tag Genres:", tagGenres);
+	console.log("Tag Count:", tagCount);
+
+	const tags = tagGenres.map((tag: [string, string]) => {
+		const id = tag[0];
+		const genre = tag[1];
+		const isLastTag = Number(id) === tagCount;
+
+		return (
+			<Styled.TagContainer key={id}>
+				<Tag
+					tagId={id}
+					genre={genre}
+					margin={isLastTag ? false : true}
+					selectedTags={selectedTags}
+					addToSelectedTags={addToSelectedTags}
+					removeFromSelectedTags={removeFromSelectedTags}
+					isTagSelected={isTagSelected}
+				/>
+			</Styled.TagContainer>
+		);
+	});
 
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
@@ -116,6 +148,20 @@ export const Create = () => {
 								<OptionStyled.FormGroup>
 									<FormTitleGroup
 										title="Your Review"
+										characterCount={navbarOptionsCreate.state.review.length}
+										errorMessage={navbarOptionsCreate.state.reviewError}
+									/>
+									<Styled.CreateFormReviewTextarea
+										onChange={navbarOptionsCreate.handlers.handleReviewChange}
+										placeholder="Your review here (max 500 characters)"
+										style={animateInput}
+									/>
+								</OptionStyled.FormGroup>
+
+								{/* Tags */}
+								<OptionStyled.FormGroup>
+									<FormTitleGroup
+										title="Add Tags"
 										characterCount={navbarOptionsCreate.state.review.length}
 										errorMessage={navbarOptionsCreate.state.reviewError}
 									/>

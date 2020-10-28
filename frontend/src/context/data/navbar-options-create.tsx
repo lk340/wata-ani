@@ -9,6 +9,7 @@ type State = {
 	reviewTitle: string;
 	review: string;
 	personalRating: string;
+	tags: Actions.Tags.Tag[];
 	seriesTitleError: string;
 	reviewTitleError: string;
 	reviewError: string;
@@ -20,6 +21,7 @@ const initialState = Object.freeze<State>({
 	reviewTitle: "",
 	review: "",
 	personalRating: "",
+	tags: [],
 	seriesTitleError: "",
 	reviewTitleError: "",
 	reviewError: "",
