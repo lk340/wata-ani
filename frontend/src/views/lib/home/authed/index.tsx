@@ -93,22 +93,22 @@ export const Authed = () => {
 	// --- Review Card Logic --- //
 	let posts: React.ReactNode[] | "" = "";
 
-	// if (pagination.state.postResults.length) {
-	if (pagination.state.postResults.length > 0) {
-		posts = pagination.state.postResults.map((post: Actions.Posts.Post) => {
-			return (
-				<Styled.AuthedPost key={post.id}>
-					<Components.Post
-						post={post}
-						currentUser={currentUser}
-						username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
-						ratingsRedux={ratingsRedux}
-					/>
-				</Styled.AuthedPost>
-			);
-		});
+	if (pagination.state.postResults.length) {
+		if (pagination.state.postResults.length > 0) {
+			posts = pagination.state.postResults.map((post: Actions.Posts.Post) => {
+				return (
+					<Styled.AuthedPost key={post.id}>
+						<Components.Post
+							post={post}
+							currentUser={currentUser}
+							username={usersRedux[post.author] ? usersRedux[post.author].username : ""}
+							ratingsRedux={ratingsRedux}
+						/>
+					</Styled.AuthedPost>
+				);
+			});
+		}
 	}
-	// }
 
 	return (
 		<Styled.Authed>

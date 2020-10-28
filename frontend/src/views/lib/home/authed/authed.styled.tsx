@@ -23,20 +23,18 @@ export const AuthedPosts = styled("div")`
 	max-width: ${Constants.globals.maxWidth}px;
 
 	@media (max-width: 1260px) {
-		${Snippets.grid(2, "1fr", 20, "center", "auto")};
+		${Snippets.grid(2, "1fr", 20, "center", "start")};
 		padding: 0px ${Constants.sidePaddings.tablet}px;
 	}
 
 	@media (max-width: 960px) {
-		${Snippets.grid(1, "1fr", 20, "center", "auto")};
+		${Snippets.grid(1, "1fr", 20, "center", "start")};
 	}
 
 	@media (max-width: 625px) {
 		margin-top: 50px;
 		padding: 0px ${Constants.sidePaddings.mobile}px;
 	}
-
-	border: red solid 1px;
 `;
 
 const containerMaxWidthDesktop = (Constants.globals.maxWidth - 20 * 2) / 3;

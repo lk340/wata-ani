@@ -183,23 +183,18 @@ export const PostAuthorRatingValue = styled("span")`
 type Tag = { tag_count: number };
 
 export const PostTagContainer = styled("div")<Tag>`
-	${Snippets.flex("row", "auto", "center")};
+	${Snippets.flex("row", "flex-start", "center")};
 	display: ${(props) => (props.tag_count > 0 ? "flex" : "none")};
-	max-width: ${Constants.globals.maxWidth / 2}px;
 	padding: 0px 0px 5px 20px;
-	overflow-x: auto;
+	overflow: auto;
 
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		${Snippets.hideScrollbar()};
 	}
-
-	border: red solid 1px;
 `;
 
 export const PostTagKeyWrapper = styled("div")`
 	flex-shrink: 0;
-
-	border: green solid 1px;
 `;
 
 export const PostTag = styled(animated.div)`
@@ -207,8 +202,6 @@ export const PostTag = styled(animated.div)`
 	padding: 10px 14px;
 	border-radius: ${Constants.borderRadius.components.post.tag};
 	font-size: ${Constants.fontSizes.components.post.tag};
-
-	border: blue solid 1px;
 `;
 
 // ================= //
