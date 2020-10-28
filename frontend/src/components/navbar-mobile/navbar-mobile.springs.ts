@@ -18,15 +18,14 @@ export function navbarMobile() {
 	});
 }
 
-export function optionIconText(state: boolean) {
+export function optionIconText() {
 	return Spring.useSpring({
 		to: {
-			color: state
-				? Colors.PRIMARY_100
-				: localStorage.mode === "light"
-				? Constants.theme.components.navbarMobile.option.light
-				: Constants.theme.components.navbarMobile.option.dark,
- 		},
+			color:
+				localStorage.mode === "light"
+					? Constants.theme.components.navbarMobile.option.light
+					: Constants.theme.components.navbarMobile.option.dark,
+		},
 		config: { duration: 100 },
 	});
 }

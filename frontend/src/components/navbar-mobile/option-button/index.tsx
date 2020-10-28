@@ -10,7 +10,7 @@ type OptionButtonProps = { test_id: string } & OptionProps;
 export const OptionButton = (props: OptionButtonProps) => {
 	const { state, icon, text, onClick, test_id } = props;
 
-	const animateOptionText = NavbarMobileSprings.optionIconText(state);
+	const animateOptionText = NavbarMobileSprings.optionIconText();
 
 	return (
 		<Styled.OptionButton onClick={onClick} test_id={test_id}>

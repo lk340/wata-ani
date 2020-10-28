@@ -38,8 +38,10 @@ export const Profile = () => {
 	const [postsError, setPostsError] = React.useState("");
 
 	React.useEffect(() => {
-		loading.setters.setLoading({ loading: false });
-	}, []);
+		if (localStorage.pathChange === true) {
+			loading.setters.setLoading({ loading: false });
+		}
+	}, [localStorage.pathChange]);
 
 	// --- Animations --- //
 	const animateBackground = Springs.background();

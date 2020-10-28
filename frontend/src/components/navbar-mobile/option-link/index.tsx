@@ -13,7 +13,7 @@ type OptionLinkProps = {
 export const OptionLink = (props: OptionLinkProps) => {
 	const { state, icon, text, onClick, to, test_id } = props;
 
-	const animateOptionText = NavbarMobileSprings.optionIconText(state);
+	const animateOptionText = NavbarMobileSprings.optionIconText();
 
 	return (
 		<Styled.OptionLink to={to} onClick={onClick} test_id={test_id}>
