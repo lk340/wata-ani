@@ -69,8 +69,6 @@ export const Authed = () => {
 		getPostsDescending();
 	}, [postsRedux]);
 
-	console.log("HELLO FROM THE AUTHED COMPONENT");
-
 	// --- Setting Loading Animation --- //
 	React.useEffect(() => {
 		if (
@@ -82,6 +80,8 @@ export const Authed = () => {
 			setTimeout(() => {
 				loading.setters.setLoading({ loading: false });
 			}, 1800);
+		} else {
+			loading.setters.setLoading({ loading: true });
 		}
 	}, [
 		Object.keys(usersRedux).length,
@@ -93,6 +93,7 @@ export const Authed = () => {
 	// --- Review Card Logic --- //
 	let posts: React.ReactNode[] | "" = "";
 
+	// if (pagination.state.postResults.length) {
 	if (pagination.state.postResults.length > 0) {
 		posts = pagination.state.postResults.map((post: Actions.Posts.Post) => {
 			return (
@@ -107,6 +108,7 @@ export const Authed = () => {
 			);
 		});
 	}
+	// }
 
 	return (
 		<Styled.Authed>

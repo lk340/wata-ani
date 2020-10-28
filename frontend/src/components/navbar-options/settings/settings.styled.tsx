@@ -37,6 +37,7 @@ const fieldTypeStyles = css`
 	color: inherit;
 	background-color: ${Colors.NEUTRALS.transparent};
 	border: none;
+	font-size: ${Constants.fontSizes.components.navbarOption.create.form.input};
 	outline: none;
 `;
 

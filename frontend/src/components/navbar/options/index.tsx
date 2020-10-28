@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactRedux from "react-redux";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
@@ -22,7 +21,7 @@ export const Options = () => {
 	const displayWhenSignedIn = isUser;
 	const displayWhenSignedOut = !isUser;
 
-	const animateProfileIcon = Springs.profileIcon(isUser);
+	const animateProfileIcon = Springs.profileIcon();
 	const animateRegisterButton = Animations.background(
 		Constants.theme.components.navbar.registerButton.light,
 		Constants.theme.components.navbar.registerButton.dark,

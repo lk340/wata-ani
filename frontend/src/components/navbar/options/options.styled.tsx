@@ -34,8 +34,6 @@ export const OptionLink = styled(Gatsby.Link).attrs((props: OptionProps) => ({
 	${Snippets.flexRowCenter()};
 	${Snippets.clearAnchor()};
 	display: ${(props) => (props.display === "true" ? "flex" : "none")};
-
-	border: red solid 1px;
 `;
 
 type FormProps = { display: string };

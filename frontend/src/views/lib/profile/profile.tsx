@@ -118,6 +118,8 @@ export const Profile = () => {
 	React.useEffect(() => {
 		if (userPostsRedux.length > 0) {
 			loading.setters.setLoading({ loading: false });
+		} else {
+			loading.setters.setLoading({ loading: true });
 		}
 	}, [userPostsRedux.length]);
 
