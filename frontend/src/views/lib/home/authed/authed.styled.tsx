@@ -35,6 +35,8 @@ export const AuthedPosts = styled("div")`
 		margin-top: 50px;
 		padding: 0px ${Constants.sidePaddings.mobile}px;
 	}
+
+	border: red solid 1px;
 `;
 
 const containerMaxWidthDesktop = (Constants.globals.maxWidth - 20 * 2) / 3;

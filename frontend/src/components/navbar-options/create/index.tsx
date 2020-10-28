@@ -86,8 +86,6 @@ export const Create = () => {
 		);
 	});
 
-	console.log("Selected Tags:", selectedTags);
-
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
 			item && (

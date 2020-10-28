@@ -192,10 +192,14 @@ export const PostTagContainer = styled("div")<Tag>`
 	@media (max-width: ${Constants.breakpoints.mobile}px) {
 		${Snippets.hideScrollbar()};
 	}
+
+	border: red solid 1px;
 `;
 
 export const PostTagKeyWrapper = styled("div")`
 	flex-shrink: 0;
+
+	border: green solid 1px;
 `;
 
 export const PostTag = styled(animated.div)`
@@ -203,6 +207,8 @@ export const PostTag = styled(animated.div)`
 	padding: 10px 14px;
 	border-radius: ${Constants.borderRadius.components.post.tag};
 	font-size: ${Constants.fontSizes.components.post.tag};
+
+	border: blue solid 1px;
 `;
 
 // ================= //
