@@ -9,7 +9,6 @@ type State = {
 	reviewTitle: string;
 	review: string;
 	personalRating: string;
-	tags: Actions.Tags.Tag[];
 	seriesTitleError: string;
 	reviewTitleError: string;
 	reviewError: string;
@@ -21,7 +20,6 @@ const initialState = Object.freeze<State>({
 	reviewTitle: "",
 	review: "",
 	personalRating: "",
-	tags: [],
 	seriesTitleError: "",
 	reviewTitleError: "",
 	reviewError: "",
@@ -149,6 +147,7 @@ export const useNavbarOptionsCreateContext = Helpers.createUseContext(() => {
 		currentUserId: number,
 		dispatch: Function,
 		postsErrorsRedux: any,
+		tagIds: number[]
 	): void {
 		event.preventDefault();
 
@@ -171,6 +170,7 @@ export const useNavbarOptionsCreateContext = Helpers.createUseContext(() => {
 				personal_rating: Number(personalRating),
 				author: currentUserId,
 				user_ratings: [],
+				tags: tagIds
 			};
 
 			Actions.Posts.thunkCreateUserPost(data, dispatch, postsErrorsRedux);

@@ -33,7 +33,9 @@ type TagsProps = { length: number };
 
 export const Tags = styled("div")<TagsProps>`
 	${Snippets.flex("row", "auto", "center")};
-	margin-top: 10px;
+	width: 100%;
+	max-width: 400px;
+	margin: 10px 0px 30px;
 	padding-bottom: 5px;
 	overflow-x: scroll;
 

@@ -12,10 +12,12 @@ import * as OptionSprings from "../navbar-options.springs";
 import * as Styled from "./create.styled";
 
 import { Tag } from "@/components/post/modal-form/tag";
+import { SelectedTags } from "@/components/post/modal-form";
 
 /**
  * Fetching Redux State
  * Animations
+ * selectedTags (state) Handlers
  * Setting Tag Components
  */
 
@@ -25,6 +27,8 @@ export const Create = () => {
 	} = Context.NavbarOptionsCreate.useNavbarOptionsCreateContext();
 	const { navbar } = Context.Navbar.useNavbarContext();
 	const { userAgent } = Context.UserAgent.useUserAgentContext();
+
+	const [selectedTags, setSelectedTags] = React.useState<SelectedTags>({});
 
 	// --- Fetching Redux State --- //
 	const dispatch = ReactRedux.useDispatch();
@@ -42,13 +46,26 @@ export const Create = () => {
 	const animateHeader = OptionSprings.header();
 	const animateInput = OptionSprings.input();
 
+	// --- selectedTags (state) Handlers --- //
+	function addToSelectedTags(tagId: string): void {
+		const newTags = selectedTags;
+		newTags[tagId] = tagsRedux[tagId];
+		setSelectedTags(newTags);
+	}
+
+	function removeFromSelectedTags(tagId: string): void {
+		const newTags = selectedTags;
+		delete newTags[tagId];
+		setSelectedTags(newTags);
+	}
+
+	function isTagSelected(tagId: string): boolean {
+		return !!selectedTags[tagId];
+	}
+
 	// --- Setting Tag Components --- //
 	const tagGenres = Object.entries(Lodash.mapValues(tagsRedux, (tag) => tag.genre));
 	const tagCount = tagGenres.length;
-
-	console.log("Tag Genres:", tagGenres);
-	console.log("Tag Count:", tagCount);
-
 	const tags = tagGenres.map((tag: [string, string]) => {
 		const id = tag[0];
 		const genre = tag[1];
@@ -68,6 +85,8 @@ export const Create = () => {
 			</Styled.TagContainer>
 		);
 	});
+
+	console.log("Selected Tags:", selectedTags);
 
 	return transitionAnimation.map(({ item, key, props }) => {
 		return (
@@ -91,6 +110,7 @@ export const Create = () => {
 										currentUser.id,
 										dispatch,
 										postsErrorsRedux,
+										Functions.convertKeysToIntegers(selectedTags),
 									)
 								}
 							>
@@ -165,11 +185,7 @@ export const Create = () => {
 										characterCount={navbarOptionsCreate.state.review.length}
 										errorMessage={navbarOptionsCreate.state.reviewError}
 									/>
-									<Styled.CreateFormReviewTextarea
-										onChange={navbarOptionsCreate.handlers.handleReviewChange}
-										placeholder="Your review here (max 500 characters)"
-										style={animateInput}
-									/>
+									<Styled.Tags length={tagCount}>{tags}</Styled.Tags>
 								</OptionStyled.FormGroup>
 
 								{/* Submit Button */}
