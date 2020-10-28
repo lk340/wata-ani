@@ -29,6 +29,8 @@ type Props = {
  */
 
 export const Post = (props: Props) => {
+	const { location } = Context.Location.useLocationContext();
+
 	const [currentUserRating, setCurrentUserRating] = React.useState(0);
 	const [currentUserRatingError, setCurrentUserRatingError] = React.useState("");
 	const [averageUserRating, setAverageUserRating] = React.useState<number | "N/A">("N/A");
@@ -133,6 +135,7 @@ export const Post = (props: Props) => {
 		<Styled.PostContainer
 			ref={postContainerRef}
 			read_more_expanded={readMoreExpanded.toString()}
+			is_profile={location.state.pathname.includes("profile").toString()}
 			style={animatePost}
 		>
 			<ModalForm
@@ -202,9 +205,9 @@ export const Post = (props: Props) => {
 					</Styled.PostAuthorRating>
 
 					{/* Tags */}
-					<Styled.PostTagContainer tag_count={tagCount}>
+					{/* <Styled.PostTagContainer tag_count={tagCount}>
 						{postTagComponents}
-					</Styled.PostTagContainer>
+					</Styled.PostTagContainer> */}
 				</Styled.Post>
 			</Styled.PostWrapper>
 

@@ -27,9 +27,9 @@ export async function checkRefresh(): Promise<void> {
 			const dateTimeRightNow = new Date();
 			const accessTokenExpired = accessTokenExpirationDate < dateTimeRightNow;
 
-			console.log("Access Token Expiration Date:", accessTokenExpirationDate);
-			console.log("Date Time Right Now:", dateTimeRightNow);
-			console.log("Access token expire?", accessTokenExpired);
+			// console.log("Access Token Expiration Date:", accessTokenExpirationDate);
+			// console.log("Date Time Right Now:", dateTimeRightNow);
+			// console.log("Access token expire?", accessTokenExpired);
 
 			if (accessTokenExpired) {
 				const endpoint = "/api/token/refresh/";
@@ -40,7 +40,7 @@ export async function checkRefresh(): Promise<void> {
 
 				// Success
 				if (response.status < 400) {
-					console.log("JWT Refresh Success:", response);
+					// console.log("JWT Refresh Success:", response);
 					localStorage.access = response.data.access;
 				}
 				// Failure
@@ -50,7 +50,7 @@ export async function checkRefresh(): Promise<void> {
 					// User must sign in again manually.
 					localStorage.removeItem("access");
 					localStorage.removeItem("refresh");
-					console.log("JWT Refresh Failure", response);
+					// console.log("JWT Refresh Failure", response);
 				}
 			}
 		}

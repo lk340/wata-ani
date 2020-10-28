@@ -154,16 +154,16 @@ export const Observer: React.FC<{ children: React.ReactNode }> = ({ children }) 
 			const response = await axios.get(endpoint, { validateStatus });
 			const currentUser = response.data;
 
-			console.log("Current User:", currentUser);
+			// console.log("Current User:", currentUser);
 
 			// Success
 			if (response.status < 400) {
-				console.log("Observer Response Success:", response);
+				// console.log("Observer Response Success:", response);
 				dispatch(Actions.Session.receiveCurrentUser(currentUser));
 			}
 			// Failure
 			else {
-				console.log("Observer Response Failure:", response);
+				// console.log("Observer Response Failure:", response);
 				// If there is a JWT error on the server side, just log the user out.
 				if (response.status >= 500) dispatch(Actions.Session.signOut(dispatch));
 				dispatch(Actions.Session.sessionErrors(response.data.non_field_errors));

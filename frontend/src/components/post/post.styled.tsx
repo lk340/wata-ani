@@ -20,19 +20,25 @@ import * as Colors from "@/utils/style/colors";
 // ↓↓↓ Post ↓↓↓ //
 // =================== //
 
-type PostProps = { read_more_expanded: string };
+type PostProps = {
+	read_more_expanded: string;
+	is_profile: string;
+};
 
 export const PostContainer = styled(animated.div)<PostProps>`
 	${Snippets.flex("column")};
 	position: relative;
 	width: 100%;
 	height: ${(props) => {
-		const { read_more_expanded } = props;
-		if (read_more_expanded === "true") return "auto";
+		const { read_more_expanded, is_profile } = props;
+		if (is_profile === "true") return "auto";
+		else if (read_more_expanded === "true") return "auto";
 		else return `${Constants.size.components.post.height}px`;
 	}};
 	padding: 20px 0px;
 	border-radius: ${Constants.borderRadius.components.post.card};
+
+	border: red solid 1px !important;
 `;
 
 export const PostWrapper = styled(animated.div)`

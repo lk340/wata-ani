@@ -122,19 +122,21 @@ export const Profile = () => {
 	// --- Review Card Logic --- //
 	let reviewCards: React.ReactNode[] | "" = "";
 
-	if (pagination.state.postResults.length > 0) {
-		reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
-			return (
-				<Styled.ProfilePost key={post.id}>
-					<Components.Post
-						post={post}
-						currentUser={currentUser}
-						username={username}
-						ratingsRedux={ratingsRedux}
-					/>
-				</Styled.ProfilePost>
-			);
-		});
+	if (pagination.state.postResults.length) {
+		if (pagination.state.postResults.length > 0) {
+			reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
+				return (
+					<Styled.ProfilePost key={post.id}>
+						<Components.Post
+							post={post}
+							currentUser={currentUser}
+							username={username}
+							ratingsRedux={ratingsRedux}
+						/>
+					</Styled.ProfilePost>
+				);
+			});
+		}
 	}
 
 	return (

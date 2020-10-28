@@ -195,10 +195,6 @@ const PasswordField = (props: PasswordFieldProps) => {
 		navbarOptionsSettings,
 	} = Context.NavbarOptionsSettings.useNavbarOptionsSettings();
 
-	console.log(navbarOptionsSettings.state.currentPassword);
-	console.log(navbarOptionsSettings.state.newPassword);
-	console.log(navbarOptionsSettings.state.newPasswordConfirm);
-
 	// --- Setting Input Field Type --- //
 
 	let input: React.ReactNode = <React.Fragment />;
