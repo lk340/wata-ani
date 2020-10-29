@@ -201,12 +201,12 @@ export async function thunkDeletePost(id: number, dispatch: Function): Promise<v
 }
 
 export async function thunkGetUserPosts(
-	userId: number,
+	username: string,
 	dispatch: Function,
 	errors: Types.ActionCreatorErrors,
 ): Promise<void> {
 	try {
-		const response = await axios.get(`/api/users/${userId}/posts/`, { validateStatus });
+		const response = await axios.get(`/api/users/${username}/posts/`, { validateStatus });
 		Functions.handleResponse(dispatch, response, getUserPosts, postErrors, errors);
 	} catch (error) {
 		// Dev debug log

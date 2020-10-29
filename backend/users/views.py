@@ -57,7 +57,9 @@ class UserDetail(APIView):
 class UserPosts(APIView, LimitOffsetPagination):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request, pk, format=None):
+    def get(self, request, username, format=None):
+        user = User.objects.get(username=username)
+        pk = user.id
         posts = Post.objects.filter(author=pk).order_by("-date_created")
         paginated_posts = self.paginate_queryset(posts, request, view=self)
         serializer = PostSerializer(paginated_posts, many=True)

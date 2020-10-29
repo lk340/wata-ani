@@ -23,9 +23,9 @@ import { Search } from "@/icons/navbar";
  * Fetching Redux State
  * Setting Local Component State Values
  * Determining Fill Color For Information Icons Fill
+ * Fetching Username By Parsing Query String
  * Fetching User Posts
  * Setting Loading Animation
- * Parsing Query String
  * Post Logic
  */
 
@@ -34,7 +34,6 @@ export const Profile = () => {
 	const { pagination } = Context.Pagination.usePaginationContext();
 	const { loading } = Context.Loading.useLoadingContext();
 
-	const [userId, setUserId] = React.useState<number | null>(null);
 	const [username, setUsername] = React.useState("");
 	const [reviewCount, setReviewCount] = React.useState<number | "">("");
 	const [biography, setBiography] = React.useState("");
@@ -70,21 +69,36 @@ export const Profile = () => {
 	}, [localStorage.access]);
 
 	React.useEffect(() => {
-		if (userId) {
-			Actions.Posts.thunkGetUserPosts(userId, dispatch, postsErrorsRedux);
+		if (username !== "") {
+			Actions.Posts.thunkGetUserPosts(username, dispatch, postsErrorsRedux);
 		}
-	}, [userId]);
+	}, [username]);
+
+	// --- Fetching Username By Parsing Query String --- //
+	const location = Reach.useLocation();
+	const queryStringParams = location.search ? queryString.parse(location.search) : {};
+	const queryStringParamsUsername = queryStringParams.username;
 
 	// --- Setting Local Component State Values --- //
 	React.useEffect(() => {
-		// TODO: When using loading animation, end it here.
 		if (currentUser.id) {
-			setUserId(currentUser.id);
-			setUsername(currentUser.username);
-			setReviewCount(currentUser.posts.length);
-			setBiography(currentUser.biography);
+			async function setLocalStateValues(): Promise<void> {
+				try {
+					const response = await axios.get(`/api/users/${queryStringParamsUsername}/`);
+
+					if (response.status < 400) {
+						setUsername(response.data.username);
+						setReviewCount(response.data.posts.length);
+						setBiography(response.data.biography);
+					}
+				} catch (error) {
+					// Dev Debug Log
+					console.log(error);
+				}
+			}
+			setLocalStateValues();
 		}
-	}, [currentUser]);
+	}, [currentUser, queryStringParamsUsername]);
 
 	// --- Determining Fill Color For Information Icons Fill --- //
 	React.useEffect(() => {
@@ -97,7 +111,7 @@ export const Profile = () => {
 	React.useEffect(() => {
 		async function fetchUserPosts(): Promise<void> {
 			try {
-				const endpoint = `/api/users/${userId}/posts/`;
+				const endpoint = `/api/users/${queryStringParamsUsername}/posts/`;
 				const validateStatus = AxiosHelpers.validateStatus;
 				const response = await axios.get(endpoint, { validateStatus });
 
@@ -121,15 +135,8 @@ export const Profile = () => {
 				console.log(error);
 			}
 		}
-		if (userId) fetchUserPosts();
-	}, [userId, userPostsRedux]);
-
-	// --- Parsing Query String --- //
-
-	const location = Reach.useLocation();
-	const search = location.search ? queryString.parse(location.search) : {};
-
-	console.log("Reach:", search);
+		if (username !== "") fetchUserPosts();
+	}, [username, userPostsRedux]);
 
 	// --- Setting Loading Animation --- //
 	React.useEffect(() => {
@@ -151,7 +158,6 @@ export const Profile = () => {
 						<Components.Post
 							post={post}
 							currentUser={currentUser}
-							userId={userId}
 							username={username}
 							ratingsRedux={ratingsRedux}
 						/>

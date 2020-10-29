@@ -163,7 +163,7 @@ export const Post = (props: Props) => {
 						{/* Profile Picture & Username */}
 						<Styled.PostProfilePicture_Username>
 							{/* <Styled.PostProfilePicture /> */}
-							<Styled.PostUsername to={`/profile/?identifier=${props.username}`}>
+							<Styled.PostUsername to={`/profile/?username=${props.username}`}>
 								{props.username}
 							</Styled.PostUsername>
 						</Styled.PostProfilePicture_Username>

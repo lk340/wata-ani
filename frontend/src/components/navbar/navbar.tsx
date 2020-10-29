@@ -24,6 +24,7 @@ export const Navbar = () => {
 		else if (location.state.pathname === "/profile") navbar.setters.setProfileOn();
 	}, [location.state.pathname]);
 
+	// --- Animations --- //
 	const animateNavbar = Springs.navbar();
 
 	return (

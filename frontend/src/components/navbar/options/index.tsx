@@ -27,6 +27,10 @@ export const Options = () => {
 		Constants.theme.components.navbar.registerButton.dark,
 	);
 
+	// --- Fetching Redux State --- //
+	const currentUser = Functions.getSession();
+	const currentUserUsername = currentUser.username;
+
 	return (
 		<Styled.Options>
 			{/* Home Link */}
@@ -102,7 +106,7 @@ export const Options = () => {
 
 			{/* Profile Link */}
 			<Styled.OptionLink
-				to="/profile"
+				to={`/profile/?username=${currentUserUsername}`}
 				onClick={navbar.setters.setProfileOn}
 				display={displayWhenSignedIn.toString()}
 				test_id="profile"
