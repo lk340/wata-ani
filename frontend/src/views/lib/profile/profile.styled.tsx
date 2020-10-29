@@ -118,6 +118,7 @@ export const ProfilePosts = styled("div")`
 
 export const ProfilePost = styled("div")`
 	width: 100%;
+	max-width: ${Constants.globals.maxWidth / 2}px;
 `;
 
 // ====================== //

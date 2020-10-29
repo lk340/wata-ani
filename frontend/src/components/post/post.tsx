@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as Use from "react-use";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
@@ -30,6 +31,7 @@ type Props = {
 
 export const Post = (props: Props) => {
 	const { location } = Context.Location.useLocationContext();
+	const { windows } = Context.Windows.useWindowsContext();
 
 	const [currentUserRating, setCurrentUserRating] = React.useState(0);
 	const [currentUserRatingError, setCurrentUserRatingError] = React.useState("");
@@ -50,6 +52,12 @@ export const Post = (props: Props) => {
 	// --- Refs --- //
 	const postContainerRef = React.useRef(null);
 	const postRef = React.useRef(null);
+	const postWrapperRef = React.useRef(null);
+
+	let wrapperWidth = 0;
+	if (postWrapperRef.current) {
+		wrapperWidth = postWrapperRef.current.clientWidth;
+	}
 
 	React.useEffect(() => {
 		if (postContainerRef.current && postRef.current) {
@@ -145,7 +153,7 @@ export const Post = (props: Props) => {
 				currentUser={props.currentUser}
 			/>
 
-			<Styled.PostWrapper style={animateWrapper}>
+			<Styled.PostWrapper ref={postWrapperRef} style={animateWrapper}>
 				{/* Fade */}
 				<Styled.PostWrapperFade style={animateFade} />
 
@@ -205,7 +213,7 @@ export const Post = (props: Props) => {
 					</Styled.PostAuthorRating>
 
 					{/* Tags */}
-					<Styled.PostTagContainer tag_count={tagCount}>
+					<Styled.PostTagContainer tag_count={tagCount} wrapper_width={wrapperWidth}>
 						{postTagComponents}
 					</Styled.PostTagContainer>
 				</Styled.Post>

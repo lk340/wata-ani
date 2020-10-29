@@ -180,11 +180,15 @@ export const PostAuthorRatingValue = styled("span")`
 // ↓↓↓ Tags ↓↓↓ //
 // ============ //
 
-type Tag = { tag_count: number };
+type Tag = {
+	tag_count: number;
+	wrapper_width: number;
+};
 
 export const PostTagContainer = styled("div")<Tag>`
 	${Snippets.flex("row", "flex-start", "center")};
 	display: ${(props) => (props.tag_count > 0 ? "flex" : "none")};
+	width: ${(props) => `${props.wrapper_width}px` || "auto"};
 	padding: 0px 0px 5px 20px;
 	overflow: auto;
 

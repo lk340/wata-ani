@@ -22,7 +22,7 @@ import * as Icons from "@/icons/profile";
  * Determining Fill Color For Information Icons Fill
  * Fetching User Posts
  * Setting Loading Animation
- * Review Card Logic
+ * Post Logic
  */
 
 export const Profile = () => {
@@ -129,12 +129,12 @@ export const Profile = () => {
 		}
 	}, [userPostsRedux.length, Object.keys(tagsRedux).length]);
 
-	// --- Review Card Logic --- //
-	let reviewCards: React.ReactNode[] | "" = "";
+	// --- Post Logic --- //
+	let posts: React.ReactNode[] | "" = "";
 
 	if (pagination.state.postResults.length) {
 		if (pagination.state.postResults.length > 0) {
-			reviewCards = pagination.state.postResults.map((post: Actions.Posts.Post) => {
+			posts = pagination.state.postResults.map((post: Actions.Posts.Post) => {
 				return (
 					<Styled.ProfilePost key={post.id}>
 						<Components.Post
@@ -191,7 +191,7 @@ export const Profile = () => {
 				</Styled.ProfileInformation>
 			</Styled.ProfileInformationContainer>
 
-			<Styled.ProfilePosts>{reviewCards}</Styled.ProfilePosts>
+			<Styled.ProfilePosts>{posts}</Styled.ProfilePosts>
 
 			<Components.Pagination />
 		</Styled.Profile>

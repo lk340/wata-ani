@@ -93,7 +93,7 @@ export const Authed = () => {
 	// --- Review Card Logic --- //
 	let posts: React.ReactNode[] | "" = "";
 
-	if (pagination.state.postResults.length) {
+	if (pagination.state.postResults && pagination.state.postResults.length) {
 		if (pagination.state.postResults.length > 0) {
 			posts = pagination.state.postResults.map((post: Actions.Posts.Post) => {
 				return (
