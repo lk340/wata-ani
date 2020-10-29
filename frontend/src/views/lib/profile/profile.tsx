@@ -1,7 +1,9 @@
 import * as React from "react";
 import * as ReactRedux from "react-redux";
+import * as Reach from "@reach/router";
 import * as Gatsby from "gatsby";
 import axios from "axios";
+import queryString from "query-string";
 
 import * as Context from "@/context";
 import * as Components from "@/components";
@@ -14,6 +16,7 @@ import * as Styled from "./profile.styled";
 import * as Springs from "./profile.springs";
 
 import * as Icons from "@/icons/profile";
+import { Search } from "@/icons/navbar";
 
 /**
  * Animations
@@ -22,6 +25,7 @@ import * as Icons from "@/icons/profile";
  * Determining Fill Color For Information Icons Fill
  * Fetching User Posts
  * Setting Loading Animation
+ * Parsing Query String
  * Post Logic
  */
 
@@ -120,6 +124,13 @@ export const Profile = () => {
 		if (userId) fetchUserPosts();
 	}, [userId, userPostsRedux]);
 
+	// --- Parsing Query String --- //
+
+	const location = Reach.useLocation();
+	const search = location.search ? queryString.parse(location.search) : {};
+
+	console.log("Reach:", search);
+
 	// --- Setting Loading Animation --- //
 	React.useEffect(() => {
 		if (userPostsRedux.length > 0 && Object.keys(tagsRedux).length > 0) {
@@ -140,6 +151,7 @@ export const Profile = () => {
 						<Components.Post
 							post={post}
 							currentUser={currentUser}
+							userId={userId}
 							username={username}
 							ratingsRedux={ratingsRedux}
 						/>

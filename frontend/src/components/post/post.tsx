@@ -163,7 +163,9 @@ export const Post = (props: Props) => {
 						{/* Profile Picture & Username */}
 						<Styled.PostProfilePicture_Username>
 							{/* <Styled.PostProfilePicture /> */}
-							<Styled.PostUsername>{props.username}</Styled.PostUsername>
+							<Styled.PostUsername to={`/profile/?identifier=${props.username}`}>
+								{props.username}
+							</Styled.PostUsername>
 						</Styled.PostProfilePicture_Username>
 						{/* Modal Button (ellipses) */}
 						<Styled.PostModalButtonDotContainer

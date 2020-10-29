@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { animated } from "react-spring";
+import * as Gatsby from "gatsby";
 
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
@@ -78,8 +79,8 @@ export const PostProfilePicture = styled("img").attrs(() => ({
 	background-color: ${Colors.LIGHT.five};
 `;
 
-export const PostUsername = styled("p")`
-	${Snippets.clearSpacing()};
+export const PostUsername = styled(Gatsby.Link)`
+	${Snippets.clearAnchor()};
 	font-weight: bold;
 `;
 
