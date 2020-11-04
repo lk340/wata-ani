@@ -32,13 +32,13 @@ export const ModalOptions = () => {
 			/>
 
 			{/* Search */}
-			<ModalButton
+			{/* <ModalButton
 				iconType="search"
 				text="Search"
 				display={displayWhenSignedIn}
 				buttonType="search"
 				test_id="search"
-			/>
+			/> */}
 
 			{/* Sign In */}
 			<ModalLink

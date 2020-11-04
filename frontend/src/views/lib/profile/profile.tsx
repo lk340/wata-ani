@@ -86,10 +86,15 @@ export const Profile = () => {
 				try {
 					const response = await axios.get(`/api/users/${queryStringParamsUsername}/`);
 
+					// Success
 					if (response.status < 400) {
 						setUsername(response.data.username);
 						setReviewCount(response.data.posts.length);
 						setBiography(response.data.biography);
+					}
+					// Failure
+					else {
+						console.log("Error:", response.data);
 					}
 				} catch (error) {
 					// Dev Debug Log

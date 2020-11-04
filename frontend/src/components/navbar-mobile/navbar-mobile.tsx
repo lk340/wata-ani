@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Context from "@/context";
 import * as Components from "@/components";
 import * as Icons from "@/icons/navbar";
+import * as Functions from "@/utils/functions";
 import * as Constants from "@/utils/style/constants";
 
 import * as Styled from "./navbar-mobile.styled";
@@ -26,6 +27,10 @@ export const NavbarMobile = () => {
 
 	const isNavbarOptionOpen =
 		navbar.state.create || navbar.state.search || navbar.state.settings;
+
+	// --- Fetching Redux State --- //
+	const currentUser = Functions.getSession();
+	const currentUserUsername = currentUser.username;
 
 	return (
 		<Styled.NavbarMobile display={true.toString()} style={animateNavbarMobile}>
@@ -119,7 +124,7 @@ export const NavbarMobile = () => {
 
 			{/* Profile */}
 			<OptionLink
-				to="/profile"
+				to={`/profile/?username=${currentUserUsername}`}
 				onClick={navbar.setters.setProfileOn}
 				state={navbar.state.profile}
 				icon={
