@@ -1,10 +1,27 @@
 import * as React from "react";
+import * as ReactRedux from "react-redux";
+import * as Gatsby from "gatsby";
+
+import * as Context from "@/context";
+import * as Actions from "@/redux/actions";
 
 import * as Styled from "./footer.styled";
 import * as Springs from "./footer.springs";
 
 export const Footer = () => {
+	const { navbar } = Context.Navbar.useNavbarContext();
+
 	const animateFooter = Springs.Footer();
+
+	const isAuthed = !!localStorage.access;
+
+	const dispatch = ReactRedux.useDispatch();
+
+	function handleClick(): void {
+		Actions.Session.signOut(dispatch);
+		navbar.setters.toggleHamburgerOpen();
+		Gatsby.navigate("/");
+	}
 
 	return (
 		<Styled.Footer style={animateFooter}>
@@ -27,36 +44,22 @@ export const Footer = () => {
 				<Styled.FooterNavigation>
 					<Styled.FooterNavigationTitle>Navigation</Styled.FooterNavigationTitle>
 					<Styled.FooterNavigationLink to="/">Home</Styled.FooterNavigationLink>
-					<Styled.FooterNavigationLink to="/sign-in">Sign In</Styled.FooterNavigationLink>
-					<Styled.FooterNavigationLink to="/registration">
-						Register
-					</Styled.FooterNavigationLink>
+					{isAuthed ? (
+						<Styled.FooterNavigationSignOutButton onClick={handleClick}>
+							Sign Out
+						</Styled.FooterNavigationSignOutButton>
+					) : (
+						<>
+							<Styled.FooterNavigationLink to="/sign-in">
+								Sign In
+							</Styled.FooterNavigationLink>
+							<Styled.FooterNavigationLink to="/registration">
+								Register
+							</Styled.FooterNavigationLink>
+						</>
+					)}
 				</Styled.FooterNavigation>
 			</Styled.FooterContent>
 		</Styled.Footer>
 	);
-};
-
-const Navigation = () => {
-	<Styled.FooterNavigationContainer>
-		{/* Navigation */}
-		<Styled.FooterNavigation>
-			<Styled.FooterNavigationTitle>Navigation</Styled.FooterNavigationTitle>
-			<Styled.FooterNavigationLink to="/">Home</Styled.FooterNavigationLink>
-			<Styled.FooterNavigationLink to="/sign-in">Sign In</Styled.FooterNavigationLink>
-			<Styled.FooterNavigationLink to="/registration">
-				Register
-			</Styled.FooterNavigationLink>
-		</Styled.FooterNavigation>
-
-		{/* Support */}
-		<Styled.FooterNavigation>
-			<Styled.FooterNavigationTitle>Support</Styled.FooterNavigationTitle>
-			<Styled.FooterNavigationLink to="/faq">FAQ</Styled.FooterNavigationLink>
-			<Styled.FooterNavigationLink to="/report-a-bug">
-				Report A Bug
-			</Styled.FooterNavigationLink>
-			<Styled.FooterNavigationLink to="/donate">Donate</Styled.FooterNavigationLink>
-		</Styled.FooterNavigation>
-	</Styled.FooterNavigationContainer>;
 };

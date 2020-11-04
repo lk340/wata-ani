@@ -93,3 +93,9 @@ export const FooterNavigationLink = styled(Gatsby.Link)`
 	font-size: ${Constants.fontSizes.components.footer.navigationLink};
 	line-height: ${Constants.lineHeights.components.footer.navigationLink}%;
 `;
+
+export const FooterNavigationSignOutButton = styled("div")`
+	font-size: ${Constants.fontSizes.components.footer.navigationLink};
+	line-height: ${Constants.lineHeights.components.footer.navigationLink}%;
+	cursor: pointer;
+`;
