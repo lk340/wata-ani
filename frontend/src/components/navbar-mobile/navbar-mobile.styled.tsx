@@ -1,8 +1,11 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { animated } from "react-spring";
+import * as Gatsby from "gatsby";
 
 import * as Constants from "@/utils/style/constants";
 import * as Snippets from "@/utils/style/snippets";
+
+import profileIcon from "@/icons/auth/username.svg";
 
 // ===================== //
 // ↓↓↓ Navbar Mobile ↓↓↓ //
@@ -32,6 +35,13 @@ export const NavbarMobile = styled(animated.div).attrs(() => ({
 			else return "none";
 		}};
 	}
+`;
+
+export const NavbarMobileProfileLinkIcon = styled("img").attrs(() => ({
+	src: profileIcon,
+	alt: "navbar mobile profile link icon",
+}))`
+	height: ${Constants.size.components.navbarMobile.icon}px;
 `;
 
 // ============== //

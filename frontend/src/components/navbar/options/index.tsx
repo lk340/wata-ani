@@ -7,10 +7,9 @@ import * as Functions from "@/utils/functions";
 import * as Animations from "@/utils/style/animations";
 import * as Constants from "@/utils/style/constants";
 
-import logoJapanese from "@/images/logo/japanese.svg";
+import profileIcon from "@/icons/auth/username.svg";
 
 import * as Styled from "./options.styled";
-import * as Springs from "./options.springs";
 
 export const Options = () => {
 	const { navbar } = Context.Navbar.useNavbarContext();
@@ -21,7 +20,6 @@ export const Options = () => {
 	const displayWhenSignedIn = isUser;
 	const displayWhenSignedOut = !isUser;
 
-	const animateProfileIcon = Springs.profileIcon();
 	const animateRegisterButton = Animations.background(
 		Constants.theme.components.navbar.registerButton.light,
 		Constants.theme.components.navbar.registerButton.dark,
@@ -111,7 +109,7 @@ export const Options = () => {
 				display={displayWhenSignedIn.toString()}
 				test_id="profile"
 			>
-				<Styled.OptionProfileIcon src={logoJapanese} style={animateProfileIcon} />
+				<Styled.OptionProfileIcon src={profileIcon} />
 			</Styled.OptionLink>
 
 			{/* Theme Button */}

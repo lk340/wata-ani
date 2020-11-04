@@ -68,12 +68,11 @@ export const OptionRegisterLink = styled(Gatsby.Link).attrs(() => ({
 // ↓↓↓ Profile Icon ↓↓↓ //
 // ==================== //
 
-export const OptionProfileIcon = styled(animated.img).attrs((props) => ({
+export const OptionProfileIcon = styled("img").attrs((props) => ({
 	src: props.src,
 	alt: "navbar component profile icon",
 }))`
 	${Snippets.square(`${Constants.size.components.navbar.icon}px`)};
-	${Snippets.makeCircle()};
 	margin-left: ${Constants.size.components.navbar.spacer}px;
 `;
 

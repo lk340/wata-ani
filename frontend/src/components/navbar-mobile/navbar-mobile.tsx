@@ -127,14 +127,7 @@ export const NavbarMobile = () => {
 				to={`/profile/?username=${currentUserUsername}`}
 				onClick={navbar.setters.setProfileOn}
 				state={navbar.state.profile}
-				icon={
-					<Icons.HomeHollow
-						width={`${Constants.size.components.navbarMobile.icon}px`}
-						fill={navbar.state.iconFill}
-						mode={theme.state.mode}
-						state={navbar.state.profile}
-					/>
-				}
+				icon={<Styled.NavbarMobileProfileLinkIcon />}
 				text="Profile"
 				test_id="profile"
 			/>
