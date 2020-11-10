@@ -1,4 +1,5 @@
 import os
+import django_heroku
 from datetime import timedelta
 from django.core.management.utils import get_random_secret_key
 
@@ -289,3 +290,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Public URL of the directory in which our media files are stored (remember, in the filesystem).
 # In other words, it tells Django to search ONLY through the "media" directory to find media files.
 MEDIA_URL = "/media/"
+
+# Activate Django-Heroku
+django-heroku.settings(locals())
