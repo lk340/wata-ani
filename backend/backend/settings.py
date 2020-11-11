@@ -10,14 +10,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = ")g$v283hh5j-(82_n^4fac(uv4_0_81a6)9@ctql7i0*n0s4g0"
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = ")g$v283hh5j-(82_n^4fac(uv4_0_81a6)9@ctql7i0*n0s4g0"
 
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["wata-ani.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -132,8 +131,8 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": True,
 
     "ALGORITHM": "HS256",
-    "SIGNING_KEY": settings.SECRET_KEY,
-    # "SIGNING_KEY": get_random_secret_key(),
+    # "SIGNING_KEY": settings.SECRET_KEY,
+    "SIGNING_KEY": get_random_secret_key(),
     "VERIFYING_KEY": None,
     "AUDIENCE": None,
     "ISSUER": None,
@@ -246,9 +245,6 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES["default"].update(db_from_env)
-
 
 
 # Password validation
@@ -287,13 +283,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATIC_URL = "/static/"
 
 
 # Full path to the directory, where we'd like Django to store our uploaded files.
