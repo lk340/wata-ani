@@ -13,3 +13,4 @@ The world of anime has stood long and strong and, thus, has given birth to an am
 You can view all of the mocks up [here](https://www.dropbox.com/sh/mq89830g3ppo6od/AAAeooa9EifCsNM0zBguTFTaa?dl=0) (created on Figma).
 
 ## Live Website
+https://wata-ani.netlify.app/
